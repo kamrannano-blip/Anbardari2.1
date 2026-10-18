@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="حسابداری">
 <meta name="mobile-web-app-capable" content="yes">
-<title>سیستم حسابداری و انبارداری</title>
+<title>سیستم حسابداری DAVIN NOVA</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="DAVIN.PNG">
 <link rel="apple-touch-icon" sizes="180x180" href="DAVIN.PNG">
@@ -16,14 +16,9 @@
 <link rel="apple-touch-icon" sizes="167x167" href="DAVIN.PNG">
 <link rel="apple-touch-icon" sizes="120x120" href="DAVIN.PNG">
 <link rel="icon" type="image/png" href="DAVIN.PNG">
-
-<!-- فونت ایران سنس (IRANSans) -->
 <link href="https://cdn.jsdelivr.net/gh/font-store/font-IRANSans/IRANSansWeb.css" rel="stylesheet">
-
-<!-- کتابخانه‌ها -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jalaali-js@1.2.6/dist/jalaali.min.js"></script>
-
 <style>
 :root{
   --bg-main:#0f1419;
@@ -48,6 +43,8 @@
   --warning:#f59e0b;
   --warning-hover:#d97706;
   --info:#3b82f6;
+  --gold:#d4af37;
+  --gold-light:#f4e5a1;
   --radius:14px;
   --radius-sm:10px;
   --radius-lg:18px;
@@ -70,7 +67,7 @@ body{font-family:'IRANSans', 'IRANSansWeb', Tahoma, sans-serif;font-weight:500;l
 .nav-item.active .icon{transform:scale(1.1)}
 .nav-item .icon{font-size:18px;width:22px;text-align:center;display:inline-block;transition:transform .2s;filter:grayscale(.3) brightness(1.2)}
 .nav-item.active .icon{filter:none}
-.main{margin-right:270px;flex:1;padding:24px 28px 120px;min-height:100vh;position:relative}
+.main{margin-right:270px;flex:1;padding:24px 28px 140px;min-height:100vh;position:relative}
 .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px;background:var(--bg-card);padding:16px 22px;border-radius:var(--radius);border:1px solid var(--border-soft);box-shadow:var(--shadow-card)}
 .page-title{font-size:22px;font-weight:800;color:var(--text-main);letter-spacing:-.5px}
 .menu-toggle{display:none;background:var(--bg-card-2);border:1px solid var(--border-medium);border-radius:10px;padding:10px 14px;cursor:pointer;color:var(--text-main);font-size:18px;transition:all .15s}
@@ -92,10 +89,12 @@ body{font-family:'IRANSans', 'IRANSansWeb', Tahoma, sans-serif;font-weight:500;l
 .stat.s-danger::before{background:var(--danger)}
 .stat.s-warning::before{background:var(--warning)}
 .stat.s-info::before{background:var(--info)}
+.stat.s-gold::before{background:var(--gold)}
 .stat-label{font-size:12.5px;color:var(--text-sub);margin-bottom:8px;font-weight:600;position:relative;z-index:1}
 .stat-value{font-size:22px;font-weight:800;color:var(--text-main);letter-spacing:-.5px;position:relative;z-index:1;font-variant-numeric:tabular-nums}
 .stat-value.positive{color:var(--success)}
 .stat-value.negative{color:var(--danger)}
+.stat-value.gold{color:var(--gold)}
 .stat-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:36px;opacity:.08;pointer-events:none;filter:grayscale(1)}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:var(--radius-sm);border:none;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s cubic-bezier(.4,0,.2,1);white-space:nowrap;position:relative;letter-spacing:.2px}
 .btn:active{transform:scale(.97)}
@@ -142,6 +141,7 @@ tbody tr:hover{background:var(--bg-hover)}
 .badge-warning{background:rgba(245,158,11,.15);color:#fbbf24;border-color:rgba(245,158,11,.3)}
 .badge-info{background:rgba(59,130,246,.15);color:#60a5fa;border-color:rgba(59,130,246,.3)}
 .badge-gray{background:rgba(139,149,165,.15);color:var(--text-sub);border-color:rgba(139,149,165,.25)}
+.badge-gold{background:rgba(212,175,55,.15);color:var(--gold-light);border-color:rgba(212,175,55,.35)}
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .modal-overlay.show{display:flex}
 .modal{background:var(--bg-card);border-radius:var(--radius-lg);width:100%;max-width:620px;max-height:90vh;overflow-y:auto;box-shadow:0 25px 60px rgba(0,0,0,.6),0 0 0 1px var(--border-medium);animation:slideUp .3s cubic-bezier(.4,0,.2,1);border:1px solid var(--border-medium)}
@@ -163,11 +163,11 @@ tbody tr:hover{background:var(--bg-hover)}
 .toast.error{background:rgba(239,68,68,.15);color:#f87171;border-color:rgba(239,68,68,.4)}
 .toast.warning{background:rgba(245,158,11,.15);color:#fbbf24;border-color:rgba(245,158,11,.4)}
 .flex{display:flex}.items-center{align-items:center}.justify-between{justify-content:space-between}
-.gap-2{gap:8px}.gap-3{gap:14px}.gap-4{g <ap:18px}
-.mb-3span{margin class-bottom:14px}.mb-4{margin-bottom:20px}.mt-3{margin-top:14px}.mt-4{margin-top:20px}
+.gap-2{gap:8px}.gap-3{gap:14px}.gap-4{gap:18px}
+.mb-3{margin-bottom:14px}.mb-4{margin-bottom:20px}.mt-3{margin-top:14px}.mt-4{margin-top:20px}
 .text-center{text-align:center}
 .text-muted{color:var(--text-sub);font-size:12.5px}
-.text-success{color:#34d399}.text-danger{color:#f87171}.text-warning{color:#fbbf24}
+.text-success{color:#34d399}.text-danger{color:#f87171}.text-warning{color:#fbbf24}.text-gold{color:var(--gold-light)}
 .font-bold{font-weight:800}
 .divider{height:1px;background:var(--border-soft);margin:20px 0}
 .hidden{display:none!important}
@@ -178,14 +178,58 @@ tbody tr:hover{background:var(--bg-hover)}
 .search-box{position:relative;flex:1;max-width:340px}
 .search-box input{padding-right:42px}
 .search-box::before{content:'🔍';position:absolute;right:15px;top:50%;transform:translateY(-50%);font-size:14px;opacity:.5;pointer-events:none}
-.footer-signature{position:fixed;bottom:0;left:0;right:270px;background:rgba(26,35,50,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--border-soft);padding:11px 24px;text-align:center;font-size:11.5px;color:var(--text-sub);z-index:40;box-shadow:0 -4px 20px rgba(0,0,0,.2)}
-.footer-signature .sig-line{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
-.footer-signature .sig-name{font-weight:800;letter-spacing:.6px;color:var(--accent);font-size:12.5px}
-.footer-signature .sig-tel{direction:ltr;font-variant-numeric:tabular-nums;color:var(--text-main);font-weight:700;padding:2px 10px;border-radius:20px;background:rgba(230,57,70,.15);font-size:11px;border:1px solid rgba(230,57,70,.3)}
-.footer-signature .sig-sep{opacity:.3}
+
+/* ============ 🆕 فوتر جدید ============ */
+.footer-signature{
+  position:fixed;
+  bottom:0;left:0;right:270px;
+  background:linear-gradient(180deg,rgba(15,20,25,.96) 0%,rgba(10,14,20,.98) 100%);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-top:1px solid rgba(212,175,55,.2);
+  padding:10px 24px;
+  text-align:center;
+  z-index:40;
+  box-shadow:0 -8px 30px rgba(0,0,0,.4),0 -1px 0 rgba(212,175,55,.08) inset;
+}
+.footer-signature .sig-line{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  line-height:1.5;
+}
+.footer-signature .sig-brand{
+  font-weight:900;
+  font-size:14px;
+  letter-spacing:2px;
+  background:linear-gradient(135deg,#f4e5a1 0%,#d4af37 40%,#b8860b 70%,#f4e5a1 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 8px rgba(212,175,55,.4));
+}
+.footer-signature .sig-design{
+  font-weight:700;
+  font-size:11px;
+  color:#8b95a5;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+.footer-signature .sig-tel{
+  font-weight:800;
+  font-size:12px;
+  color:#ffffff;
+  direction:ltr;
+  letter-spacing:1px;
+  font-variant-numeric:tabular-nums;
+  text-shadow:0 0 6px rgba(255,255,255,.15);
+}
 @media(max-width:900px){.footer-signature{right:0}}
-@media print{body *{visibility:hidden}#print-area,#print-area *{visibility:visible}#print-area="{position:absolute;top:0sig;right:0;width-t:100%;padding:20px;background:#elfff;color:#000}.no-">print{display091:none!important}.footer-signature{display:none!important}}
-@media(max-width:900px){.sidebar{transform:translateX(100%)}.sidebar.open{transform:translateX(0)}.main{margin-right:0;padding-bottom:150px;padding-left:18px;padding-right:18px}.menu-toggle{display:inline-flex}.footer-signature{right:0}.topbar{padding:14px 18px}.page-title{font-size:19px}.stat{padding:16px}.stat-value{font-size:19px}.stat-icon{font-size:30px}}
+
+@media print{body *{visibility:hidden}#print-area,#print-area *{visibility:visible}#print-area{position:absolute;top:0;right:0;width:100%;padding:20px;background:#fff;color:#000}.no-print{display:none!important}.footer-signature{display:none!important}}
+@media(max-width:900px){.sidebar{transform:translateX(100%)}.sidebar.open{transform:translateX(0)}.main{margin-right:0;padding-bottom:170px;padding-left:18px;padding-right:18px}.menu-toggle{display:inline-flex}.footer-signature{right:0}.topbar{padding:14px 18px}.page-title{font-size:19px}.stat{padding:16px}.stat-value{font-size:19px}.stat-icon{font-size:30px}}
 ::-webkit-scrollbar{width:10px;height:10px}
 ::-webkit-scrollbar-track{background:var(--bg-main)}
 ::-webkit-scrollbar-thumb{background:var(--bg-card-2);border-radius:6px;border:2px solid var(--bg-main)}
@@ -205,6 +249,15 @@ tbody tr:hover{background:var(--bg-hover)}
 .invoice-total .row.highlight{color:var(--success);font-weight:800}
 .invoice-total .row.warn{color:var(--warning);font-weight:800}
 canvas{max-width:100%}
+/* Range filter for reports */
+.range-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;padding:14px 18px;background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border-soft);align-items:center}
+.range-bar .label{font-size:12.5px;font-weight:700;color:var(--text-sub);margin-left:6px}
+.range-chip{padding:7px 14px;border-radius:9px;background:var(--bg-card-2);color:var(--text-sub);border:1px solid var(--border-medium);font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;font-family:inherit}
+.range-chip:hover{background:var(--bg-hover);color:var(--text-main);border-color:var(--border-strong)}
+.range-chip.active{background:var(--gold);color:#0f1419;border-color:var(--gold);box-shadow:0 2px 8px rgba(212,175,55,.4);font-weight:800}
+.range-custom{display:none;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px;width:100%}
+.range-custom.show{display:flex}
+.range-custom input{padding:8px 12px;border-radius:8px;border:1px solid var(--border-medium);background:var(--bg-input);color:var(--text-main);font-family:inherit;font-size:12.5px;direction:ltr;text-align:center;width:130px}
 </style>
 </head>
 <body>
@@ -225,6 +278,7 @@ canvas{max-width:100%}
       <div class="nav-item" data-page="warehouses"><span class="icon">🏭</span>انبارها</div>
       <div class="nav-item" data-page="persons"><span class="icon">👥</span>اشخاص</div>
       <div class="nav-item" data-page="transactions"><span class="icon">💸</span>تراکنش‌ها</div>
+      <div class="nav-item" data-page="expenses"><span class="icon">🧮</span>هزینه‌ها</div>
       <div class="nav-item" data-page="capital"><span class="icon">💰</span>سرمایه و سود</div>
       <div class="nav-item" data-page="reports"><span class="icon">📈</span>گزارش‌ها</div>
       <div class="nav-item" data-page="settings"><span class="icon">⚙️</span>تنظیمات</div>
@@ -243,13 +297,12 @@ canvas{max-width:100%}
   </main>
 </div>
 
+<!-- 🆕 فوتر جدید با طراحی DAVIN NOVA -->
 <div class="footer-signature">
   <div class="sig-line">
-    <span>طراحی و ساخته شده توسط:</span>
-    <span class="sig-name">KAMRAN - DAVIN</span>
-    <span class="sig-sep">|</span>
-    <span>TEL</span>
-   21759942</span>
+    <span class="sig-brand">✦ DAVIN NOVA ✦</span>
+    <span class="sig-design">DESIGNED &amp; ENGINEERED BY DAVIN</span>
+    <span class="sig-tel">09121759942</span>
   </div>
 </div>
 
@@ -267,7 +320,7 @@ canvas{max-width:100%}
 <div class="toast" id="toast"></div>
 
 <script>
-   /* ============ ابزارهای عمومی ============ */
+  /* ============ ابزارهای عمومی ============ */
 const $ = (s,el)=> (el||document).querySelector(s);
 const $$ = (s,el)=> Array.prototype.slice.call((el||document).querySelectorAll(s));
 
@@ -316,6 +369,7 @@ function validJalali(s){
   try{return jalaali.isValidJalaaliDate(p[0],p[1],p[2]);}catch(e){return false;}
 }
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,8);}
+
 function toast(msg,type){
   type = type || '';
   const t = $('#toast');
@@ -352,11 +406,11 @@ function confirmAction(msg,onYes){
 }
 
 /* ============ دیتابیس ============ */
-const DB_KEY = 'hesabdar_v2';
+const DB_KEY = 'hesabdar_v3';
 const DB = {
   data: {
     settings:{shopName:'فروشگاه من',currency:'تومان',initialCapital:0,initialCapitalDate:'',taxPercent:0},
-    warehouses:[],products:[],persons:[],invoices:[],transactions:[],stockMoves:[]
+    warehouses:[],products:[],persons:[],invoices:[],transactions:[],stockMoves:[],expenses:[]
   },
   load:function(){
     try{
@@ -365,6 +419,7 @@ const DB = {
         const parsed = JSON.parse(raw);
         this.data = Object.assign({}, this.data, parsed);
         this.data.settings = Object.assign({shopName:'فروشگاه من',currency:'تومان',initialCapital:0,initialCapitalDate:'',taxPercent:0}, this.data.settings);
+        if(!this.data.expenses) this.data.expenses = [];
         this.data.invoices.forEach(function(inv){
           if(inv.shippingCost===undefined)inv.shippingCost=0;
           if(inv.customsCost===undefined)inv.customsCost=0;
@@ -380,7 +435,7 @@ const DB = {
   resetAll:function(){
     this.data = {
       settings:{shopName:'فروشگاه من',currency:'تومان',initialCapital:0,initialCapitalDate:'',taxPercent:0},
-      warehouses:[],products:[],persons:[],invoices:[],transactions:[],stockMoves:[]
+      warehouses:[],products:[],persons:[],invoices:[],transactions:[],stockMoves:[],expenses:[]
     };
     this.save();
   },
@@ -388,6 +443,7 @@ const DB = {
     this.data.invoices = [];
     this.data.transactions = [];
     this.data.stockMoves = [];
+    this.data.expenses = [];
     this.save();
   }
 };
@@ -477,7 +533,16 @@ function totals(){
       cogs += avgCostOf(it.productId) * it.qty;
     }
   }
-  const profit = sales - cogs;
+  // 🆕 جمع هزینه‌های شخصی
+  let totalExpenses = 0;
+  if(DB.data.expenses){
+    for(const e of DB.data.expenses){
+      totalExpenses += e.amount;
+    }
+  }
+  // 🆕 سود خالص = فروش - COGS - هزینه‌ها
+  const profit = sales - cogs - totalExpenses;
+  
   let receivable=0,payable=0;
   for(const p of DB.data.persons){
     const b = personBalance(p.id);
@@ -493,7 +558,14 @@ function totals(){
     if(t.type==='receive') cash += t.amount;
     if(t.type==='pay') cash -= t.amount;
   }
-  return {sales:sales,purchases:purchases,cogs:cogs,profit:profit,receivable:receivable,payable:payable,cash:cash};
+  // 🆕 کم کردن هزینه‌ها از نقد
+  cash -= totalExpenses;
+  
+  return {
+    sales:sales, purchases:purchases, cogs:cogs, profit:profit,
+    receivable:receivable, payable:payable, cash:cash,
+    totalExpenses:totalExpenses
+  };
 }
 function currentCapital(){
   const t = totals();
@@ -501,15 +573,45 @@ function currentCapital(){
   return t.cash + stockVal + t.receivable - t.payable;
 }
 
+/* ============ فیلتر بازه زمانی ============ */
+// تبدیل تاریخ شمسی به آبجکت {y, m, d}
+function parseJalali(s){
+  if(!s) return {y:0,m:0,d:0};
+  const p = s.split('/').map(Number);
+  return {y:p[0]||0, m:p[1]||0, d:p[2]||0};
+}
+// گرفتن بازه بر اساس انتخاب کاربر
+function getDateRange(period){
+  const g = new Date();
+  const j = jalaali.toJalaali(g.getFullYear(),g.getMonth()+1,g.getDate());
+  const today = {y:j.jy, m:j.jm, d:j.jd};
+  if(period==='today') return {from:today.y+'/'+String(today.m).padStart(2,'0')+'/'+String(today.d).padStart(2,'0'), to:today.y+'/'+String(today.m).padStart(2,'0')+'/'+String(today.d).padStart(2,'0')};
+  if(period==='week'){
+    // هفته اخیر: 7 روز قبل
+    const g2 = new Date(g.getTime() - 6*24*60*60*1000);
+    const j2 = jalaali.toJalaali(g2.getFullYear(),g2.getMonth()+1,g2.getDate());
+    return {from:j2.jy+'/'+String(j2.jm).padStart(2,'0')+'/'+String(j2.jd).padStart(2,'0'), to:today.y+'/'+String(today.m).padStart(2,'0')+'/'+String(today.d).padStart(2,'0')};
+  }
+  if(period==='month') return {from:today.y+'/'+String(today.m).padStart(2,'0')+'/01', to:today.y+'/'+String(today.m).padStart(2,'0')+'/31'};
+  if(period==='year') return {from:today.y+'/01/01', to:today.y+'/12/31'};
+  // all
+  return {from:'', to:''};
+}
+// چک کردن آیا تاریخ در بازه هست
+function inRange(dateStr, from, to){
+  if(!from || !to) return true; // بازه باز
+  return dateStr >= from && dateStr <= to;
+}
+
 /* ============ ناوبری ============ */
 const pages = {
   dashboard: renderDashboard, invoices: renderInvoices, products: renderProducts,
   warehouses: renderWarehouses, persons: renderPersons, transactions: renderTransactions,
-  capital: renderCapital, reports: renderReports, settings: renderSettings
+  expenses: renderExpenses, capital: renderCapital, reports: renderReports, settings: renderSettings
 };
 const pageTitles = {
   dashboard:'داشبورد',invoices:'فاکتورها',products:'کالاها',warehouses:'انبارها',
-  persons:'اشخاص',transactions:'تراکنش‌ها',capital:'سرمایه و سود',reports:'گزارش‌ها',settings:'تنظیمات'
+  persons:'اشخاص',transactions:'تراکنش‌ها',expenses:'هزینه‌ها',capital:'سرمایه و سود',reports:'گزارش‌ها',settings:'تنظیمات'
 };
 function navigate(page){
   $$('.nav-item').forEach(function(n){n.classList.toggle('active',n.dataset.page===page);});
@@ -534,7 +636,7 @@ function renderDashboard(){
   $('#content').innerHTML =
     '<div class="grid grid-4 mb-4">'+
       '<div class="stat"><div class="stat-label">موجودی نقدی</div><div class="stat-value">'+formatMoney(t.cash)+'</div><div class="stat-icon">💵</div></div>'+
-      '<div class="stat s-success"><div class="stat-label">سود حاصل‌شده</div><div class="stat-value positive">'+formatMoney(t.profit)+'</div><div class="stat-icon">📈</div></div>'+
+      '<div class="stat s-success"><div class="stat-label">سود خالص</div><div class="stat-value positive">'+formatMoney(t.profit)+'</div><div class="stat-icon">📈</div></div>'+
       '<div class="stat s-danger"><div class="stat-label">مطالبات (طلب ما)</div><div class="stat-value">'+formatMoney(t.receivable)+'</div><div class="stat-icon">📥</div></div>'+
       '<div class="stat s-warning"><div class="stat-label">بدهی‌ها (بدهی ما)</div><div class="stat-value">'+formatMoney(t.payable)+'</div><div class="stat-icon">📤</div></div>'+
     '</div>'+
@@ -542,7 +644,7 @@ function renderDashboard(){
       '<div class="stat s-info"><div class="stat-label">سرمایه فعلی (تخمینی)</div><div class="stat-value">'+formatMoney(totalCapital)+'</div><div class="stat-icon">💰</div></div>'+
       '<div class="stat"><div class="stat-label">ارزش انبار</div><div class="stat-value">'+formatMoney(stockValue())+'</div><div class="stat-icon">📦</div></div>'+
       '<div class="stat s-success"><div class="stat-label">تعداد فاکتور</div><div class="stat-value">'+formatNum(DB.data.invoices.length)+'</div><div class="stat-icon">🧾</div></div>'+
-      '<div class="stat"><div class="stat-label">اشخاص / کالاها</div><div class="stat-value">'+formatNum(DB.data.persons.length)+' / '+formatNum(DB.data.products.length)+'</div><div class="stat-icon">👥</div></div>'+
+      '<div class="stat s-gold"><div class="stat-label">کل هزینه‌ها</div><div class="stat-value" style="color:var(--gold-light)">'+formatMoney(t.totalExpenses||0)+'</div><div class="stat-icon">💸</div></div>'+
     '</div>'+
     '<div class="grid grid-2 mb-4">'+
       '<div class="card"><div class="card-header"><div class="card-title">روند فروش و خرید (۶ ماه اخیر)</div></div><canvas id="chart1" height="200"></canvas></div>'+
@@ -763,7 +865,7 @@ function deleteWarehouse(id){
     DB.save(); renderWarehouses(); toast('انبار حذف شد','success');
   });
 }
-   /* ============ اشخاص ============ */
+  /* ============ اشخاص ============ */
 let personFilter = 'all';
 function renderPersons(){
   const list = DB.data.persons.map(function(p){return Object.assign({},p,{bal:personBalance(p.id)});});
@@ -1336,10 +1438,10 @@ function txForm(type, editId){
   let personOptions2 = '<option value="">انتخاب</option>';
   for(const p of DB.data.persons){
     fromOptions += '<option value="'+p.id+'" '+(existing&&existing.personId===p.id?'selected':'')+'>'+p.name+'</option>';
-    toOptions += '<option value="'+p.id+'" '+(existing&&existing.toPersonId===p.id?'selected':'')+'>'+p.name+'</option>';
-    personOptions2 += '<option value="'+p.id+'" '+(existing&&existing.personId===p.id?'selected':'')+'>'+p.name+'</option>';
+    toOptions += '<option value="'+p.id+'" '+(existing&&existing.toPersonId===p.id?'   selected':'')+'>'+p.name+' if(from</option>';
+    person===Options2 += '<option value="'+p.id+'" '+(existing&&existing.personId===p.id?'selected':'')+'>'+p.name+'</option>';
   }
-  let body = '<div class="form-group"><label class="form-label">تاریخ</label><input class="form-control" id="txDate" value="'+(existing?existing.date:todayJalali())+'" dir="ltr"></div>';
+to  let body = '<div class="form-group"><label){ class="form-label">تاریخ</label><input class="form-control" id="txDate" value="'+(existing?existing.date:todayJalali())+'" dir="ltr"></div>';
   if(isTransfer){
     body += '<div class="form-group"><label class="form-label">از شخص (پرداخت‌کننده) *</label><select class="form-control" id="txFrom">'+fromOptions+'</select></div>';
     body += '<div class="form-group"><label class="form-label">به شخص (دریافت‌کننده) *</label><select class="form-control" id="txTo">'+toOptions+'</select></div>';
@@ -1372,7 +1474,7 @@ function saveTx(type, editId){
     const from = $('#txFrom').value;
     const to = $('#txTo').value;
     if(!from||!to){toast('هر دو شخص را انتخاب کنید','error');return;}
-    if(from===to){toast('اشخاص باید متفاوت باشند','error');return;}
+toast('اشخاص باید متفاوت باشند','error');return;}
     obj.personId = from; obj.toPersonId = to;
   } else {
     const person = $('#txPerson').value;
@@ -1393,7 +1495,161 @@ function deleteTx(id){
     DB.save(); renderTransactions(); toast('حذف شد','success');
   });
 }
-   /* ============ سرمایه ============ */
+
+/* ============ 🆕 هزینه‌ها ============ */
+const EXPENSE_CATEGORIES = [
+  {key:'home', label:'هزینه منزل', icon:'🏠'},
+  {key:'rent', label:'اجاره', icon:'🏢'},
+  {key:'salary', label:'حقوق و دستمزد', icon:'👷'},
+  {key:'bills', label:'قبض و آب و برق', icon:'💡'},
+  {key:'food', label:'خوراک و پذیرایی', icon:'🍔'},
+  {key:'transport', label:'حمل و نقل', icon:'🚗'},
+  {key:'tax', label:'مالیات و عوارض', icon:'📋'},
+  {key:'ads', label:'تبلیغات', icon:'📢'},
+  {key:'repair', label:'تعمیر و نگهداری', icon:'🔧'},
+  {key:'other', label:'سایر', icon:'📌'}
+];
+
+function getCategoryInfo(key){
+  for(const c of EXPENSE_CATEGORIES){
+    if(c.key===key) return c;
+  }
+  return {key:'other', label:'سایر', icon:'📌'};
+}
+
+function renderExpenses(){
+  const list = [].concat(DB.data.expenses||[]).sort(function(a,b){return b.date.localeCompare(a.date);});
+  const total = list.reduce(function(s,e){return s+e.amount;},0);
+  
+  const byCategory = {};
+  for(const e of list){
+    if(!byCategory[e.category]) byCategory[e.category] = 0;
+    byCategory[e.category] += e.amount;
+  }
+  
+  let rowsHtml = '';
+  if(!list.length){
+    rowsHtml = '<tr><td colspan="6"><div class="empty"><div class="icon">🧮</div><div class="title">هزینه‌ای ثبت نشده</div><div class="sub">اولین هزینه خود را ثبت کنید</div></div></td></tr>';
+  } else {
+    for(const e of list){
+      const cat = getCategoryInfo(e.category);
+      rowsHtml += '<tr>'+
+        '<td class="num">'+e.date+'</td>'+
+        '<td><span class="badge badge-info">'+cat.icon+' '+cat.label+'</span></td>'+
+        '<td>'+e.title+'</td>'+
+        '<td class="num" style="color:var(--danger);font-weight:800">'+formatNum(e.amount)+'</td>'+
+        '<td>'+(e.note||'-')+'</td>'+
+        '<td>'+
+          '<button class="btn btn-sm btn-warning" onclick="expenseForm(\''+e.id+'\')" title="ویرایش">✏️</button> '+
+          '<button class="btn btn-sm btn-danger" onclick="deleteExpense(\''+e.id+'\')" title="حذف">🗑</button>'+
+        '</td></tr>';
+    }
+  }
+  
+  let catCardsHtml = '';
+  const catKeys = Object.keys(byCategory);
+  if(catKeys.length){
+    for(const k of catKeys){
+      const c = getCategoryInfo(k);
+      catCardsHtml += '<div style="display:flex;justify-content:space-between;padding:10px 14px;background:var(--bg-card-2);border-radius:10px;margin-bottom:8px;border:1px solid var(--border-soft)">'+
+        '<span>'+c.icon+' '+c.label+'</span>'+
+        '<b style="color:var(--danger)">'+formatMoney(byCategory[k])+'</b>'+
+      '</div>';
+    }
+  } else {
+    catCardsHtml = '<div class="text-muted text-center" style="padding:20px">دسته‌بندی خالی است</div>';
+  }
+  
+  $('#content').innerHTML =
+    '<div class="grid grid-3 mb-4">'+
+      '<div class="stat s-danger"><div class="stat-label">کل هزینه‌ها</div><div class="stat-value negative">'+formatMoney(total)+'</div><div class="stat-icon">💸</div></div>'+
+      '<div class="stat"><div class="stat-label">تعداد ردیف</div><div class="stat-value">'+formatNum(list.length)+'</div><div class="stat-icon">🧮</div></div>'+
+      '<div class="stat s-gold"><div class="stat-label">میانگین هزینه</div><div class="stat-value gold">'+(list.length?formatMoney(total/list.length):formatMoney(0))+'</div><div class="stat-icon">📊</div></div>'+
+    '</div>'+
+    '<div class="grid grid-2 mb-4" style="grid-template-columns:2fr 1fr">'+
+      '<div class="card">'+
+        '<div class="card-header">'+
+          '<div class="card-title">لیست هزینه‌ها</div>'+
+          '<button class="btn btn-primary" onclick="expenseForm()">➕ هزینه جدید</button>'+
+        '</div>'+
+        '<div class="table-wrap"><table><thead><tr>'+
+          '<th>تاریخ</th><th>دسته</th><th>عنوان</th><th>مبلغ</th><th>توضیح</th><th>عملیات</th>'+
+        '</tr></thead><tbody>'+rowsHtml+'</tbody></table></div>'+
+      '</div>'+
+      '<div class="card">'+
+        '<div class="card-header"><div class="card-title">جمع بر اساس دسته</div></div>'+
+        catCardsHtml+
+      '</div>'+
+    '</div>';
+}
+
+function expenseForm(id){
+  const isEdit = !!id;
+  const e = isEdit? DB.data.expenses.find(function(x){return x.id===id;}) : {date:todayJalali(),title:'',category:'home',amount:0,note:''};
+  
+  let catOptions = '';
+  for(const c of EXPENSE_CATEGORIES){
+    catOptions += '<option value="'+c.key+'" '+(c.key===e.category?'selected':'')+'>'+c.icon+' '+c.label+'</option>';
+  }
+  
+  openModal(isEdit?'ویرایش هزینه':'ثبت هزینه جدید',
+    '<div class="form-row">'+
+      '<div class="form-group"><label class="form-label">تاریخ</label><input class="form-control" id="expDate" value="'+e.date+'" dir="ltr"></div>'+
+      '<div class="form-group"><label class="form-label">دسته *</label><select class="form-control" id="expCategory">'+catOptions+'</select></div>'+
+    '</div>'+
+    '<div class="form-group"><label class="form-label">عنوان *</label><input class="form-control" id="expTitle" value="'+e.title+'" placeholder="مثلاً: هزینه منزل فروردین"></div>'+
+    '<div class="form-group"><label class="form-label">مبلغ *</label><input class="form-control" data-thousands id="expAmount" value="'+formatNum(e.amount)+'"></div>'+
+    '<div class="form-group"><label class="form-label">توضیحات</label><input class="form-control" id="expNote" value="'+(e.note||'')+'"></div>'+
+    '<div class="text-muted" style="font-size:11px;margin-top:8px;padding:10px;background:var(--bg-card-2);border-radius:8px;border-right:3px solid var(--warning)">'+
+      '💡 <b>این مبلغ مستقیماً از موجودی نقد و سود کم می‌شود</b>، ولی روی مطالبات یا بدهی‌ها اثری ندارد (چون خرج شده و به کسی قرض داده نشده).'+
+    '</div>',
+    '<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>'+
+    '<button class="btn btn-danger" onclick="saveExpense(\''+(id||'')+'\')">💾 ثبت هزینه</button>'
+  );
+  setTimeout(function(){const inp = $('#expAmount'); if(inp){inp.focus(); inp.select();}},50);
+}
+
+function saveExpense(id){
+  const date = $('#expDate').value.trim();
+  if(!validJalali(date)){toast('تاریخ معتبر نیست','error');return;}
+  const title = $('#expTitle').value.trim();
+  if(!title){toast('عنوان هزینه را وارد کنید','error');return;}
+  const amount = parseNum($('#expAmount').value);
+  if(amount<=0){toast('مبلغ را وارد کنید','error');return;}
+  const category = $('#expCategory').value;
+  const note = $('#expNote').value.trim();
+  
+  if(!DB.data.expenses) DB.data.expenses = [];
+  
+  if(id){
+    const ex = DB.data.expenses.find(function(x){return x.id===id;});
+    Object.assign(ex, {date:date, title:title, amount:amount, category:category, note:note});
+  } else {
+    DB.data.expenses.push({
+      id: uid(),
+      date: date,
+      title: title,
+      amount: amount,
+      category: category,
+      note: note,
+      createdAt: nowJalaliFull()
+    });
+  }
+  DB.save();
+  closeModal();
+  renderExpenses();
+  toast(id?'هزینه ویرایش شد':'هزینه ثبت شد','success');
+}
+
+function deleteExpense(id){
+  confirmAction('حذف این هزینه؟ (اثر آن روی صندوق و سود برگشت داده می‌شود)', function(){
+    DB.data.expenses = DB.data.expenses.filter(function(e){return e.id!==id;});
+    DB.save();
+    renderExpenses();
+    toast('هزینه حذف شد','success');
+  });
+}
+  /* ============ سرمایه ============ */
 function renderCapital(){
   const t = totals();
   const initial = DB.data.settings.initialCapital||0;
@@ -1420,9 +1676,9 @@ function renderCapital(){
           '</table>'+
         '</div>'+
         '<div>'+
-          '<div class="font-bold mb-3" style="color:var(--danger)">بدهی‌ها و سرمایه</div>'+
-          '<table style="font-size:13px">'+
-            '<tr><td>بدهی به اشخاص</td><td class="num">'+formatMoney(t.payable)+'</td></tr>'+
+          '<div class="font-bold mb-3" style="color:var(--danger)service">بدهی‌ها و سرمایه</div>'Worker'+
+          '<table style in="font-size:13px">'+
+ navig            '<tr><td>بدهی به اشخاص</td><td class="num">'+formatMoney(t.payable)+'</td></trator>'+
             '<tr><td>سرمایه فعلی</td><td class="num">'+formatMoney(finalCapital)+'</td></tr>'+
             '<tr style="border-top:2px solid var(--border-medium);font-weight:800"><td>جمع</td><td class="num">'+formatMoney(totalLiabAndCapital)+'</td></tr>'+
           '</table>'+
@@ -1447,12 +1703,97 @@ function saveCapital(){
   DB.save(); toast('سرمایه اولیه ذخیره شد','success'); renderCapital();
 }
 
-/* ============ گزارش‌ها ============ */
+/* ============ 🆕 گزارش‌ها با فیلتر بازه زمانی ============ */
+let reportPeriod = 'all'; // today, week, month, year, all, custom
+let reportCustomFrom = '';
+let reportCustomTo = '';
+let reportChart = null;
+
 function renderReports(){
-  const t = totals();
-  const months = lastSixMonths();
-  const monthSales = months.map(function(m){let s=0;for(const i of DB.data.invoices){if(i.type==='sale'&&jalaliMonth(i.date)===m)s+=i.total;}return s;});
-  const monthPurchases = months.map(function(m){let s=0;for(const i of DB.data.invoices){if(i.type==='purchase'&&jalaliMonth(i.date)===m)s+=i.total;}return s;});
+  // تعیین بازه
+  let range;
+  if(reportPeriod === 'custom'){
+    range = {from: reportCustomFrom, to: reportCustomTo};
+  } else {
+    range = getDateRange(reportPeriod);
+  }
+  
+  // فیلتر داده‌ها
+  const filteredInvoices = DB.data.invoices.filter(function(i){return inRange(i.date, range.from, range.to);});
+  const filteredExpenses = (DB.data.expenses||[]).filter(function(e){return inRange(e.date, range.from, range.to);});
+  
+  // محاسبات بازه
+  let fSales = 0, fPurchases = 0;
+  for(const inv of filteredInvoices){
+    if(inv.type==='sale') fSales += inv.total;
+    if(inv.type==='purchase') fPurchases += inv.total;
+  }
+  let fCogs = 0;
+  for(const inv of filteredInvoices){
+    if(inv.type!=='sale')continue;
+    for(const it of inv.items){
+      fCogs += avgCostOf(it.productId) * it.qty;
+    }
+  }
+  let fExpenses = 0;
+  for(const e of filteredExpenses) fExpenses += e.amount;
+  
+  const fProfit = fSales - fCogs - fExpenses;
+  
+  // هزینه بر اساس دسته
+  const expByCat = {};
+  for(const e of filteredExpenses){
+    if(!expByCat[e.category]) expByCat[e.category] = 0;
+    expByCat[e.category] += e.amount;
+  }
+  
+  // چارت ماهانه بر اساس بازه
+  const monthsForChart = lastSixMonths();
+  const chartLabels = [];
+  const chartSales = [];
+  const chartPurchases = [];
+  const chartExpenses = [];
+  for(const m of monthsForChart){
+    // آیا این ماه در بازه هست؟
+    let mSales=0, mPurchases=0, mExpenses=0;
+    for(const inv of filteredInvoices){
+      if(jalaliMonth(inv.date)===m){
+        if(inv.type==='sale') mSales+=inv.total;
+        if(inv.type==='purchase') mPurchases+=inv.total;
+      }
+    }
+    for(const e of filteredExpenses){
+      if(jalaliMonth(e.date)===m){
+        mExpenses+=e.amount;
+      }
+    }
+    chartLabels.push(monthName(m));
+    chartSales.push(mSales);
+    chartPurchases.push(mPurchases);
+    chartExpenses.push(mExpenses);
+  }
+  
+  // محدوده بازه برای نمایش
+  let rangeLabel = 'کل اطلاعات';
+  if(reportPeriod === 'today') rangeLabel = 'امروز ('+todayJalali()+')';
+  else if(reportPeriod === 'week') rangeLabel = 'این هفته';
+  else if(reportPeriod === 'month') rangeLabel = 'این ماه';
+  else if(reportPeriod === 'year') rangeLabel = 'امسال';
+  else if(reportPeriod === 'custom') rangeLabel = 'بازه سفارشی: '+(range.from||'...')+' تا '+(range.to||'...');
+  
+  // هزینه‌های دسته‌بندی
+  let catRows = '';
+  const catKeys = Object.keys(expByCat);
+  if(catKeys.length){
+    for(const k of catKeys){
+      const c = getCategoryInfo(k);
+      catRows += '<tr><td>'+c.icon+' '+c.label+'</td><td class="num text-danger">'+formatMoney(expByCat[k])+'</td></tr>';
+    }
+  } else {
+    catRows = '<tr><td colspan="2" class="text-center text-muted">هزینه‌ای در این بازه نیست</td></tr>';
+  }
+  
+  // کالاهای کم‌موجود (همیشه بر اساس موجودی فعلی)
   const lowStock = DB.data.products.filter(function(p){return stockOf(p.id)<=p.minStock;});
   let lowStockHtml = '';
   if(lowStock.length){
@@ -1464,6 +1805,8 @@ function renderReports(){
   } else {
     lowStockHtml = '<div class="empty"><div class="icon">✓</div><div class="title">همه کالاها موجودی کافی دارند</div></div>';
   }
+  
+  // گزارش موجودی
   let stockRows = '';
   if(DB.data.products.length){
     for(const p of DB.data.products){
@@ -1474,27 +1817,75 @@ function renderReports(){
   } else {
     stockRows = '<tr><td colspan="5" class="text-center text-muted">کالایی نیست</td></tr>';
   }
+  
   $('#content').innerHTML =
+    // 🆕 نوار بازه زمانی
+    '<div class="range-bar">'+
+      '<span class="label">📅 بازه گزارش:</span>'+
+      '<button class="range-chip '+(reportPeriod==='today'?'active':'')+'" onclick="setReportPeriod(\'today\')">امروز</button>'+
+      '<button class="range-chip '+(reportPeriod==='week'?'active':'')+'" onclick="setReportPeriod(\'week\')">این هفته</button>'+
+      '<button class="range-chip '+(reportPeriod==='month'?'active':'')+'" onclick="setReportPeriod(\'month\')">این ماه</button>'+
+      '<button class="range-chip '+(reportPeriod==='year'?'active':'')+'" onclick="setReportPeriod(\'year\')">امسال</button>'+
+      '<button class="range-chip '+(reportPeriod==='all'?'active':'')+'" onclick="setReportPeriod(\'all\')">کل</button>'+
+      '<button class="range-chip '+(reportPeriod==='custom'?'active':'')+'" onclick="setReportPeriod(\'custom\')">سفارشی</button>'+
+      '<div class="range-custom '+(reportPeriod==='custom'?'show':'')+'" id="rangeCustom">'+
+        '<span class="label">از:</span>'+
+        '<input type="text" id="rangeFrom" value="'+(reportCustomFrom||'')+'" placeholder="1403/01/01">'+
+        '<span class="label">تا:</span>'+
+        '<input type="text" id="rangeTo" value="'+(reportCustomTo||'')+'" placeholder="1403/12/29">'+
+        '<button class="btn btn-sm btn-primary" onclick="applyCustomRange()">اعمال</button>'+
+      '</div>'+
+    '</div>'+
+    // کارت‌های بازه
+    '<div style="text-align:center;margin-bottom:16px;padding:8px 16px;background:rgba(212,175,55,.08);border-radius:8px;border:1px solid rgba(212,175,55,.2);display:inline-block;width:100%">'+
+      '<b style="color:var(--gold-light)">📊 گزارش بازه: '+rangeLabel+'</b>'+
+    '</div>'+
     '<div class="grid grid-4 mb-4">'+
-      '<div class="stat s-success"><div class="stat-label">کل فروش</div><div class="stat-value">'+formatMoney(t.sales)+'</div></div>'+
-      '<div class="stat s-danger"><div class="stat-label">کل خرید</div><div class="stat-value">'+formatMoney(t.purchases)+'</div></div>'+
-      '<div class="stat s-info"><div class="stat-label">سود ناخالص</div><div class="stat-value">'+formatMoney(t.profit)+'</div></div>'+
-      '<div class="stat"><div class="stat-label">ارزش انبار</div><div class="stat-value">'+formatMoney(stockValue())+'</div></div>'+
+      '<div class="stat s-success"><div class="stat-label">کل فروش</div><div class="stat-value">'+formatMoney(fSales)+'</div></div>'+
+      '<div class="stat s-danger"><div class="stat-label">کل خرید</div><div class="stat-value">'+formatMoney(fPurchases)+'</div></div>'+
+      '<div class="stat s-gold"><div class="stat-label">سود ناخالص</div><div class="stat-value gold">'+formatMoney(fSales-fCogs)+'</div></div>'+
+      '<div class="stat s-warning"><div class="stat-label">سود خالص (پس از هزینه)</div><div class="stat-value" style="color:'+(fProfit>=0?'var(--success)':'var(--danger)')+'">'+formatMoney(fProfit)+'</div></div>'+
     '</div>'+
     '<div class="grid grid-2 mb-4">'+
-      '<div class="card"><div class="card-header"><div class="card-title">فروش و خرید ماهانه</div></div><canvas id="rChart1" height="220"></canvas></div>'+
+      '<div class="card"><div class="card-header"><div class="card-title">فروش، خرید و هزینه (۶ ماه اخیر)</div></div><canvas id="rChart1" height="240"></canvas></div>'+
+      '<div class="card"><div class="card-header"><div class="card-title">هزینه‌ها بر اساس دسته</div></div>'+
+        '<div class="table-wrap"><table><thead><tr><th>دسته</th><th>مبلغ</th></tr></thead><tbody>'+catRows+'</tbody></table></div>'+
+        '<div class="divider"></div>'+
+        '<div class="flex justify-between" style="font-weight:800;font-size:14px">'+
+          '<span>جمع هزینه‌های بازه:</span>'+
+          '<span style="color:var(--danger)">'+formatMoney(fExpenses)+'</span>'+
+        '</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="grid grid-2 mb-4">'+
       '<div class="card"><div class="card-header"><div class="card-title">کالاهای کم‌موجود</div></div>'+lowStockHtml+'</div>'+
+      '<div class="card"><div class="card-header"><div class="card-title">خلاصه سود و زیان بازه</div></div>'+
+        '<table style="font-size:14px">'+
+          '<tr><td>درآمد فروش</td><td class="num" style="color:var(--success)">'+formatMoney(fSales)+'</td></tr>'+
+          '<tr><td>بهای تمام‌شده کالای فروش‌رفته</td><td class="num" style="color:var(--danger)">−'+formatMoney(fCogs)+'</td></tr>'+
+          '<tr style="border-top:1px solid var(--border-soft)"><td><b>سود ناخالص</b></td><td class="num"><b>'+formatMoney(fSales-fCogs)+'</b></td></tr>'+
+          '<tr><td>هزینه‌های شخصی</td><td class="num" style="color:var(--warning)">−'+formatMoney(fExpenses)+'</td></tr>'+
+          '<tr style="border-top:2px solid var(--gold);font-weight:800;font-size:15px"><td><b style="color:var(--gold-light)">سود خالص</b></td><td class="num" style="color:'+(fProfit>=0?'var(--success)':'var(--danger)')+'"><b>'+formatMoney(fProfit)+'</b></td></tr>'+
+        '</table>'+
+      '</div>'+
     '</div>'+
     '<div class="card">'+
-      '<div class="card-header"><div class="card-title">گزارش موجودی و بهای تمام‌شده</div></div>'+
+      '<div class="card-header"><div class="card-title">گزارش موجودی و بهای تمام‌شده (وضعیت لحظه‌ای)</div></div>'+
       '<div class="table-wrap"><table><thead><tr><th>کد</th><th>کالا</th><th>موجودی</th><th>میانگین بهای تمام‌شده</th><th>ارزش موجودی</th></tr></thead><tbody>'+stockRows+'</tbody></table></div>'+
     '</div>';
+  
   setTimeout(function(){
-    new Chart($('#rChart1'),{
-      type:'line',data:{labels:months.map(monthName),datasets:[
-        {label:'فروش',data:monthSales,borderColor:'#10b981',backgroundColor:'rgba(16,185,129,.1)',tension:.35,fill:true,borderWidth:3},
-        {label:'خرید',data:monthPurchases,borderColor:'#e63946',backgroundColor:'rgba(230,57,70,.1)',tension:.35,fill:true,borderWidth:3}
-      ]},
+    if(reportChart) reportChart.destroy();
+    reportChart = new Chart($('#rChart1'),{
+      type:'line',
+      data:{
+        labels:chartLabels,
+        datasets:[
+          {label:'فروش',data:chartSales,borderColor:'#10b981',backgroundColor:'rgba(16,185,129,.1)',tension:.35,fill:true,borderWidth:3},
+          {label:'خرید',data:chartPurchases,borderColor:'#e63946',backgroundColor:'rgba(230,57,70,.1)',tension:.35,fill:true,borderWidth:3},
+          {label:'هزینه',data:chartExpenses,borderColor:'#d4af37',backgroundColor:'rgba(212,175,55,.1)',tension:.35,fill:true,borderWidth:3,borderDash:[5,5]}
+        ]
+      },
       options:{
         responsive:true,
         plugins:{legend:{position:'bottom',labels:{color:chartTheme.color,font:chartTheme.font,padding:12}}},
@@ -1505,6 +1896,27 @@ function renderReports(){
       }
     });
   },10);
+}
+
+function setReportPeriod(p){
+  reportPeriod = p;
+  renderReports();
+}
+function applyCustomRange(){
+  const from = $('#rangeFrom').value.trim();
+  const to = $('#rangeTo').value.trim();
+  if(!validJalali(from) || !validJalali(to)){
+    toast('تاریخ‌ها معتبر نیستند (مثال: 1403/01/01)', 'error');
+    return;
+  }
+  if(from > to){
+    toast('تاریخ شروع باید قبل از پایان باشد', 'error');
+    return;
+  }
+  reportCustomFrom = from;
+  reportCustomTo = to;
+  reportPeriod = 'custom';
+  renderReports();
 }
 
 /* ============ تنظیمات ============ */
@@ -1535,7 +1947,7 @@ function renderSettings(){
           '<button class="btn btn-warning" onclick="resetAccountingData()">🧹 حذف اطلاعات حسابداری</button>'+
           '<button class="btn btn-danger" onclick="resetAllData()">🗑 حذف کل اطلاعات</button>'+
         '</div>'+
-        '<p class="text-muted mt-3" style="font-size:11px">- «حذف اطلاعات حسابداری» فقط فاکتورها، تراکنش‌ها و گردش انبار را پاک می‌کند.<br>- «حذف کل اطلاعات» همه چیز را پاک می‌کند.</p>'+
+        '<p class="text-muted mt-3" style="font-size:11px">- «حذف اطلاعات حسابداری» فقط فاکتورها، تراکنش‌ها، هزینه‌ها و گردش انبار را پاک می‌کند.<br>- «حذف کل اطلاعات» همه چیز را پاک می‌کند.</p>'+
       '</div>'+
     '</div>'+
     '<div class="card mt-4">'+
@@ -1544,7 +1956,7 @@ function renderSettings(){
         '<div class="stat"><div class="stat-label">اشخاص</div><div class="stat-value">'+formatNum(DB.data.persons.length)+'</div></div>'+
         '<div class="stat"><div class="stat-label">کالاها</div><div class="stat-value">'+formatNum(DB.data.products.length)+'</div></div>'+
         '<div class="stat"><div class="stat-label">انبارها</div><div class="stat-value">'+formatNum(DB.data.warehouses.length)+'</div></div>'+
-        '<div class="stat"><div class="stat-label">فاکتورها</div><div class="stat-value">'+formatNum(DB.data.invoices.length)+'</div></div>'+
+        '<div class="stat s-gold"><div class="stat-label">هزینه‌ها</div><div class="stat-value gold">'+formatNum((DB.data.expenses||[]).length)+'</div></div>'+
       '</div>'+
     '</div>';
 }
@@ -1585,54 +1997,42 @@ function importData(e){
   e.target.value='';
 }
 function resetAccountingData(){
-  confirmAction('همه فاکتورها، تراکنش‌ها و گردش انبار پاک شوند؟ (اشخاص، کالاها و انبارها حفظ می‌شوند)',function(){
+  confirmAction('همه فاکتورها، تراکنش‌ها، هزینه‌ها و گردش انبار پاک شوند؟ (اشخاص، کالاها و انبارها حفظ می‌شوند)',function(){
     DB.resetAccounting();
     toast('اطلاعات حسابداری پاک شد','success');
     navigate('dashboard');
   });
 }
 function resetAllData(){
-  confirmAction('⚠️ کل اطلاعات (فاکتورها، اشخاص، کالاها، انبارها) حذف شود؟ این عملیات برگشت‌پذیر نیست.',function(){
+  confirmAction('⚠️ کل اطلاعات (فاکتورها، اشخاص، کالاها، انبارها، هزینه‌ها) حذف شود؟ این عملیات برگشت‌پذیر نیست.',function(){
     DB.resetAll();
     toast('همه اطلاعات پاک شد','success');
     navigate('dashboard');
   });
 }
 
-/* ============ شروع و Service Worker ============ */
-if ('serviceWorker' in navigator) {
+/* ============ Service Worker & Install ============ */
+if (') {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('service-worker.js')
-      .then(function(reg) {
-        console.log('Service Worker ثبت شد:', reg.scope);
-      })
-      .catch(function(err) {
-        console.log('خطا در ثبت Service Worker:', err);
-      });
+      .then(function(reg) { console.log('Service Worker ثبت شد:', reg.scope); })
+      .catch(function(err) { console.log('خطا در ثبت Service Worker:', err); });
   });
 }
-
-// دکمه نصب اندروید
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', function(e) {
   e.preventDefault();
   deferredPrompt = e;
-  const installBtn = document.getElementById('installBtn');
-  if (installBtn) installBtn.style.display = 'block';
 });
-
 function installApp() {
   if (!deferredPrompt) return;
   deferredPrompt.prompt();
   deferredPrompt.userChoice.then(function(choiceResult) {
-    if (choiceResult.outcome === 'accepted') {
-      console.log('اپ نصب شد');
-    }
     deferredPrompt = null;
   });
 }
 
-// اجرای برنامه
+/* ============ شروع ============ */
 navigate('dashboard');
 </script>
 </body>
