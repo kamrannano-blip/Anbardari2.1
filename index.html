@@ -27,7 +27,6 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Estedad','Vazirmatn',sans-serif;background:linear-gradient(135deg,#f8fafc 0%,#eef2ff 100%);background-attachment:fixed;color:var(--gray-800);font-size:14px;line-height:1.7;min-height:100vh}
 
-/* ---------- Layout ---------- */
 .app{display:flex;min-height:100vh}
 .sidebar{
   width:262px;background:linear-gradient(180deg,#ffffff 0%,#f8faff 100%);
@@ -172,7 +171,7 @@ tbody tr:hover{background:linear-gradient(90deg,var(--primary-light),transparent
 .modal-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--gray-400);width:32px;height:32px;border-radius:8px;transition:all .15s}
 .modal-close:hover{background:var(--gray-100);color:var(--gray-700)}
 .modal-body{padding:22px}
-.modal-footer{padding:16px 22px;border-top:1px solid var(--gray-100);display:flex;gap:8px;justify-content:flex-end;position:sticky;bottom:0;background:#fff;border-radius:0 0 16px 16px}
+.modal-footer{padding:16px 22px;border-top:1px solid var(--gray-100);display:flex;gap:8px;justify-content:flex-end;position:sticky;bottom:0;background:#fff;border-radius:0 0 16px 16px;flex-wrap:wrap}
 
 .empty{text-align:center;padding:40px 20px;color:var(--gray-400)}
 .empty .icon{font-size:42px;margin-bottom:10px;opacity:.35}
@@ -249,7 +248,6 @@ tbody tr:hover{background:linear-gradient(90deg,var(--primary-light),transparent
 ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--gray-300),var(--gray-400));border-radius:6px;border:2px solid transparent;background-clip:content-box}
 ::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--gray-400),var(--gray-500));background-clip:content-box;border:2px solid transparent}
 
-/* ---------- Items table in invoice ---------- */
 .items-table{min-width:760px}
 .items-table th{white-space:nowrap}
 .items-table td{padding:8px 10px;vertical-align:middle}
@@ -259,13 +257,14 @@ tbody tr:hover{background:linear-gradient(90deg,var(--primary-light),transparent
 .items-table .col-price{width:150px}
 .items-table .col-total{width:130px}
 .items-table .col-act{width:50px}
-.items-table .product-select{font-size:13px}
 .invoice-total{
   background:linear-gradient(135deg,#f8fafc,#eef2ff);padding:16px 20px;border-radius:var(--radius-sm);
   display:flex;flex-direction:column;gap:7px;border:1px solid var(--gray-100);
 }
 .invoice-total .row{display:flex;justify-content:space-between;font-size:13px}
 .invoice-total .row.total{font-size:16px;font-weight:800;color:var(--primary-dark);padding-top:10px;border-top:2px dashed var(--gray-300);margin-top:6px}
+.invoice-total .row.highlight{color:var(--success-dark);font-weight:700}
+.invoice-total .row.warn{color:var(--warning-dark);font-weight:700}
 </style>
 </head>
 <body>
@@ -353,15 +352,9 @@ function attachThousands(input){
   if(input._thousandsAttached)return;
   input._thousandsAttached = true;
   input.addEventListener('input',()=>{
-    const pos = input.selectionStart;
     const raw = input.value.replace(/[^\d-]/g,'');
     if(raw==='' || raw==='-'){input.value=raw;return;}
-    const formatted = formatNum(raw);
-    input.value = formatted;
-    try{
-      const diff = formatted.length - (formatted.length - (input.value.length - pos));
-      input.setSelectionRange(formatted.length,formatted.length);
-    }catch(e){}
+    input.value = formatNum(raw);
   });
 }
 
@@ -425,7 +418,7 @@ function confirmAction(msg,onYes){
 /* =========================================================
    دیتابیس
    ========================================================= */
-const DB_KEY = 'hesabdar_v1';
+const DB_KEY = 'hesabdar_v2';
 const DB = {
   data: {
     settings:{shopName:'فروشگاه من',currency:'تومان',initialCapital:0,initialCapitalDate:'',taxPercent:0},
@@ -438,6 +431,12 @@ const DB = {
         const parsed = JSON.parse(raw);
         this.data = {...this.data,...parsed};
         this.data.settings = {...{shopName:'فروشگاه من',currency:'تومان',initialCapital:0,initialCapitalDate:'',taxPercent:0},...this.data.settings};
+        // سازگاری با نسخه قبلی: افزودن فیلدهای جدید
+        this.data.invoices.forEach(inv=>{
+          if(inv.shippingCost===undefined)inv.shippingCost=0;
+          if(inv.customsCost===undefined)inv.customsCost=0;
+          if(inv.paidAmount===undefined)inv.paidAmount = inv.paid? inv.total : 0;
+        });
       }
     }catch(e){console.error(e);}
   },
@@ -462,8 +461,10 @@ const DB = {
 DB.load();
 
 /* =========================================================
-   محاسبات
+   محاسبات — با بهای تمام‌شده وزنی
    ========================================================= */
+
+// موجودی یک کالا (تعداد)
 function stockOf(productId,warehouseId=null,excludeInvoiceId=null){
   let total = 0;
   for(const m of DB.data.stockMoves){
@@ -474,13 +475,52 @@ function stockOf(productId,warehouseId=null,excludeInvoiceId=null){
   }
   return total;
 }
+
+// بهای تمام‌شده میانگین وزنی یک کالا (فقط از خریدها)
+// منطق: هر خرید، با هزینه حمل و گمرکی سهم‌بندی شده، میانگین وزنی جدید می‌سازد
+function avgCostOf(productId, excludeInvoiceId=null){
+  // جمع‌آوری همه ورودی‌های انبار (خریدها) به ترتیب تاریخ
+  const ins = DB.data.stockMoves
+    .filter(m=>m.productId===productId && m.type==='in' && m.refId!==excludeInvoiceId)
+    .map(m=>{
+      const inv = DB.data.invoices.find(i=>i.id===m.refId);
+      return {qty:m.qty, inv, date:m.date};
+    })
+    .sort((a,b)=>a.date.localeCompare(b.date));
+
+  // مقدار اولیه: قیمت خرید کالا (اگر خرید ثبت نشده)
+  const product = DB.data.products.find(p=>p.id===productId);
+  let basePrice = product?.purchasePrice || 0;
+
+  let totalQty = 0;
+  let totalValue = 0;
+  for(const x of ins){
+    if(!x.inv)continue;
+    const item = x.inv.items.find(it=>it.productId===productId);
+    if(!item)continue;
+    const itemSubtotal = item.qty * item.price;
+    // سهم این آیتم از هزینه‌های کل فاکتور (نسبت به جمع کل اقلام فاکتور)
+    const invoiceItemsSum = x.inv.items.reduce((s,it)=>s+it.qty*it.price,0);
+    const ratio = invoiceItemsSum>0 ? itemSubtotal/invoiceItemsSum : 0;
+    const shippingShare = (x.inv.shippingCost||0) * ratio;
+    const customsShare = (x.inv.customsCost||0) * ratio;
+    const itemCost = itemSubtotal + shippingShare + customsShare;
+    totalQty += item.qty;
+    totalValue += itemCost;
+  }
+  if(totalQty<=0) return basePrice;
+  return totalValue/totalQty;
+}
+
 function personBalance(personId){
   let bal = 0;
   for(const inv of DB.data.invoices){
     if(inv.personId!==personId)continue;
-    if(inv.paid)continue;
-    if(inv.type==='sale') bal -= inv.total;
-    if(inv.type==='purchase') bal += inv.total;
+    // مبلغ نسیه = کل فاکتور - پرداخت شده
+    const remaining = inv.total - (inv.paidAmount||0);
+    if(remaining<=0)continue;
+    if(inv.type==='sale') bal -= remaining;
+    if(inv.type==='purchase') bal += remaining;
   }
   for(const t of DB.data.transactions){
     if(t.type==='receive' && t.personId===personId) bal += t.amount;
@@ -497,25 +537,29 @@ function personBalanceLabel(bal){
   if(bal>0) return {text:'بستانکار',cls:'badge-success'};
   return {text:'بدهکار',cls:'badge-danger'};
 }
+
+// ارزش انبار (به بهای تمام‌شده وزنی)
 function stockValue(){
   let v=0;
   for(const p of DB.data.products){
-    v += stockOf(p.id) * (p.purchasePrice||0);
+    const q = stockOf(p.id);
+    if(q>0) v += q * avgCostOf(p.id);
   }
   return v;
 }
+
 function totals(){
   let sales=0,purchases=0;
   for(const inv of DB.data.invoices){
     if(inv.type==='sale') sales += inv.total;
     if(inv.type==='purchase') purchases += inv.total;
   }
+  // COGS: به ازای هر آیتم فروش، بهای تمام‌شده‌ی کالا × تعداد
   let cogs = 0;
   for(const inv of DB.data.invoices){
     if(inv.type!=='sale')continue;
     for(const it of inv.items){
-      const prod = DB.data.products.find(p=>p.id===it.productId);
-      if(prod) cogs += (prod.purchasePrice||0) * it.qty;
+      cogs += avgCostOf(it.productId) * it.qty;
     }
   }
   const profit = sales - cogs;
@@ -525,12 +569,12 @@ function totals(){
     if(b<0) receivable += -b;
     if(b>0) payable += b;
   }
+  // صندوق: سرمایه اولیه + دریافتی‌ها - پرداختی‌ها
   let cash = DB.data.settings.initialCapital||0;
+  // فروش: مبلغ پرداخت‌شده هر فاکتور فروش به صندوق اضافه شده
   for(const inv of DB.data.invoices){
-    if(inv.paid){
-      if(inv.type==='sale') cash += inv.total;
-      if(inv.type==='purchase') cash -= inv.total;
-    }
+    if(inv.type==='sale') cash += (inv.paidAmount||0);
+    if(inv.type==='purchase') cash -= (inv.paidAmount||0);
   }
   for(const t of DB.data.transactions){
     if(t.type==='receive') cash += t.amount;
@@ -635,7 +679,7 @@ function renderTopPersons(){
 }
 
 /* =========================================================
-   کالاها — با کد خودکار
+   کالاها
    ========================================================= */
 function nextProductCode(){
   const nums = DB.data.products.map(p=>Number(String(p.code||'').replace(/\D/g,''))||0);
@@ -649,7 +693,7 @@ function renderProducts(){
       <button class="btn btn-primary" onclick="productForm()">➕ کالای جدید</button>
     </div>
     <div class="card"><div class="table-wrap"><table><thead><tr>
-      <th>کد</th><th>نام</th><th>واحد</th><th>قیمت خرید</th><th>قیمت فروش</th><th>موجودی کل</th><th>عملیات</th>
+      <th>کد</th><th>نام</th><th>واحد</th><th>قیمت خرید</th><th>بهای تمام‌شده</th><th>قیمت فروش</th><th>موجودی</th><th>عملیات</th>
     </tr></thead><tbody id="prodBody">${productsRows(list)}</tbody></table></div></div>`;
   $('#prodSearch').oninput = e=>{ $('#prodBody').innerHTML = productsRows(filterList(list,e.target.value)); };
 }
@@ -659,12 +703,14 @@ function filterList(list,q){
   return list.filter(x=>JSON.stringify(x).toLowerCase().includes(q));
 }
 function productsRows(list){
-  if(!list.length)return `<tr><td colspan="7"><div class="empty"><div class="icon">📦</div><div class="title">کالایی ثبت نشده</div></div></td></tr>`;
+  if(!list.length)return `<tr><td colspan="8"><div class="empty"><div class="icon">📦</div><div class="title">کالایی ثبت نشده</div></div></td></tr>`;
   return list.map(p=>{
     const q = stockOf(p.id);
+    const avg = avgCostOf(p.id);
     return `<tr>
       <td><b>${p.code||'-'}</b></td><td>${p.name}</td><td>${p.unit||'-'}</td>
       <td class="num">${formatNum(p.purchasePrice)}</td>
+      <td class="num" style="color:var(--info);font-weight:700">${formatNum(avg)}</td>
       <td class="num">${formatNum(p.salePrice)}</td>
       <td class="num ${q<=0?'text-danger':''}">${formatNum(q)}</td>
       <td>
@@ -695,8 +741,7 @@ function saveProduct(id){
   const name = $('#pName').value.trim();
   if(!name){toast('نام کالا را وارد کنید','error');return;}
   const obj = {
-    code:$('#pCode').value.trim(),
-    name,
+    code:$('#pCode').value.trim(),name,
     unit:$('#pUnit').value.trim()||'عدد',
     purchasePrice:parseNum($('#pPurchase').value),
     salePrice:parseNum($('#pSale').value),
@@ -728,7 +773,7 @@ function renderWarehouses(){
     <div class="grid grid-3">
       ${list.length? list.map(w=>{
         const items = DB.data.products.map(p=>({p,q:stockOf(p.id,w.id)})).filter(x=>x.q!==0);
-        const totalValue = items.reduce((s,x)=>s+x.q*(x.p.purchasePrice||0),0);
+        const totalValue = items.reduce((s,x)=>s+x.q*avgCostOf(x.p.id),0);
         return `<div class="card">
           <div class="card-header"><div class="card-title">🏭 ${w.name}</div>
             <div class="flex gap-2">
@@ -742,8 +787,8 @@ function renderWarehouses(){
             <span>ارزش: <b>${formatMoney(totalValue)}</b></span>
           </div>
           <div style="max-height:200px;overflow:auto">
-            ${items.length? `<table style="font-size:12px"><thead><tr><th>کالا</th><th>موجودی</th></tr></thead><tbody>
-              ${items.map(x=>`<tr><td>${x.p.name}</td><td class="num">${formatNum(x.q)}</td></tr>`).join('')}
+            ${items.length? `<table style="font-size:12px"><thead><tr><th>کالا</th><th>موجودی</th><th>بهای واحد</th></tr></thead><tbody>
+              ${items.map(x=>`<tr><td>${x.p.name}</td><td class="num">${formatNum(x.q)}</td><td class="num">${formatNum(avgCostOf(x.p.id))}</td></tr>`).join('')}
             </tbody></table>`:'<div class="text-muted text-center">خالی</div>'}
           </div>
         </div>`;
@@ -852,7 +897,8 @@ function personLedger(id){
   const rows = [];
   for(const inv of DB.data.invoices){
     if(inv.personId===id){
-      rows.push({date:inv.date,desc:`فاکتور ${inv.type==='sale'?'فروش':'خرید'} #${inv.number}`,amount:inv.total,type:inv.type});
+      const rem = inv.total - (inv.paidAmount||0);
+      rows.push({date:inv.date,desc:`فاکتور ${inv.type==='sale'?'فروش':'خرید'} #${inv.number}${rem>0?' (نسیه)':''}`,amount:inv.total,type:inv.type});
     }
   }
   for(const t of DB.data.transactions){
@@ -884,7 +930,7 @@ function personLedger(id){
 }
 
 /* =========================================================
-   فاکتورها — با ویرایش
+   فاکتورها — با هزینه حمل، گمرکی و مبلغ پرداخت
    ========================================================= */
 let invoiceFilter = 'all';
 function renderInvoices(){
@@ -903,19 +949,19 @@ function renderInvoices(){
       </div>
     </div>
     <div class="card"><div class="table-wrap"><table><thead><tr>
-      <th>شماره</th><th>نوع</th><th>تاریخ</th><th>شخص</th><th>انبار</th><th>مبلغ کل</th><th>وضعیت</th><th>عملیات</th>
+      <th>شماره</th><th>نوع</th><th>تاریخ</th><th>شخص</th><th>مبلغ کل</th><th>پرداخت شده</th><th>باقی‌مانده</th><th>عملیات</th>
     </tr></thead><tbody>
       ${list.length? list.map(i=>{
         const person = DB.data.persons.find(p=>p.id===i.personId);
-        const wh = DB.data.warehouses.find(w=>w.id===i.warehouseId);
+        const rem = i.total - (i.paidAmount||0);
         return `<tr>
           <td>${i.number}</td>
           <td><span class="badge ${i.type==='sale'?'badge-success':'badge-danger'}">${i.type==='sale'?'فروش':'خرید'}</span></td>
           <td class="num">${i.date}</td>
           <td>${person?.name||'-'}</td>
-          <td>${wh?.name||'-'}</td>
           <td class="num">${formatNum(i.total)}</td>
-          <td>${i.paid?'<span class="badge badge-gray">نقدی</span>':'<span class="badge badge-warning">نسیه</span>'}</td>
+          <td class="num text-success">${formatNum(i.paidAmount||0)}</td>
+          <td class="num ${rem>0?'text-warning':'text-success'}">${formatNum(rem)}</td>
           <td>
             <button class="btn btn-sm btn-ghost" onclick="viewInvoice('${i.id}')" title="مشاهده">👁</button>
             <button class="btn btn-sm btn-warning" onclick="invoiceForm('${i.type}','${i.id}')" title="ویرایش">✏️</button>
@@ -948,6 +994,9 @@ function invoiceForm(type, editId=null){
   const number = inv? inv.number : nextInvoiceNumber(type);
   const personId = inv? inv.personId : '';
   const whId = inv? inv.warehouseId : (DB.data.warehouses[0]?.id||'');
+  const shippingCost = inv? (inv.shippingCost||0) : 0;
+  const customsCost = inv? (inv.customsCost||0) : 0;
+  const paidAmount = inv? (inv.paidAmount||0) : 0;
 
   openModal(
     (type==='sale'?'فاکتور فروش':'فاکتور خرید')+(editId?' (ویرایش)':''),
@@ -983,23 +1032,36 @@ function invoiceForm(type, editId=null){
         <th class="col-act"></th>
       </tr></thead><tbody id="invItemsBody"></tbody></table>
     </div>
-    <div class="form-row mt-4">
-      <div class="form-group"><label class="form-label">تخفیف کل</label><input class="form-control" data-thousands id="invDiscount" value="${inv?formatNum(inv.discount||0):'0'}"></div>
-      <div class="form-group"><label class="form-label">مالیات (٪)</label><input class="form-control" id="invTax" type="number" value="${inv?inv.tax||0:DB.data.settings.taxPercent||0}"></div>
+
+    <div class="divider"></div>
+    <div class="font-bold mb-3">هزینه‌های جانبی فاکتور</div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">🚚 هزینه حمل</label>
+        <input class="form-control" data-thousands id="invShipping" value="${formatNum(shippingCost)}"></div>
+      <div class="form-group"><label class="form-label">🛃 هزینه گمرکی</label>
+        <input class="form-control" data-thousands id="invCustoms" value="${formatNum(customsCost)}"></div>
     </div>
-    <div class="form-group"><label class="form-label">توضیحات</label><input class="form-control" id="invNote" value="${inv?inv.note||'':''}"></div>
-    <div class="form-group">
-      <label class="form-label">نوع پرداخت</label>
-      <select class="form-control" id="invPaid">
-        <option value="0" ${inv&&!inv.paid?'selected':''}>نسیه</option>
-        <option value="1" ${inv&&inv.paid?'selected':''}>نقدی</option>
-      </select>
+    <p class="text-muted" style="font-size:11px;margin-bottom:12px">
+      💡 هزینه‌های حمل و گمرکی به بهای تمام‌شده کالا اضافه می‌شوند و در محاسبه سود لحاظ می‌گردند.
+    </p>
+
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">💰 مبلغ پرداخت‌شده</label>
+        <input class="form-control" data-thousands id="invPaidAmount" value="${formatNum(paidAmount)}"></div>
+      <div class="form-group"><label class="form-label">توضیحات</label>
+        <input class="form-control" id="invNote" value="${inv?inv.note||'':''}"></div>
     </div>
+    <p class="text-muted" style="font-size:11px;margin-bottom:8px">
+      💡 مبلغی که همین الان ${type==='sale'?'از مشتری دریافت کردید':'به تأمین‌کننده پرداخت کردید'} را وارد کنید. باقیمانده به عنوان نسیه روی حساب شخص ثبت می‌شود.
+    </p>
+
     <div class="invoice-total mt-4">
       <div class="row"><span>جمع اقلام:</span><span class="num" id="invSubtotal">0</span></div>
-      <div class="row"><span>تخفیف:</span><span class="num" id="invDiscShow">0</span></div>
-      <div class="row"><span>مالیات:</span><span class="num" id="invTaxShow">0</span></div>
+      <div class="row warn"><span>هزینه حمل:</span><span class="num" id="invShipShow">0</span></div>
+      <div class="row warn"><span>هزینه گمرکی:</span><span class="num" id="invCustShow">0</span></div>
       <div class="row total"><span>مبلغ نهایی:</span><span class="num" id="invTotal">0</span></div>
+      <div class="row highlight"><span>پرداخت شده:</span><span class="num" id="invPaidShow">0</span></div>
+      <div class="row" style="color:var(--danger-dark);font-weight:700"><span>باقی‌مانده (نسیه):</span><span class="num" id="invRemShow">0</span></div>
     </div>
     `,
     `<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>
@@ -1009,25 +1071,22 @@ function invoiceForm(type, editId=null){
   renderInvoiceItems();
 
   setTimeout(()=>{
-    $('#invDiscount').addEventListener('input',recalcInvoice);
-    $('#invTax').addEventListener('input',recalcInvoice);
+    $('#invShipping').addEventListener('input',recalcInvoice);
+    $('#invCustoms').addEventListener('input',recalcInvoice);
+    $('#invPaidAmount').addEventListener('input',recalcInvoice);
     recalcInvoice();
   },10);
 }
 
-// رسم ردیف‌ها - فقط یک بار برای هر ردیف؛ اگر تعداد ردیف‌ها عوض شد بازسازی می‌کنیم
-let _lastRenderedCount = -1;
 function renderInvoiceItems(){
   const body = $('#invItemsBody');
   if(!body)return;
   if(!invoiceItems.length){
     body.innerHTML = '<tr><td colspan="5" class="text-center text-muted" style="padding:16px">ردیفی اضافه نشده</td></tr>';
-    _lastRenderedCount = 0;
     recalcInvoice();
     return;
   }
   body.innerHTML = invoiceItems.map((it,idx)=>invoiceItemsRowHTML(it,idx)).join('');
-  _lastRenderedCount = invoiceItems.length;
   attachAllThousandsIn(body);
   recalcInvoice();
 }
@@ -1040,18 +1099,10 @@ function invoiceItemsRowHTML(it,idx){
         ${DB.data.products.map(x=>`<option value="${x.id}" ${x.id===it.productId?'selected':''}>${x.code? '['+x.code+'] ':''}${x.name}</option>`).join('')}
       </select>
     </td>
-    <td class="col-qty">
-      <input class="form-control num" type="number" min="1" value="${it.qty}" oninput="updateItemQty(${idx},this.value)" style="width:100%">
-    </td>
-    <td class="col-price">
-      <input class="form-control num" data-thousands value="${formatNum(it.price)}" oninput="updateItemPrice(${idx},this.value)" style="width:100%">
-    </td>
-    <td class="col-total">
-      <span class="num" style="font-weight:700">${formatNum(it.qty*it.price)}</span>
-    </td>
-    <td class="col-act">
-      <button class="btn btn-sm btn-danger" onclick="removeInvoiceItem(${idx})" title="حذف">✕</button>
-    </td>
+    <td class="col-qty"><input class="form-control num" type="number" min="1" value="${it.qty}" oninput="updateItemQty(${idx},this.value)" style="width:100%"></td>
+    <td class="col-price"><input class="form-control num" data-thousands value="${formatNum(it.price)}" oninput="updateItemPrice(${idx},this.value)" style="width:100%"></td>
+    <td class="col-total"><span class="num" style="font-weight:700">${formatNum(it.qty*it.price)}</span></td>
+    <td class="col-act"><button class="btn btn-sm btn-danger" onclick="removeInvoiceItem(${idx})" title="حذف">✕</button></td>
   </tr>`;
 }
 
@@ -1059,15 +1110,11 @@ function updateItemProduct(idx,val){
   invoiceItems[idx].productId = val;
   if(val){
     const p = DB.data.products.find(x=>x.id===val);
-    if(p){
-      // اگر قیمت صفر بود، قیمت خرید (خرید) یا فروش (فروش) را پیشنهاد بده
-      if(!invoiceItems[idx].price){
-        const type = $('#invNumber').value.startsWith('F')?'sale':'purchase';
-        invoiceItems[idx].price = type==='purchase'? (p.purchasePrice||0) : (p.salePrice||0);
-        // قیمت را در همان input ردیف به‌روزرسانی کن
-        const row = $(`#invItemsBody tr[data-row="${idx}"]`);
-        if(row){ const pi = $('.col-price input',row); if(pi) pi.value = formatNum(invoiceItems[idx].price); }
-      }
+    if(p && !invoiceItems[idx].price){
+      const type = $('#invNumber').value.startsWith('F')?'sale':'purchase';
+      invoiceItems[idx].price = type==='purchase'? (p.purchasePrice||0) : (p.salePrice||0);
+      const row = $(`#invItemsBody tr[data-row="${idx}"]`);
+      if(row){ const pi = $('.col-price input',row); if(pi) pi.value = formatNum(invoiceItems[idx].price); }
     }
   }
   updateRowTotal(idx);
@@ -1089,27 +1136,24 @@ function updateRowTotal(idx){
   const cell = $('.col-total .num',row);
   if(cell) cell.textContent = formatNum(invoiceItems[idx].qty*invoiceItems[idx].price);
 }
+function addInvoiceItem(){ invoiceItems.push({productId:'',qty:1,price:0}); renderInvoiceItems(); }
+function removeInvoiceItem(idx){ invoiceItems.splice(idx,1); renderInvoiceItems(); }
 
-function addInvoiceItem(){
-  invoiceItems.push({productId:'',qty:1,price:0});
-  // بازسازی کامل جدول (چون ردیف جدید اضافه شده)
-  renderInvoiceItems();
-}
-function removeInvoiceItem(idx){
-  invoiceItems.splice(idx,1);
-  renderInvoiceItems();
-}
 function recalcInvoice(){
   const subtotal = invoiceItems.reduce((s,i)=>s+(i.qty*i.price),0);
-  const discount = parseNum($('#invDiscount')?.value||0);
-  const taxP = Number($('#invTax')?.value||0);
-  const tax = Math.round((subtotal-discount)*taxP/100);
-  const total = subtotal-discount+tax;
+  const shipping = parseNum($('#invShipping')?.value||0);
+  const customs = parseNum($('#invCustoms')?.value||0);
+  const paid = parseNum($('#invPaidAmount')?.value||0);
+  const total = subtotal + shipping + customs;
+  const remaining = total - paid;
   if($('#invSubtotal'))$('#invSubtotal').textContent = formatNum(subtotal);
-  if($('#invDiscShow'))$('#invDiscShow').textContent = formatNum(discount);
-  if($('#invTaxShow'))$('#invTaxShow').textContent = formatNum(tax);
+  if($('#invShipShow'))$('#invShipShow').textContent = formatNum(shipping);
+  if($('#invCustShow'))$('#invCustShow').textContent = formatNum(customs);
   if($('#invTotal'))$('#invTotal').textContent = formatNum(total);
+  if($('#invPaidShow'))$('#invPaidShow').textContent = formatNum(paid);
+  if($('#invRemShow'))$('#invRemShow').textContent = formatNum(remaining);
 }
+
 function saveInvoice(type,editId){
   if(editId){
     const inv = DB.data.invoices.find(x=>x.id===editId);
@@ -1124,7 +1168,6 @@ function saveInvoice(type,editId){
   if(!invoiceItems.length){toast('حداقل یک ردیف اضافه کنید','error');return;}
   if(invoiceItems.some(i=>!i.productId)){toast('کالای هر ردیف را انتخاب کنید','error');return;}
 
-  // بررسی موجودی (فقط فروش) - فاکتور جاری را کنار می‌گذاریم
   if(type==='sale'){
     for(const it of invoiceItems){
       const avail = stockOf(it.productId,whId,editId||null);
@@ -1137,32 +1180,30 @@ function saveInvoice(type,editId){
   }
 
   const subtotal = invoiceItems.reduce((s,i)=>s+(i.qty*i.price),0);
-  const discount = parseNum($('#invDiscount').value);
-  const taxP = Number($('#invTax').value||0);
-  const tax = Math.round((subtotal-discount)*taxP/100);
-  const total = subtotal-discount+tax;
-  const paid = $('#invPaid').value==='1';
+  const shippingCost = parseNum($('#invShipping').value);
+  const customsCost = parseNum($('#invCustoms').value);
+  const paidAmount = parseNum($('#invPaidAmount').value);
+  const total = subtotal + shippingCost + customsCost;
   const number = $('#invNumber').value.trim();
   const note = $('#invNote').value.trim();
 
   if(editId){
-    // حذف گردش انبار قبلی این فاکتور
     DB.data.stockMoves = DB.data.stockMoves.filter(m=>m.refId!==editId);
     const inv = DB.data.invoices.find(x=>x.id===editId);
-    Object.assign(inv,{personId,warehouseId:whId,date,items:invoiceItems.map(i=>({...i})),discount,tax,total,paid,number,note});
-    // ثبت مجدد گردش انبار
+    Object.assign(inv,{personId,warehouseId:whId,date,items:invoiceItems.map(i=>({...i})),shippingCost,customsCost,total,paidAmount,number,note});
     for(const it of invoiceItems){
       DB.data.stockMoves.push({id:uid(),date,type:type==='purchase'?'in':'out',productId:it.productId,warehouseId:whId,qty:it.qty,refType:'invoice',refId:editId});
     }
   } else {
     const id = uid();
-    DB.data.invoices.push({id,type,number,date,personId,warehouseId:whId,items:invoiceItems.map(i=>({...i})),discount,tax,total,paid,note,createdAt:nowJalaliFull()});
+    DB.data.invoices.push({id,type,number,date,personId,warehouseId:whId,items:invoiceItems.map(i=>({...i})),shippingCost,customsCost,total,paidAmount,note,createdAt:nowJalaliFull()});
     for(const it of invoiceItems){
       DB.data.stockMoves.push({id:uid(),date,type:type==='purchase'?'in':'out',productId:it.productId,warehouseId:whId,qty:it.qty,refType:'invoice',refId:id});
     }
   }
   DB.save(); closeModal(); renderInvoices(); toast('فاکتور ذخیره شد','success');
 }
+
 function viewInvoice(id){
   const inv = DB.data.invoices.find(x=>x.id===id);
   const person = DB.data.persons.find(p=>p.id===inv.personId);
@@ -1172,6 +1213,7 @@ function viewInvoice(id){
     return {...it,name:p?.name||'?',unit:p?.unit||'',code:p?.code||''};
   });
   const sub = items.reduce((s,i)=>s+i.qty*i.price,0);
+  const rem = inv.total - (inv.paidAmount||0);
   openModal('مشاهده فاکتور',`
     <div id="print-area">
       <div style="text-align:center;margin-bottom:20px">
@@ -1190,11 +1232,12 @@ function viewInvoice(id){
         ${items.map((i,idx)=>`<tr><td>${idx+1}</td><td>${i.code||'-'}</td><td>${i.name}</td><td class="num">${formatNum(i.qty)} ${i.unit}</td><td class="num">${formatNum(i.price)}</td><td class="num">${formatNum(i.qty*i.price)}</td></tr>`).join('')}
       </tbody></table></div>
       <div class="invoice-total mt-4">
-        <div class="row"><span>جمع کل:</span><span class="num">${formatNum(sub)}</span></div>
-        <div class="row"><span>تخفیف:</span><span class="num">${formatNum(inv.discount||0)}</span></div>
-        <div class="row"><span>مالیات:</span><span class="num">${formatNum(inv.tax||0)}</span></div>
+        <div class="row"><span>جمع اقلام:</span><span class="num">${formatNum(sub)}</span></div>
+        ${inv.shippingCost?`<div class="row"><span>هزینه حمل:</span><span class="num">${formatNum(inv.shippingCost)}</span></div>`:''}
+        ${inv.customsCost?`<div class="row"><span>هزینه گمرکی:</span><span class="num">${formatNum(inv.customsCost)}</span></div>`:''}
         <div class="row total"><span>مبلغ نهایی:</span><span class="num">${formatMoney(inv.total)}</span></div>
-        <div class="row"><span>وضعیت:</span><span>${inv.paid?'نقدی (پرداخت شده)':'نسیه'}</span></div>
+        <div class="row highlight"><span>پرداخت شده:</span><span class="num">${formatNum(inv.paidAmount||0)}</span></div>
+        <div class="row" style="color:var(--danger-dark);font-weight:700"><span>باقی‌مانده:</span><span class="num">${formatNum(rem)}</span></div>
       </div>
       ${inv.note?`<div class="mt-3"><b>توضیحات:</b> ${inv.note}</div>`:''}
     </div>
@@ -1211,7 +1254,7 @@ function deleteInvoice(id){
 }
 
 /* =========================================================
-   تراکنش‌ها — با ویرایش
+   تراکنش‌ها
    ========================================================= */
 function renderTransactions(){
   const list = [...DB.data.transactions].sort((a,b)=>b.date.localeCompare(a.date));
@@ -1329,6 +1372,8 @@ function renderCapital(){
   const stockVal = stockValue();
   const finalCapital = initial + t.profit + t.receivable - t.payable;
   const totalAssets = t.cash + stockVal + t.receivable;
+  const totalLiabAndCapital = t.payable + initial + t.profit;
+
   $('#content').innerHTML = `
     <div class="grid grid-3 mb-4">
       <div class="stat"><div class="stat-label">سرمایه اولیه</div><div class="stat-value">${formatMoney(initial)}</div><div class="stat-icon">🏁</div></div>
@@ -1342,8 +1387,8 @@ function renderCapital(){
           <div class="font-bold mb-3 text-success">دارایی‌ها</div>
           <table style="font-size:13px">
             <tr><td>موجودی نقدی</td><td class="num">${formatMoney(t.cash)}</td></tr>
-            <tr><td>ارزش انبار</td><td class="num">${formatMoney(stockVal)}</td></tr>
-            <tr><td>مطالبات</td><td class="num">${formatMoney(t.receivable)}</td></tr>
+            <tr><td>ارزش انبار (بهای تمام‌شده)</td><td class="num">${formatMoney(stockVal)}</td></tr>
+            <tr><td>مطالبات از اشخاص</td><td class="num">${formatMoney(t.receivable)}</td></tr>
             <tr style="border-top:2px solid var(--gray-200);font-weight:800"><td>جمع دارایی</td><td class="num">${formatMoney(totalAssets)}</td></tr>
           </table>
         </div>
@@ -1353,9 +1398,13 @@ function renderCapital(){
             <tr><td>بدهی به اشخاص</td><td class="num">${formatMoney(t.payable)}</td></tr>
             <tr><td>سرمایه اولیه</td><td class="num">${formatMoney(initial)}</td></tr>
             <tr><td>سود انباشته</td><td class="num">${formatMoney(t.profit)}</td></tr>
-            <tr style="border-top:2px solid var(--gray-200);font-weight:800"><td>جمع</td><td class="num">${formatMoney(t.payable + initial + t.profit)}</td></tr>
+            <tr style="border-top:2px solid var(--gray-200);font-weight:800"><td>جمع</td><td class="num">${formatMoney(totalLiabAndCapital)}</td></tr>
           </table>
         </div>
+      </div>
+      <div class="divider"></div>
+      <div class="text-muted" style="font-size:11px">
+        💡 ارزش انبار بر اساس <b>بهای تمام‌شده میانگین وزنی</b> محاسبه می‌شود (شامل هزینه حمل و گمرکی فاکتورهای خرید).
       </div>
     </div>
     <div class="card">
@@ -1400,11 +1449,12 @@ function renderReports(){
       </div>
     </div>
     <div class="card">
-      <div class="card-header"><div class="card-title">گزارش موجودی کالاها</div></div>
-      <div class="table-wrap"><table><thead><tr><th>کد</th><th>کالا</th><th>قیمت خرید</th><th>موجودی کل</th><th>ارزش موجودی</th></tr></thead><tbody>
+      <div class="card-header"><div class="card-title">گزارش موجودی و بهای تمام‌شده</div></div>
+      <div class="table-wrap"><table><thead><tr><th>کد</th><th>کالا</th><th>موجودی</th><th>میانگین بهای تمام‌شده</th><th>ارزش موجودی</th></tr></thead><tbody>
         ${DB.data.products.length? DB.data.products.map(p=>{
           const q = stockOf(p.id);
-          return `<tr><td>${p.code||'-'}</td><td>${p.name}</td><td class="num">${formatNum(p.purchasePrice)}</td><td class="num ${q<=p.minStock?'text-danger':''}">${formatNum(q)}</td><td class="num">${formatNum(q*(p.purchasePrice||0))}</td></tr>`;
+          const avg = avgCostOf(p.id);
+          return `<tr><td>${p.code||'-'}</td><td>${p.name}</td><td class="num ${q<=p.minStock?'text-danger':''}">${formatNum(q)}</td><td class="num" style="color:var(--info);font-weight:700">${formatNum(avg)}</td><td class="num">${formatNum(q*avg)}</td></tr>`;
         }).join('') : '<tr><td colspan="5" class="text-center text-muted">کالایی نیست</td></tr>'}
       </tbody></table></div>
     </div>
@@ -1413,7 +1463,7 @@ function renderReports(){
     new Chart($('#rChart1'),{
       type:'line',data:{labels:months.map(m=>monthName(m)),datasets:[
         {label:'فروش',data:monthSales,borderColor:'#10b981',backgroundColor:'rgba(16,185,129,.1)',tension:.35,fill:true,borderWidth:3},
-        {label:'خرید',data:monthPurchases,borderColor:'#ef4444',backgroundColor:'rgba(239,68,68,.1)',tension:.35,fill:true,borderWidth:3}
+        {label:'خرید',data:purchaseData,borderColor:'#ef4444',backgroundColor:'rgba(239,68,68,.1)',tension:.35,fill:true,borderWidth:3}
       ]},
       options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{family:'Estedad',weight:'600'}}}},scales:{y:{ticks:{font:{family:'Estedad'},callback:v=>formatNum(v)}},x:{ticks:{font:{family:'Estedad'}}}}}
     });
@@ -1435,7 +1485,6 @@ function renderSettings(){
             <option value="تومان" ${s.currency==='تومان'?'selected':''}>تومان</option>
             <option value="ریال" ${s.currency==='ریال'?'selected':''}>ریال</option>
           </select></div>
-        <div class="form-group"><label class="form-label">درصد مالیات پیش‌فرض</label><input class="form-control" id="setTax" type="number" value="${s.taxPercent||0}"></div>
         <button class="btn btn-primary" onclick="saveSettings()">💾 ذخیره تنظیمات</button>
       </div>
       <div class="card">
@@ -1474,7 +1523,6 @@ function renderSettings(){
 function saveSettings(){
   DB.data.settings.shopName = $('#setShop').value.trim()||'فروشگاه من';
   DB.data.settings.currency = $('#setCurrency').value;
-  DB.data.settings.taxPercent = Number($('#setTax').value)||0;
   DB.save();
   $('#sidebarShopName').textContent = DB.data.settings.shopName;
   toast('تنظیمات ذخیره شد','success');
