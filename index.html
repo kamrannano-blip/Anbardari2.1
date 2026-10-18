@@ -43,7 +43,6 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Estedad','Vazirmatn',sans-serif;background:linear-gradient(135deg,#f8fafc 0%,#eef2ff 100%);background-attachment:fixed;color:var(--gray-800);font-size:14px;line-height:1.7;min-height:100vh;-webkit-tap-highlight-color:transparent}
 
-/* ---------- Layout ---------- */
 .app{display:flex;min-height:100vh}
 .sidebar{
   width:262px;background:linear-gradient(180deg,#ffffff 0%,#f8faff 100%);
@@ -89,7 +88,6 @@ body{font-family:'Estedad','Vazirmatn',sans-serif;background:linear-gradient(135
 }
 .menu-toggle{display:none;background:#fff;border:1px solid var(--gray-200);border-radius:10px;padding:8px 12px;cursor:pointer;font-size:18px;box-shadow:var(--shadow)}
 
-/* ---------- Cards (3D) ---------- */
 .card{
   background:#fff;border-radius:var(--radius);padding:22px;
   border:1px solid rgba(229,231,235,.8);
@@ -129,7 +127,6 @@ body{font-family:'Estedad','Vazirmatn',sans-serif;background:linear-gradient(135
 .stat-value.negative{color:var(--danger-dark)}
 .stat-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:32px;opacity:.12;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.15))}
 
-/* ---------- Buttons ---------- */
 .btn{
   display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:10px;border:none;
   font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s ease;white-space:nowrap;position:relative;
@@ -151,7 +148,6 @@ body{font-family:'Estedad','Vazirmatn',sans-serif;background:linear-gradient(135
 .btn-sm{padding:6px 12px;font-size:12px}
 .btn-icon{padding:8px;width:36px;height:36px;justify-content:center}
 
-/* ---------- Forms ---------- */
 .form-group{margin-bottom:14px}
 .form-label{display:block;font-size:12px;font-weight:700;color:var(--gray-600);margin-bottom:6px}
 .form-control{
@@ -165,7 +161,6 @@ body{font-family:'Estedad','Vazirmatn',sans-serif;background:linear-gradient(135
 @media(max-width:640px){.form-row{grid-template-columns:1fr}}
 input[type=number]{direction:ltr;text-align:right}
 
-/* ---------- Tables ---------- */
 .table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--gray-100);box-shadow:0 1px 2px rgba(17,24,39,.03)}
 table{width:100%;border-collapse:collapse;font-size:13px;background:#fff}
 th{background:linear-gradient(180deg,#f9fafb,#f3f4f6);padding:12px 14px;text-align:right;font-weight:700;color:var(--gray-700);font-size:12px;border-bottom:1px solid var(--gray-200);white-space:nowrap}
@@ -175,7 +170,6 @@ tbody tr{transition:background .12s}
 tbody tr:hover{background:linear-gradient(90deg,var(--primary-light),transparent)}
 .num{direction:ltr;text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
 
-/* ---------- Badges ---------- */
 .badge{display:inline-block;padding:4px 11px;border-radius:20px;font-size:11px;font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.04)}
 .badge-success{background:var(--success-light);color:var(--success-dark)}
 .badge-danger{background:var(--danger-light);color:var(--danger-dark)}
@@ -183,7 +177,6 @@ tbody tr:hover{background:linear-gradient(90deg,var(--primary-light),transparent
 .badge-info{background:var(--info-light);color:var(--info)}
 .badge-gray{background:var(--gray-100);color:var(--gray-600)}
 
-/* ---------- Modal ---------- */
 .modal-overlay{position:fixed;inset:0;background:rgba(17,24,39,.55);z-index:100;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
 .modal-overlay.show{display:flex}
 .modal{background:#fff;border-radius:16px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;box-shadow:0 25px 50px -12px rgba(0,0,0,.25),0 0 0 1px rgba(255,255,255,.5) inset;animation:slideUp .25s cubic-bezier(.4,0,.2,1)}
@@ -196,13 +189,11 @@ tbody tr:hover{background:linear-gradient(90deg,var(--primary-light),transparent
 .modal-body{padding:22px}
 .modal-footer{padding:16px 22px;border-top:1px solid var(--gray-100);display:flex;gap:8px;justify-content:flex-end;position:sticky;bottom:0;background:#fff;border-radius:0 0 16px 16px;flex-wrap:wrap}
 
-/* ---------- Empty ---------- */
 .empty{text-align:center;padding:40px 20px;color:var(--gray-400)}
 .empty .icon{font-size:42px;margin-bottom:10px;opacity:.35}
 .empty .title{font-weight:700;color:var(--gray-500);margin-bottom:4px}
 .empty .sub{font-size:12px}
 
-/* ---------- Toast ---------- */
 .toast{
   position:fixed;bottom:24px;left:24px;background:linear-gradient(180deg,#1f2937,#111827);color:#fff;
   padding:13px 20px;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,.25),0 4px 0 rgba(0,0,0,.3);
@@ -214,7 +205,6 @@ tbody tr:hover{background:linear-gradient(90deg,var(--primary-light),transparent
 .toast.error{background:linear-gradient(180deg,#ef4444,#dc2626);box-shadow:0 10px 25px rgba(239,68,68,.35),0 4px 0 #991b1b}
 .toast.warning{background:linear-gradient(180deg,#f59e0b,#d97706);box-shadow:0 10px 25px rgba(245,158,11,.35),0 4px 0 #92400e}
 
-/* ---------- Misc ---------- */
 .flex{display:flex}.items-center{align-items:center}.justify-between{justify-content:space-between}
 .gap-2{gap:8px}.gap-3{gap:12px}.gap-4{gap:16px}
 .mb-3{margin-bottom:12px}.mb-4{margin-bottom:18px}.mt-3{margin-top:12px}.mt-4{margin-top:18px}
@@ -236,7 +226,6 @@ tbody tr:hover{background:linear-gradient(90deg,var(--primary-light),transparent
 .search-box input{padding-right:38px}
 .search-box::before{content:'🔍';position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.5}
 
-/* ---------- Footer ---------- */
 .footer-signature{
   position:fixed;bottom:0;left:0;right:262px;
   background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(248,250,252,.98));
@@ -275,7 +264,6 @@ tbody tr:hover{background:linear-gradient(90deg,var(--primary-light),transparent
 ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--gray-300),var(--gray-400));border-radius:6px;border:2px solid transparent;background-clip:content-box}
 ::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--gray-400),var(--gray-500));background-clip:content-box;border:2px solid transparent}
 
-/* ---------- Items table in invoice ---------- */
 .items-table{min-width:760px}
 .items-table th{white-space:nowrap}
 .items-table td{padding:8px 10px;vertical-align:middle}
@@ -459,7 +447,6 @@ const DB = {
         const parsed = JSON.parse(raw);
         this.data = {...this.data,...parsed};
         this.data.settings = {...{shopName:'فروشگاه من',currency:'تومان',initialCapital:0,initialCapitalDate:'',taxPercent:0},...this.data.settings};
-        // سازگاری با نسخه قبلی: افزودن فیلدهای جدید
         this.data.invoices.forEach(inv=>{
           if(inv.shippingCost===undefined)inv.shippingCost=0;
           if(inv.customsCost===undefined)inv.customsCost=0;
@@ -492,7 +479,6 @@ DB.load();
    محاسبات — با بهای تمام‌شده وزنی
    ========================================================= */
 
-// موجودی یک کالا (تعداد)
 function stockOf(productId,warehouseId=null,excludeInvoiceId=null){
   let total = 0;
   for(const m of DB.data.stockMoves){
@@ -504,10 +490,7 @@ function stockOf(productId,warehouseId=null,excludeInvoiceId=null){
   return total;
 }
 
-// بهای تمام‌شده میانگین وزنی یک کالا (فقط از خریدها)
-// منطق: هر خرید، با هزینه حمل و گمرکی سهم‌بندی شده، میانگین وزنی جدید می‌سازد
 function avgCostOf(productId, excludeInvoiceId=null){
-  // جمع‌آوری همه ورودی‌های انبار (خریدها) به ترتیب تاریخ
   const ins = DB.data.stockMoves
     .filter(m=>m.productId===productId && m.type==='in' && m.refId!==excludeInvoiceId)
     .map(m=>{
@@ -516,7 +499,6 @@ function avgCostOf(productId, excludeInvoiceId=null){
     })
     .sort((a,b)=>a.date.localeCompare(b.date));
 
-  // مقدار اولیه: قیمت خرید کالا (اگر خرید ثبت نشده)
   const product = DB.data.products.find(p=>p.id===productId);
   let basePrice = product?.purchasePrice || 0;
 
@@ -527,7 +509,6 @@ function avgCostOf(productId, excludeInvoiceId=null){
     const item = x.inv.items.find(it=>it.productId===productId);
     if(!item)continue;
     const itemSubtotal = item.qty * item.price;
-    // سهم این آیتم از هزینه‌های کل فاکتور (نسبت به جمع کل اقلام فاکتور)
     const invoiceItemsSum = x.inv.items.reduce((s,it)=>s+it.qty*it.price,0);
     const ratio = invoiceItemsSum>0 ? itemSubtotal/invoiceItemsSum : 0;
     const shippingShare = (x.inv.shippingCost||0) * ratio;
@@ -544,7 +525,6 @@ function personBalance(personId){
   let bal = 0;
   for(const inv of DB.data.invoices){
     if(inv.personId!==personId)continue;
-    // مبلغ نسیه = کل فاکتور - پرداخت شده
     const remaining = inv.total - (inv.paidAmount||0);
     if(remaining<=0)continue;
     if(inv.type==='sale') bal -= remaining;
@@ -554,8 +534,11 @@ function personBalance(personId){
     if(t.type==='receive' && t.personId===personId) bal += t.amount;
     if(t.type==='pay' && t.personId===personId) bal -= t.amount;
     if(t.type==='transfer'){
-      if(t.personId===personId) bal -= t.amount;
-      if(t.toPersonId===personId) bal += t.amount;
+      // ✅ اصلاح: انتقال از A به B یعنی A پول را به B داد
+      // A (پرداخت‌کننده): بدهی‌اش به ما کم می‌شود → balance += amount
+      // B (دریافت‌کننده): طلبش از ما کم می‌شود → balance -= amount
+      if(t.personId===personId) bal += t.amount;
+      if(t.toPersonId===personId) bal -= t.amount;
     }
   }
   return bal;
@@ -566,7 +549,6 @@ function personBalanceLabel(bal){
   return {text:'بدهکار',cls:'badge-danger'};
 }
 
-// ارزش انبار (به بهای تمام‌شده وزنی)
 function stockValue(){
   let v=0;
   for(const p of DB.data.products){
@@ -582,7 +564,6 @@ function totals(){
     if(inv.type==='sale') sales += inv.total;
     if(inv.type==='purchase') purchases += inv.total;
   }
-  // COGS: به ازای هر آیتم فروش، بهای تمام‌شده‌ی کالا × تعداد
   let cogs = 0;
   for(const inv of DB.data.invoices){
     if(inv.type!=='sale')continue;
@@ -597,9 +578,7 @@ function totals(){
     if(b<0) receivable += -b;
     if(b>0) payable += b;
   }
-  // صندوق: سرمایه اولیه + دریافتی‌ها - پرداختی‌ها
   let cash = DB.data.settings.initialCapital||0;
-  // فروش: مبلغ پرداخت‌شده هر فاکتور فروش به صندوق اضافه شده
   for(const inv of DB.data.invoices){
     if(inv.type==='sale') cash += (inv.paidAmount||0);
     if(inv.type==='purchase') cash -= (inv.paidAmount||0);
@@ -609,6 +588,14 @@ function totals(){
     if(t.type==='pay') cash -= t.amount;
   }
   return {sales,purchases,cogs,profit,receivable,payable,cash};
+}
+
+// ✅ سرمایه فعلی تخمینی — طبق فرمول درخواستی کاربر
+function currentCapital(){
+  const t = totals();
+  const stockVal = stockValue();
+  // سرمایه فعلی = موجودی نقد + ارزش انبار + مطالبات - بدهی‌ها + سود
+  return t.cash + stockVal + t.receivable - t.payable + t.profit;
 }
 
 /* =========================================================
@@ -639,7 +626,7 @@ $('#sidebarShopName').textContent = DB.data.settings.shopName || 'فروشگاه
 let dashChart=null, dashChart2=null;
 function renderDashboard(){
   const t = totals();
-  const totalCapital = (DB.data.settings.initialCapital||0) + t.profit + t.receivable - t.payable;
+  const totalCapital = currentCapital();
   $('#content').innerHTML = `
     <div class="grid grid-4 mb-4">
       <div class="stat"><div class="stat-label">موجودی نقدی</div><div class="stat-value">${formatMoney(t.cash)}</div><div class="stat-icon">💵</div></div>
@@ -648,7 +635,7 @@ function renderDashboard(){
       <div class="stat s-warning"><div class="stat-label">بدهی‌ها (بدهی ما)</div><div class="stat-value">${formatMoney(t.payable)}</div><div class="stat-icon">📤</div></div>
     </div>
     <div class="grid grid-4 mb-4">
-      <div class="stat s-info"><div class="stat-label">سرمایه فعلی</div><div class="stat-value">${formatMoney(totalCapital)}</div><div class="stat-icon">💰</div></div>
+      <div class="stat s-info"><div class="stat-label">سرمایه فعلی (تخمینی)</div><div class="stat-value">${formatMoney(totalCapital)}</div><div class="stat-icon">💰</div></div>
       <div class="stat"><div class="stat-label">ارزش انبار</div><div class="stat-value">${formatMoney(stockValue())}</div><div class="stat-icon">📦</div></div>
       <div class="stat s-success"><div class="stat-label">تعداد فاکتور</div><div class="stat-value">${formatNum(DB.data.invoices.length)}</div><div class="stat-icon">🧾</div></div>
       <div class="stat"><div class="stat-label">اشخاص / کالاها</div><div class="stat-value">${formatNum(DB.data.persons.length)} / ${formatNum(DB.data.products.length)}</div><div class="stat-icon">👥</div></div>
@@ -958,7 +945,7 @@ function personLedger(id){
 }
 
 /* =========================================================
-   فاکتورها — با هزینه حمل، گمرکی و مبلغ پرداخت
+   فاکتورها
    ========================================================= */
 let invoiceFilter = 'all';
 function renderInvoices(){
@@ -1340,6 +1327,9 @@ function txForm(type, editId=null){
           <option value="">انتخاب</option>
           ${DB.data.persons.map(p=>`<option value="${p.id}" ${existing&&existing.toPersonId===p.id?'selected':''}>${p.name}</option>`).join('')}
         </select></div>
+      <p class="text-muted" style="font-size:11px;margin-bottom:8px">
+        💡 انتقال یعنی شخص «از» پول را مستقیم به شخص «به» می‌دهد (بدون دخالت صندوق شما). بدهی/طلب هر دو نفر به‌روز می‌شود.
+      </p>
     `:`
       <div class="form-group"><label class="form-label">شخص *</label>
         <select class="form-control" id="txPerson">
@@ -1398,9 +1388,9 @@ function renderCapital(){
   const t = totals();
   const initial = DB.data.settings.initialCapital||0;
   const stockVal = stockValue();
-  const finalCapital = initial + t.profit + t.receivable - t.payable;
+  const finalCapital = currentCapital();
   const totalAssets = t.cash + stockVal + t.receivable;
-  const totalLiabAndCapital = t.payable + initial + t.profit;
+  const totalLiabAndCapital = t.payable + finalCapital;
 
   $('#content').innerHTML = `
     <div class="grid grid-3 mb-4">
@@ -1424,15 +1414,14 @@ function renderCapital(){
           <div class="font-bold mb-3 text-danger">بدهی‌ها و سرمایه</div>
           <table style="font-size:13px">
             <tr><td>بدهی به اشخاص</td><td class="num">${formatMoney(t.payable)}</td></tr>
-            <tr><td>سرمایه اولیه</td><td class="num">${formatMoney(initial)}</td></tr>
-            <tr><td>سود انباشته</td><td class="num">${formatMoney(t.profit)}</td></tr>
+            <tr><td>سرمایه فعلی (با سود)</td><td class="num">${formatMoney(finalCapital)}</td></tr>
             <tr style="border-top:2px solid var(--gray-200);font-weight:800"><td>جمع</td><td class="num">${formatMoney(totalLiabAndCapital)}</td></tr>
           </table>
         </div>
       </div>
       <div class="divider"></div>
       <div class="text-muted" style="font-size:11px">
-        💡 ارزش انبار بر اساس <b>بهای تمام‌شده میانگین وزنی</b> محاسبه می‌شود (شامل هزینه حمل و گمرکی فاکتورهای خرید).
+        💡 <b>سرمایه فعلی</b> = موجودی نقد + ارزش انبار + مطالبات − بدهی‌ها + سود حاصل‌شده
       </div>
     </div>
     <div class="card">
@@ -1491,7 +1480,7 @@ function renderReports(){
     new Chart($('#rChart1'),{
       type:'line',data:{labels:months.map(m=>monthName(m)),datasets:[
         {label:'فروش',data:monthSales,borderColor:'#10b981',backgroundColor:'rgba(16,185,129,.1)',tension:.35,fill:true,borderWidth:3},
-        {label:'خرید',data:purchaseData,borderColor:'#ef4444',backgroundColor:'rgba(239,68,68,.1)',tension:.35,fill:true,borderWidth:3}
+        {label:'خرید',data:monthPurchases,borderColor:'#ef4444',backgroundColor:'rgba(239,68,68,.1)',tension:.35,fill:true,borderWidth:3}
       ]},
       options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{family:'Estedad',weight:'600'}}}},scales:{y:{ticks:{font:{family:'Estedad'},callback:v=>formatNum(v)}},x:{ticks:{font:{family:'Estedad'}}}}}
     });
