@@ -10,279 +10,63 @@
 
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-<meta name="theme-color" content="#101827">
+<meta name="theme-color" content="#111b2d">
 
-<title>DAVIN PRO | حسابداری و انبارداری</title>
+<title>DAVIN PRO | حسابداری حرفه‌ای</title>
 
 <style>
 
-:root{
+:root{--bg:#f3f5fa;--panel:#fff;--ink:#182235;--muted:#7d8799;--line:#e6eaf2;--primary:#6658e8;--green:#0b9b72;--red:#e34f66;--orange:#e99a28;--nav:#111b2d;--shadow:0 8px 28px #1822350b;--radius:17px}
 
- --bg:#f3f5fa;--panel:#fff;--ink:#182235;--muted:#7d8799;
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,Arial,sans-serif;font-size:13px}button,input,select,textarea{font:inherit}button{cursor:pointer}
 
- --line:#e8ecf3;--primary:#6658e8;--primary2:#8a7eff;
+.app{display:flex;min-height:100vh}.sidebar{width:238px;background:var(--nav);color:#fff;padding:22px 14px;display:flex;flex-direction:column;gap:23px;flex-shrink:0}
 
- --green:#0b9b72;--red:#e34f66;--orange:#e99a28;--nav:#111b2d;
+.brand{display:flex;align-items:center;gap:12px;padding:4px 8px 20px;border-bottom:1px solid #ffffff16}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,#a398ff,#5d4be1);display:grid;place-items:center;font-weight:900;font-size:18px}.brand h2{font-size:15px;margin:0 0 6px}.brand small{color:#aab5c8;font-size:10px;letter-spacing:1px}
 
- --shadow:0 8px 28px rgba(24,34,53,.07);--radius:18px
+.nav-label{color:#8190aa;font-size:10px;padding:0 12px;margin-bottom:8px}.nav{display:grid;gap:5px}.nav button{border:0;color:#aeb9cd;background:transparent;text-align:right;border-radius:12px;padding:13px 12px;display:flex;gap:12px;align-items:center}.nav button:hover,.nav button.active{background:#6d5df035;color:white}.nav button.active{box-shadow:inset -3px 0 #9589ff}.ico{font-size:18px;width:24px;text-align:center}.side-bottom{margin-top:auto;padding:15px 10px;color:#8290a9;font-size:10px;line-height:2}
 
-}
+.main{flex:1;min-width:0;padding:25px;max-width:1800px;margin:auto;width:100%}.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:24px}.page-title h1{font-size:23px;margin:0 0 8px}.page-title p{margin:0;color:var(--muted);font-size:12px}.top-actions{display:flex;gap:9px;align-items:center}.date-pill,.icon-btn{background:white;border:1px solid var(--line);border-radius:12px;padding:11px 13px}.mobile-menu{display:none}
 
-*{box-sizing:border-box}
+.btn{border:0;border-radius:11px;padding:11px 15px;background:var(--primary);color:white;font-weight:700;box-shadow:0 5px 13px #6658e822}.btn.secondary{background:#efedff;color:#5c4de0;box-shadow:none}.btn.green{background:var(--green);box-shadow:none}.btn.red{background:#fff0f2;color:var(--red);box-shadow:none}.btn.gray{background:#f0f2f7;color:#4d5a70;box-shadow:none}.btn.small{padding:8px 10px;font-size:11px}
 
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,Arial,sans-serif;font-size:13px}
+.grid{display:grid;gap:16px}.stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}.stat{background:white;padding:19px;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid white;position:relative;overflow:hidden;min-width:0}.stat:after{content:"";position:absolute;width:100px;height:100px;border-radius:50%;left:-32px;top:-40px;background:var(--tint,#f0edff);opacity:.65}.stat-head{display:flex;align-items:center;justify-content:space-between;gap:8px;position:relative;z-index:1}.stat-name{color:var(--muted);font-size:12px}.stat-icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:19px;background:var(--tint,#f0edff)}.stat-value{font-size:clamp(16px,2vw,24px);font-weight:800;margin:16px 0 9px;overflow-wrap:anywhere;position:relative;z-index:1}.stat-foot{color:var(--muted);font-size:10px;position:relative;z-index:1}
 
-button,input,select,textarea{font:inherit}
+.two-col{grid-template-columns:minmax(0,1.4fr) minmax(280px,1fr);margin-bottom:18px}.panel{background:white;border:1px solid white;border-radius:var(--radius);box-shadow:var(--shadow);padding:19px;min-width:0}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:18px}.panel-head h3{font-size:14px;margin:0}.panel-head p{font-size:10px;color:var(--muted);margin:6px 0 0}
 
-button{cursor:pointer}
+.chart{height:215px;display:flex;gap:12px;align-items:stretch;padding-top:8px}.chart-y{display:flex;flex-direction:column;justify-content:space-between;color:#9aa3b2;font-size:10px;padding-bottom:22px}.chart-area{flex:1;display:flex;gap:clamp(6px,2vw,18px);align-items:stretch;justify-content:space-around;border-bottom:1px solid var(--line);background:repeating-linear-gradient(to bottom,transparent 0,transparent 49px,#eef0f5 50px);min-width:0}.chart-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;min-width:0;gap:7px}.bar-pair{height:175px;width:100%;display:flex;align-items:flex-end;justify-content:center;gap:4px}.bar{width:min(35%,22px);border-radius:6px 6px 2px 2px;min-height:3px}.bar.sale{background:linear-gradient(180deg,#8b7fff,#6252e5)}.bar.buy{background:linear-gradient(180deg,#71d8bb,#10a77d)}.chart-col label{font-size:10px;color:var(--muted);padding-bottom:7px}.legend{display:flex;gap:18px;margin-top:14px;color:var(--muted);font-size:10px}.dot{display:inline-block;width:8px;height:8px;border-radius:3px;margin-left:5px}
 
-.app{display:flex;min-height:100vh}
+.quick-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.quick{border:1px solid var(--line);border-radius:14px;padding:15px 12px;background:white;text-align:right}.quick:hover{border-color:#c9c2ff;background:#faf9ff}.quick span{display:block;font-size:20px;margin-bottom:10px}.quick b{font-size:12px}.quick small{display:block;color:var(--muted);margin-top:6px;font-size:10px}
 
-.sidebar{width:245px;background:var(--nav);color:#fff;padding:22px 14px;display:flex;flex-direction:column;gap:24px;flex-shrink:0}
+.stock-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.stock-row:last-child{border-bottom:0}.stock-symbol{width:39px;height:39px;border-radius:12px;background:#f1efff;display:grid;place-items:center;font-size:18px}.stock-info{flex:1;min-width:0}.stock-info b{display:block;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.stock-info small{color:var(--muted);font-size:10px}.stock-count{font-weight:800;font-size:12px}.low{color:var(--red)}.ok{color:var(--green)}
 
-.brand{display:flex;align-items:center;gap:12px;padding:4px 8px 20px;border-bottom:1px solid #ffffff16}
+.table-wrap{overflow:auto;width:100%}table{border-collapse:collapse;width:100%;white-space:nowrap}th{color:var(--muted);font-size:10px;font-weight:500;background:#fafbfe}td,th{text-align:right;padding:13px 11px;border-bottom:1px solid var(--line)}td{font-size:11px}tbody tr:hover{background:#fafbff}.pill{padding:6px 9px;border-radius:8px;font-size:10px;display:inline-block;background:#f0edff;color:#6555db}.pill.green{background:#e6f8f1;color:#09875f}.pill.red{background:#fff0f2;color:#d9445b}.pill.orange{background:#fff5e5;color:#b87512}.pill.gray{background:#eef1f6;color:#677388}.muted{color:var(--muted)}
 
-.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,#a398ff,#5d4be1);display:grid;place-items:center;font-weight:900;font-size:18px;box-shadow:0 7px 18px #6658e855}
+.section{display:none}.section.active{display:block}.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-bottom:16px}.search{flex:1;min-width:170px}.field{display:flex;flex-direction:column;gap:8px;min-width:0}.field label{font-size:11px;color:#68758a}
 
-.brand h2{font-size:15px;margin:0 0 6px}.brand small{color:#aab5c8;font-size:10px;letter-spacing:1px}
+input,select,textarea{width:100%;border:1px solid #e2e7f0;background:white;border-radius:10px;padding:11px 12px;color:var(--ink);outline:none;min-width:0}input:focus,select:focus,textarea:focus{border-color:#9b91ff;box-shadow:0 0 0 3px #6658e812}input[readonly]{background:#f7f8fb}
 
-.nav-label{color:#8190aa;font-size:10px;padding:0 12px;margin:4px 0 8px}
+.form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.form-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 
-.nav{display:grid;gap:6px}
+.modal-backdrop{position:fixed;inset:0;background:#10182799;backdrop-filter:blur(4px);z-index:20;display:none;align-items:center;justify-content:center;padding:14px}.modal-backdrop.open{display:flex}.modal{width:min(790px,100%);max-height:92vh;overflow:auto;background:white;border-radius:22px;padding:23px;box-shadow:0 25px 90px #0003}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;gap:12px}.modal-head h2{margin:0;font-size:17px}.close{border:0;border-radius:10px;background:#f0f2f7;padding:8px 12px}.form-actions{display:flex;justify-content:flex-start;gap:8px;margin-top:18px;flex-wrap:wrap}.items-box{border:1px solid var(--line);border-radius:13px;overflow:auto;margin-top:15px}.items-box table input,.items-box table select{min-width:105px;padding:9px}
 
-.nav button{border:0;color:#aeb9cd;background:transparent;text-align:right;border-radius:12px;padding:13px 12px;display:flex;gap:12px;align-items:center;transition:.2s}
+.total-box{display:flex;justify-content:flex-end;margin-top:17px}.total-inner{min-width:min(100%,310px);background:#f7f6ff;border-radius:14px;padding:14px}.total-line{display:flex;justify-content:space-between;gap:20px;padding:7px 0;font-size:12px}.total-line.final{border-top:1px solid #e2defe;margin-top:6px;padding-top:13px;font-size:15px;font-weight:800;color:var(--primary)}
 
-.nav button:hover,.nav button.active{background:linear-gradient(90deg,#6d5df01c,#6d5df04a);color:white}
+.date-select{display:grid;grid-template-columns:1.15fr 1.35fr .85fr;gap:9px}.date-select select{min-width:0;width:100%;padding:12px 9px;font-size:13px;height:45px}.date-field-title{font-size:10px;color:#66738a;margin-bottom:6px;display:block}.date-select-wrap{min-width:0}
 
-.nav button.active{box-shadow:inset -3px 0 #9589ff}
+.settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.notice{padding:13px;border-radius:12px;background:#f1efff;color:#5b50bc;font-size:11px;line-height:2;margin:12px 0}.toast{position:fixed;bottom:25px;left:25px;background:#172238;color:white;border-radius:12px;padding:14px 20px;z-index:100;box-shadow:var(--shadow);display:none;max-width:90vw}.toast.show{display:block}
 
-.nav .ico{font-size:18px;width:24px;text-align:center}
+.empty{text-align:center;padding:32px;color:var(--muted);font-size:12px}.summary-cards{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:16px}.summary-card{background:white;border-radius:14px;padding:16px;border:1px solid var(--line)}.summary-card small{color:var(--muted)}.summary-card b{display:block;margin-top:12px;font-size:18px;overflow-wrap:anywhere}
 
-.side-bottom{margin-top:auto;padding:15px 10px;color:#8290a9;font-size:10px;line-height:2}
+.footer{text-align:center;color:#9aa3b2;font-size:10px;line-height:2.2;padding:28px 8px 8px}.footer strong{color:#6f7890;letter-spacing:.5px}.mobile-bottom{display:none}
 
-.main{flex:1;min-width:0;padding:26px;max-width:1800px;margin:auto;width:100%}
+@media(max-width:1050px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}.main{padding:19px}}
 
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:25px}
+@media(max-width:700px){.app{display:block}.sidebar{display:none}.main{padding:16px 12px 90px}.topbar{align-items:flex-start}.page-title h1{font-size:19px}.page-title p{font-size:10px}.top-actions .date-pill{display:none}.top-actions .btn{padding:10px;font-size:11px}.mobile-menu{display:inline-block}.stats{gap:10px}.stat{padding:14px;border-radius:15px}.stat-value{font-size:17px;margin:13px 0 8px}.stat-name{font-size:10px}.panel{padding:14px;border-radius:15px}.panel-head h3{font-size:12px}.form-grid,.form-grid.two,.settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.chart{height:185px}.bar-pair{height:145px}.mobile-bottom{display:grid;position:fixed;bottom:0;left:0;right:0;z-index:10;background:white;border-top:1px solid var(--line);grid-template-columns:repeat(5,1fr);padding:7px 4px calc(7px + env(safe-area-inset-bottom));box-shadow:0 -8px 25px #1722380a}.mobile-bottom button{border:0;background:transparent;color:#8791a3;font-size:9px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px 0}.mobile-bottom button span{font-size:19px}.mobile-bottom button.active{color:var(--primary);font-weight:bold}.summary-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.modal{padding:17px;border-radius:18px}.date-select{grid-template-columns:1.1fr 1.3fr .8fr;gap:5px}.date-select select{font-size:12px;padding:9px 5px;height:45px}}
 
-.page-title h1{font-size:23px;margin:0 0 8px;letter-spacing:-.5px}
+@media(max-width:380px){.form-grid,.form-grid.two{grid-template-columns:1fr}.quick-grid{gap:7px}.quick{padding:12px 9px}.date-select select{font-size:11px}}
 
-.page-title p{margin:0;color:var(--muted);font-size:12px}
-
-.top-actions{display:flex;gap:9px;align-items:center}
-
-.date-pill,.icon-btn{background:white;border:1px solid var(--line);border-radius:12px;padding:11px 13px;color:var(--ink)}
-
-.icon-btn{font-size:17px}
-
-.mobile-menu{display:none}
-
-.btn{border:0;border-radius:11px;padding:11px 16px;background:var(--primary);color:#fff;font-weight:700;box-shadow:0 5px 13px #6658e829}
-
-.btn:hover{filter:brightness(1.06)}
-
-.btn.secondary{background:#efedff;color:#5c4de0;box-shadow:none}
-
-.btn.green{background:var(--green);box-shadow:none}
-
-.btn.red{background:#fff0f2;color:var(--red);box-shadow:none}
-
-.btn.gray{background:#f0f2f7;color:#4d5a70;box-shadow:none}
-
-.btn.small{padding:8px 11px;font-size:11px}
-
-.grid{display:grid;gap:17px}
-
-.stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:19px}
-
-.stat{background:var(--panel);padding:20px;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid #ffffff;position:relative;overflow:hidden;min-width:0}
-
-.stat:after{content:"";position:absolute;width:100px;height:100px;border-radius:50%;left:-32px;top:-40px;background:var(--tint,#f0edff);opacity:.65}
-
-.stat-head{display:flex;align-items:center;justify-content:space-between;gap:8px;position:relative;z-index:1}
-
-.stat-name{color:var(--muted);font-size:12px}
-
-.stat-icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:19px;background:var(--tint,#f0edff)}
-
-.stat-value{font-size:clamp(17px,2vw,25px);font-weight:800;margin:17px 0 9px;overflow-wrap:anywhere;position:relative;z-index:1}
-
-.stat-foot{color:var(--muted);font-size:10px;position:relative;z-index:1}
-
-.stat-foot strong{color:var(--green)}
-
-.two-col{grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);margin-bottom:18px}
-
-.panel{background:white;border:1px solid #fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;min-width:0}
-
-.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:20px}
-
-.panel-head h3{font-size:14px;margin:0}
-
-.panel-head p{font-size:10px;color:var(--muted);margin:6px 0 0}
-
-.chart{height:220px;display:flex;gap:14px;align-items:stretch;padding-top:8px}
-
-.chart-y{display:flex;flex-direction:column;justify-content:space-between;color:#9aa3b2;font-size:10px;padding-bottom:23px}
-
-.chart-area{flex:1;display:flex;gap:clamp(7px,2vw,20px);align-items:stretch;justify-content:space-around;border-bottom:1px solid var(--line);background:repeating-linear-gradient(to bottom,transparent 0,transparent 49px,#eef0f5 50px);min-width:0}
-
-.chart-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;min-width:0;gap:7px}
-
-.bar-pair{height:180px;width:100%;display:flex;align-items:flex-end;justify-content:center;gap:4px}
-
-.bar{width:min(35%,22px);border-radius:6px 6px 2px 2px;min-height:3px;transition:height .3s}
-
-.bar.sale{background:linear-gradient(180deg,#8b7fff,#6252e5)}
-
-.bar.buy{background:linear-gradient(180deg,#71d8bb,#10a77d)}
-
-.chart-col label{font-size:10px;color:var(--muted);padding-bottom:8px}
-
-.legend{display:flex;gap:18px;margin-top:15px;color:var(--muted);font-size:10px}
-
-.dot{display:inline-block;width:8px;height:8px;border-radius:3px;margin-left:5px}
-
-.quick-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-
-.quick{border:1px solid var(--line);border-radius:14px;padding:16px 12px;background:#fff;text-align:right;transition:.2s}
-
-.quick:hover{border-color:#c9c2ff;background:#faf9ff;transform:translateY(-2px)}
-
-.quick span{display:block;font-size:20px;margin-bottom:11px}
-
-.quick b{font-size:12px}.quick small{display:block;color:var(--muted);margin-top:6px;font-size:10px}
-
-.stock-row{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
-
-.stock-row:last-child{border-bottom:0}
-
-.stock-symbol{width:39px;height:39px;border-radius:12px;background:#f1efff;display:grid;place-items:center;font-size:18px}
-
-.stock-info{flex:1;min-width:0}.stock-info b{display:block;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.stock-info small{color:var(--muted);font-size:10px}
-
-.stock-count{font-weight:800;font-size:12px}.low{color:var(--red)}.ok{color:var(--green)}
-
-.table-wrap{overflow:auto;width:100%}
-
-table{border-collapse:collapse;width:100%;white-space:nowrap}
-
-th{color:var(--muted);font-size:10px;font-weight:500;background:#fafbfe}
-
-td,th{text-align:right;padding:14px 12px;border-bottom:1px solid var(--line)}
-
-td{font-size:11px}tbody tr:hover{background:#fafbff}
-
-.pill{padding:6px 9px;border-radius:8px;font-size:10px;display:inline-block;background:#f0edff;color:#6555db}
-
-.pill.green{background:#e6f8f1;color:#09875f}.pill.red{background:#fff0f2;color:#d9445b}.pill.orange{background:#fff5e5;color:#b87512}.pill.gray{background:#eef1f6;color:#677388}
-
-.muted{color:var(--muted)}
-
-.empty{text-align:center;padding:35px;color:var(--muted);font-size:12px}
-
-.section{display:none}.section.active{display:block}
-
-.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-bottom:17px}
-
-.search{flex:1;min-width:160px}
-
-.field{display:flex;flex-direction:column;gap:7px;min-width:0}
-
-.field label{font-size:11px;color:#68758a}
-
-input,select,textarea{width:100%;border:1px solid #e2e7f0;background:#fff;border-radius:10px;padding:11px 12px;color:var(--ink);outline:none;min-width:0}
-
-input:focus,select:focus,textarea:focus{border-color:#9b91ff;box-shadow:0 0 0 3px #6658e812}
-
-input[readonly]{background:#f7f8fb}
-
-.form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-
-.form-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
-
-.modal-backdrop{position:fixed;inset:0;background:#10182799;backdrop-filter:blur(4px);z-index:20;display:none;align-items:center;justify-content:center;padding:14px}
-
-.modal-backdrop.open{display:flex}
-
-.modal{width:min(760px,100%);max-height:92vh;overflow:auto;background:white;border-radius:22px;padding:24px;box-shadow:0 25px 90px #0003}
-
-.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;gap:12px}
-
-.modal-head h2{margin:0;font-size:17px}
-
-.close{border:0;border-radius:10px;background:#f0f2f7;padding:8px 12px}
-
-.form-actions{display:flex;justify-content:flex-start;gap:8px;margin-top:20px;flex-wrap:wrap}
-
-.items-box{border:1px solid var(--line);border-radius:13px;overflow:auto;margin-top:15px}
-
-.items-box table input,.items-box table select{min-width:100px;padding:8px}
-
-.total-box{display:flex;justify-content:flex-end;margin-top:17px}
-
-.total-inner{min-width:min(100%,300px);background:#f7f6ff;border-radius:14px;padding:15px}
-
-.total-line{display:flex;justify-content:space-between;gap:20px;padding:7px 0;font-size:12px}
-
-.total-line.final{border-top:1px solid #e2defe;margin-top:6px;padding-top:13px;font-size:15px;font-weight:800;color:var(--primary)}
-
-.date-select{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-
-.settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-
-.notice{padding:14px;border-radius:12px;background:#f1efff;color:#5b50bc;font-size:11px;line-height:2;margin:12px 0}
-
-.toast{position:fixed;bottom:25px;left:25px;background:#172238;color:#fff;border-radius:12px;padding:14px 20px;z-index:100;box-shadow:var(--shadow);display:none;max-width:90vw}
-
-.toast.show{display:block;animation:toastIn .2s ease}
-
-@keyframes toastIn{from{transform:translateY(8px);opacity:0}to{transform:translateY(0);opacity:1}}
-
-.footer{text-align:center;color:#9aa3b2;font-size:10px;line-height:2.2;padding:30px 8px 8px}
-
-.footer strong{color:#6f7890;letter-spacing:.5px}
-
-.summary-cards{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:16px}
-
-.summary-card{background:white;border-radius:14px;padding:17px;border:1px solid var(--line)}
-
-.summary-card small{color:var(--muted)}.summary-card b{display:block;margin-top:12px;font-size:19px;overflow-wrap:anywhere}
-
-.mobile-bottom{display:none}
-
-@media(max-width:1050px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}.main{padding:20px}}
-
-@media(max-width:700px){
-
- .app{display:block}.sidebar{display:none}.main{padding:17px 13px 90px}
-
- .topbar{align-items:flex-start}.page-title h1{font-size:19px}.page-title p{font-size:10px}
-
- .top-actions .date-pill{display:none}.top-actions .btn{padding:10px;font-size:11px}
-
- .mobile-menu{display:inline-block}.stats{gap:10px}.stat{padding:15px;border-radius:15px}
-
- .stat-value{font-size:18px;margin:14px 0 8px}.stat-name{font-size:10px}
-
- .panel{padding:15px;border-radius:15px}.panel-head h3{font-size:12px}
-
- .form-grid,.form-grid.two,.settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-
- .chart{height:190px}.bar-pair{height:150px}
-
- .mobile-bottom{display:grid;position:fixed;bottom:0;left:0;right:0;z-index:10;background:#fff;border-top:1px solid var(--line);grid-template-columns:repeat(5,1fr);padding:7px 4px calc(7px + env(safe-area-inset-bottom));box-shadow:0 -8px 25px #1722380a}
-
- .mobile-bottom button{border:0;background:transparent;color:#8791a3;font-size:9px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px 0}
-
- .mobile-bottom button span{font-size:19px}.mobile-bottom button.active{color:var(--primary);font-weight:bold}
-
- .summary-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
-
- .modal{padding:18px;border-radius:18px}.toolbar .btn{padding:10px}
-
-}
-
-@media(max-width:380px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.form-grid,.form-grid.two{grid-template-columns:1fr}.quick-grid{gap:7px}.quick{padding:12px 9px}}
+@media print{.sidebar,.mobile-bottom,.top-actions,.toolbar,.form-actions,.btn{display:none!important}.main{padding:0}.panel,.stat{box-shadow:none;border:1px solid #ddd}.section{display:none!important}.section.active{display:block!important}}
 
 </style>
 
@@ -296,27 +80,23 @@ input[readonly]{background:#f7f8fb}
 
  <div class="brand"><div class="logo">D</div><div><h2 id="brandName">DAVIN PRO</h2><small>SMART BUSINESS SYSTEM</small></div></div>
 
- <div><div class="nav-label">منوی اصلی</div><nav class="nav" id="sideNav">
+ <div><div class="nav-label">منوی اصلی</div><nav class="nav">
 
-  <button class="active" data-page="dashboard"><span class="ico">◈</span>داشبورد مدیریتی</button>
+ <button class="active" data-page="dashboard"><span class="ico">◈</span>داشبورد مدیریتی</button>
 
-  <button data-page="invoices"><span class="ico">▤</span>فاکتورها</button>
+ <button data-page="invoices"><span class="ico">▤</span>فاکتورها</button>
 
-  <button data-page="inventory"><span class="ico">▦</span>مدیریت انبار</button>
+ <button data-page="inventory"><span class="ico">▦</span>مدیریت انبار</button>
 
-  <button data-page="people"><span class="ico">♙</span>اشخاص و حساب‌ها</button>
+ <button data-page="people"><span class="ico">♙</span>اشخاص و حساب‌ها</button>
 
-  <button data-page="transactions"><span class="ico">⇄</span>تراکنش‌ها</button>
+ <button data-page="transactions"><span class="ico">⇄</span>تراکنش‌ها</button>
 
-  <button data-page="reports"><span class="ico">▥</span>گزارش‌های مالی</button>
-
- </nav></div>
-
- <div><div class="nav-label">سیستم</div><nav class="nav">
-
-  <button data-page="settings"><span class="ico">⚙</span>تنظیمات و پشتیبان</button>
+ <button data-page="reports"><span class="ico">▥</span>گزارش‌های مالی</button>
 
  </nav></div>
+
+ <div><div class="nav-label">سیستم</div><nav class="nav"><button data-page="settings"><span class="ico">⚙</span>تنظیمات و پشتیبان</button></nav></div>
 
  <div class="side-bottom">DAVIN PRO<br>نسخه آفلاین حسابداری<br>اطلاعات روی همین دستگاه ذخیره می‌شود.</div>
 
@@ -324,183 +104,137 @@ input[readonly]{background:#f7f8fb}
 
 <main class="main">
 
- <header class="topbar">
+<header class="topbar"><div class="page-title"><h1 id="pageTitle">داشبورد مدیریتی</h1><p id="pageSub">نمای کلی عملکرد کسب‌وکار شما</p></div><div class="top-actions"><div class="date-pill" id="todayText"></div><button class="icon-btn mobile-menu" onclick="navigate('dashboard')">⌂</button><button class="btn" onclick="openInvoice()">＋ فاکتور جدید</button></div></header>
 
-  <div class="page-title"><h1 id="pageTitle">داشبورد مدیریتی</h1><p id="pageSub">نمای کلی عملکرد کسب‌وکار شما</p></div>
+<section class="section active" id="page-dashboard">
 
-  <div class="top-actions"><div class="date-pill" id="todayText">📅 امروز</div><button class="icon-btn mobile-menu" onclick="navigate('dashboard')">⌂</button><button class="btn" onclick="openInvoice()">＋ فاکتور جدید</button></div>
+ <div class="grid stats">
 
- </header>
+  <div class="stat" style="--tint:#eeebff"><div class="stat-head"><span class="stat-name">موجودی نقدی خالص</span><span class="stat-icon">💳</span></div><div class="stat-value" id="sCash">۰</div><div class="stat-foot">بر اساس دریافت‌ها و پرداخت‌ها</div></div>
 
- <section class="section active" id="page-dashboard">
+  <div class="stat" style="--tint:#e4f8f0"><div class="stat-head"><span class="stat-name">فروش ثبت‌شده</span><span class="stat-icon">↗</span></div><div class="stat-value" id="sSales">۰</div><div class="stat-foot">جمع فاکتورهای فروش</div></div>
 
-  <div class="grid stats">
+  <div class="stat" style="--tint:#fff2dc"><div class="stat-head"><span class="stat-name">ارزش موجودی انبار</span><span class="stat-icon">📦</span></div><div class="stat-value" id="sInventory">۰</div><div class="stat-foot">بر مبنای بهای خرید کالا</div></div>
 
-   <div class="stat" style="--tint:#eeebff"><div class="stat-head"><span class="stat-name">موجودی نقدی خالص</span><span class="stat-icon">💳</span></div><div class="stat-value" id="sCash">۰</div><div class="stat-foot">بر اساس تراکنش‌های ثبت‌شده</div></div>
+  <div class="stat" style="--tint:#e4f3ff"><div class="stat-head"><span class="stat-name">مطالبات از دیگران</span><span class="stat-icon">👤</span></div><div class="stat-value" id="sDebtors">۰</div><div class="stat-foot">مانده بدهکار اشخاص</div></div>
 
-   <div class="stat" style="--tint:#e4f8f0"><div class="stat-head"><span class="stat-name">فروش ثبت‌شده</span><span class="stat-icon">↗</span></div><div class="stat-value" id="sSales">۰</div><div class="stat-foot">جمع فاکتورهای فروش</div></div>
+  <div class="stat" style="--tint:#ffe9ee"><div class="stat-head"><span class="stat-name">بدهی به دیگران</span><span class="stat-icon">⇄</span></div><div class="stat-value" id="sCreditors">۰</div><div class="stat-foot">مانده بستانکار اشخاص</div></div>
 
-   <div class="stat" style="--tint:#fff2dc"><div class="stat-head"><span class="stat-name">ارزش موجودی انبار</span><span class="stat-icon">📦</span></div><div class="stat-value" id="sInventory">۰</div><div class="stat-foot">بر مبنای بهای خرید کالا</div></div>
+  <div class="stat" style="--tint:#e4f8f0"><div class="stat-head"><span class="stat-name">سود تخمینی فروش</span><span class="stat-icon">◉</span></div><div class="stat-value" id="sProfit">۰</div><div class="stat-foot">پس از بهای کالا و هزینه فاکتور</div></div>
 
-   <div class="stat" style="--tint:#e4f3ff"><div class="stat-head"><span class="stat-name">مطالبات از دیگران</span><span class="stat-icon">👤</span></div><div class="stat-value" id="sDebtors">۰</div><div class="stat-foot">مانده بدهکار اشخاص</div></div>
+  <div class="stat" style="--tint:#f0edff"><div class="stat-head"><span class="stat-name">تعداد کالاها</span><span class="stat-icon">▦</span></div><div class="stat-value" id="sProducts">۰</div><div class="stat-foot">اقلام تعریف‌شده</div></div>
 
-   <div class="stat" style="--tint:#ffe9ee"><div class="stat-head"><span class="stat-name">بدهی به دیگران</span><span class="stat-icon">⇄</span></div><div class="stat-value" id="sCreditors">۰</div><div class="stat-foot">مانده بستانکار اشخاص</div></div>
+  <div class="stat" style="--tint:#fff2dc"><div class="stat-head"><span class="stat-name">فاکتورهای ثبت‌شده</span><span class="stat-icon">▤</span></div><div class="stat-value" id="sInvoices">۰</div><div class="stat-foot">خرید و فروش</div></div>
 
-   <div class="stat" style="--tint:#e4f8f0"><div class="stat-head"><span class="stat-name">سود ناخالص تخمینی</span><span class="stat-icon">◉</span></div><div class="stat-value" id="sProfit">۰</div><div class="stat-foot">پس از هزینه‌های فاکتور</div></div>
+ </div>
 
-   <div class="stat" style="--tint:#f0edff"><div class="stat-head"><span class="stat-name">تعداد کالاها</span><span class="stat-icon">▦</span></div><div class="stat-value" id="sProducts">۰</div><div class="stat-foot">اقلام تعریف‌شده در سیستم</div></div>
+ <div class="grid two-col">
 
-   <div class="stat" style="--tint:#fff2dc"><div class="stat-head"><span class="stat-name">فاکتورهای ثبت‌شده</span><span class="stat-icon">▤</span></div><div class="stat-value" id="sInvoices">۰</div><div class="stat-foot">خرید و فروش</div></div>
+  <div class="panel"><div class="panel-head"><div><h3>تحلیل مالی ماهانه</h3><p>مقایسه فروش و خرید شش ماه اخیر</p></div><span class="pill">۶ ماه</span></div><div class="chart"><div class="chart-y"><span id="chartTop">۰</span><span>۷۵٪</span><span>۵۰٪</span><span>۲۵٪</span><span>۰</span></div><div class="chart-area" id="monthlyChart"></div></div><div class="legend"><span><i class="dot" style="background:#6d5ce7"></i>فروش</span><span><i class="dot" style="background:#10a77d"></i>خرید</span></div></div>
 
-  </div>
+  <div class="panel"><div class="panel-head"><div><h3>دسترسی سریع</h3><p>عملیات پرکاربرد</p></div></div><div class="quick-grid">
 
-  <div class="grid two-col">
+   <button class="quick" onclick="openInvoice('sale')"><span>🧾</span><b>ثبت فروش</b><small>فاکتور فروش جدید</small></button>
 
-   <div class="panel"><div class="panel-head"><div><h3>تحلیل مالی ماهانه</h3><p>مقایسه فروش و خرید در شش ماه اخیر</p></div><span class="pill">۶ ماه</span></div><div class="chart"><div class="chart-y"><span id="chartTop">۰</span><span>۷۵٪</span><span>۵۰٪</span><span>۲۵٪</span><span>۰</span></div><div class="chart-area" id="monthlyChart"></div></div><div class="legend"><span><i class="dot" style="background:#6d5ce7"></i>فروش</span><span><i class="dot" style="background:#10a77d"></i>خرید</span></div></div>
+   <button class="quick" onclick="openInvoice('purchase')"><span>🛒</span><b>ثبت خرید</b><small>ورود کالا به انبار</small></button>
 
-   <div class="panel"><div class="panel-head"><div><h3>دسترسی سریع</h3><p>عملیات پرکاربرد</p></div></div><div class="quick-grid">
+   <button class="quick" onclick="openProduct()"><span>📦</span><b>تعریف کالا</b><small>افزودن محصول</small></button>
 
-    <button class="quick" onclick="openInvoice('sale')"><span>🧾</span><b>ثبت فروش</b><small>فاکتور فروش جدید</small></button>
+   <button class="quick" onclick="openTransaction()"><span>💸</span><b>ثبت تراکنش</b><small>دریافت یا پرداخت</small></button>
 
-    <button class="quick" onclick="openInvoice('purchase')"><span>🛒</span><b>ثبت خرید</b><small>ورود کالا به انبار</small></button>
+  </div></div>
 
-    <button class="quick" onclick="openProduct()"><span>📦</span><b>تعریف کالا</b><small>افزودن محصول</small></button>
+ </div>
 
-    <button class="quick" onclick="openTransaction()"><span>💸</span><b>ثبت تراکنش</b><small>دریافت یا پرداخت</small></button>
+ <div class="grid two-col">
 
-   </div></div>
+  <div class="panel"><div class="panel-head"><div><h3>آخرین فاکتورها</h3><p>آخرین فعالیت‌های خرید و فروش</p></div><button class="btn secondary small" onclick="navigate('invoices')">همه فاکتورها ←</button></div><div class="table-wrap"><table><thead><tr><th>شماره</th><th>نوع</th><th>شخص</th><th>انبار</th><th>تاریخ</th><th>مبلغ</th></tr></thead><tbody id="recentInvoices"></tbody></table></div></div>
 
-  </div>
+  <div class="panel"><div class="panel-head"><div><h3>وضعیت موجودی</h3><p>کالاهای کم‌موجود یا ناموجود</p></div><button class="btn secondary small" onclick="navigate('inventory')">انبار ←</button></div><div id="stockAlerts"></div></div>
 
-  <div class="grid two-col">
+ </div>
 
-   <div class="panel"><div class="panel-head"><div><h3>آخرین فاکتورها</h3><p>آخرین فعالیت‌های خرید و فروش</p></div><button class="btn secondary small" onclick="navigate('invoices')">همه فاکتورها ←</button></div><div class="table-wrap"><table><thead><tr><th>شماره</th><th>نوع</th><th>شخص</th><th>تاریخ</th><th>مبلغ نهایی</th></tr></thead><tbody id="recentInvoices"></tbody></table></div></div>
+ <div class="panel"><div class="panel-head"><div><h3>آخرین تراکنش‌ها</h3><p>دریافت‌ها، پرداخت‌ها و تسویه‌ها</p></div><button class="btn secondary small" onclick="navigate('transactions')">همه تراکنش‌ها ←</button></div><div class="table-wrap"><table><thead><tr><th>شرح</th><th>شخص</th><th>نوع</th><th>تاریخ</th><th>مبلغ</th><th>ویرایش</th></tr></thead><tbody id="recentTransactions"></tbody></table></div></div>
 
-   <div class="panel"><div class="panel-head"><div><h3>وضعیت موجودی</h3><p>کالاهای کم‌موجود یا ناموجود</p></div><button class="btn secondary small" onclick="navigate('inventory')">انبار ←</button></div><div id="stockAlerts"></div></div>
+</section>
 
-  </div>
+<section class="section" id="page-invoices">
 
-  <div class="panel"><div class="panel-head"><div><h3>آخرین تراکنش‌ها</h3><p>دریافت‌ها، پرداخت‌ها و تسویه‌ها</p></div><button class="btn secondary small" onclick="navigate('transactions')">همه تراکنش‌ها ←</button></div><div class="table-wrap"><table><thead><tr><th>شرح</th><th>شخص</th><th>نوع</th><th>تاریخ</th><th>مبلغ</th></tr></thead><tbody id="recentTransactions"></tbody></table></div></div>
+ <div class="toolbar"><input class="search" id="invoiceSearch" placeholder="جست‌وجوی شماره، شخص یا کالا..." oninput="renderInvoices()"><select id="invoiceTypeFilter" onchange="renderInvoices()" style="max-width:150px"><option value="">همه فاکتورها</option><option value="sale">فروش</option><option value="purchase">خرید</option></select><button class="btn" onclick="openInvoice()">＋ ثبت فاکتور</button></div>
 
- </section>
+ <div class="panel"><div class="table-wrap"><table><thead><tr><th>شماره</th><th>نوع</th><th>شخص</th><th>انبار</th><th>تاریخ</th><th>مبلغ کالا</th><th>هزینه</th><th>مبلغ نهایی</th><th>عملیات</th></tr></thead><tbody id="invoiceRows"></tbody></table></div></div>
 
- <section class="section" id="page-invoices">
+</section>
 
-  <div class="toolbar"><input class="search" id="invoiceSearch" placeholder="جست‌وجو شماره، شخص یا نوع فاکتور..." oninput="renderInvoices()"><select id="invoiceTypeFilter" onchange="renderInvoices()" style="max-width:150px"><option value="">همه فاکتورها</option><option value="sale">فروش</option><option value="purchase">خرید</option></select><button class="btn" onclick="openInvoice()">＋ ثبت فاکتور</button></div>
+<section class="section" id="page-inventory">
 
-  <div class="panel"><div class="table-wrap"><table><thead><tr><th>شماره</th><th>نوع</th><th>شخص</th><th>انبار</th><th>تاریخ</th><th>مبلغ کالا</th><th>هزینه‌ها</th><th>مبلغ نهایی</th><th>عملیات</th></tr></thead><tbody id="invoiceRows"></tbody></table></div></div>
+ <div class="grid stats" style="grid-template-columns:repeat(3,minmax(0,1fr))"><div class="stat"><div class="stat-name">تعداد اقلام</div><div class="stat-value" id="invCount">۰</div></div><div class="stat"><div class="stat-name">مجموع واحد کالا</div><div class="stat-value" id="invUnits">۰</div></div><div class="stat"><div class="stat-name">ارزش خرید موجودی</div><div class="stat-value" id="invValue">۰</div></div></div>
 
- </section>
+ <div class="toolbar"><input class="search" id="productSearch" placeholder="جست‌وجوی کالا یا کد..." oninput="renderInventory()"><select id="warehouseFilter" onchange="renderInventory()" style="max-width:190px"></select><button class="btn" onclick="openProduct()">＋ تعریف کالا</button><button class="btn secondary" onclick="openWarehouse()">＋ انبار جدید</button></div>
 
- <section class="section" id="page-inventory">
+ <div class="panel"><div class="panel-head"><div><h3>کالاها و موجودی انبار</h3><p>موجودی هر کالا در هر انبار به‌صورت مستقل</p></div></div><div class="table-wrap"><table><thead><tr><th>کد کالا</th><th>نام کالا</th><th>انبار</th><th>موجودی</th><th>حد هشدار</th><th>بهای واحد</th><th>ارزش موجودی</th><th>عملیات</th></tr></thead><tbody id="productRows"></tbody></table></div></div>
 
-  <div class="grid stats" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+ <div class="panel" style="margin-top:18px"><div class="panel-head"><div><h3>انبارهای تعریف‌شده</h3><p>کالاها در انبارهای مختلف به‌صورت جداگانه ثبت می‌شوند</p></div></div><div class="table-wrap"><table><thead><tr><th>نام انبار</th><th>تعداد اقلام</th><th>تعداد واحدها</th><th>عملیات</th></tr></thead><tbody id="warehouseRows"></tbody></table></div></div>
 
-   <div class="stat"><div class="stat-name">تعداد اقلام</div><div class="stat-value" id="invCount">۰</div></div>
+</section>
 
-   <div class="stat"><div class="stat-name">مجموع واحد کالا</div><div class="stat-value" id="invUnits">۰</div></div>
+<section class="section" id="page-people">
 
-   <div class="stat"><div class="stat-name">ارزش خرید موجودی</div><div class="stat-value" id="invValue">۰</div></div>
+ <div class="toolbar"><input class="search" id="peopleSearch" placeholder="جست‌وجوی نام یا تلفن..." oninput="renderPeople()"><button class="btn" onclick="openPerson()">＋ ثبت شخص</button></div>
 
-  </div>
+ <div class="panel"><div class="table-wrap"><table><thead><tr><th>نام شخص / شرکت</th><th>تلفن</th><th>نوع همکاری</th><th>بدهکار</th><th>بستانکار</th><th>مانده حساب</th><th>عملیات</th></tr></thead><tbody id="peopleRows"></tbody></table></div></div>
 
-  <div class="toolbar"><input class="search" id="productSearch" placeholder="جست‌وجوی کالا یا کد..." oninput="renderInventory()"><select id="warehouseFilter" onchange="renderInventory()" style="max-width:170px"></select><button class="btn" onclick="openProduct()">＋ تعریف کالا</button><button class="btn secondary" onclick="openWarehouse()">＋ انبار جدید</button></div>
+</section>
 
-  <div class="panel"><div class="panel-head"><div><h3>کالاها و موجودی انبار</h3><p>موجودی هر کالا در هر انبار به‌صورت جداگانه</p></div></div><div class="table-wrap"><table><thead><tr><th>کد کالا</th><th>نام کالا</th><th>انبار</th><th>موجودی</th><th>حد هشدار</th><th>بهای واحد</th><th>ارزش موجودی</th><th>عملیات</th></tr></thead><tbody id="productRows"></tbody></table></div></div>
+<section class="section" id="page-transactions">
 
-  <div class="panel" style="margin-top:18px"><div class="panel-head"><div><h3>انبارهای تعریف‌شده</h3><p>برای هر انبار می‌توان کالاهای مستقل ثبت کرد</p></div></div><div class="table-wrap"><table><thead><tr><th>نام انبار</th><th>تعداد اقلام</th><th>تعداد واحدها</th><th>عملیات</th></tr></thead><tbody id="warehouseRows"></tbody></table></div></div>
+ <div class="grid stats" style="grid-template-columns:repeat(3,minmax(0,1fr))"><div class="stat"><div class="stat-name">دریافت‌ها</div><div class="stat-value" id="txIn">۰</div></div><div class="stat"><div class="stat-name">پرداخت‌ها</div><div class="stat-value" id="txOut">۰</div></div><div class="stat"><div class="stat-name">خالص جریان نقدی</div><div class="stat-value" id="txNet">۰</div></div></div>
 
- </section>
+ <div class="toolbar"><input class="search" id="txSearch" placeholder="جست‌وجوی شرح یا شخص..." oninput="renderTransactions()"><select id="txTypeFilter" onchange="renderTransactions()" style="max-width:170px"><option value="">همه تراکنش‌ها</option><option value="in">دریافت</option><option value="out">پرداخت</option><option value="transfer">تسویه</option></select><button class="btn" onclick="openTransaction()">＋ تراکنش جدید</button></div>
 
- <section class="section" id="page-people">
+ <div class="panel"><div class="table-wrap"><table><thead><tr><th>شرح</th><th>شخص</th><th>نوع</th><th>تاریخ</th><th>مبلغ</th><th>عملیات</th></tr></thead><tbody id="txRows"></tbody></table></div></div>
 
-  <div class="toolbar"><input class="search" id="peopleSearch" placeholder="جست‌وجوی نام، تلفن یا کد..." oninput="renderPeople()"><button class="btn" onclick="openPerson()">＋ ثبت شخص</button></div>
+</section>
 
-  <div class="panel"><div class="table-wrap"><table><thead><tr><th>نام شخص / شرکت</th><th>تلفن</th><th>نوع همکاری</th><th>بدهکار</th><th>بستانکار</th><th>مانده حساب</th><th>عملیات</th></tr></thead><tbody id="peopleRows"></tbody></table></div></div>
+<section class="section" id="page-reports">
 
- </section>
+ <div class="panel" style="margin-bottom:17px"><div class="panel-head"><div><h3>فیلتر گزارش‌ها</h3><p>بازه تاریخ شمسی را انتخاب کنید</p></div></div><div class="form-grid two">
 
- <section class="section" id="page-transactions">
+ <div class="field"><label>از تاریخ</label><div class="date-select-wrap" id="reportFromWrap"></div></div><div class="field"><label>تا تاریخ</label><div class="date-select-wrap" id="reportToWrap"></div></div>
 
-  <div class="grid stats" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+ </div><div class="form-actions"><button class="btn" onclick="renderReports()">تهیه گزارش</button><button class="btn secondary" onclick="exportCSV()">خروجی CSV</button><button class="btn gray" onclick="window.print()">چاپ گزارش</button></div></div>
 
-   <div class="stat"><div class="stat-name">دریافت‌ها</div><div class="stat-value" id="txIn">۰</div></div>
+ <div class="grid summary-cards"><div class="summary-card"><small>فروش در بازه</small><b id="rSales">۰</b></div><div class="summary-card"><small>خرید در بازه</small><b id="rPurchases">۰</b></div><div class="summary-card"><small>سود تخمینی</small><b id="rProfit">۰</b></div><div class="summary-card"><small>هزینه فاکتورها</small><b id="rExpenses">۰</b></div><div class="summary-card"><small>دریافت‌ها</small><b id="rIn">۰</b></div><div class="summary-card"><small>پرداخت‌ها</small><b id="rOut">۰</b></div></div>
 
-   <div class="stat"><div class="stat-name">پرداخت‌ها</div><div class="stat-value" id="txOut">۰</div></div>
+ <div class="panel" style="margin-bottom:17px"><div class="panel-head"><h3>جزئیات سود و زیان</h3></div><div class="table-wrap"><table><tbody id="profitRows"></tbody></table></div></div>
 
-   <div class="stat"><div class="stat-name">خالص جریان نقدی</div><div class="stat-value" id="txNet">۰</div></div>
+ <div class="grid two-col"><div class="panel"><div class="panel-head"><h3>گزارش موجودی کالا</h3></div><div class="table-wrap"><table><thead><tr><th>کالا</th><th>انبار</th><th>موجودی</th><th>ارزش</th></tr></thead><tbody id="reportStock"></tbody></table></div></div><div class="panel"><div class="panel-head"><h3>بدهکاران و بستانکاران</h3></div><div class="table-wrap"><table><thead><tr><th>شخص</th><th>بدهکار</th><th>بستانکار</th></tr></thead><tbody id="reportPeople"></tbody></table></div></div></div>
 
-  </div>
+</section>
 
-  <div class="toolbar"><input class="search" id="txSearch" placeholder="جست‌وجوی شرح یا شخص..." oninput="renderTransactions()"><select id="txTypeFilter" onchange="renderTransactions()" style="max-width:160px"><option value="">همه تراکنش‌ها</option><option value="in">دریافت</option><option value="out">پرداخت</option><option value="transfer">تسویه حساب</option></select><button class="btn" onclick="openTransaction()">＋ تراکنش جدید</button></div>
+<section class="section" id="page-settings">
 
-  <div class="panel"><div class="table-wrap"><table><thead><tr><th>شرح</th><th>شخص</th><th>نوع</th><th>تاریخ</th><th>مبلغ</th><th>عملیات</th></tr></thead><tbody id="txRows"></tbody></table></div></div>
+ <div class="grid settings-grid">
 
- </section>
+  <div class="panel"><div class="panel-head"><h3>⚙ تنظیمات کسب‌وکار</h3></div><div class="field" style="margin-bottom:15px"><label>نام فروشگاه / شرکت</label><input id="setStore"></div><div class="field" style="margin-bottom:15px"><label>واحد پول</label><select id="setCurrency"><option>تومان</option><option>ریال</option><option>دلار</option><option>لیر</option><option>درهم</option><option>یورو</option></select></div><div class="field" style="margin-bottom:15px"><label>حد پیش‌فرض هشدار موجودی</label><input id="setLow" class="numeric" inputmode="numeric"></div><button class="btn" onclick="saveSettings()">ذخیره تنظیمات</button></div>
 
- <section class="section" id="page-reports">
+  <div class="panel"><div class="panel-head"><h3>🛡 پشتیبان‌گیری</h3></div><p class="muted" style="line-height:2">از تمام اطلاعات شامل کالاها، اشخاص، فاکتورها و تراکنش‌ها نسخه پشتیبان JSON بگیرید.</p><button class="btn green" onclick="backupData()">⬇ دریافت نسخه پشتیبان</button><div style="height:13px"></div><div class="field"><label>بازیابی نسخه پشتیبان JSON</label><input type="file" id="restoreFile" accept=".json,application/json"></div><div style="height:10px"></div><button class="btn secondary" onclick="restoreData()">بازیابی اطلاعات</button></div>
 
-  <div class="panel" style="margin-bottom:17px"><div class="panel-head"><div><h3>فیلتر گزارش‌ها</h3><p>بازه تاریخ شمسی را انتخاب کنید</p></div></div><div class="form-grid two">
+  <div class="panel"><div class="panel-head"><h3>📱 وضعیت سیستم</h3></div><div class="stock-row"><div class="stock-symbol">▣</div><div class="stock-info"><b>ذخیره‌سازی محلی</b><small>Local Storage مرورگر</small></div><span class="pill green">فعال</span></div><div class="stock-row"><div class="stock-symbol">▤</div><div class="stock-info"><b>فاکتورها</b><small>کل فاکتورهای ثبت‌شده</small></div><b id="setInvoiceCount">۰</b></div><div class="stock-row"><div class="stock-symbol">♙</div><div class="stock-info"><b>اشخاص</b><small>کل اشخاص تعریف‌شده</small></div><b id="setPeopleCount">۰</b></div></div>
 
-   <div class="field"><label>از تاریخ</label><div class="date-select"><select id="reportFromY"></select><select id="reportFromM"></select><select id="reportFromD"></select></div></div>
+  <div class="panel"><div class="panel-head"><h3>⚠ مدیریت داده‌ها</h3></div><p class="muted" style="line-height:2">حذف اطلاعات برگشت‌پذیر نیست. قبل از این کار نسخه پشتیبان بگیرید.</p><button class="btn red" onclick="clearData()">حذف تمام اطلاعات برنامه</button><div class="notice">اطلاعات روی همین مرورگر ذخیره می‌شود. حذف داده‌های مرورگر ممکن است اطلاعات را از بین ببرد.</div></div>
 
-   <div class="field"><label>تا تاریخ</label><div class="date-select"><select id="reportToY"></select><select id="reportToM"></select><select id="reportToD"></select></div></div>
+ </div>
 
-  </div><div class="form-actions"><button class="btn" onclick="renderReports()">تهیه گزارش</button><button class="btn secondary" onclick="exportCSV()">خروجی CSV</button><button class="btn gray" onclick="window.print()">چاپ گزارش</button></div></div>
+</section>
 
-  <div class="grid summary-cards">
-
-   <div class="summary-card"><small>فروش در بازه</small><b id="rSales">۰</b></div><div class="summary-card"><small>خرید در بازه</small><b id="rPurchases">۰</b></div><div class="summary-card"><small>سود خالص تخمینی</small><b id="rProfit">۰</b></div><div class="summary-card"><small>هزینه‌های فاکتور</small><b id="rExpenses">۰</b></div><div class="summary-card"><small>دریافت‌ها</small><b id="rIn">۰</b></div><div class="summary-card"><small>پرداخت‌ها</small><b id="rOut">۰</b></div>
-
-  </div>
-
-  <div class="panel" style="margin-bottom:17px"><div class="panel-head"><div><h3>جزئیات سود و زیان</h3><p>بر اساس فاکتورهای تاریخ انتخاب‌شده</p></div></div><div class="table-wrap"><table><tbody id="profitRows"></tbody></table></div></div>
-
-  <div class="grid two-col">
-
-   <div class="panel"><div class="panel-head"><h3>گزارش موجودی کالا</h3></div><div class="table-wrap"><table><thead><tr><th>کالا</th><th>انبار</th><th>موجودی</th><th>ارزش</th></tr></thead><tbody id="reportStock"></tbody></table></div></div>
-
-   <div class="panel"><div class="panel-head"><h3>بدهکاران و بستانکاران</h3></div><div class="table-wrap"><table><thead><tr><th>شخص</th><th>بدهکار</th><th>بستانکار</th></tr></thead><tbody id="reportPeople"></tbody></table></div></div>
-
-  </div>
-
- </section>
-
- <section class="section" id="page-settings">
-
-  <div class="grid settings-grid">
-
-   <div class="panel"><div class="panel-head"><h3>⚙ تنظیمات کسب‌وکار</h3></div><div class="field" style="margin-bottom:15px"><label>نام فروشگاه / شرکت</label><input id="setStore" placeholder="نام کسب‌وکار"></div><div class="field" style="margin-bottom:15px"><label>واحد پول</label><select id="setCurrency"><option value="تومان">تومان</option><option value="ریال">ریال</option><option value="دلار">دلار</option><option value="لیر">لیر</option><option value="درهم">درهم</option><option value="یورو">یورو</option></select></div><div class="field" style="margin-bottom:15px"><label>حد پیش‌فرض هشدار موجودی</label><input id="setLow" inputmode="numeric" value="5"></div><button class="btn" onclick="saveSettings()">ذخیره تنظیمات</button></div>
-
-   <div class="panel"><div class="panel-head"><h3>🛡 پشتیبان‌گیری</h3></div><p class="muted" style="line-height:2">از تمام اطلاعات ثبت‌شده شامل کالاها، اشخاص، فاکتورها و تراکنش‌ها یک نسخه پشتیبان JSON تهیه کنید. فایل پشتیبان را در محل امن نگهداری کنید.</p><button class="btn green" onclick="backupData()">⬇ دریافت نسخه پشتیبان</button><div style="height:13px"></div><div class="field"><label>بازیابی نسخه پشتیبان JSON</label><input type="file" id="restoreFile" accept=".json,application/json"></div><div style="height:10px"></div><button class="btn secondary" onclick="restoreData()">بازیابی اطلاعات</button></div>
-
-   <div class="panel"><div class="panel-head"><h3>📱 وضعیت سیستم</h3></div><div class="stock-row"><div class="stock-symbol">▣</div><div class="stock-info"><b>ذخیره‌سازی محلی</b><small>Local Storage مرورگر</small></div><span class="pill green">فعال</span></div><div class="stock-row"><div class="stock-symbol">◈</div><div class="stock-info"><b>حالت آفلاین</b><small>بدون نیاز به اینترنت برای کارهای اصلی</small></div><span class="pill green">فعال</span></div><div class="stock-row"><div class="stock-symbol">▤</div><div class="stock-info"><b>تعداد فاکتورها</b><small>کل فاکتورهای ثبت‌شده</small></div><b id="setInvoiceCount">۰</b></div><div class="stock-row"><div class="stock-symbol">♙</div><div class="stock-info"><b>تعداد اشخاص</b><small>کل اشخاص تعریف‌شده</small></div><b id="setPeopleCount">۰</b></div></div>
-
-   <div class="panel"><div class="panel-head"><h3>⚠ مدیریت داده‌ها</h3></div><p class="muted" style="line-height:2">پاک کردن داده‌ها برگشت‌پذیر نیست. قبل از این کار حتماً نسخه پشتیبان بگیرید.</p><button class="btn red" onclick="clearData()">حذف تمام اطلاعات برنامه</button><div class="notice">نکته: اطلاعات این نسخه به‌صورت محلی روی همین مرورگر ذخیره می‌شود. پاک‌کردن داده‌های مرورگر یا استفاده از دستگاه دیگر ممکن است دسترسی به آن‌ها را از بین ببرد.</div></div>
-
-  </div>
-
- </section>
-
- <footer class="footer">طراحی و ساخته شده توسط <strong>KAMRAN - DAVIN</strong><br><strong>TEL : +989121759942</strong><br>DAVIN PRO • SMART BUSINESS SYSTEM</footer>
+<footer class="footer">طراحی و ساخته شده توسط <strong>KAMRAN - DAVIN</strong><br><strong>TEL : +989121759942</strong><br>DAVIN PRO • SMART BUSINESS SYSTEM</footer>
 
 </main>
 
 </div>
 
-<nav class="mobile-bottom" id="mobileNav">
-
- <button class="active" data-page="dashboard"><span>◈</span>خانه</button>
-
- <button data-page="invoices"><span>▤</span>فاکتورها</button>
-
- <button data-page="inventory"><span>▦</span>انبار</button>
-
- <button data-page="people"><span>♙</span>اشخاص</button>
-
- <button data-page="transactions"><span>⇄</span>تراکنش</button>
-
-</nav>
+<nav class="mobile-bottom" id="mobileNav"><button class="active" data-page="dashboard"><span>◈</span>خانه</button><button data-page="invoices"><span>▤</span>فاکتورها</button><button data-page="inventory"><span>▦</span>انبار</button><button data-page="people"><span>♙</span>اشخاص</button><button data-page="transactions"><span>⇄</span>تراکنش</button></nav>
 
 <div class="modal-backdrop" id="modalBackdrop" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="modal-head"><h2 id="modalTitle">ثبت اطلاعات</h2><button class="close" onclick="closeModal()">✕</button></div><div id="modalBody"></div></div></div>
 
@@ -510,53 +244,21 @@ input[readonly]{background:#f7f8fb}
 
 'use strict';
 
-const $=id=>document.getElementById(id);
-
-const DBKEY='davin_pro_accounting_v1';
+const $=id=>document.getElementById(id),DBKEY='davin_pro_accounting_v2';
 
 const months=['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
 
-const pages={
+const pages={dashboard:['داشبورد مدیریتی','نمای کلی عملکرد کسب‌وکار شما'],invoices:['مدیریت فاکتورها','ثبت، ویرایش و بررسی خرید و فروش'],inventory:['مدیریت انبار','کالاها، موجودی و انبارها'],people:['اشخاص و حساب‌ها','مشتریان، تأمین‌کنندگان و مانده حساب‌ها'],transactions:['تراکنش‌های مالی','دریافت، پرداخت و تسویه حساب'],reports:['گزارش‌های مالی','تحلیل سود و زیان و وضعیت مالی'],settings:['تنظیمات سیستم','پیکربندی و پشتیبان‌گیری']};
 
- dashboard:['داشبورد مدیریتی','نمای کلی عملکرد کسب‌وکار شما'],
+const blank=()=>({settings:{store:'DAVIN PRO',currency:'تومان',low:5},warehouses:[{id:'w1',name:'انبار اصلی'}],products:[],people:[],invoices:[],transactions:[],seq:{product:1,person:1,invoice:1,transaction:1}});
 
- invoices:['مدیریت فاکتورها','ثبت و بررسی خرید و فروش'],
+let db=loadDB(),currentPage='dashboard',invoiceItems=[],invoiceEditId=null,txEditId=null;
 
- inventory:['مدیریت انبار','کالاها، موجودی و انبارها'],
+function loadDB(){try{let d=JSON.parse(localStorage.getItem(DBKEY));if(d&&d.warehouses&&d.products&&d.people&&d.invoices&&d.transactions){let b=blank();d.settings={...b.settings,...d.settings};d.seq={...b.seq,...d.seq};d.products.forEach(p=>{p.stock=p.stock||{};if(p.code){let n=Number(String(p.code).match(/(\d+)$/)?.[1]||0);d.seq.product=Math.max(d.seq.product,n+1)}});d.invoices.forEach(i=>{let n=Number(String(i.number).match(/(\d+)$/)?.[1]||0);d.seq.invoice=Math.max(d.seq.invoice,n+1)});return {...b,...d}}}catch(e){}return blank()}
 
- people:['اشخاص و حساب‌ها','مشتریان، تأمین‌کنندگان و مانده حساب‌ها'],
+function persist(){try{localStorage.setItem(DBKEY,JSON.stringify(db))}catch(e){toast('فضای ذخیره‌سازی کافی نیست؛ نسخه پشتیبان بگیرید.')}}
 
- transactions:['تراکنش‌های مالی','دریافت، پرداخت و تسویه حساب'],
-
- reports:['گزارش‌های مالی','تحلیل سود و زیان و وضعیت مالی'],
-
- settings:['تنظیمات سیستم','پیکربندی و پشتیبان‌گیری']
-
-};
-
-const blank=()=>({
-
- settings:{store:'DAVIN PRO',currency:'تومان',low:5},
-
- warehouses:[{id:'w1',name:'انبار اصلی'}],
-
- products:[],people:[],invoices:[],transactions:[],seq:{product:1,person:1,invoice:1,transaction:1}
-
-});
-
-let db=loadDB(),currentPage='dashboard',invoiceItems=[],invoiceEditId=null;
-
-function loadDB(){
-
- try{let d=JSON.parse(localStorage.getItem(DBKEY));if(d&&d.warehouses&&d.products&&d.people&&d.invoices&&d.transactions){let b=blank();return {...b,...d,settings:{...b.settings,...d.settings},seq:{...b.seq,...d.seq}}}}catch(e){}
-
- return blank()
-
-}
-
-function persist(){try{localStorage.setItem(DBKEY,JSON.stringify(db))}catch(e){toast('فضای ذخیره‌سازی مرورگر کافی نیست. نسخه پشتیبان بگیرید.')} }
-
-function id(prefix){return prefix+'_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7)}
+function id(p){return p+'_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7)}
 
 function fmt(v){return Math.round(Number(v)||0).toLocaleString('en-US')}
 
@@ -568,97 +270,27 @@ function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&l
 
 function toast(s){let t=$('toast');t.textContent=s;t.classList.add('show');clearTimeout(window._toastTimer);window._toastTimer=setTimeout(()=>t.classList.remove('show'),2800)}
 
-function parseDate(s){if(!s)return 0;let a=s.split('/').map(Number);if(a.length!==3)return 0;return jdn(a[0],a[1],a[2])}
-
-function todayJ(){return toJ(new Date())}
-
-function toJ(date){
-
- let gy=date.getFullYear(),gm=date.getMonth()+1,gd=date.getDate();
-
- let gdm=[0,31,((gy%4===0&&gy%100!==0)||gy%400===0)?29:28,31,30,31,30,31,31,30,31,30,31];
-
- let gy2=gy-1600,gm2=gm-1,gd2=gd-1;
-
- let gdn=365*gy2+Math.floor((gy2+3)/4)-Math.floor((gy2+99)/100)+Math.floor((gy2+399)/400);
-
- for(let i=0;i<gm2;i++)gdn+=gdm[i+1];gdn+=gd2;
-
- let jdn0=gdn-79,jnp=Math.floor(jdn0/12053);jdn0%=12053;
-
- let jy=979+33*jnp+4*Math.floor(jdn0/1461);jdn0%=1461;
-
- if(jdn0>=366){jy+=Math.floor((jdn0-1)/365);jdn0=(jdn0-1)%365}
-
- let jm,jd;if(jdn0<186){jm=1+Math.floor(jdn0/31);jd=1+jdn0%31}else{jm=7+Math.floor((jdn0-186)/30);jd=1+(jdn0-186)%30}
-
- return {y:jy,m:jm,d:jd}
-
-}
-
-function jdn(jy,jm,jd){
-
- jy=Number(jy);jm=Number(jm);jd=Number(jd);
-
- jy+=1595;let days=-355668+365*jy+Math.floor(jy/33)*8+Math.floor((jy%33+3)/4)+jd;
-
- days+=(jm<7?(jm-1)*31:(jm-7)*30+186);
-
- return days;
-
-}
-
-function dateStr(d){if(!d)return '—';return d}
-
-function dateParts(s){let a=(s||todayString()).split('/').map(Number);return {y:a[0],m:a[1],d:a[2]}}
+function todayJ(){let d=new Date(),gy=d.getFullYear(),gm=d.getMonth()+1,gd=d.getDate(),gdm=[0,31,((gy%4===0&&gy%100!==0)||gy%400===0)?29:28,31,30,31,30,31,31,30,31,30,31],gy2=gy-1600,gm2=gm-1,gd2=gd-1,gdn=365*gy2+Math.floor((gy2+3)/4)-Math.floor((gy2+99)/100)+Math.floor((gy2+399)/400);for(let i=0;i<gm2;i++)gdn+=gdm[i+1];gdn+=gd2;let jdn0=gdn-79,jnp=Math.floor(jdn0/12053);jdn0%=12053;let jy=979+33*jnp+4*Math.floor(jdn0/1461);jdn0%=1461;if(jdn0>=366){jy+=Math.floor((jdn0-1)/365);jdn0=(jdn0-1)%365}let jm,jd;if(jdn0<186){jm=1+Math.floor(jdn0/31);jd=1+jdn0%31}else{jm=7+Math.floor((jdn0-186)/30);jd=1+(jdn0-186)%30}return{y:jy,m:jm,d:jd}}
 
 function todayString(){let d=todayJ();return `${d.y}/${String(d.m).padStart(2,'0')}/${String(d.d).padStart(2,'0')}`}
 
-function dateValue(y,m,d){return `${y}/${String(m).padStart(2,'0')}/${String(d).padStart(2,'0')}`}
+function dateParts(s){let a=(s||todayString()).split('/').map(Number);return{y:a[0],m:a[1],d:a[2]}}
+
+function dateStr(y,m,d){return `${y}/${String(m).padStart(2,'0')}/${String(d).padStart(2,'0')}`}
+
+function parseDate(s){if(!s)return 0;let p=dateParts(s);return p.y*10000+p.m*100+p.d}
 
 function daysInJMonth(y,m){if(m<=6)return 31;if(m<=11)return 30;return isLeapJ(y)?30:29}
 
-function isLeapJ(y){return ((y-474)%2820+2820)%2820*682%2816<682}
+function isLeapJ(y){let r=((y-474)%2820+2820)%2820;return r*682%2816<682}
 
-function datePickerHtml(prefix,initial=todayString()){
+function datePickerHtml(prefix,initial=todayString()){let p=dateParts(initial);return `<div class="date-select"><div><label class="date-field-title" for="${prefix}Y">سال</label><select id="${prefix}Y"></select></div><div><label class="date-field-title" for="${prefix}M">ماه</label><select id="${prefix}M"></select></div><div><label class="date-field-title" for="${prefix}D">روز</label><select id="${prefix}D"></select></div></div>`}
 
- let p=dateParts(initial),years=[];for(let y=p.y-5;y<=p.y+5;y++)years.push(y);
+function setupDate(prefix,initial=todayString()){let p=dateParts(initial),y=$(prefix+'Y'),m=$(prefix+'M'),d=$(prefix+'D');y.innerHTML=Array.from({length:15},(_,i)=>p.y-7+i).map(v=>`<option value="${v}" ${v===p.y?'selected':''}>${fmt(v)}</option>`).join('');m.innerHTML=months.map((v,i)=>`<option value="${i+1}" ${i+1===p.m?'selected':''}>${v}</option>`).join('');function fill(){let yy=num(y.value),mm=num(m.value),old=num(d.value)||p.d;d.innerHTML=Array.from({length:daysInJMonth(yy,mm)},(_,i)=>i+1).map(v=>`<option value="${v}" ${v===Math.min(old,daysInJMonth(yy,mm))?'selected':''}>${fmt(v)}</option>`).join('')}y.onchange=fill;m.onchange=fill;fill()}
 
- return `<div class="date-select"><select id="${prefix}Y" aria-label="سال">${years.map(y=>`<option ${y===p.y?'selected':''}>${y}</option>`).join('')}</select><select id="${prefix}M" aria-label="ماه">${months.map((m,i)=>`<option value="${i+1}" ${i+1===p.m?'selected':''}>${m}</option>`).join('')}</select><select id="${prefix}D" aria-label="روز">${Array.from({length:daysInJMonth(p.y,p.m)},(_,i)=>i+1).map(d=>`<option ${d===p.d?'selected':''}>${d}</option>`).join('')}</select></div>`
+function readDate(prefix){return dateStr(num($(prefix+'Y').value),num($(prefix+'M').value),num($(prefix+'D').value))}
 
-}
-
-function readDate(prefix){return dateValue(num($(prefix+'Y').value),num($(prefix+'M').value),num($(prefix+'D').value))}
-
-function setupDate(prefix,initial=todayString()){
-
- let p=dateParts(initial);
-
- $(prefix+'Y').innerHTML=Array.from({length:11},(_,i)=>p.y-5+i).map(y=>`<option ${y===p.y?'selected':''}>${y}</option>`).join('');
-
- $(prefix+'M').innerHTML=months.map((m,i)=>`<option value="${i+1}" ${i+1===p.m?'selected':''}>${m}</option>`).join('');
-
- function fillDays(){let y=num($(prefix+'Y').value),m=num($(prefix+'M').value),old=num($(prefix+'D').value)||p.d;$(prefix+'D').innerHTML=Array.from({length:daysInJMonth(y,m)},(_,i)=>i+1).map(d=>`<option ${d===Math.min(old,daysInJMonth(y,m))?'selected':''}>${d}</option>`).join('')}
-
- $(prefix+'Y').onchange=fillDays;$(prefix+'M').onchange=fillDays;fillDays()
-
-}
-
-function navigate(page){
-
- if(!pages[page])return;currentPage=page;
-
- document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id==='page-'+page));
-
- document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
-
- $('pageTitle').textContent=pages[page][0];$('pageSub').textContent=pages[page][1];
-
- if(page==='dashboard')renderDashboard();if(page==='invoices')renderInvoices();if(page==='inventory')renderInventory();if(page==='people')renderPeople();if(page==='transactions')renderTransactions();if(page==='reports')renderReports();if(page==='settings')renderSettings();
-
- window.scrollTo({top:0,behavior:'smooth'})
-
-}
+function navigate(page){if(!pages[page])return;currentPage=page;document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id==='page-'+page));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));$('pageTitle').textContent=pages[page][0];$('pageSub').textContent=pages[page][1];({dashboard:renderDashboard,invoices:renderInvoices,inventory:renderInventory,people:renderPeople,transactions:renderTransactions,reports:renderReports,settings:renderSettings})[page]();window.scrollTo({top:0,behavior:'smooth'})}
 
 document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.page)));
 
@@ -674,195 +306,103 @@ function prodName(pid){return db.products.find(p=>p.id===pid)?.name||'کالای
 
 function totalItems(items){return items.reduce((s,i)=>s+num(i.qty)*num(i.price),0)}
 
-function invGross(inv){return totalItems(inv.items||[])}
+function invGross(i){return totalItems(i.items||[])}
 
-function invTotal(inv){return invGross(inv)+num(inv.expenses||0)}
+function invTotal(i){return invGross(i)+num(i.expenses)}
 
-function invProfit(inv){if(inv.type!=='sale')return 0;let cost=(inv.items||[]).reduce((s,i)=>s+num(i.qty)*num(i.cost),0);return invGross(inv)-cost-num(inv.expenses||0)}
+function invProfit(i){if(i.type!=='sale')return 0;return invGross(i)-(i.items||[]).reduce((s,x)=>s+num(x.qty)*num(x.cost),0)-num(i.expenses)}
 
-function signedBalance(personId){
-
- let balance=0;
-
- db.invoices.forEach(inv=>{if(inv.personId!==personId)return;let t=invTotal(inv);if(inv.type==='sale')balance+=t-num(inv.paid||0);else balance-=t-num(inv.paid||0)});
-
- db.transactions.forEach(t=>{if(t.personId!==personId)return;if(t.type==='in')balance-=num(t.amount);else if(t.type==='out')balance+=num(t.amount);else if(t.type==='transfer')balance+=num(t.amount)});
-
- return balance
-
-}
-
-function stockFor(productId,warehouseId){let p=db.products.find(p=>p.id===productId);if(!p)return 0;return num(p.stock?.[warehouseId]||0)}
+function stockFor(pid,wid){let p=db.products.find(p=>p.id===pid);return p?num(p.stock?.[wid]):0}
 
 function allStock(p){return Object.values(p.stock||{}).reduce((s,n)=>s+num(n),0)}
 
 function inventoryValue(){return db.products.reduce((s,p)=>s+db.warehouses.reduce((a,w)=>a+stockFor(p.id,w.id)*num(p.cost),0),0)}
 
-function cashBalance(){
+function signedBalance(pid){let b=0;db.invoices.forEach(i=>{if(i.personId!==pid)return;let t=invTotal(i);b+=i.type==='sale'?t-num(i.paid||0):-(t-num(i.paid||0))});db.transactions.forEach(t=>{if(t.personId!==pid)return;if(t.type==='in')b-=num(t.amount);else b+=num(t.amount)});return b}
 
- let n=0;db.transactions.forEach(t=>{if(t.type==='in')n+=num(t.amount);else if(t.type==='out')n-=num(t.amount)});
-
- db.invoices.forEach(i=>{if(i.type==='sale')n+=num(i.paid||0);else n-=num(i.paid||0)});
-
- return n
-
-}
+function cashBalance(){let n=0;db.transactions.forEach(t=>{if(t.type==='in')n+=num(t.amount);else if(t.type==='out')n-=num(t.amount)});return n}
 
 function sumType(type,arr=db.invoices){return arr.filter(i=>i.type===type).reduce((s,i)=>s+invTotal(i),0)}
 
-function emptyRow(cols,text='هنوز اطلاعاتی ثبت نشده است'){return `<tr><td colspan="${cols}" class="empty">${text}</td></tr>`}
+function emptyRow(n,s='هنوز اطلاعاتی ثبت نشده است'){return `<tr><td colspan="${n}" class="empty">${s}</td></tr>`}
+
+function txBadge(t){return t==='in'?'<span class="pill green">دریافت</span>':t==='out'?'<span class="pill red">پرداخت</span>':'<span class="pill orange">تسویه</span>'}
 
 function renderDashboard(){
 
- $('brandName').textContent=db.settings.store||'DAVIN PRO';
+ $('brandName').textContent=db.settings.store||'DAVIN PRO';$('sCash').textContent=money(cashBalance());$('sSales').textContent=money(sumType('sale'));$('sInventory').textContent=money(inventoryValue());$('sDebtors').textContent=money(db.people.reduce((s,p)=>s+Math.max(0,signedBalance(p.id)),0));$('sCreditors').textContent=money(db.people.reduce((s,p)=>s+Math.max(0,-signedBalance(p.id)),0));$('sProfit').textContent=money(db.invoices.reduce((s,i)=>s+invProfit(i),0));$('sProducts').textContent=fmt(db.products.length);$('sInvoices').textContent=fmt(db.invoices.length);renderChart();
 
- $('sCash').textContent=money(cashBalance());$('sSales').textContent=money(sumType('sale'));
+ $('recentInvoices').innerHTML=db.invoices.slice().sort((a,b)=>parseDate(b.date)-parseDate(a.date)).slice(0,5).map(i=>`<tr><td>${esc(i.number)}</td><td><span class="pill ${i.type==='sale'?'green':'orange'}">${i.type==='sale'?'فروش':'خرید'}</span></td><td>${esc(personName(i.personId))}</td><td>${esc(whName(i.warehouseId))}</td><td>${esc(i.date)}</td><td>${money(invTotal(i))}</td></tr>`).join('')||emptyRow(6);
 
- $('sInventory').textContent=money(inventoryValue());
+ let low=db.products.filter(p=>allStock(p)<=num(p.low??db.settings.low)).slice(0,5);$('stockAlerts').innerHTML=low.map(p=>`<div class="stock-row"><div class="stock-symbol">📦</div><div class="stock-info"><b>${esc(p.name)}</b><small>${esc(p.code||'بدون کد')}</small></div><span class="stock-count ${allStock(p)<=0?'low':'ok'}">${fmt(allStock(p))} ${esc(p.unit||'عدد')}</span></div>`).join('')||'<div class="empty">وضعیت موجودی مناسب است</div>';
 
- $('sDebtors').textContent=money(db.people.reduce((s,p)=>s+Math.max(0,signedBalance(p.id)),0));
-
- $('sCreditors').textContent=money(db.people.reduce((s,p)=>s+Math.max(0,-signedBalance(p.id)),0));
-
- $('sProfit').textContent=money(db.invoices.reduce((s,i)=>s+invProfit(i),0));
-
- $('sProducts').textContent=fmt(db.products.length);$('sInvoices').textContent=fmt(db.invoices.length);
-
- renderChart();
-
- $('recentInvoices').innerHTML=db.invoices.slice().sort((a,b)=>parseDate(b.date)-parseDate(a.date)).slice(0,5).map(i=>`<tr><td>${esc(i.number)}</td><td><span class="pill ${i.type==='sale'?'green':'orange'}">${i.type==='sale'?'فروش':'خرید'}</span></td><td>${esc(personName(i.personId))}</td><td>${esc(i.date)}</td><td>${money(invTotal(i))}</td></tr>`).join('')||emptyRow(5);
-
- let low=db.products.filter(p=>allStock(p)<=num(p.low??db.settings.low)).slice(0,5);
-
- $('stockAlerts').innerHTML=low.map(p=>`<div class="stock-row"><div class="stock-symbol">📦</div><div class="stock-info"><b>${esc(p.name)}</b><small>${esc(p.code||'بدون کد')}</small></div><span class="stock-count ${allStock(p)<=0?'low':'ok'}">${fmt(allStock(p))} ${esc(p.unit||'عدد')}</span></div>`).join('')||'<div class="empty">وضعیت موجودی مناسب است</div>';
-
- $('recentTransactions').innerHTML=db.transactions.slice().sort((a,b)=>parseDate(b.date)-parseDate(a.date)).slice(0,5).map(t=>`<tr><td>${esc(t.description||'—')}</td><td>${esc(personName(t.personId))}</td><td>${txBadge(t.type)}</td><td>${esc(t.date)}</td><td>${money(t.amount)}</td></tr>`).join('')||emptyRow(5);
-
- $('todayText').textContent='📅 '+todayString()
+ $('recentTransactions').innerHTML=db.transactions.slice().sort((a,b)=>parseDate(b.date)-parseDate(a.date)).slice(0,5).map(t=>`<tr><td>${esc(t.description||'—')}</td><td>${esc(personName(t.personId))}</td><td>${txBadge(t.type)}</td><td>${esc(t.date)}</td><td>${money(t.amount)}</td><td><button class="btn secondary small" onclick="editTransaction('${t.id}')">ویرایش</button></td></tr>`).join('')||emptyRow(6);$('todayText').textContent='📅 '+todayString()
 
 }
 
-function renderChart(){
+function renderChart(){let now=todayJ(),arr=[];for(let k=5;k>=0;k--){let m=now.m-k,y=now.y;while(m<=0){m+=12;y--}let match=s=>{let p=dateParts(s);return p.y===y&&p.m===m};arr.push({label:months[m-1].slice(0,3),sales:db.invoices.filter(i=>i.type==='sale'&&match(i.date)).reduce((s,i)=>s+invTotal(i),0),buys:db.invoices.filter(i=>i.type==='purchase'&&match(i.date)).reduce((s,i)=>s+invTotal(i),0)})}let max=Math.max(1,...arr.flatMap(a=>[a.sales,a.buys]));$('chartTop').textContent=fmt(max);$('monthlyChart').innerHTML=arr.map(a=>`<div class="chart-col"><div class="bar-pair"><div class="bar sale" title="فروش: ${fmt(a.sales)}" style="height:${a.sales?Math.max(3,a.sales/max*100):0}%"></div><div class="bar buy" title="خرید: ${fmt(a.buys)}" style="height:${a.buys?Math.max(3,a.buys/max*100):0}%"></div></div><label>${a.label}</label></div>`).join('')}
 
- let now=todayJ(),arr=[];
+function renderInvoices(){let q=($('invoiceSearch')?.value||'').toLowerCase(),type=$('invoiceTypeFilter')?.value||'';let arr=db.invoices.slice().sort((a,b)=>parseDate(b.date)-parseDate(a.date)).filter(i=>(!type||i.type===type)&&[i.number,personName(i.personId),i.date,(i.items||[]).map(x=>x.name).join(' ')].join(' ').toLowerCase().includes(q));$('invoiceRows').innerHTML=arr.map(i=>`<tr><td><b>${esc(i.number)}</b></td><td><span class="pill ${i.type==='sale'?'green':'orange'}">${i.type==='sale'?'فروش':'خرید'}</span></td><td>${esc(personName(i.personId))}</td><td>${esc(whName(i.warehouseId))}</td><td>${esc(i.date)}</td><td>${money(invGross(i))}</td><td>${money(i.expenses)}</td><td><b>${money(invTotal(i))}</b></td><td><button class="btn secondary small" onclick="viewInvoice('${i.id}')">جزئیات</button> <button class="btn small" onclick="openInvoice('${i.type}','${i.id}')">ویرایش</button> <button class="btn red small" onclick="deleteInvoice('${i.id}')">حذف</button></td></tr>`).join('')||emptyRow(9)}
 
- for(let k=5;k>=0;k--){let m=now.m-k,y=now.y;while(m<=0){m+=12;y--}let key=date=>{let p=dateParts(date);return p.y===y&&p.m===m};
+function openInvoice(type='sale',editId=null){
 
- let sales=db.invoices.filter(i=>i.type==='sale'&&key(i.date)).reduce((s,i)=>s+invTotal(i),0);
+ invoiceEditId=editId;let old=db.invoices.find(i=>i.id===editId);if(old)type=old.type;
 
- let buys=db.invoices.filter(i=>i.type==='purchase'&&key(i.date)).reduce((s,i)=>s+invTotal(i),0);
+ invoiceItems=old?old.items.map(x=>({...x})).concat([]):[{productId:'',name:'',qty:1,price:0,cost:0}];
 
- arr.push({label:months[m-1].slice(0,3),sales,buys})}
+ let whOpts=db.warehouses.map(w=>`<option value="${w.id}" ${(old?.warehouseId||db.warehouses[0]?.id)===w.id?'selected':''}>${esc(w.name)}</option>`).join('');
 
- let max=Math.max(1,...arr.flatMap(a=>[a.sales,a.buys]));
+ let pOpts='<option value="">بدون شخص</option>'+db.people.map(p=>`<option value="${p.id}" ${old?.personId===p.id?'selected':''}>${esc(p.name)}</option>`).join('');
 
- $('chartTop').textContent=fmt(max);
-
- $('monthlyChart').innerHTML=arr.map(a=>`<div class="chart-col"><div class="bar-pair"><div class="bar sale" title="فروش: ${fmt(a.sales)}" style="height:${Math.max(a.sales?3:0,a.sales/max*100)}%"></div><div class="bar buy" title="خرید: ${fmt(a.buys)}" style="height:${Math.max(a.buys?3:0,a.buys/max*100)}%"></div></div><label>${a.label}</label></div>`).join('')
-
-}
-
-function renderInvoices(){
-
- let q=($('invoiceSearch')?.value||'').toLowerCase(),type=$('invoiceTypeFilter')?.value||'';
-
- let arr=db.invoices.slice().sort((a,b)=>parseDate(b.date)-parseDate(a.date)).filter(i=>(!type||i.type===type)&&[i.number,personName(i.personId),i.date].join(' ').toLowerCase().includes(q));
-
- $('invoiceRows').innerHTML=arr.map(i=>`<tr><td>${esc(i.number)}</td><td><span class="pill ${i.type==='sale'?'green':'orange'}">${i.type==='sale'?'فروش':'خرید'}</span></td><td>${esc(personName(i.personId))}</td><td>${esc(whName(i.warehouseId))}</td><td>${esc(i.date)}</td><td>${money(invGross(i))}</td><td>${money(i.expenses)}</td><td><b>${money(invTotal(i))}</b></td><td><button class="btn secondary small" onclick="viewInvoice('${i.id}')">جزئیات</button> <button class="btn red small" onclick="deleteInvoice('${i.id}')">حذف</button></td></tr>`).join('')||emptyRow(9);
-
-}
-
-function openInvoice(type='sale'){
-
- invoiceEditId=null;invoiceItems=[{productId:'',name:'',qty:1,price:0,cost:0}];
-
- let whOpts=db.warehouses.map(w=>`<option value="${w.id}">${esc(w.name)}</option>`).join('');
-
- let pOpts='<option value="">بدون شخص</option>'+db.people.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('');
-
- openModal(type==='purchase'?'ثبت فاکتور خرید':type==='sale'?'ثبت فاکتور فروش':'ثبت فاکتور جدید',`
-
- <form id="invoiceForm" onsubmit="saveInvoice(event)">
-
- <div class="form-grid">
+ openModal(old?'ویرایش فاکتور '+old.number:'ثبت فاکتور جدید',`<form id="invoiceForm" onsubmit="saveInvoice(event)"><div class="form-grid">
 
  <div class="field"><label>نوع فاکتور</label><select id="fType" onchange="updateInvoiceType()"><option value="sale" ${type==='sale'?'selected':''}>فروش</option><option value="purchase" ${type==='purchase'?'selected':''}>خرید</option></select></div>
 
  <div class="field"><label>شخص / شرکت</label><select id="fPerson">${pOpts}</select></div>
 
- <div class="field"><label>انبار</label><select id="fWarehouse" required>${whOpts}</select></div>
+ <div class="field"><label>${type==='purchase'?'انبار مقصد کالا':'انبار کسر موجودی'}</label><select id="fWarehouse" required onchange="updateWarehouseLabel()">${whOpts}</select></div>
 
- <div class="field"><label>تاریخ شمسی</label>${datePickerHtml('fDate')}</div>
+ <div class="field"><label>تاریخ شمسی</label>${datePickerHtml('fDate',old?.date||todayString())}</div>
 
- <div class="field"><label>پرداخت / دریافت‌شده</label><input id="fPaid" class="numeric" inputmode="decimal" value="0"></div>
+ <div class="field"><label>مبلغ پرداخت / دریافت‌شده</label><input id="fPaid" class="numeric" inputmode="numeric" value="${fmt(old?.paid||0)}"></div>
 
- <div class="field"><label>هزینه‌های جانبی فاکتور</label><input id="fExpenses" class="numeric" inputmode="decimal" value="0" placeholder="حمل، کارگر، باربری..."></div>
+ <div class="field"><label>هزینه جانبی فاکتور</label><input id="fExpenses" class="numeric" inputmode="numeric" value="${fmt(old?.expenses||0)}" placeholder="حمل، کارگر، باربری"></div>
 
- </div>
+ </div><div class="notice" id="warehouseNotice">${type==='purchase'?'با ثبت فاکتور خرید، تعداد کالاها به انبار انتخاب‌شده اضافه می‌شود.':'با ثبت فاکتور فروش، تعداد کالاها از انبار انتخاب‌شده کسر می‌شود.'} در زمان ویرایش نیز موجودی به‌صورت خودکار اصلاح خواهد شد.</div>
 
- <div class="notice">هزینه جانبی به مبلغ فاکتور اضافه می‌شود. در فروش، این هزینه از سود کم خواهد شد. موجودی کالا با ثبت خرید یا فروش به‌روزرسانی می‌شود.</div>
-
- <div class="items-box"><table><thead><tr><th>کالا</th><th>تعداد</th><th>قیمت واحد</th><th id="costHeader">بهای خرید واحد</th><th></th></tr></thead><tbody id="invoiceItemRows"></tbody></table></div>
+ <div class="items-box"><table><thead><tr><th>کالا</th><th>تعداد</th><th>قیمت واحد</th><th>بهای خرید واحد</th><th></th></tr></thead><tbody id="invoiceItemRows"></tbody></table></div>
 
  <div class="form-actions"><button type="button" class="btn secondary" onclick="addInvoiceItem()">＋ افزودن ردیف کالا</button></div>
 
- <div class="total-box"><div class="total-inner"><div class="total-line"><span>جمع کالاها</span><b id="fSubTotal">۰</b></div><div class="total-line"><span>هزینه‌های جانبی</span><b id="fExpTotal">۰</b></div><div class="total-line final"><span>مبلغ نهایی</span><b id="fGrandTotal">۰</b></div></div></div>
+ <div class="total-box"><div class="total-inner"><div class="total-line"><span>جمع کالاها</span><b id="fSubTotal">۰</b></div><div class="total-line"><span>هزینه جانبی</span><b id="fExpTotal">۰</b></div><div class="total-line final"><span>مبلغ نهایی</span><b id="fGrandTotal">۰</b></div></div></div>
 
- <div class="form-actions"><button class="btn" type="submit">ثبت نهایی فاکتور</button><button class="btn gray" type="button" onclick="closeModal()">انصراف</button></div>
+ <div class="form-actions"><button class="btn" type="submit">${old?'ذخیره تغییرات فاکتور':'ثبت نهایی فاکتور'}</button><button class="btn gray" type="button" onclick="closeModal()">انصراف</button></div></form>`);
 
- </form>`);
-
- setupDate('fDate');renderInvoiceItems();['fPaid','fExpenses'].forEach(k=>$(k).addEventListener('input',updateInvoiceTotals))
+ setupDate('fDate',old?.date||todayString());renderInvoiceItems();['fPaid','fExpenses'].forEach(k=>$(k).addEventListener('input',updateInvoiceTotals))
 
 }
 
-function updateInvoiceType(){let t=$('fType').value;$('costHeader').textContent=t==='sale'?'بهای خرید واحد':'قیمت فروش واحد';renderInvoiceItems()}
+function updateWarehouseLabel(){let t=$('fType').value;$('warehouseNotice').textContent=t==='purchase'?'با ثبت فاکتور خرید، کالاها به انبار انتخاب‌شده اضافه می‌شوند.':'با ثبت فاکتور فروش، کالاها از انبار انتخاب‌شده کسر می‌شوند.'}
+
+function updateInvoiceType(){updateWarehouseLabel();renderInvoiceItems()}
 
 function addInvoiceItem(){invoiceItems.push({productId:'',name:'',qty:1,price:0,cost:0});renderInvoiceItems()}
 
-function renderInvoiceItems(){
+function renderInvoiceItems(){if(!$('invoiceItemRows'))return;$('invoiceItemRows').innerHTML=invoiceItems.map((it,n)=>`<tr><td><select onchange="selectInvoiceProduct(${n},this.value)"><option value="">انتخاب کالا</option>${db.products.map(p=>`<option value="${p.id}" ${it.productId===p.id?'selected':''}>${esc(p.name)}${p.code?' ('+esc(p.code)+')':''}</option>`).join('')}<option value="__new">＋ تعریف کالای جدید</option></select><div style="font-size:10px;color:#8892a3;margin-top:5px">${esc(it.name||'')}</div></td><td><input class="numeric" inputmode="numeric" value="${fmt(it.qty)}" oninput="changeItem(${n},'qty',this.value)" style="width:80px;min-width:80px"></td><td><input class="numeric" inputmode="numeric" value="${fmt(it.price)}" oninput="changeItem(${n},'price',this.value)" style="width:120px;min-width:120px"></td><td><input class="numeric" inputmode="numeric" value="${fmt(it.cost)}" oninput="changeItem(${n},'cost',this.value)" style="width:120px;min-width:120px"></td><td><button type="button" class="btn red small" onclick="removeInvoiceItem(${n})">×</button></td></tr>`).join('');updateInvoiceTotals()}
 
- let type=$('fType')?.value||'sale';
-
- $('invoiceItemRows').innerHTML=invoiceItems.map((it,n)=>`<tr><td><select onchange="selectInvoiceProduct(${n},this.value)"><option value="">انتخاب کالا</option>${db.products.map(p=>`<option value="${p.id}" ${it.productId===p.id?'selected':''}>${esc(p.name)}${p.code?' ('+esc(p.code)+')':''}</option>`).join('')}<option value="__new">＋ کالای جدید</option></select><div style="font-size:10px;color:#8892a3;margin-top:5px">${esc(it.name||'')}</div></td><td><input class="numeric" inputmode="decimal" value="${fmt(it.qty)}" onchange="changeItem(${n},'qty',this.value)" oninput="changeItem(${n},'qty',this.value)" style="width:80px;min-width:80px"></td><td><input class="numeric" inputmode="decimal" value="${fmt(it.price)}" onchange="changeItem(${n},'price',this.value)" oninput="changeItem(${n},'price',this.value)" style="width:120px;min-width:120px"></td><td><input class="numeric" inputmode="decimal" value="${fmt(it.cost)}" onchange="changeItem(${n},'cost',this.value)" oninput="changeItem(${n},'cost',this.value)" style="width:120px;min-width:120px"></td><td><button type="button" class="btn red small" onclick="removeInvoiceItem(${n})">×</button></td></tr>`).join('');
-
- updateInvoiceTotals()
-
-}
-
-function selectInvoiceProduct(n,pid){
-
- if(pid==='__new'){openProduct();return}
-
- invoiceItems[n].productId=pid;
-
- let p=db.products.find(p=>p.id===pid);
-
- if(p){invoiceItems[n].name=p.name;invoiceItems[n].cost=num(p.cost);invoiceItems[n].price=num(p.price)}
-
- renderInvoiceItems()
-
-}
+function selectInvoiceProduct(n,pid){if(pid==='__new'){openProduct();return}invoiceItems[n].productId=pid;let p=db.products.find(p=>p.id===pid);if(p){invoiceItems[n].name=p.name;invoiceItems[n].cost=num(p.cost);invoiceItems[n].price=num(p.price)}renderInvoiceItems()}
 
 function changeItem(n,k,v){invoiceItems[n][k]=num(v);updateInvoiceTotals()}
 
 function removeInvoiceItem(n){invoiceItems.splice(n,1);if(!invoiceItems.length)invoiceItems.push({productId:'',name:'',qty:1,price:0,cost:0});renderInvoiceItems()}
 
-function updateInvoiceTotals(){
+function updateInvoiceTotals(){if(!$('fSubTotal'))return;let sub=totalItems(invoiceItems),exp=num($('fExpenses').value);$('fSubTotal').textContent=money(sub);$('fExpTotal').textContent=money(exp);$('fGrandTotal').textContent=money(sub+exp)}
 
- if(!$('fSubTotal'))return;
-
- let sub=totalItems(invoiceItems),exp=num($('fExpenses').value);
-
- $('fSubTotal').textContent=money(sub);$('fExpTotal').textContent=money(exp);$('fGrandTotal').textContent=money(sub+exp)
-
-}
+function applyInvoiceStock(inv,reverse=false){(inv.items||[]).forEach(it=>{let p=db.products.find(p=>p.id===it.productId);if(!p)return;p.stock=p.stock||{};let delta=inv.type==='purchase'?num(it.qty):-num(it.qty);p.stock[inv.warehouseId]=num(p.stock[inv.warehouseId])+(reverse?-delta:delta)})}
 
 function saveInvoice(e){
 
- e.preventDefault();
-
- let type=$('fType').value,warehouseId=$('fWarehouse').value,date=readDate('fDate'),personId=$('fPerson').value||null;
+ e.preventDefault();let type=$('fType').value,warehouseId=$('fWarehouse').value,date=readDate('fDate'),personId=$('fPerson').value||null,paid=num($('fPaid').value),expenses=num($('fExpenses').value);
 
  let items=invoiceItems.filter(i=>i.productId&&num(i.qty)>0).map(i=>({productId:i.productId,name:prodName(i.productId),qty:num(i.qty),price:num(i.price),cost:num(i.cost)}));
 
@@ -870,243 +410,95 @@ function saveInvoice(e){
 
  if(!db.warehouses.some(w=>w.id===warehouseId)){toast('ابتدا یک انبار تعریف کنید.');return}
 
- if(num($('fPaid').value)>totalItems(items)+num($('fExpenses').value)){toast('مبلغ پرداختی نمی‌تواند از مبلغ نهایی بیشتر باشد.');return}
+ let total=totalItems(items)+expenses;if(paid>total){toast('مبلغ پرداختی نمی‌تواند بیشتر از مبلغ نهایی باشد.');return}
 
- for(let it of items){
+ let old=db.invoices.find(i=>i.id===invoiceEditId);
 
-  if(!db.products.some(p=>p.id===it.productId)){toast('یکی از کالاها وجود ندارد.');return}
+ // موجودی قابل استفاده را با درنظرگرفتن اثر فاکتور قبلی بررسی می‌کنیم.
 
-  if(type==='sale'&&stockFor(it.productId,warehouseId)<it.qty){toast('موجودی '+it.name+' در این انبار کافی نیست.');return}
+ for(let it of items){if(!db.products.some(p=>p.id===it.productId)){toast('یکی از کالاها وجود ندارد.');return}
+
+  if(type==='sale'){let available=stockFor(it.productId,warehouseId);if(old&&old.type==='sale'&&old.warehouseId===warehouseId){let was=old.items.filter(x=>x.productId===it.productId).reduce((s,x)=>s+num(x.qty),0);available+=was}if(available<it.qty){toast('موجودی '+it.name+' در انبار انتخاب‌شده کافی نیست.');return}}
 
  }
 
- items.forEach(it=>{
+ if(old)applyInvoiceStock(old,true);
 
-  let p=db.products.find(p=>p.id===it.productId);p.stock=p.stock||{};
+ let inv;
 
-  p.stock[warehouseId]=num(p.stock[warehouseId])+(type==='purchase'?it.qty:-it.qty);
+ if(old){Object.assign(old,{type,personId,warehouseId,date,items,expenses,paid,updatedAt:Date.now()});inv=old;applyInvoiceStock(inv,false)}
 
-  if(type==='purchase'&&it.cost>0)p.cost=it.cost;
+ else{inv={id:id('inv'),number:'F-'+String(db.seq.invoice++).padStart(5,'0'),type,personId,warehouseId,date,items,expenses,paid,createdAt:Date.now()};db.invoices.push(inv);applyInvoiceStock(inv,false)}
 
-  if(type==='sale'&&it.price>0)p.price=it.price
+ // تراکنش پرداخت خودکار همراه فاکتور ویرایش می‌شود، نه اینکه تکراری ساخته شود.
 
- });
+ let auto=db.transactions.find(t=>t.invoiceId===inv.id);
 
- let inv={id:id('inv'),number:'F-'+String(db.seq.invoice++).padStart(5,'0'),type,personId,warehouseId,date,items,expenses:num($('fExpenses').value),paid:num($('fPaid').value),createdAt:Date.now()};
+ if(paid>0){if(auto)Object.assign(auto,{type:type==='sale'?'in':'out',personId,amount:paid,date,description:(type==='sale'?'دریافت بابت ':'پرداخت بابت ')+inv.number});else db.transactions.push({id:id('tx'),description:(type==='sale'?'دریافت بابت ':'پرداخت بابت ')+inv.number,personId,type:type==='sale'?'in':'out',amount:paid,date,invoiceId:inv.id,createdAt:Date.now(),automatic:true})}
 
- db.invoices.push(inv);
+ else if(auto)db.transactions=db.transactions.filter(t=>t.invoiceId!==inv.id);
 
- if(inv.paid>0)db.transactions.push({id:id('tx'),description:(type==='sale'?'دریافت بابت ':'پرداخت بابت ')+inv.number,personId,type:type==='sale'?'in':'out',amount:inv.paid,date,invoiceId:inv.id,createdAt:Date.now(),automatic:true});
-
- persist();closeModal();renderAll();toast('فاکتور با موفقیت ثبت شد.')
+ persist();closeModal();renderAll();toast(old?'تغییرات فاکتور و موجودی ذخیره شد.':'فاکتور ثبت و موجودی انبار به‌روزرسانی شد.')
 
 }
 
-function viewInvoice(invId){
+function viewInvoice(invId){let i=db.invoices.find(i=>i.id===invId);if(!i)return;openModal('جزئیات فاکتور '+i.number,`<div class="form-grid two"><div><span class="muted">نوع:</span> ${i.type==='sale'?'فروش':'خرید'}</div><div><span class="muted">تاریخ:</span> ${esc(i.date)}</div><div><span class="muted">شخص:</span> ${esc(personName(i.personId))}</div><div><span class="muted">انبار ${i.type==='purchase'?'مقصد':'مبدأ'}:</span> ${esc(whName(i.warehouseId))}</div></div><div class="table-wrap" style="margin-top:15px"><table><thead><tr><th>کالا</th><th>تعداد</th><th>قیمت</th><th>بهای خرید</th><th>جمع</th></tr></thead><tbody>${i.items.map(x=>`<tr><td>${esc(x.name||prodName(x.productId))}</td><td>${fmt(x.qty)}</td><td>${money(x.price)}</td><td>${money(x.cost)}</td><td>${money(x.qty*x.price)}</td></tr>`).join('')}</tbody></table></div><div class="total-box"><div class="total-inner"><div class="total-line"><span>جمع کالا</span><b>${money(invGross(i))}</b></div><div class="total-line"><span>هزینه‌ها</span><b>${money(i.expenses)}</b></div><div class="total-line"><span>پرداخت‌شده</span><b>${money(i.paid)}</b></div><div class="total-line final"><span>مبلغ نهایی</span><b>${money(invTotal(i))}</b></div>${i.type==='sale'?`<div class="total-line"><span>سود پس از هزینه</span><b>${money(invProfit(i))}</b></div>`:''}</div></div><div class="form-actions"><button class="btn" onclick="closeModal();openInvoice('${i.type}','${i.id}')">ویرایش فاکتور</button><button class="btn gray" onclick="closeModal()">بستن</button></div>`)}
 
- let i=db.invoices.find(i=>i.id===invId);if(!i)return;
+function deleteInvoice(invId){let i=db.invoices.find(i=>i.id===invId);if(!i)return;if(!confirm('فاکتور '+i.number+' حذف شود؟ موجودی کالا و تراکنش مرتبط اصلاح خواهد شد.'))return;applyInvoiceStock(i,true);db.transactions=db.transactions.filter(t=>t.invoiceId!==i.id);db.invoices=db.invoices.filter(x=>x.id!==i.id);persist();renderAll();toast('فاکتور حذف شد و موجودی اصلاح شد.')}
 
- openModal('جزئیات فاکتور '+i.number,`<div class="form-grid two"><div><span class="muted">نوع:</span> ${i.type==='sale'?'فروش':'خرید'}</div><div><span class="muted">تاریخ:</span> ${esc(i.date)}</div><div><span class="muted">شخص:</span> ${esc(personName(i.personId))}</div><div><span class="muted">انبار:</span> ${esc(whName(i.warehouseId))}</div></div><div class="table-wrap" style="margin-top:15px"><table><thead><tr><th>کالا</th><th>تعداد</th><th>قیمت</th><th>جمع</th></tr></thead><tbody>${i.items.map(x=>`<tr><td>${esc(x.name||prodName(x.productId))}</td><td>${fmt(x.qty)}</td><td>${money(x.price)}</td><td>${money(x.qty*x.price)}</td></tr>`).join('')}</tbody></table></div><div class="total-box"><div class="total-inner"><div class="total-line"><span>جمع کالا</span><b>${money(invGross(i))}</b></div><div class="total-line"><span>هزینه‌ها</span><b>${money(i.expenses)}</b></div><div class="total-line"><span>پرداخت‌شده</span><b>${money(i.paid)}</b></div><div class="total-line final"><span>مبلغ نهایی</span><b>${money(invTotal(i))}</b></div>${i.type==='sale'?`<div class="total-line"><span>سود پس از هزینه</span><b>${money(invProfit(i))}</b></div>`:''}</div></div><div class="form-actions"><button class="btn gray" onclick="closeModal()">بستن</button></div>`)
-
-}
-
-function deleteInvoice(invId){
-
- let i=db.invoices.find(i=>i.id===invId);if(!i)return;
-
- if(!confirm('فاکتور '+i.number+' حذف شود؟ موجودی کالا نیز اصلاح می‌شود.'))return;
-
- i.items.forEach(it=>{let p=db.products.find(p=>p.id===it.productId);if(p){p.stock=p.stock||{};p.stock[i.warehouseId]=num(p.stock[i.warehouseId])+(i.type==='purchase'?-num(it.qty):num(it.qty))}});
-
- db.transactions=db.transactions.filter(t=>t.invoiceId!==i.id);db.invoices=db.invoices.filter(x=>x.id!==i.id);persist();renderAll();toast('فاکتور حذف شد.')
-
-}
-
-function openProduct(productId=null){
-
- let p=db.products.find(x=>x.id===productId),isEdit=!!p;
-
- openModal(isEdit?'ویرایش کالا':'تعریف کالای جدید',`<form onsubmit="saveProduct(event,'${p?.id||''}')"><div class="form-grid two">
+function openProduct(productId=null){let p=db.products.find(x=>x.id===productId),edit=!!p;openModal(edit?'ویرایش کالا':'تعریف کالای جدید',`<form onsubmit="saveProduct(event,'${p?.id||''}')"><div class="form-grid two">
 
  <div class="field"><label>نام کالا</label><input id="pName" required value="${esc(p?.name||'')}" placeholder="نام محصول"></div>
 
- <div class="field"><label>کد کالا / SKU</label><input id="pCode" value="${esc(p?.code||'')}" placeholder="اختیاری"></div>
+ <div class="field"><label>کد کالا (خودکار)</label><input id="pCode" value="${esc(p?.code||'')}" placeholder="${'P-'+String(db.seq.product).padStart(4,'0')}"></div>
 
  <div class="field"><label>واحد شمارش</label><select id="pUnit">${['عدد','دستگاه','کیلوگرم','متر','بسته','کارتن','جفت','لیتر'].map(u=>`<option ${u===(p?.unit||'عدد')?'selected':''}>${u}</option>`).join('')}</select></div>
 
- <div class="field"><label>بهای خرید هر واحد</label><input id="pCost" class="numeric" inputmode="decimal" value="${fmt(p?.cost||0)}"></div>
+ <div class="field"><label>بهای خرید هر واحد</label><input id="pCost" class="numeric" inputmode="numeric" value="${fmt(p?.cost||0)}"></div>
 
- <div class="field"><label>قیمت فروش پیشنهادی</label><input id="pPrice" class="numeric" inputmode="decimal" value="${fmt(p?.price||0)}"></div>
+ <div class="field"><label>قیمت فروش پیشنهادی</label><input id="pPrice" class="numeric" inputmode="numeric" value="${fmt(p?.price||0)}"></div>
 
  <div class="field"><label>حد هشدار موجودی</label><input id="pLow" class="numeric" inputmode="numeric" value="${fmt(p?.low??db.settings.low)}"></div>
 
- ${!isEdit?`<div class="field"><label>انبار اولیه</label><select id="pWarehouse">${db.warehouses.map(w=>`<option value="${w.id}">${esc(w.name)}</option>`).join('')}</select></div><div class="field"><label>موجودی اولیه</label><input id="pStock" class="numeric" inputmode="decimal" value="0"></div>`:''}
+ ${!edit?`<div class="field"><label>انبار اولیه</label><select id="pWarehouse">${db.warehouses.map(w=>`<option value="${w.id}">${esc(w.name)}</option>`).join('')}</select></div><div class="field"><label>موجودی اولیه</label><input id="pStock" class="numeric" inputmode="numeric" value="0"></div>`:''}
 
- </div><div class="form-actions"><button class="btn" type="submit">${isEdit?'ذخیره تغییرات':'ثبت کالا'}</button><button type="button" class="btn gray" onclick="closeModal()">انصراف</button></div></form>`)
+ </div><div class="form-actions"><button class="btn">${edit?'ذخیره تغییرات':'ثبت کالا'}</button><button type="button" class="btn gray" onclick="closeModal()">انصراف</button></div></form>`)}
 
-}
+function saveProduct(e,pid){e.preventDefault();let name=$('pName').value.trim(),code=$('pCode').value.trim();if(!name)return;if(!code&&!pid)code='P-'+String(db.seq.product++).padStart(4,'0');if(code&&db.products.some(p=>p.code===code&&p.id!==pid)){toast('این کد کالا قبلاً ثبت شده است.');return}let data={name,code,unit:$('pUnit').value,cost:num($('pCost').value),price:num($('pPrice').value),low:num($('pLow').value)};let p=db.products.find(p=>p.id===pid);if(p)Object.assign(p,data);else{let stock={};db.warehouses.forEach(w=>stock[w.id]=0);stock[$('pWarehouse').value]=num($('pStock').value);db.products.push({id:id('p'),...data,stock})}persist();closeModal();renderAll();toast('اطلاعات کالا ذخیره شد.')}
 
-function saveProduct(e,pid){e.preventDefault();let name=$('pName').value.trim();if(!name)return;
-
- let p=db.products.find(p=>p.id===pid);
-
- if(p){Object.assign(p,{name,code:$('pCode').value.trim(),unit:$('pUnit').value,cost:num($('pCost').value),price:num($('pPrice').value),low:num($('pLow').value)})}
-
- else{
-
-  let code=$('pCode').value.trim();if(code&&db.products.some(p=>p.code===code)){toast('این کد کالا قبلاً ثبت شده است.');return}
-
-  let stock={};db.warehouses.forEach(w=>stock[w.id]=0);stock[$('pWarehouse').value]=num($('pStock').value);
-
-  db.products.push({id:id('p'),name,code,unit:$('pUnit').value,cost:num($('pCost').value),price:num($('pPrice').value),low:num($('pLow').value),stock})
-
- }
-
- persist();closeModal();renderAll();toast('اطلاعات کالا ذخیره شد.')
-
-}
-
-function renderInventory(){
-
- $('invCount').textContent=fmt(db.products.length);$('invUnits').textContent=fmt(db.products.reduce((s,p)=>s+allStock(p),0));$('invValue').textContent=money(inventoryValue());
-
- let wf=$('warehouseFilter'),prev=wf.value;wf.innerHTML='<option value="">همه انبارها</option>'+db.warehouses.map(w=>`<option value="${w.id}">${esc(w.name)}</option>`).join('');if([...wf.options].some(o=>o.value===prev))wf.value=prev;
-
- let q=($('productSearch')?.value||'').toLowerCase(),wfilter=wf.value;
-
- let rows=[];db.products.filter(p=>[p.name,p.code].join(' ').toLowerCase().includes(q)).forEach(p=>{
-
-  db.warehouses.filter(w=>!wfilter||w.id===wfilter).forEach(w=>rows.push({p,w,qty:stockFor(p.id,w.id)}))
-
- });
-
- $('productRows').innerHTML=rows.map(({p,w,qty})=>`<tr><td>${esc(p.code||'—')}</td><td><b>${esc(p.name)}</b></td><td>${esc(w.name)}</td><td><span class="pill ${qty<=num(p.low??db.settings.low)?'red':'green'}">${fmt(qty)} ${esc(p.unit||'عدد')}</span></td><td>${fmt(p.low??db.settings.low)}</td><td>${money(p.cost)}</td><td>${money(qty*num(p.cost))}</td><td><button class="btn secondary small" onclick="openProduct('${p.id}')">ویرایش</button> <button class="btn red small" onclick="deleteProduct('${p.id}')">حذف</button></td></tr>`).join('')||emptyRow(8);
-
- $('warehouseRows').innerHTML=db.warehouses.map(w=>{let ps=db.products.filter(p=>stockFor(p.id,w.id)!==0);return `<tr><td><b>${esc(w.name)}</b></td><td>${fmt(ps.length)}</td><td>${fmt(ps.reduce((s,p)=>s+stockFor(p.id,w.id),0))}</td><td><button class="btn secondary small" onclick="renameWarehouse('${w.id}')">ویرایش</button> <button class="btn red small" onclick="deleteWarehouse('${w.id}')">حذف</button></td></tr>`}).join('')||emptyRow(4)
-
-}
+function renderInventory(){$('invCount').textContent=fmt(db.products.length);$('invUnits').textContent=fmt(db.products.reduce((s,p)=>s+allStock(p),0));$('invValue').textContent=money(inventoryValue());let wf=$('warehouseFilter'),prev=wf.value;wf.innerHTML='<option value="">همه انبارها</option>'+db.warehouses.map(w=>`<option value="${w.id}">${esc(w.name)}</option>`).join('');if([...wf.options].some(o=>o.value===prev))wf.value=prev;let q=($('productSearch')?.value||'').toLowerCase(),filter=wf.value,rows=[];db.products.filter(p=>[p.name,p.code].join(' ').toLowerCase().includes(q)).forEach(p=>db.warehouses.filter(w=>!filter||w.id===filter).forEach(w=>rows.push({p,w,qty:stockFor(p.id,w.id)})));$('productRows').innerHTML=rows.map(({p,w,qty})=>`<tr><td><b>${esc(p.code||'—')}</b></td><td>${esc(p.name)}</td><td>${esc(w.name)}</td><td><span class="pill ${qty<=num(p.low??db.settings.low)?'red':'green'}">${fmt(qty)} ${esc(p.unit||'عدد')}</span></td><td>${fmt(p.low??db.settings.low)}</td><td>${money(p.cost)}</td><td>${money(qty*num(p.cost))}</td><td><button class="btn secondary small" onclick="openProduct('${p.id}')">ویرایش</button> <button class="btn red small" onclick="deleteProduct('${p.id}')">حذف</button></td></tr>`).join('')||emptyRow(8);$('warehouseRows').innerHTML=db.warehouses.map(w=>{let ps=db.products.filter(p=>stockFor(p.id,w.id)!==0);return `<tr><td><b>${esc(w.name)}</b></td><td>${fmt(ps.length)}</td><td>${fmt(ps.reduce((s,p)=>s+stockFor(p.id,w.id),0))}</td><td><button class="btn secondary small" onclick="renameWarehouse('${w.id}')">ویرایش</button> <button class="btn red small" onclick="deleteWarehouse('${w.id}')">حذف</button></td></tr>`}).join('')||emptyRow(4)}
 
 function openWarehouse(){openModal('تعریف انبار جدید',`<form onsubmit="saveWarehouse(event)"><div class="field"><label>نام انبار</label><input id="wName" required placeholder="مثلاً انبار مرکزی"></div><div class="form-actions"><button class="btn">ثبت انبار</button></div></form>`)}
 
-function saveWarehouse(e){e.preventDefault();let name=$('wName').value.trim();if(!name)return;if(db.warehouses.some(w=>w.name.toLowerCase()===name.toLowerCase())){toast('انبار با این نام موجود است.');return}let w={id:id('w'),name};db.warehouses.push(w);db.products.forEach(p=>{p.stock=p.stock||{};p.stock[w.id]=0});persist();closeModal();renderAll();toast('انبار ایجاد شد.')}
+function saveWarehouse(e){e.preventDefault();let name=$('wName').value.trim();if(!name)return;if(db.warehouses.some(w=>w.name.toLowerCase()===name.toLowerCase())){toast('این انبار قبلاً ثبت شده است.');return}let w={id:id('w'),name};db.warehouses.push(w);db.products.forEach(p=>{p.stock=p.stock||{};p.stock[w.id]=0});persist();closeModal();renderAll();toast('انبار ایجاد شد.')}
 
-function renameWarehouse(wid){let w=db.warehouses.find(w=>w.id===wid);if(!w)return;let name=prompt('نام جدید انبار:',w.name);if(name===null)return;name=name.trim();if(!name)return;w.name=name;persist();renderAll();toast('نام انبار تغییر کرد.')}
+function renameWarehouse(wid){let w=db.warehouses.find(w=>w.id===wid);if(!w)return;let name=prompt('نام جدید انبار:',w.name);if(name===null||!name.trim())return;w.name=name.trim();persist();renderAll();toast('نام انبار تغییر کرد.')}
 
-function deleteWarehouse(wid){if(db.warehouses.length<=1){toast('حداقل یک انبار باید باقی بماند.');return}if(db.invoices.some(i=>i.warehouseId===wid)){toast('این انبار در فاکتورها استفاده شده؛ حذف آن مجاز نیست.');return}if(!confirm('این انبار حذف شود؟'))return;db.warehouses=db.warehouses.filter(w=>w.id!==wid);db.products.forEach(p=>delete p.stock[wid]);persist();renderAll()}
+function deleteWarehouse(wid){if(db.warehouses.length<=1){toast('حداقل یک انبار باید باقی بماند.');return}if(db.invoices.some(i=>i.warehouseId===wid)){toast('این انبار در فاکتورها استفاده شده و قابل حذف نیست.');return}if(!confirm('انبار حذف شود؟'))return;db.warehouses=db.warehouses.filter(w=>w.id!==wid);db.products.forEach(p=>delete p.stock[wid]);persist();renderAll()}
 
-function deleteProduct(pid){let p=db.products.find(p=>p.id===pid);if(!p)return;if(db.invoices.some(i=>i.items.some(it=>it.productId===pid))){toast('این کالا در فاکتورها استفاده شده؛ حذف آن مجاز نیست.');return}if(!confirm('کالا حذف شود؟'))return;db.products=db.products.filter(p=>p.id!==pid);persist();renderAll()}
+function deleteProduct(pid){if(db.invoices.some(i=>i.items.some(x=>x.productId===pid))){toast('این کالا در فاکتور سابقه دارد و قابل حذف نیست.');return}if(!confirm('کالا حذف شود؟'))return;db.products=db.products.filter(p=>p.id!==pid);persist();renderAll()}
 
-function openPerson(personId=null){
-
- let p=db.people.find(p=>p.id===personId);
-
- openModal(p?'ویرایش شخص':'ثبت شخص جدید',`<form onsubmit="savePerson(event,'${p?.id||''}')"><div class="form-grid two">
-
- <div class="field"><label>نام شخص / شرکت</label><input id="personName" required value="${esc(p?.name||'')}"></div>
-
- <div class="field"><label>شماره تماس</label><input id="personPhone" inputmode="tel" value="${esc(p?.phone||'')}"></div>
-
- <div class="field"><label>نوع همکاری</label><select id="personType">${[['customer','مشتری'],['supplier','تأمین‌کننده'],['both','مشتری و تأمین‌کننده'],['other','سایر']].map(([v,l])=>`<option value="${v}" ${v===(p?.type||'customer')?'selected':''}>${l}</option>`).join('')}</select></div>
-
- <div class="field"><label>یادداشت</label><input id="personNote" value="${esc(p?.note||'')}"></div>
-
- </div><div class="form-actions"><button class="btn">ذخیره شخص</button><button class="btn gray" type="button" onclick="closeModal()">انصراف</button></div></form>`)
-
-}
+function openPerson(pid=null){let p=db.people.find(x=>x.id===pid);openModal(p?'ویرایش شخص':'ثبت شخص جدید',`<form onsubmit="savePerson(event,'${p?.id||''}')"><div class="form-grid two"><div class="field"><label>نام شخص / شرکت</label><input id="personName" required value="${esc(p?.name||'')}"></div><div class="field"><label>شماره تماس</label><input id="personPhone" inputmode="tel" value="${esc(p?.phone||'')}"></div><div class="field"><label>نوع همکاری</label><select id="personType">${[['customer','مشتری'],['supplier','تأمین‌کننده'],['both','مشتری و تأمین‌کننده'],['other','سایر']].map(([v,l])=>`<option value="${v}" ${v===(p?.type||'customer')?'selected':''}>${l}</option>`).join('')}</select></div><div class="field"><label>یادداشت</label><input id="personNote" value="${esc(p?.note||'')}"></div></div><div class="form-actions"><button class="btn">ذخیره شخص</button><button class="btn gray" type="button" onclick="closeModal()">انصراف</button></div></form>`)}
 
 function savePerson(e,pid){e.preventDefault();let data={name:$('personName').value.trim(),phone:$('personPhone').value.trim(),type:$('personType').value,note:$('personNote').value.trim()};if(!data.name)return;let p=db.people.find(p=>p.id===pid);if(p)Object.assign(p,data);else db.people.push({id:id('person'),...data});persist();closeModal();renderAll();toast('اطلاعات شخص ذخیره شد.')}
 
-function renderPeople(){
+function renderPeople(){let q=($('peopleSearch')?.value||'').toLowerCase();$('peopleRows').innerHTML=db.people.filter(p=>[p.name,p.phone,p.note].join(' ').toLowerCase().includes(q)).map(p=>{let b=signedBalance(p.id);return `<tr><td><b>${esc(p.name)}</b></td><td>${esc(p.phone||'—')}</td><td>${({customer:'مشتری',supplier:'تأمین‌کننده',both:'هر دو',other:'سایر'})[p.type]||'سایر'}</td><td class="low">${money(Math.max(0,b))}</td><td class="ok">${money(Math.max(0,-b))}</td><td><span class="pill ${b>0?'red':b<0?'green':'gray'}">${b>0?'بدهکار':b<0?'بستانکار':'تسویه'}</span></td><td><button class="btn secondary small" onclick="openTransaction(null,'${p.id}')">تراکنش</button> <button class="btn gray small" onclick="openPerson('${p.id}')">ویرایش</button> <button class="btn red small" onclick="deletePerson('${p.id}')">حذف</button></td></tr>`}).join('')||emptyRow(7)}
 
- let q=($('peopleSearch')?.value||'').toLowerCase();
+function deletePerson(pid){if(db.invoices.some(i=>i.personId===pid)||db.transactions.some(t=>t.personId===pid)){toast('این شخص سابقه مالی دارد؛ حذف نمی‌شود.');return}if(!confirm('شخص حذف شود؟'))return;db.people=db.people.filter(p=>p.id!==pid);persist();renderAll()}
 
- $('peopleRows').innerHTML=db.people.filter(p=>[p.name,p.phone,p.note].join(' ').toLowerCase().includes(q)).map(p=>{let b=signedBalance(p.id);return `<tr><td><b>${esc(p.name)}</b></td><td>${esc(p.phone||'—')}</td><td>${({customer:'مشتری',supplier:'تأمین‌کننده',both:'هر دو',other:'سایر'})[p.type]||'سایر'}</td><td class="low">${money(Math.max(0,b))}</td><td class="ok">${money(Math.max(0,-b))}</td><td><span class="pill ${b>0?'red':b<0?'green':'gray'}">${b>0?'بدهکار':b<0?'بستانکار':'تسویه'}</span></td><td><button class="btn secondary small" onclick="openTransaction('${p.id}')">تراکنش</button> <button class="btn gray small" onclick="openPerson('${p.id}')">ویرایش</button> <button class="btn red small" onclick="deletePerson('${p.id}')">حذف</button></td></tr>`}).join('')||emptyRow(7);
+function openTransaction(editId=null,personId=''){let t=db.transactions.find(x=>x.id===editId);txEditId=editId;openModal(t?'ویرایش تراکنش':'ثبت تراکنش مالی',`<form onsubmit="saveTransaction(event)"><div class="form-grid two"><div class="field"><label>نوع تراکنش</label><select id="tType"><option value="in" ${t?.type==='in'?'selected':''}>دریافت وجه از شخص</option><option value="out" ${t?.type==='out'?'selected':''}>پرداخت وجه به شخص</option><option value="transfer" ${t?.type==='transfer'?'selected':''}>تسویه / انتقال حساب</option></select></div><div class="field"><label>شخص مرتبط</label><select id="tPerson"><option value="">بدون شخص</option>${db.people.map(p=>`<option value="${p.id}" ${(t?.personId||personId)===p.id?'selected':''}>${esc(p.name)}</option>`).join('')}</select></div><div class="field"><label>مبلغ</label><input id="tAmount" class="numeric" inputmode="numeric" required value="${fmt(t?.amount||0)}"></div><div class="field"><label>تاریخ شمسی</label>${datePickerHtml('tDate',t?.date||todayString())}</div><div class="field" style="grid-column:1/-1"><label>شرح تراکنش</label><input id="tDesc" required value="${esc(t?.description||'')}" placeholder="مثلاً تسویه حساب یا هزینه حمل"></div></div><div class="notice">تراکنش‌های وابسته به فاکتور از طریق ویرایش همان فاکتور اصلاح می‌شوند تا مبلغ و پرداخت با هم هماهنگ بمانند.</div><div class="form-actions"><button class="btn">${t?'ذخیره تغییرات':'ثبت تراکنش'}</button><button class="btn gray" type="button" onclick="closeModal()">انصراف</button></div></form>`);setupDate('tDate',t?.date||todayString());if(t?.automatic){$('tType').disabled=true;$('tPerson').disabled=true;$('tAmount').readOnly=true;$('tDesc').readOnly=true}}
 
-}
+function editTransaction(tid){let t=db.transactions.find(t=>t.id===tid);if(!t)return;if(t.automatic&&t.invoiceId){let i=db.invoices.find(i=>i.id===t.invoiceId);if(i){openInvoice(i.type,i.id);return}}openTransaction(tid)}
 
-function deletePerson(pid){if(db.invoices.some(i=>i.personId===pid)||db.transactions.some(t=>t.personId===pid)){toast('این شخص دارای سابقه مالی است و حذف نمی‌شود.');return}if(!confirm('شخص حذف شود؟'))return;db.people=db.people.filter(p=>p.id!==pid);persist();renderAll()}
+function saveTransaction(e){e.preventDefault();let amount=num($('tAmount').value);if(amount<=0){toast('مبلغ باید بیشتر از صفر باشد.');return}let old=db.transactions.find(t=>t.id===txEditId);if(old?.automatic){toast('برای تغییر این تراکنش، فاکتور مربوطه را ویرایش کنید.');return}let data={type:$('tType').value,personId:$('tPerson').value||null,amount,date:readDate('tDate'),description:$('tDesc').value.trim(),updatedAt:Date.now()};if(old)Object.assign(old,data);else db.transactions.push({id:id('tx'),...data,createdAt:Date.now()});persist();closeModal();renderAll();toast(old?'تراکنش ویرایش شد.':'تراکنش ثبت شد.')}
 
-function txBadge(type){return type==='in'?'<span class="pill green">دریافت</span>':type==='out'?'<span class="pill red">پرداخت</span>':'<span class="pill orange">تسویه</span>'}
+function renderTransactions(){let q=($('txSearch')?.value||'').toLowerCase(),type=$('txTypeFilter')?.value||'',arr=db.transactions.slice().sort((a,b)=>parseDate(b.date)-parseDate(a.date)).filter(t=>(!type||t.type===type)&&[t.description,personName(t.personId)].join(' ').toLowerCase().includes(q));$('txRows').innerHTML=arr.map(t=>`<tr><td>${esc(t.description||'—')}</td><td>${esc(personName(t.personId))}</td><td>${txBadge(t.type)}</td><td>${esc(t.date)}</td><td><b>${money(t.amount)}</b></td><td><button class="btn secondary small" onclick="editTransaction('${t.id}')">ویرایش</button> <button class="btn red small" onclick="deleteTransaction('${t.id}')">حذف</button></td></tr>`).join('')||emptyRow(6);$('txIn').textContent=money(db.transactions.filter(t=>t.type==='in').reduce((s,t)=>s+num(t.amount),0));$('txOut').textContent=money(db.transactions.filter(t=>t.type==='out').reduce((s,t)=>s+num(t.amount),0));$('txNet').textContent=money(cashBalance())}
 
-function openTransaction(personId=''){
+function deleteTransaction(tid){let t=db.transactions.find(t=>t.id===tid);if(!t)return;if(t.automatic){toast('این تراکنش به فاکتور متصل است؛ از ویرایش یا حذف همان فاکتور اقدام کنید.');return}if(!confirm('تراکنش حذف شود؟'))return;db.transactions=db.transactions.filter(t=>t.id!==tid);persist();renderAll()}
 
- openModal('ثبت تراکنش مالی',`<form onsubmit="saveTransaction(event)"><div class="form-grid two">
+function renderReports(){let from=parseDate(readDate('reportFrom')),to=parseDate(readDate('reportTo'));if(from>to){toast('تاریخ شروع نباید بعد از پایان باشد.');return}let inv=db.invoices.filter(i=>parseDate(i.date)>=from&&parseDate(i.date)<=to),tx=db.transactions.filter(t=>parseDate(t.date)>=from&&parseDate(t.date)<=to),sales=inv.filter(i=>i.type==='sale').reduce((s,i)=>s+invGross(i),0),buys=inv.filter(i=>i.type==='purchase').reduce((s,i)=>s+invGross(i),0),expenses=inv.reduce((s,i)=>s+num(i.expenses),0),profit=inv.reduce((s,i)=>s+invProfit(i),0),tin=tx.filter(t=>t.type==='in').reduce((s,t)=>s+num(t.amount),0),tout=tx.filter(t=>t.type==='out').reduce((s,t)=>s+num(t.amount),0);$('rSales').textContent=money(sales);$('rPurchases').textContent=money(buys);$('rProfit').textContent=money(profit);$('rExpenses').textContent=money(expenses);$('rIn').textContent=money(tin);$('rOut').textContent=money(tout);let cogs=inv.filter(i=>i.type==='sale').reduce((s,i)=>s+i.items.reduce((a,x)=>a+num(x.qty)*num(x.cost),0),0);$('profitRows').innerHTML=`<tr><td>فروش کالاها</td><td>${money(sales)}</td></tr><tr><td>بهای خرید کالای فروخته‌شده</td><td>${money(cogs)}</td></tr><tr><td>هزینه‌های فاکتورها</td><td>${money(expenses)}</td></tr><tr><td><b>سود تخمینی پس از هزینه فاکتورها</b></td><td><b>${money(profit)}</b></td></tr><tr><td>توضیح</td><td class="muted">سود بر اساس بهای خرید واردشده برای کالاها محاسبه می‌شود؛ سایر هزینه‌های عملیاتی در آن نیست.</td></tr>`;$('reportStock').innerHTML=db.products.flatMap(p=>db.warehouses.map(w=>({p,w,qty:stockFor(p.id,w.id)}))).filter(x=>x.qty!==0).map(x=>`<tr><td>${esc(x.p.name)}</td><td>${esc(x.w.name)}</td><td>${fmt(x.qty)}</td><td>${money(x.qty*num(x.p.cost))}</td></tr>`).join('')||emptyRow(4);$('reportPeople').innerHTML=db.people.map(p=>({p,b:signedBalance(p.id)})).filter(x=>x.b!==0).map(x=>`<tr><td>${esc(x.p.name)}</td><td>${money(Math.max(0,x.b))}</td><td>${money(Math.max(0,-x.b))}</td></tr>`).join('')||emptyRow(3)}
 
- <div class="field"><label>نوع تراکنش</label><select id="tType"><option value="in">دریافت وجه از شخص</option><option value="out">پرداخت وجه به شخص</option><option value="transfer">تسویه / انتقال بین حساب‌ها</option></select></div>
-
- <div class="field"><label>شخص مرتبط</label><select id="tPerson"><option value="">بدون شخص</option>${db.people.map(p=>`<option value="${p.id}" ${p.id===personId?'selected':''}>${esc(p.name)}</option>`).join('')}</select></div>
-
- <div class="field"><label>مبلغ</label><input id="tAmount" class="numeric" inputmode="decimal" required value="0"></div>
-
- <div class="field"><label>تاریخ شمسی</label>${datePickerHtml('tDate')}</div>
-
- <div class="field" style="grid-column:1/-1"><label>شرح تراکنش</label><input id="tDesc" required placeholder="مثلاً تسویه حساب یا هزینه حمل"></div>
-
- </div><div class="notice">دریافت، مانده بدهکاری شخص را کم می‌کند؛ پرداخت، مانده بستانکاری شخص را کم می‌کند. تراکنش‌ها بر موجودی نقدی اثر می‌گذارند.</div><div class="form-actions"><button class="btn">ثبت تراکنش</button><button class="btn gray" type="button" onclick="closeModal()">انصراف</button></div></form>`);
-
- setupDate('tDate')
-
-}
-
-function saveTransaction(e){e.preventDefault();let amount=num($('tAmount').value);if(amount<=0){toast('مبلغ باید بیشتر از صفر باشد.');return}db.transactions.push({id:id('tx'),type:$('tType').value,personId:$('tPerson').value||null,amount,date:readDate('tDate'),description:$('tDesc').value.trim(),createdAt:Date.now()});persist();closeModal();renderAll();toast('تراکنش ثبت شد.')}
-
-function renderTransactions(){
-
- let q=($('txSearch')?.value||'').toLowerCase(),type=$('txTypeFilter')?.value||'';
-
- let arr=db.transactions.slice().sort((a,b)=>parseDate(b.date)-parseDate(a.date)).filter(t=>(!type||t.type===type)&&[t.description,personName(t.personId)].join(' ').toLowerCase().includes(q));
-
- $('txRows').innerHTML=arr.map(t=>`<tr><td>${esc(t.description||'—')}</td><td>${esc(personName(t.personId))}</td><td>${txBadge(t.type)}</td><td>${esc(t.date)}</td><td><b>${money(t.amount)}</b></td><td>${t.automatic?'<span class="muted">وابسته به فاکتور</span>':`<button class="btn red small" onclick="deleteTransaction('${t.id}')">حذف</button>`}</td></tr>`).join('')||emptyRow(6);
-
- $('txIn').textContent=money(db.transactions.filter(t=>t.type==='in').reduce((s,t)=>s+num(t.amount),0));$('txOut').textContent=money(db.transactions.filter(t=>t.type==='out').reduce((s,t)=>s+num(t.amount),0));$('txNet').textContent=money(cashBalance())
-
-}
-
-function deleteTransaction(tid){let t=db.transactions.find(t=>t.id===tid);if(!t)return;if(t.automatic){toast('این تراکنش به فاکتور متصل است؛ از مدیریت فاکتورها اقدام کنید.');return}if(!confirm('تراکنش حذف شود؟'))return;db.transactions=db.transactions.filter(t=>t.id!==tid);persist();renderAll()}
-
-function renderReports(){
-
- if(!$('reportFromY').options.length){let now=todayJ(),start=dateValue(now.y,1,1);setupDate('reportFrom',start);setupDate('reportTo',todayString())}
-
- let from=parseDate(readDate('reportFrom')),to=parseDate(readDate('reportTo'));
-
- if(from>to){toast('تاریخ شروع نباید بعد از تاریخ پایان باشد.');return}
-
- let inv=db.invoices.filter(i=>parseDate(i.date)>=from&&parseDate(i.date)<=to),tx=db.transactions.filter(t=>parseDate(t.date)>=from&&parseDate(t.date)<=to);
-
- let sales=inv.filter(i=>i.type==='sale').reduce((s,i)=>s+invGross(i),0);
-
- let buys=inv.filter(i=>i.type==='purchase').reduce((s,i)=>s+invGross(i),0);
-
- let expenses=inv.reduce((s,i)=>s+num(i.expenses),0);
-
- let profit=inv.reduce((s,i)=>s+invProfit(i),0);
-
- let tin=tx.filter(t=>t.type==='in').reduce((s,t)=>s+num(t.amount),0),tout=tx.filter(t=>t.type==='out').reduce((s,t)=>s+num(t.amount),0);
-
- $('rSales').textContent=money(sales);$('rPurchases').textContent=money(buys);$('rProfit').textContent=money(profit);$('rExpenses').textContent=money(expenses);$('rIn').textContent=money(tin);$('rOut').textContent=money(tout);
-
- $('profitRows').innerHTML=`<tr><td>فروش کالاها</td><td>${money(sales)}</td></tr><tr><td>بهای خرید کالای فروخته‌شده</td><td>${money(inv.filter(i=>i.type==='sale').reduce((s,i)=>s+i.items.reduce((a,x)=>a+num(x.qty)*num(x.cost),0),0))}</td></tr><tr><td>هزینه‌های فاکتورها</td><td>${money(expenses)}</td></tr><tr><td><b>سود تخمینی پس از هزینه‌های فاکتور</b></td><td><b>${money(profit)}</b></td></tr><tr><td>توجه</td><td class="muted">سود فقط بر اساس فاکتورهای ثبت‌شده و بهای خرید واردشده محاسبه شده؛ سایر هزینه‌های عملیاتی جداگانه لحاظ نشده‌اند.</td></tr>`;
-
- $('reportStock').innerHTML=db.products.flatMap(p=>db.warehouses.map(w=>({p,w,qty:stockFor(p.id,w.id)}))).filter(x=>x.qty!==0).map(x=>`<tr><td>${esc(x.p.name)}</td><td>${esc(x.w.name)}</td><td>${fmt(x.qty)}</td><td>${money(x.qty*num(x.p.cost))}</td></tr>`).join('')||emptyRow(4);
-
- $('reportPeople').innerHTML=db.people.map(p=>({p,b:signedBalance(p.id)})).filter(x=>x.b!==0).map(x=>`<tr><td>${esc(x.p.name)}</td><td>${money(Math.max(0,x.b))}</td><td>${money(Math.max(0,-x.b))}</td></tr>`).join('')||emptyRow(3);
-
-}
-
-function exportCSV(){
-
- let from=parseDate(readDate('reportFrom')),to=parseDate(readDate('reportTo')),rows=[['نوع','شماره/شرح','شخص','تاریخ','مبلغ']];
-
- db.invoices.filter(i=>parseDate(i.date)>=from&&parseDate(i.date)<=to).forEach(i=>rows.push([i.type==='sale'?'فروش':'خرید',i.number,personName(i.personId),i.date,invTotal(i)]));
-
- db.transactions.filter(t=>parseDate(t.date)>=from&&parseDate(t.date)<=to).forEach(t=>rows.push([t.type==='in'?'دریافت':t.type==='out'?'پرداخت':'تسویه',t.description,personName(t.personId),t.date,t.amount]));
-
- let csv='\uFEFF'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
-
- downloadBlob(csv,'davin-report.csv','text/csv;charset=utf-8');toast('فایل CSV آماده شد.')
-
-}
+function exportCSV(){let from=parseDate(readDate('reportFrom')),to=parseDate(readDate('reportTo')),rows=[['نوع','شماره/شرح','شخص','تاریخ','مبلغ']];db.invoices.filter(i=>parseDate(i.date)>=from&&parseDate(i.date)<=to).forEach(i=>rows.push([i.type==='sale'?'فروش':'خرید',i.number,personName(i.personId),i.date,invTotal(i)]));db.transactions.filter(t=>parseDate(t.date)>=from&&parseDate(t.date)<=to).forEach(t=>rows.push([t.type==='in'?'دریافت':t.type==='out'?'پرداخت':'تسویه',t.description,personName(t.personId),t.date,t.amount]));downloadBlob('\uFEFF'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n'),'davin-report.csv','text/csv;charset=utf-8');toast('فایل CSV آماده شد.')}
 
 function renderSettings(){$('setStore').value=db.settings.store||'';$('setCurrency').value=db.settings.currency||'تومان';$('setLow').value=fmt(db.settings.low);$('setInvoiceCount').textContent=fmt(db.invoices.length);$('setPeopleCount').textContent=fmt(db.people.length)}
 
@@ -1114,57 +506,23 @@ function saveSettings(){db.settings.store=$('setStore').value.trim()||'DAVIN PRO
 
 function downloadBlob(content,name,type){let blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)}
 
-function backupData(){persist();downloadBlob(JSON.stringify({app:'DAVIN PRO',version:1,exportedAt:new Date().toISOString(),data:db},null,2),'davin-backup-'+todayString().replaceAll('/','-')+'.json','application/json');toast('نسخه پشتیبان تهیه شد.')}
+function backupData(){persist();downloadBlob(JSON.stringify({app:'DAVIN PRO',version:2,exportedAt:new Date().toISOString(),data:db},null,2),'davin-backup-'+todayString().replaceAll('/','-')+'.json','application/json');toast('نسخه پشتیبان تهیه شد.')}
 
-function restoreData(){
+function restoreData(){let f=$('restoreFile').files[0];if(!f){toast('ابتدا فایل پشتیبان را انتخاب کنید.');return}if(!confirm('اطلاعات فعلی با فایل پشتیبان جایگزین شود؟'))return;let r=new FileReader();r.onload=()=>{try{let raw=JSON.parse(r.result),d=raw.data||raw;if(!d.warehouses||!d.products||!d.people||!d.invoices||!d.transactions)throw Error();let b=blank();db={...b,...d,settings:{...b.settings,...d.settings},seq:{...b.seq,...d.seq}};persist();renderAll();toast('اطلاعات بازیابی شد.')}catch(e){toast('فایل پشتیبان معتبر نیست.')}};r.readAsText(f)}
 
- let f=$('restoreFile').files[0];if(!f){toast('ابتدا فایل پشتیبان را انتخاب کنید.');return}
-
- if(!confirm('اطلاعات فعلی با فایل پشتیبان جایگزین شود؟'))return;
-
- let reader=new FileReader();reader.onload=()=>{try{let raw=JSON.parse(reader.result),d=raw.data||raw;if(!d.warehouses||!d.products||!d.people||!d.invoices||!d.transactions)throw new Error('invalid');db=d;let b=blank();db.settings={...b.settings,...db.settings};db.seq={...b.seq,...db.seq};persist();renderAll();toast('اطلاعات بازیابی شد.')}catch(e){toast('فایل پشتیبان معتبر نیست.')}};reader.readAsText(f)
-
-}
-
-function clearData(){if(!confirm('آیا از حذف تمام اطلاعات مطمئن هستید؟ این عملیات قابل برگشت نیست.'))return;if(!confirm('تأیید نهایی: تمام فاکتورها، کالاها، اشخاص و تراکنش‌ها حذف شوند؟'))return;db=blank();persist();renderAll();toast('اطلاعات برنامه پاک شد.')}
+function clearData(){if(!confirm('تمام اطلاعات حذف شود؟ این عملیات قابل برگشت نیست.'))return;if(!confirm('تأیید نهایی: تمام فاکتورها، کالاها، اشخاص و تراکنش‌ها حذف شوند؟'))return;db=blank();persist();renderAll();toast('اطلاعات برنامه پاک شد.')}
 
 function renderAll(){renderDashboard();renderInvoices();renderInventory();renderPeople();renderTransactions();renderReports();renderSettings()}
 
-document.addEventListener('input',e=>{
+// قالب‌بندی زنده اعداد هنگام تایپ؛ مکان‌نما تا حد ممکن در محل قبلی می‌ماند.
 
- if(!e.target.classList.contains('numeric'))return;
+document.addEventListener('input',e=>{let el=e.target;if(!el.classList.contains('numeric'))return;let before=el.value,caret=el.selectionStart||before.length,left=before.slice(0,caret),digitsLeft=(left.match(/\d/g)||[]).length,digits=before.replace(/\D/g,'');let formatted=digits?digits.replace(/\B(?=(\d{3})+(?!\d))/g,','):'';if(formatted!==before){el.value=formatted;let pos=0,count=0;while(pos<formatted.length&&count<digitsLeft){if(/\d/.test(formatted[pos]))count++;pos++}try{el.setSelectionRange(pos,pos)}catch(_){}}});
 
- let el=e.target,raw=el.value;
-
- let clean=raw.replace(/[^\d.,٬،\-]/g,'').replace(/[٬،]/g,',');
-
- let pos=el.selectionStart;
-
- if(clean!==raw){el.value=clean;try{el.setSelectionRange(pos-1,pos-1)}catch(_){}}
-
-});
-
-document.addEventListener('blur',e=>{
-
- if(!e.target.classList.contains('numeric'))return;
-
- let el=e.target;el.value=fmt(num(el.value))
-
-},true);
+document.addEventListener('blur',e=>{if(e.target.classList.contains('numeric'))e.target.value=fmt(num(e.target.value))},true);
 
 window.addEventListener('storage',e=>{if(e.key===DBKEY){db=loadDB();renderAll()}});
 
-(function init(){
-
- $('brandName').textContent=db.settings.store||'DAVIN PRO';
-
- let now=todayJ();$('todayText').textContent='📅 '+todayString();
-
- setupDate('reportFrom',dateValue(now.y,1,1));setupDate('reportTo',todayString());
-
- renderAll()
-
-})();
+(function init(){let now=todayJ();$('todayText').textContent='📅 '+todayString();$('reportFromWrap').innerHTML=datePickerHtml('reportFrom',dateStr(now.y,1,1));$('reportToWrap').innerHTML=datePickerHtml('reportTo',todayString());setupDate('reportFrom',dateStr(now.y,1,1));setupDate('reportTo',todayString());renderAll()})();
 
 </script>
 
