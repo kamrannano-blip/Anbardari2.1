@@ -1,0 +1,27 @@
+{
+  "name": "سیستم حسابداری DAVIN",
+  "short_name": "DAVIN",
+  "description": "نرم افزار حسابداری و انبارداری",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f1419",
+  "theme_color": "#0f1419",
+  "lang": "fa",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "DAVIN.PNG",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "DAVIN.PNG",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
