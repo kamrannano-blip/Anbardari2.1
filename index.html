@@ -144,7 +144,6 @@ body{font-family:'Estedad','Vazirmatn',sans-serif;background:linear-gradient(135
 .btn-sm{padding:6px 12px;font-size:12px}
 .btn-icon{padding:8px;width:36px;height:36px;justify-content:center}
 
-/* 🆕 دکمه‌های سریع دریافت/پرداخت */
 .quick-tx{
   width:32px;height:32px;padding:0;border-radius:9px;
   display:inline-flex;align-items:center;justify-content:center;
@@ -604,9 +603,6 @@ function totals(){
   return {sales,purchases,cogs,profit,receivable,payable,cash};
 }
 
-// ✅ سرمایه فعلی = ارزش خالص دارایی‌ها
-// = موجودی نقد + ارزش انبار + مطالبات − بدهی‌ها
-// ⚠️ سود دوباره اضافه نمی‌شود چون قبلاً در نقد (فروش نقدی) یا مطالبات (فروش نسیه) لحاظ شده
 function currentCapital(){
   const t = totals();
   const stockVal = stockValue();
@@ -851,7 +847,7 @@ function deleteWarehouse(id){
 }
 
 /* =========================================================
-   اشخاص — با دکمه‌های سریع دریافت/پرداخت
+   اشخاص
    ========================================================= */
 let personFilter = 'all';
 function renderPersons(){
@@ -894,7 +890,6 @@ function renderPersons(){
     </tbody></table></div></div>`;
 }
 
-// 🆕 ثبت سریع تراکنش برای یک شخص
 function quickTx(personId, type){
   const p = DB.data.persons.find(x=>x.id===personId);
   if(!p){toast('شخص یافت نشد','error');return;}
@@ -985,15 +980,28 @@ function deletePerson(id){
     DB.save(); renderPersons(); toast('شخص حذف شد','success');
   });
 }
+
+/* =========================================================
+   گردش حساب — با دکمه ویرایش روی هر ردیف
+   ========================================================= */
 function personLedger(id){
   const p = DB.data.persons.find(x=>x.id===id);
   const rows = [];
+  // فاکتورها
   for(const inv of DB.data.invoices){
     if(inv.personId===id){
       const rem = inv.total - (inv.paidAmount||0);
-      rows.push({date:inv.date,desc:`فاکتور ${inv.type==='sale'?'فروش':'خرید'} #${inv.number}${rem>0?' (نسیه)':''}`,amount:inv.total,type:inv.type});
+      rows.push({
+        date:inv.date,
+        desc:`فاکتور ${inv.type==='sale'?'فروش':'خرید'} #${inv.number}${rem>0?' (نسیه)':''}`,
+        amount:inv.total,
+        type:inv.type,
+        refType:'invoice',
+        refId:inv.id
+      });
     }
   }
+  // تراکنش‌ها
   for(const t of DB.data.transactions){
     if(t.personId===id || t.toPersonId===id){
       let desc = t.type==='receive'?'دریافت وجه':t.type==='pay'?'پرداخت وجه':'انتقال';
@@ -1002,22 +1010,41 @@ function personLedger(id){
         const op = DB.data.persons.find(x=>x.id===other);
         desc = `انتقال ${t.personId===id?'به':'از'} ${op?.name||'?'}`;
       }
-      rows.push({date:t.date,desc,amount:t.amount,type:t.type});
+      rows.push({
+        date:t.date,
+        desc,
+        amount:t.amount,
+        type:t.type,
+        refType:'transaction',
+        refId:t.id
+      });
     }
   }
   rows.sort((a,b)=>b.date.localeCompare(a.date));
   const bal = personBalance(id);
   const label = personBalanceLabel(bal);
   openModal(`گردش حساب: ${p.name}`,`
-    <div class="flex justify-between mb-3">
+    <div class="flex justify-between mb-3 flex-wrap gap-2">
       <div class="text-muted">تعداد تراکنش: ${rows.length}</div>
       <div>وضعیت: <span class="badge ${label.cls}">${label.text} ${formatMoney(Math.abs(bal))}</span></div>
     </div>
-    <div class="table-wrap"><table><thead><tr><th>تاریخ</th><th>شرح</th><th>مبلغ</th><th>نوع</th></tr></thead><tbody>
+    <div class="table-wrap"><table><thead><tr>
+      <th>تاریخ</th><th>شرح</th><th>مبلغ</th><th>نوع</th><th>عملیات</th>
+    </tr></thead><tbody>
       ${rows.length? rows.map(r=>`<tr>
-        <td class="num">${r.date}</td><td>${r.desc}</td><td class="num">${formatNum(r.amount)}</td>
+        <td class="num">${r.date}</td>
+        <td>${r.desc}</td>
+        <td class="num">${formatNum(r.amount)}</td>
         <td><span class="badge ${r.type==='sale'?'badge-success':r.type==='purchase'?'badge-danger':r.type==='receive'?'badge-info':'badge-warning'}">${r.type==='sale'?'فروش':r.type==='purchase'?'خرید':r.type==='receive'?'دریافت':r.type==='pay'?'پرداخت':'انتقال'}</span></td>
-      </tr>`).join('') : '<tr><td colspan="4" class="text-center text-muted">موردی ثبت نشده</td></tr>'}
+        <td style="white-space:nowrap">
+          ${r.refType==='invoice'?`
+            <button class="btn btn-sm btn-ghost" onclick="closeModal();viewInvoice('${r.refId}')" title="مشاهده فاکتور">👁</button>
+            <button class="btn btn-sm btn-warning" onclick="closeModal();invoiceForm('${r.type}','${r.refId}')" title="ویرایش فاکتور">✏️</button>
+          `:`
+            <button class="btn btn-sm btn-warning" onclick="closeModal();txForm('${r.type}','${r.refId}')" title="ویرایش تراکنش">✏️</button>
+          `}
+        </td>
+      </tr>`).join('') : '<tr><td colspan="5" class="text-center text-muted">موردی ثبت نشده</td></tr>'}
     </tbody></table></div>
   `,`<button class="btn btn-ghost" onclick="closeModal()">بستن</button>`,'lg');
 }
@@ -1547,7 +1574,7 @@ function renderReports(){
     <div class="card">
       <div class="card-header"><div class="card-title">گزارش موجودی و بهای تمام‌شده</div></div>
       <div class="table-wrap"><table><thead><tr><th>کد</th><th>کالا</th><th>موجودی</th><th>میانگین بهای تمام‌شده</th><th>ارزش موجودی</th></tr></thead><tbody>
-        ${DB.data.products.length? DB.data.products.map(p=>{
+        ${DB".data.products value.length? DB.data.products.map(p=>{
           const q = stockOf(p.id);
           const avg = avgCostOf(p.id);
           return `<tr><td>${p.code||'-'}</td><td>${p.name}</td><td class="num ${q<=p.minStock?'text-danger':''}">${formatNum(q)}</td><td class="num" style="color:var(--info);font-weight:700">${formatNum(avg)}</td><td class="num">${formatNum(q*avg)}</td></tr>`;
@@ -1575,7 +1602,7 @@ function renderSettings(){
     <div class="grid grid-2">
       <div class="card">
         <div class="card-header"><div class="card-title">تنظیمات عمومی</div></div>
-        <div class="form-group"><label class="form-label">نام فروشگاه</label><input class="form-control" id="setShop" value="${s.shopName}"></div>
+        <div class="form-group"><label class="form-label">نام فروشگاه</label><input class="form-control" id="setShop="${s.shopName}"></div>
         <div class="form-group"><label class="form-label">واحد پول</label>
           <select class="form-control" id="setCurrency">
             <option value="تومان" ${s.currency==='تومان'?'selected':''}>تومان</option>
