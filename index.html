@@ -38,74 +38,31 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Estedad','Vazirmatn',sans-serif;background:linear-gradient(135deg,#f8fafc 0%,#eef2ff 100%);background-attachment:fixed;color:var(--gray-800);font-size:14px;line-height:1.7;min-height:100vh;-webkit-tap-highlight-color:transparent}
-
 .app{display:flex;min-height:100vh}
-.sidebar{
-  width:262px;background:linear-gradient(180deg,#ffffff 0%,#f8faff 100%);
-  border-left:1px solid var(--gray-200);
-  padding:20px 0;position:fixed;top:0;right:0;bottom:0;overflow-y:auto;z-index:50;
-  transition:transform .3s;box-shadow:2px 0 20px rgba(99,102,241,.06);
-}
+.sidebar{width:262px;background:linear-gradient(180deg,#ffffff 0%,#f8faff 100%);border-left:1px solid var(--gray-200);padding:20px 0;position:fixed;top:0;right:0;bottom:0;overflow-y:auto;z-index:50;transition:transform .3s;box-shadow:2px 0 20px rgba(99,102,241,.06)}
 .sidebar .brand{display:flex;align-items:center;gap:12px;padding:0 20px 20px;border-bottom:1px solid var(--gray-100);margin-bottom:16px}
-.sidebar .brand-icon{
-  width:46px;height:46px;
-  background:linear-gradient(135deg,var(--primary) 0%,#8b5cf6 60%,#a855f7 100%);
-  border-radius:13px;display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:22px;font-weight:800;
-  box-shadow:0 4px 0 rgba(76,29,149,.4),0 8px 16px var(--primary-glow),inset 0 1px 0 rgba(255,255,255,.3);
-  transform:perspective(300px) rotateX(4deg);
-}
+.sidebar .brand-icon{width:46px;height:46px;background:linear-gradient(135deg,var(--primary) 0%,#8b5cf6 60%,#a855f7 100%);border-radius:13px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:800;box-shadow:0 4px 0 rgba(76,29,149,.4),0 8px 16px var(--primary-glow),inset 0 1px 0 rgba(255,255,255,.3);transform:perspective(300px) rotateX(4deg)}
 .sidebar .brand-text{font-weight:800;font-size:15px;color:var(--gray-900);letter-spacing:-.3px}
 .sidebar .brand-sub{font-size:11px;color:var(--gray-500);font-weight:500}
-.nav-item{
-  display:flex;align-items:center;gap:12px;
-  padding:11px 20px;margin:2px 10px;color:var(--gray-600);cursor:pointer;
-  font-weight:600;font-size:13.5px;border-radius:10px;transition:all .18s ease;user-select:none;
-}
+.nav-item{display:flex;align-items:center;gap:12px;padding:11px 20px;margin:2px 10px;color:var(--gray-600);cursor:pointer;font-weight:600;font-size:13.5px;border-radius:10px;transition:all .18s ease;user-select:none}
 .nav-item:hover{background:var(--gray-100);color:var(--primary);transform:translateX(-2px)}
-.nav-item.active{
-  background:linear-gradient(135deg,var(--primary) 0%,#8b5cf6 100%);color:#fff;
-  box-shadow:0 4px 0 var(--primary-dark),0 8px 20px var(--primary-glow);
-  transform:translateY(-1px);
-}
+.nav-item.active{background:linear-gradient(135deg,var(--primary) 0%,#8b5cf6 100%);color:#fff;box-shadow:0 4px 0 var(--primary-dark),0 8px 20px var(--primary-glow);transform:translateY(-1px)}
 .nav-item .icon{font-size:18px;width:22px;text-align:center;display:inline-block}
-
 .main{margin-right:262px;flex:1;padding:24px 28px 120px;min-height:100vh;position:relative}
-.topbar{
-  display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px;
-  background:rgba(255,255,255,.75);backdrop-filter:blur(12px);
-  padding:14px 20px;border-radius:14px;border:1px solid rgba(255,255,255,.8);
-  box-shadow:0 2px 6px rgba(17,24,39,.04);
-}
-.page-title{
-  font-size:22px;font-weight:800;letter-spacing:-.5px;
-  background:linear-gradient(135deg,var(--gray-900),var(--primary-dark));
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px;background:rgba(255,255,255,.75);backdrop-filter:blur(12px);padding:14px 20px;border-radius:14px;border:1px solid rgba(255,255,255,.8);box-shadow:0 2px 6px rgba(17,24,39,.04)}
+.page-title{font-size:22px;font-weight:800;letter-spacing:-.5px;background:linear-gradient(135deg,var(--gray-900),var(--primary-dark));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .menu-toggle{display:none;background:#fff;border:1px solid var(--gray-200);border-radius:10px;padding:8px 12px;cursor:pointer;font-size:18px;box-shadow:var(--shadow)}
-
-.card{
-  background:#fff;border-radius:var(--radius);padding:22px;
-  border:1px solid rgba(229,231,235,.8);
-  box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 4px 12px rgba(17,24,39,.06),0 12px 28px rgba(17,24,39,.06);
-  transition:transform .25s ease,box-shadow .25s ease;position:relative;
-}
+.card{background:#fff;border-radius:var(--radius);padding:22px;border:1px solid rgba(229,231,235,.8);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 4px 12px rgba(17,24,39,.06),0 12px 28px rgba(17,24,39,.06);transition:transform .25s ease,box-shadow .25s ease;position:relative}
 .card:hover{transform:translateY(-3px);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 8px 22px rgba(17,24,39,.09),0 20px 40px rgba(99,102,241,.08)}
 .card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px}
 .card-title{font-size:15px;font-weight:800;color:var(--gray-800);letter-spacing:-.3px}
-
 .grid{display:grid;gap:18px}
 .grid-2{grid-template-columns:repeat(2,1fr)}
 .grid-3{grid-template-columns:repeat(3,1fr)}
 .grid-4{grid-template-columns:repeat(4,1fr)}
 @media(max-width:1024px){.grid-4{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
-
-.stat{
-  padding:20px;border-radius:var(--radius);background:#fff;border:1px solid rgba(229,231,235,.9);
-  box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 4px 12px rgba(17,24,39,.05),0 1px 3px rgba(17,24,39,.04);
-  position:relative;overflow:hidden;transition:all .25s ease;transform-style:preserve-3d;
-}
+.stat{padding:20px;border-radius:var(--radius);background:#fff;border:1px solid rgba(229,231,235,.9);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 4px 12px rgba(17,24,39,.05),0 1px 3px rgba(17,24,39,.04);position:relative;overflow:hidden;transition:all .25s ease;transform-style:preserve-3d}
 .stat:hover{transform:translateY(-4px) perspective(500px) rotateX(2deg);box-shadow:0 12px 24px rgba(17,24,39,.1),0 20px 40px rgba(99,102,241,.1)}
 .stat::before{content:'';position:absolute;top:0;right:0;width:5px;height:100%;background:linear-gradient(180deg,var(--primary),#8b5cf6);box-shadow:0 0 12px var(--primary-glow)}
 .stat::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 100% 0%,rgba(99,102,241,.06),transparent 60%);pointer-events:none}
@@ -122,11 +79,7 @@ body{font-family:'Estedad','Vazirmatn',sans-serif;background:linear-gradient(135
 .stat-value.positive{color:var(--success-dark)}
 .stat-value.negative{color:var(--danger-dark)}
 .stat-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:32px;opacity:.12;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.15))}
-
-.btn{
-  display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:10px;border:none;
-  font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s ease;white-space:nowrap;position:relative;
-}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:10px;border:none;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s ease;white-space:nowrap;position:relative}
 .btn:active{transform:translateY(1px)}
 .btn-primary{background:linear-gradient(180deg,#6366f1,#4f46e5);color:#fff;box-shadow:0 3px 0 #3730a3,0 6px 14px var(--primary-glow)}
 .btn-primary:hover{background:linear-gradient(180deg,#4f46e5,#4338ca)}
@@ -143,41 +96,23 @@ body{font-family:'Estedad','Vazirmatn',sans-serif;background:linear-gradient(135
 .btn-ghost:hover{background:linear-gradient(180deg,#f3f4f6,#e5e7eb)}
 .btn-sm{padding:6px 12px;font-size:12px}
 .btn-icon{padding:8px;width:36px;height:36px;justify-content:center}
-
-.quick-tx{
-  width:32px;height:32px;padding:0;border-radius:9px;
-  display:inline-flex;align-items:center;justify-content:center;
-  border:none;cursor:pointer;font-size:15px;font-weight:800;
-  transition:all .15s ease;position:relative;
-}
+.quick-tx{width:32px;height:32px;padding:0;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;border:none;cursor:pointer;font-size:15px;font-weight:800;transition:all .15s ease;position:relative}
 .quick-tx:active{transform:translateY(2px)}
-.quick-tx-in{
-  background:linear-gradient(180deg,#10b981,#059669);color:#fff;
-  box-shadow:0 2px 0 #065f46,0 4px 8px rgba(16,185,129,.3);
-}
+.quick-tx-in{background:linear-gradient(180deg,#10b981,#059669);color:#fff;box-shadow:0 2px 0 #065f46,0 4px 8px rgba(16,185,129,.3)}
 .quick-tx-in:hover{background:linear-gradient(180deg,#059669,#047857)}
 .quick-tx-in:active{box-shadow:0 1px 0 #065f46,0 2px 4px rgba(16,185,129,.3)}
-.quick-tx-out{
-  background:linear-gradient(180deg,#ef4444,#dc2626);color:#fff;
-  box-shadow:0 2px 0 #991b1b,0 4px 8px rgba(239,68,68,.3);
-}
+.quick-tx-out{background:linear-gradient(180deg,#ef4444,#dc2626);color:#fff;box-shadow:0 2px 0 #991b1b,0 4px 8px rgba(239,68,68,.3)}
 .quick-tx-out:hover{background:linear-gradient(180deg,#dc2626,#b91c1c)}
 .quick-tx-out:active{box-shadow:0 1px 0 #991b1b,0 2px 4px rgba(239,68,68,.3)}
 .quick-tx svg{width:16px;height:16px;stroke-width:3}
-
 .form-group{margin-bottom:14px}
 .form-label{display:block;font-size:12px;font-weight:700;color:var(--gray-600);margin-bottom:6px}
-.form-control{
-  width:100%;padding:10px 12px;border:1.5px solid var(--gray-200);border-radius:10px;
-  font-family:inherit;font-size:13px;background:#fff;transition:all .18s ease;color:var(--gray-800);
-  box-shadow:0 1px 2px rgba(0,0,0,.03) inset;
-}
+.form-control{width:100%;padding:10px 12px;border:1.5px solid var(--gray-200);border-radius:10px;font-family:inherit;font-size:13px;background:#fff;transition:all .18s ease;color:var(--gray-800);box-shadow:0 1px 2px rgba(0,0,0,.03) inset}
 .form-control:hover{border-color:var(--gray-300)}
 .form-control:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 4px var(--primary-light),0 1px 2px rgba(0,0,0,.03) inset;background:#fff}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:640px){.form-row{grid-template-columns:1fr}}
 input[type=number]{direction:ltr;text-align:right}
-
 .table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--gray-100);box-shadow:0 1px 2px rgba(17,24,39,.03)}
 table{width:100%;border-collapse:collapse;font-size:13px;background:#fff}
 th{background:linear-gradient(180deg,#f9fafb,#f3f4f6);padding:12px 14px;text-align:right;font-weight:700;color:var(--gray-700);font-size:12px;border-bottom:1px solid var(--gray-200);white-space:nowrap}
@@ -186,14 +121,12 @@ tr:last-child td{border-bottom:none}
 tbody tr{transition:background .12s}
 tbody tr:hover{background:linear-gradient(90deg,var(--primary-light),transparent)}
 .num{direction:ltr;text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
-
 .badge{display:inline-block;padding:4px 11px;border-radius:20px;font-size:11px;font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.04)}
 .badge-success{background:var(--success-light);color:var(--success-dark)}
 .badge-danger{background:var(--danger-light);color:var(--danger-dark)}
 .badge-warning{background:var(--warning-light);color:var(--warning-dark)}
 .badge-info{background:var(--info-light);color:var(--info)}
 .badge-gray{background:var(--gray-100);color:var(--gray-600)}
-
 .modal-overlay{position:fixed;inset:0;background:rgba(17,24,39,.55);z-index:100;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
 .modal-overlay.show{display:flex}
 .modal{background:#fff;border-radius:16px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;box-shadow:0 25px 50px -12px rgba(0,0,0,.25),0 0 0 1px rgba(255,255,255,.5) inset;animation:slideUp .25s cubic-bezier(.4,0,.2,1)}
@@ -205,23 +138,15 @@ tbody tr:hover{background:linear-gradient(90deg,var(--primary-light),transparent
 .modal-close:hover{background:var(--gray-100);color:var(--gray-700)}
 .modal-body{padding:22px}
 .modal-footer{padding:16px 22px;border-top:1px solid var(--gray-100);display:flex;gap:8px;justify-content:flex-end;position:sticky;bottom:0;background:#fff;border-radius:0 0 16px 16px;flex-wrap:wrap}
-
 .empty{text-align:center;padding:40px 20px;color:var(--gray-400)}
 .empty .icon{font-size:42px;margin-bottom:10px;opacity:.35}
 .empty .title{font-weight:700;color:var(--gray-500);margin-bottom:4px}
 .empty .sub{font-size:12px}
-
-.toast{
-  position:fixed;bottom:24px;left:24px;background:linear-gradient(180deg,#1f2937,#111827);color:#fff;
-  padding:13px 20px;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,.25),0 4px 0 rgba(0,0,0,.3);
-  z-index:200;font-size:13px;font-weight:600;opacity:0;transform:translateY(15px) scale(.95);
-  transition:.3s cubic-bezier(.4,0,.2,1);pointer-events:none;
-}
+.toast{position:fixed;bottom:24px;left:24px;background:linear-gradient(180deg,#1f2937,#111827);color:#fff;padding:13px 20px;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,.25),0 4px 0 rgba(0,0,0,.3);z-index:200;font-size:13px;font-weight:600;opacity:0;transform:translateY(15px) scale(.95);transition:.3s cubic-bezier(.4,0,.2,1);pointer-events:none}
 .toast.show{opacity:1;transform:translateY(0) scale(1)}
 .toast.success{background:linear-gradient(180deg,#10b981,#059669);box-shadow:0 10px 25px rgba(16,185,129,.35),0 4px 0 #065f46}
 .toast.error{background:linear-gradient(180deg,#ef4444,#dc2626);box-shadow:0 10px 25px rgba(239,68,68,.35),0 4px 0 #991b1b}
 .toast.warning{background:linear-gradient(180deg,#f59e0b,#d97706);box-shadow:0 10px 25px rgba(245,158,11,.35),0 4px 0 #92400e}
-
 .flex{display:flex}.items-center{align-items:center}.justify-between{justify-content:space-between}
 .gap-2{gap:8px}.gap-3{gap:12px}.gap-4{gap:16px}
 .mb-3{margin-bottom:12px}.mb-4{margin-bottom:18px}.mt-3{margin-top:12px}.mt-4{margin-top:18px}
@@ -232,55 +157,24 @@ tbody tr:hover{background:linear-gradient(90deg,var(--primary-light),transparent
 .divider{height:1px;background:linear-gradient(90deg,transparent,var(--gray-200),transparent);margin:18px 0}
 .hidden{display:none!important}
 .filter-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-.filter-tab{
-  padding:8px 16px;border-radius:20px;background:#fff;color:var(--gray-600);
-  font-size:12px;font-weight:700;cursor:pointer;border:1.5px solid var(--gray-200);
-  font-family:inherit;transition:all .18s ease;box-shadow:0 1px 2px rgba(0,0,0,.03);
-}
+.filter-tab{padding:8px 16px;border-radius:20px;background:#fff;color:var(--gray-600);font-size:12px;font-weight:700;cursor:pointer;border:1.5px solid var(--gray-200);font-family:inherit;transition:all .18s ease;box-shadow:0 1px 2px rgba(0,0,0,.03)}
 .filter-tab:hover{background:var(--gray-50);border-color:var(--gray-300)}
 .filter-tab.active{background:linear-gradient(180deg,#6366f1,#4f46e5);color:#fff;border-color:transparent;box-shadow:0 3px 0 #3730a3,0 4px 12px var(--primary-glow)}
 .search-box{position:relative;flex:1;max-width:300px}
 .search-box input{padding-right:38px}
 .search-box::before{content:'🔍';position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.5}
-
-.footer-signature{
-  position:fixed;bottom:0;left:0;right:262px;
-  background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(248,250,252,.98));
-  backdrop-filter:blur(12px);border-top:1px solid rgba(229,231,235,.9);
-  padding:11px 24px;text-align:center;font-size:11.5px;color:var(--gray-600);z-index:40;
-  box-shadow:0 -4px 20px rgba(17,24,39,.06);
-}
+.footer-signature{position:fixed;bottom:0;left:0;right:262px;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(248,250,252,.98));backdrop-filter:blur(12px);border-top:1px solid rgba(229,231,235,.9);padding:11px 24px;text-align:center;font-size:11.5px;color:var(--gray-600);z-index:40;box-shadow:0 -4px 20px rgba(17,24,39,.06)}
 .footer-signature .sig-line{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
-.footer-signature .sig-name{
-  font-weight:800;letter-spacing:.6px;
-  background:linear-gradient(135deg,#6366f1,#8b5cf6);
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-size:12.5px;
-}
-.footer-signature .sig-tel{
-  direction:ltr;font-variant-numeric:tabular-nums;color:var(--gray-700);font-weight:700;
-  padding:2px 10px;border-radius:20px;background:linear-gradient(180deg,#eef2ff,#e0e7ff);font-size:11px;
-}
+.footer-signature .sig-name{font-weight:800;letter-spacing:.6px;background:linear-gradient(135deg,#6366f1,#8b5cf6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-size:12.5px}
+.footer-signature .sig-tel{direction:ltr;font-variant-numeric:tabular-nums;color:var(--gray-700);font-weight:700;padding:2px 10px;border-radius:20px;background:linear-gradient(180deg,#eef2ff,#e0e7ff);font-size:11px}
 .footer-signature .sig-sep{opacity:.3}
 @media(max-width:900px){.footer-signature{right:0}}
-
-@media print{
-  body *{visibility:hidden}
-  #print-area,#print-area *{visibility:visible}
-  #print-area{position:absolute;top:0;right:0;width:100%;padding:20px;background:#fff}
-  .no-print{display:none!important}
-  .footer-signature{display:none!important}
-}
-@media(max-width:900px){
-  .sidebar{transform:translateX(100%)}
-  .sidebar.open{transform:translateX(0)}
-  .main{margin-right:0;padding-bottom:140px}
-  .menu-toggle{display:inline-flex}
-}
+@media print{body *{visibility:hidden}#print-area,#print-area *{visibility:visible}#print-area{position:absolute;top:0;right:0;width:100%;padding:20px;background:#fff}.no-print{display:none!important}.footer-signature{display:none!important}}
+@media(max-width:900px){.sidebar{transform:translateX(100%)}.sidebar.open{transform:translateX(0)}.main{margin-right:0;padding-bottom:140px}.menu-toggle{display:inline-flex}}
 ::-webkit-scrollbar{width:10px;height:10px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--gray-300),var(--gray-400));border-radius:6px;border:2px solid transparent;background-clip:content-box}
 ::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--gray-400),var(--gray-500));background-clip:content-box;border:2px solid transparent}
-
 .items-table{min-width:760px}
 .items-table th{white-space:nowrap}
 .items-table td{padding:8px 10px;vertical-align:middle}
@@ -290,10 +184,7 @@ tbody tr:hover{background:linear-gradient(90deg,var(--primary-light),transparent
 .items-table .col-price{width:150px}
 .items-table .col-total{width:130px}
 .items-table .col-act{width:50px}
-.invoice-total{
-  background:linear-gradient(135deg,#f8fafc,#eef2ff);padding:16px 20px;border-radius:var(--radius-sm);
-  display:flex;flex-direction:column;gap:7px;border:1px solid var(--gray-100);
-}
+.invoice-total{background:linear-gradient(135deg,#f8fafc,#eef2ff);padding:16px 20px;border-radius:var(--radius-sm);display:flex;flex-direction:column;gap:7px;border:1px solid var(--gray-100)}
 .invoice-total .row{display:flex;justify-content:space-between;font-size:13px}
 .invoice-total .row.total{font-size:16px;font-weight:800;color:var(--primary-dark);padding-top:10px;border-top:2px dashed var(--gray-300);margin-top:6px}
 .invoice-total .row.highlight{color:var(--success-dark);font-weight:700}
@@ -360,9 +251,7 @@ tbody tr:hover{background:linear-gradient(90deg,var(--primary-light),transparent
 <div class="toast" id="toast"></div>
 
 <script>
-/* =========================================================
-   ابزارهای عمومی
-   ========================================================= */
+/* ============ ابزارهای عمومی ============ */
 const $ = (s,el=document)=>el.querySelector(s);
 const $$ = (s,el=document)=>[...el.querySelectorAll(s)];
 
@@ -390,16 +279,15 @@ function attachThousands(input){
     input.value = formatNum(raw);
   });
 }
-
 function todayJalali(){
   const g = new Date();
   const j = jalaali.toJalaali(g.getFullYear(),g.getMonth()+1,g.getDate());
-  return `${j.jy}/${String(j.jm).padStart(2,'0')}/${String(j.jd).padStart(2,'0')}`;
+  return j.jy+'/'+String(j.jm).padStart(2,'0')+'/'+String(j.jd).padStart(2,'0');
 }
 function nowJalaliFull(){
   const g = new Date();
   const j = jalaali.toJalaali(g.getFullYear(),g.getMonth()+1,g.getDate());
-  return `${j.jy}/${String(j.jm).padStart(2,'0')}/${String(j.jd).padStart(2,'0')} - ${String(g.getHours()).padStart(2,'0')}:${String(g.getMinutes()).padStart(2,'0')}`;
+  return j.jy+'/'+String(j.jm).padStart(2,'0')+'/'+String(j.jd).padStart(2,'0')+' - '+String(g.getHours()).padStart(2,'0')+':'+String(g.getMinutes()).padStart(2,'0');
 }
 function jalaliMonth(jstr){
   if(!jstr)return '';
@@ -409,19 +297,19 @@ function validJalali(s){
   if(!s)return false;
   const p = s.split('/').map(Number);
   if(p.length!==3)return false;
-  return jalaali.isValidJalaaliDate(p[0],p[1],p[2]);
+  try{return jalaali.isValidJalaaliDate(p[0],p[1],p[2]);}catch(e){return false;}
 }
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,8);}
-
-function toast(msg,type=''){
+function toast(msg,type){
+  type = type || '';
   const t = $('#toast');
   t.textContent = msg;
   t.className = 'toast show '+type;
   clearTimeout(t._t);
   t._t = setTimeout(()=>t.classList.remove('show'),2500);
 }
-
-function openModal(title,body,footer,size=''){
+function openModal(title,body,footer,size){
+  size = size || '';
   $('#modalTitle').textContent = title;
   $('#modalBody').innerHTML = body;
   $('#modalFooter').innerHTML = footer || '';
@@ -438,19 +326,16 @@ function closeModal(){
 function attachAllThousandsIn(container){
   $$('input[data-thousands]',container).forEach(attachThousands);
 }
-
 function confirmAction(msg,onYes){
   openModal('تأیید عملیات',
-    `<p style="font-size:14px;line-height:1.9">${msg}</p>`,
-    `<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>
-     <button class="btn btn-danger" id="confirmYes">بله، انجام بده</button>`
+    '<p style="font-size:14px;line-height:1.9">'+msg+'</p>',
+    '<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>'+
+    '<button class="btn btn-danger" id="confirmYes">بله، انجام بده</button>'
   );
-  $('#confirmYes').onclick = ()=>{closeModal();onYes();};
+  $('#confirmYes').onclick = function(){closeModal();onYes();};
 }
 
-/* =========================================================
-   دیتابیس
-   ========================================================= */
+/* ============ دیتابیس ============ */
 const DB_KEY = 'hesabdar_v2';
 const DB = {
   data: {
@@ -462,9 +347,9 @@ const DB = {
       const raw = localStorage.getItem(DB_KEY);
       if(raw){
         const parsed = JSON.parse(raw);
-        this.data = {...this.data,...parsed};
-        this.data.settings = {...{shopName:'فروشگاه من',currency:'تومان',initialCapital:0,initialCapitalDate:'',taxPercent:0},...this.data.settings};
-        this.data.invoices.forEach(inv=>{
+        this.data = Object.assign({}, this.data, parsed);
+        this.data.settings = Object.assign({shopName:'فروشگاه من',currency:'تومان',initialCapital:0,initialCapitalDate:'',taxPercent:0}, this.data.settings);
+        this.data.invoices.forEach(function(inv){
           if(inv.shippingCost===undefined)inv.shippingCost=0;
           if(inv.customsCost===undefined)inv.customsCost=0;
           if(inv.paidAmount===undefined)inv.paidAmount = inv.paid? inv.total : 0;
@@ -492,10 +377,8 @@ const DB = {
 };
 DB.load();
 
-/* =========================================================
-   محاسبات
-   ========================================================= */
-function stockOf(productId,warehouseId=null,excludeInvoiceId=null){
+/* ============ محاسبات ============ */
+function stockOf(productId,warehouseId,excludeInvoiceId){
   let total = 0;
   for(const m of DB.data.stockMoves){
     if(m.productId!==productId)continue;
@@ -506,26 +389,26 @@ function stockOf(productId,warehouseId=null,excludeInvoiceId=null){
   return total;
 }
 
-function avgCostOf(productId, excludeInvoiceId=null){
+function avgCostOf(productId, excludeInvoiceId){
   const ins = DB.data.stockMoves
-    .filter(m=>m.productId===productId && m.type==='in' && m.refId!==excludeInvoiceId)
-    .map(m=>{
-      const inv = DB.data.invoices.find(i=>i.id===m.refId);
-      return {qty:m.qty, inv, date:m.date};
+    .filter(function(m){return m.productId===productId && m.type==='in' && m.refId!==excludeInvoiceId;})
+    .map(function(m){
+      const inv = DB.data.invoices.find(function(i){return i.id===m.refId;});
+      return {qty:m.qty, inv:inv, date:m.date};
     })
-    .sort((a,b)=>a.date.localeCompare(b.date));
+    .sort(function(a,b){return a.date.localeCompare(b.date);});
 
-  const product = DB.data.products.find(p=>p.id===productId);
-  let basePrice = product?.purchasePrice || 0;
+  const product = DB.data.products.find(function(p){return p.id===productId;});
+  let basePrice = product ? (product.purchasePrice || 0) : 0;
 
   let totalQty = 0;
   let totalValue = 0;
   for(const x of ins){
     if(!x.inv)continue;
-    const item = x.inv.items.find(it=>it.productId===productId);
+    const item = x.inv.items.find(function(it){return it.productId===productId;});
     if(!item)continue;
     const itemSubtotal = item.qty * item.price;
-    const invoiceItemsSum = x.inv.items.reduce((s,it)=>s+it.qty*it.price,0);
+    const invoiceItemsSum = x.inv.items.reduce(function(s,it){return s+it.qty*it.price;},0);
     const ratio = invoiceItemsSum>0 ? itemSubtotal/invoiceItemsSum : 0;
     const shippingShare = (x.inv.shippingCost||0) * ratio;
     const customsShare = (x.inv.customsCost||0) * ratio;
@@ -561,7 +444,6 @@ function personBalanceLabel(bal){
   if(bal>0) return {text:'بستانکار',cls:'badge-success'};
   return {text:'بدهکار',cls:'badge-danger'};
 }
-
 function stockValue(){
   let v=0;
   for(const p of DB.data.products){
@@ -570,7 +452,6 @@ function stockValue(){
   }
   return v;
 }
-
 function totals(){
   let sales=0,purchases=0;
   for(const inv of DB.data.invoices){
@@ -600,18 +481,15 @@ function totals(){
     if(t.type==='receive') cash += t.amount;
     if(t.type==='pay') cash -= t.amount;
   }
-  return {sales,purchases,cogs,profit,receivable,payable,cash};
+  return {sales:sales,purchases:purchases,cogs:cogs,profit:profit,receivable:receivable,payable:payable,cash:cash};
 }
-
 function currentCapital(){
   const t = totals();
   const stockVal = stockValue();
   return t.cash + stockVal + t.receivable - t.payable;
 }
 
-/* =========================================================
-   ناوبری
-   ========================================================= */
+/* ============ ناوبری ============ */
 const pages = {
   dashboard: renderDashboard, invoices: renderInvoices, products: renderProducts,
   warehouses: renderWarehouses, persons: renderPersons, transactions: renderTransactions,
@@ -622,54 +500,52 @@ const pageTitles = {
   persons:'اشخاص',transactions:'تراکنش‌ها',capital:'سرمایه و سود',reports:'گزارش‌ها',settings:'تنظیمات'
 };
 function navigate(page){
-  $$('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.page===page));
+  $$('.nav-item').forEach(function(n){n.classList.toggle('active',n.dataset.page===page);});
   $('#pageTitle').textContent = pageTitles[page];
   $('#sidebar').classList.remove('open');
   pages[page]();
 }
-$$('.nav-item').forEach(n=>n.onclick=()=>navigate(n.dataset.page));
+$$('.nav-item').forEach(function(n){n.onclick=function(){navigate(n.dataset.page);};});
 $('#todayDate').textContent = todayJalali();
 $('#sidebarShopName').textContent = DB.data.settings.shopName || 'فروشگاه من';
 
-/* =========================================================
-   داشبورد
-   ========================================================= */
+/* ============ داشبورد ============ */
 let dashChart=null, dashChart2=null;
 function renderDashboard(){
   const t = totals();
   const totalCapital = currentCapital();
-  $('#content').innerHTML = `
-    <div class="grid grid-4 mb-4">
-      <div class="stat"><div class="stat-label">موجودی نقدی</div><div class="stat-value">${formatMoney(t.cash)}</div><div class="stat-icon">💵</div></div>
-      <div class="stat s-success"><div class="stat-label">سود حاصل‌شده</div><div class="stat-value positive">${formatMoney(t.profit)}</div><div class="stat-icon">📈</div></div>
-      <div class="stat s-danger"><div class="stat-label">مطالبات (طلب ما)</div><div class="stat-value">${formatMoney(t.receivable)}</div><div class="stat-icon">📥</div></div>
-      <div class="stat s-warning"><div class="stat-label">بدهی‌ها (بدهی ما)</div><div class="stat-value">${formatMoney(t.payable)}</div><div class="stat-icon">📤</div></div>
-    </div>
-    <div class="grid grid-4 mb-4">
-      <div class="stat s-info"><div class="stat-label">سرمایه فعلی (تخمینی)</div><div class="stat-value">${formatMoney(totalCapital)}</div><div class="stat-icon">💰</div></div>
-      <div class="stat"><div class="stat-label">ارزش انبار</div><div class="stat-value">${formatMoney(stockValue())}</div><div class="stat-icon">📦</div></div>
-      <div class="stat s-success"><div class="stat-label">تعداد فاکتور</div><div class="stat-value">${formatNum(DB.data.invoices.length)}</div><div class="stat-icon">🧾</div></div>
-      <div class="stat"><div class="stat-label">اشخاص / کالاها</div><div class="stat-value">${formatNum(DB.data.persons.length)} / ${formatNum(DB.data.products.length)}</div><div class="stat-icon">👥</div></div>
-    </div>
-    <div class="grid grid-2 mb-4">
-      <div class="card"><div class="card-header"><div class="card-title">روند فروش و خرید (۶ ماه اخیر)</div></div><canvas id="chart1" height="200"></canvas></div>
-      <div class="card"><div class="card-header"><div class="card-title">ترکیب دارایی‌ها</div></div><canvas id="chart2" height="200"></canvas></div>
-    </div>
-    <div class="grid grid-2">
-      <div class="card"><div class="card-header"><div class="card-title">آخرین فاکتورها</div><button class="btn btn-sm btn-ghost" onclick="navigate('invoices')">همه</button></div>${renderRecentInvoices()}</div>
-      <div class="card"><div class="card-header"><div class="card-title">اشخاص با بیشترین مانده</div><button class="btn btn-sm btn-ghost" onclick="navigate('persons')">همه</button></div>${renderTopPersons()}</div>
-    </div>
-  `;
+  $('#content').innerHTML =
+    '<div class="grid grid-4 mb-4">'+
+      '<div class="stat"><div class="stat-label">موجودی نقدی</div><div class="stat-value">'+formatMoney(t.cash)+'</div><div class="stat-icon">💵</div></div>'+
+      '<div class="stat s-success"><div class="stat-label">سود حاصل‌شده</div><div class="stat-value positive">'+formatMoney(t.profit)+'</div><div class="stat-icon">📈</div></div>'+
+      '<div class="stat s-danger"><div class="stat-label">مطالبات (طلب ما)</div><div class="stat-value">'+formatMoney(t.receivable)+'</div><div class="stat-icon">📥</div></div>'+
+      '<div class="stat s-warning"><div class="stat-label">بدهی‌ها (بدهی ما)</div><div class="stat-value">'+formatMoney(t.payable)+'</div><div class="stat-icon">📤</div></div>'+
+    '</div>'+
+    '<div class="grid grid-4 mb-4">'+
+      '<div class="stat s-info"><div class="stat-label">سرمایه فعلی (تخمینی)</div><div class="stat-value">'+formatMoney(totalCapital)+'</div><div class="stat-icon">💰</div></div>'+
+      '<div class="stat"><div class="stat-label">ارزش انبار</div><div class="stat-value">'+formatMoney(stockValue())+'</div><div class="stat-icon">📦</div></div>'+
+      '<div class="stat s-success"><div class="stat-label">تعداد فاکتور</div><div class="stat-value">'+formatNum(DB.data.invoices.length)+'</div><div class="stat-icon">🧾</div></div>'+
+      '<div class="stat"><div class="stat-label">اشخاص / کالاها</div><div class="stat-value">'+formatNum(DB.data.persons.length)+' / '+formatNum(DB.data.products.length)+'</div><div class="stat-icon">👥</div></div>'+
+    '</div>'+
+    '<div class="grid grid-2 mb-4">'+
+      '<div class="card"><div class="card-header"><div class="card-title">روند فروش و خرید (۶ ماه اخیر)</div></div><canvas id="chart1" height="200"></canvas></div>'+
+      '<div class="card"><div class="card-header"><div class="card-title">ترکیب دارایی‌ها</div></div><canvas id="chart2" height="200"></canvas></div>'+
+    '</div>'+
+    '<div class="grid grid-2">'+
+      '<div class="card"><div class="card-header"><div class="card-title">آخرین فاکتورها</div><button class="btn btn-sm btn-ghost" onclick="navigate(\'invoices\')">همه</button></div>'+renderRecentInvoices()+'</div>'+
+      '<div class="card"><div class="card-header"><div class="card-title">اشخاص با بیشترین مانده</div><button class="btn btn-sm btn-ghost" onclick="navigate(\'persons\')">همه</button></div>'+renderTopPersons()+'</div>'+
+    '</div>';
+
   const months = lastSixMonths();
-  const salesData = months.map(m=>{let s=0;for(const inv of DB.data.invoices){if(inv.type==='sale'&&jalaliMonth(inv.date)===m)s+=inv.total;}return s;});
-  const purchaseData = months.map(m=>{let s=0;for(const inv of DB.data.invoices){if(inv.type==='purchase'&&jalaliMonth(inv.date)===m)s+=inv.total;}return s;});
+  const salesData = months.map(function(m){let s=0;for(const inv of DB.data.invoices){if(inv.type==='sale'&&jalaliMonth(inv.date)===m)s+=inv.total;}return s;});
+  const purchaseData = months.map(function(m){let s=0;for(const inv of DB.data.invoices){if(inv.type==='purchase'&&jalaliMonth(inv.date)===m)s+=inv.total;}return s;});
   if(dashChart)dashChart.destroy();
   dashChart = new Chart($('#chart1'),{
-    type:'bar',data:{labels:months.map(m=>monthName(m)),datasets:[
+    type:'bar',data:{labels:months.map(monthName),datasets:[
       {label:'فروش',data:salesData,backgroundColor:'#10b981',borderRadius:8,borderSkipped:false},
       {label:'خرید',data:purchaseData,backgroundColor:'#ef4444',borderRadius:8,borderSkipped:false}
     ]},
-    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{family:'Estedad',weight:'600'}}}},scales:{y:{ticks:{font:{family:'Estedad'},callback:v=>formatNum(v)}},x:{ticks:{font:{family:'Estedad'}}}}}
+    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{family:'Estedad',weight:'600'}}}},scales:{y:{ticks:{font:{family:'Estedad'},callback:function(v){return formatNum(v);}}},x:{ticks:{font:{family:'Estedad'}}}}}
   });
   if(dashChart2)dashChart2.destroy();
   dashChart2 = new Chart($('#chart2'),{
@@ -686,419 +562,444 @@ function lastSixMonths(){
   const g = new Date();
   const j = jalaali.toJalaali(g.getFullYear(),g.getMonth()+1,g.getDate());
   const arr=[];let y=j.jy,m=j.jm;
-  for(let i=0;i<6;i++){arr.unshift(`${y}/${String(m).padStart(2,'0')}`);m--;if(m<1){m=12;y--;}}
+  for(let i=0;i<6;i++){arr.unshift(y+'/'+String(m).padStart(2,'0'));m--;if(m<1){m=12;y--;}}
   return arr;
 }
 function renderRecentInvoices(){
-  const invs = [...DB.data.invoices].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,5);
-  if(!invs.length)return `<div class="empty"><div class="icon">🧾</div><div class="title">فاکتوری ثبت نشده</div></div>`;
-  return `<div class="table-wrap"><table><thead><tr><th>شماره</th><th>نوع</th><th>تاریخ</th><th>مبلغ</th></tr></thead><tbody>
-    ${invs.map(i=>`<tr><td>${i.number}</td><td><span class="badge ${i.type==='sale'?'badge-success':'badge-danger'}">${i.type==='sale'?'فروش':'خرید'}</span></td><td class="num">${i.date}</td><td class="num">${formatNum(i.total)}</td></tr>`).join('')}
-  </tbody></table></div>`;
+  const invs = [].concat(DB.data.invoices).sort(function(a,b){return b.date.localeCompare(a.date);}).slice(0,5);
+  if(!invs.length)return '<div class="empty"><div class="icon">🧾</div><div class="title">فاکتوری ثبت نشده</div></div>';
+  let rows = '';
+  for(const i of invs){
+    rows += '<tr><td>'+i.number+'</td><td><span class="badge '+(i.type==='sale'?'badge-success':'badge-danger')+'">'+(i.type==='sale'?'فروش':'خرید')+'</span></td><td class="num">'+i.date+'</td><td class="num">'+formatNum(i.total)+'</td></tr>';
+  }
+  return '<div class="table-wrap"><table><thead><tr><th>شماره</th><th>نوع</th><th>تاریخ</th><th>مبلغ</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
 }
 function renderTopPersons(){
-  const list = DB.data.persons.map(p=>({p,bal:personBalance(p.id)})).filter(x=>Math.abs(x.bal)>=1).sort((a,b)=>Math.abs(b.bal)-Math.abs(a.bal)).slice(0,5);
-  if(!list.length)return `<div class="empty"><div class="icon">👥</div><div class="title">مانده‌ای ثبت نشده</div></div>`;
-  return `<div class="table-wrap"><table><thead><tr><th>نام</th><th>وضعیت</th><th>مبلغ</th></tr></thead><tbody>
-    ${list.map(({p,bal})=>{const l=personBalanceLabel(bal);return `<tr><td>${p.name}</td><td><span class="badge ${l.cls}">${l.text}</span></td><td class="num">${formatNum(Math.abs(bal))}</td></tr>`;}).join('')}
-  </tbody></table></div>`;
+  const list = DB.data.persons.map(function(p){return {p:p,bal:personBalance(p.id)};}).filter(function(x){return Math.abs(x.bal)>=1;}).sort(function(a,b){return Math.abs(b.bal)-Math.abs(a.bal);}).slice(0,5);
+  if(!list.length)return '<div class="empty"><div class="icon">👥</div><div class="title">مانده‌ای ثبت نشده</div></div>';
+  let rows = '';
+  for(const x of list){
+    const l = personBalanceLabel(x.bal);
+    rows += '<tr><td>'+x.p.name+'</td><td><span class="badge '+l.cls+'">'+l.text+'</span></td><td class="num">'+formatNum(Math.abs(x.bal))+'</td></tr>';
+  }
+  return '<div class="table-wrap"><table><thead><tr><th>نام</th><th>وضعیت</th><th>مبلغ</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
 }
 
-/* =========================================================
-   کالاها
-   ========================================================= */
+/* ============ کالاها ============ */
 function nextProductCode(){
-  const nums = DB.data.products.map(p=>Number(String(p.code||'').replace(/\D/g,''))||0);
-  return 'K-' + String(Math.max(0,...nums)+1).padStart(4,'0');
+  const nums = DB.data.products.map(function(p){return Number(String(p.code||'').replace(/\D/g,''))||0;});
+  return 'K-' + String(Math.max.apply(null,[0].concat(nums))+1).padStart(4,'0');
 }
 function renderProducts(){
   const list = DB.data.products;
-  $('#content').innerHTML = `
-    <div class="flex justify-between items-center mb-4 gap-3" style="flex-wrap:wrap">
-      <div class="search-box"><input class="form-control" id="prodSearch" placeholder="جستجوی کالا..."></div>
-      <button class="btn btn-primary" onclick="productForm()">➕ کالای جدید</button>
-    </div>
-    <div class="card"><div class="table-wrap"><table><thead><tr>
-      <th>کد</th><th>نام</th><th>واحد</th><th>قیمت خرید</th><th>بهای تمام‌شده</th><th>قیمت فروش</th><th>موجودی</th><th>عملیات</th>
-    </tr></thead><tbody id="prodBody">${productsRows(list)}</tbody></table></div></div>`;
-  $('#prodSearch').oninput = e=>{ $('#prodBody').innerHTML = productsRows(filterList(list,e.target.value)); };
+  $('#content').innerHTML =
+    '<div class="flex justify-between items-center mb-4 gap-3" style="flex-wrap:wrap">'+
+      '<div class="search-box"><input class="form-control" id="prodSearch" placeholder="جستجوی کالا..."></div>'+
+      '<button class="btn btn-primary" onclick="productForm()">➕ کالای جدید</button>'+
+    '</div>'+
+    '<div class="card"><div class="table-wrap"><table><thead><tr>'+
+      '<th>کد</th><th>نام</th><th>واحد</th><th>قیمت خرید</th><th>بهای تمام‌شده</th><th>قیمت فروش</th><th>موجودی</th><th>عملیات</th>'+
+    '</tr></thead><tbody id="prodBody">'+productsRows(list)+'</tbody></table></div></div>';
+  $('#prodSearch').oninput = function(e){ $('#prodBody').innerHTML = productsRows(filterList(list,e.target.value)); };
 }
 function filterList(list,q){
   if(!q)return list;
   q=q.toLowerCase();
-  return list.filter(x=>JSON.stringify(x).toLowerCase().includes(q));
+  return list.filter(function(x){return JSON.stringify(x).toLowerCase().includes(q);});
 }
 function productsRows(list){
-  if(!list.length)return `<tr><td colspan="8"><div class="empty"><div class="icon">📦</div><div class="title">کالایی ثبت نشده</div></div></td></tr>`;
-  return list.map(p=>{
+  if(!list.length)return '<tr><td colspan="8"><div class="empty"><div class="icon">📦</div><div class="title">کالایی ثبت نشده</div></div></td></tr>';
+  let html = '';
+  for(const p of list){
     const q = stockOf(p.id);
     const avg = avgCostOf(p.id);
-    return `<tr>
-      <td><b>${p.code||'-'}</b></td><td>${p.name}</td><td>${p.unit||'-'}</td>
-      <td class="num">${formatNum(p.purchasePrice)}</td>
-      <td class="num" style="color:var(--info);font-weight:700">${formatNum(avg)}</td>
-      <td class="num">${formatNum(p.salePrice)}</td>
-      <td class="num ${q<=0?'text-danger':''}">${formatNum(q)}</td>
-      <td>
-        <button class="btn btn-sm btn-ghost" onclick="productForm('${p.id}')">✏️</button>
-        <button class="btn btn-sm btn-danger" onclick="deleteProduct('${p.id}')">🗑</button>
-      </td></tr>`;
-  }).join('');
+    html += '<tr>'+
+      '<td><b>'+(p.code||'-')+'</b></td><td>'+p.name+'</td><td>'+(p.unit||'-')+'</td>'+
+      '<td class="num">'+formatNum(p.purchasePrice)+'</td>'+
+      '<td class="num" style="color:var(--info);font-weight:700">'+formatNum(avg)+'</td>'+
+      '<td class="num">'+formatNum(p.salePrice)+'</td>'+
+      '<td class="num '+(q<=0?'text-danger':'')+'">'+formatNum(q)+'</td>'+
+      '<td><button class="btn btn-sm btn-ghost" onclick="productForm(\''+p.id+'\')">✏️</button> <button class="btn btn-sm btn-danger" onclick="deleteProduct(\''+p.id+'\')">🗑</button></td>'+
+    '</tr>';
+  }
+  return html;
 }
 function productForm(id){
   const isEdit = !!id;
-  const p = isEdit? DB.data.products.find(x=>x.id===id) : {code:nextProductCode(),name:'',unit:'عدد',purchasePrice:0,salePrice:0,minStock:0};
-  openModal(isEdit?'ویرایش کالا':'کالای جدید',`
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">کد کالا (خودکار)</label>
-        <input class="form-control" id="pCode" value="${p.code||''}" ${isEdit?'readonly':''} style="background:${isEdit?'#f3f4f6':'#fff'}"></div>
-      <div class="form-group"><label class="form-label">واحد</label><input class="form-control" id="pUnit" value="${p.unit||'عدد'}"></div>
-    </div>
-    <div class="form-group"><label class="form-label">نام کالا *</label><input class="form-control" id="pName" value="${p.name}"></div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">قیمت خرید</label><input class="form-control" data-thousands id="pPurchase" value="${formatNum(p.purchasePrice)}"></div>
-      <div class="form-group"><label class="form-label">قیمت فروش</label><input class="form-control" data-thousands id="pSale" value="${formatNum(p.salePrice)}"></div>
-    </div>
-    <div class="form-group"><label class="form-label">حداقل موجودی</label><input class="form-control" data-thousands id="pMin" value="${formatNum(p.minStock)}"></div>
-  `,`<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>
-     <button class="btn btn-primary" onclick="saveProduct('${id||''}')">ذخیره</button>`);
+  const p = isEdit? DB.data.products.find(function(x){return x.id===id;}) : {code:nextProductCode(),name:'',unit:'عدد',purchasePrice:0,salePrice:0,minStock:0};
+  openModal(isEdit?'ویرایش کالا':'کالای جدید',
+    '<div class="form-row">'+
+      '<div class="form-group"><label class="form-label">کد کالا (خودکار)</label><input class="form-control" id="pCode" value="'+(p.code||'')+'" '+(isEdit?'readonly':'')+' style="background:'+(isEdit?'#f3f4f6':'#fff')+'"></div>'+
+      '<div class="form-group"><label class="form-label">واحد</label><input class="form-control" id="pUnit" value="'+(p.unit||'عدد')+'"></div>'+
+    '</div>'+
+    '<div class="form-group"><label class="form-label">نام کالا *</label><input class="form-control" id="pName" value="'+p.name+'"></div>'+
+    '<div class="form-row">'+
+      '<div class="form-group"><label class="form-label">قیمت خرید</label><input class="form-control" data-thousands id="pPurchase" value="'+formatNum(p.purchasePrice)+'"></div>'+
+      '<div class="form-group"><label class="form-label">قیمت فروش</label><input class="form-control" data-thousands id="pSale" value="'+formatNum(p.salePrice)+'"></div>'+
+    '</div>'+
+    '<div class="form-group"><label class="form-label">حداقل موجودی</label><input class="form-control" data-thousands id="pMin" value="'+formatNum(p.minStock)+'"></div>',
+    '<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>'+
+    '<button class="btn btn-primary" onclick="saveProduct(\''+(id||'')+'\')">ذخیره</button>'
+  );
 }
 function saveProduct(id){
   const name = $('#pName').value.trim();
   if(!name){toast('نام کالا را وارد کنید','error');return;}
   const obj = {
-    code:$('#pCode').value.trim(),name,
+    code:$('#pCode').value.trim(),name:name,
     unit:$('#pUnit').value.trim()||'عدد',
     purchasePrice:parseNum($('#pPurchase').value),
     salePrice:parseNum($('#pSale').value),
     minStock:parseNum($('#pMin').value)
   };
-  if(id){Object.assign(DB.data.products.find(x=>x.id===id),obj);}
-  else{DB.data.products.push({id:uid(),...obj});}
+  if(id){Object.assign(DB.data.products.find(function(x){return x.id===id;}),obj);}
+  else{DB.data.products.push(Object.assign({id:uid()},obj));}
   DB.save(); closeModal(); renderProducts(); toast('کالا ذخیره شد','success');
 }
 function deleteProduct(id){
-  if(DB.data.stockMoves.some(m=>m.productId===id)){toast('این کالا در گردش انبار استفاده شده','error');return;}
-  if(DB.data.invoices.some(i=>i.items.some(it=>it.productId===id))){toast('این کالا در فاکتورها استفاده شده','error');return;}
-  confirmAction('آیا از حذف این کالا مطمئن هستید؟',()=>{
-    DB.data.products = DB.data.products.filter(p=>p.id!==id);
+  if(DB.data.stockMoves.some(function(m){return m.productId===id;})){toast('این کالا در گردش انبار استفاده شده','error');return;}
+  if(DB.data.invoices.some(function(i){return i.items.some(function(it){return it.productId===id;});})){toast('این کالا در فاکتورها استفاده شده','error');return;}
+  confirmAction('آیا از حذف این کالا مطمئن هستید؟',function(){
+    DB.data.products = DB.data.products.filter(function(p){return p.id!==id;});
     DB.save(); renderProducts(); toast('کالا حذف شد','success');
   });
 }
 
-/* =========================================================
-   انبارها
-   ========================================================= */
+/* ============ انبارها ============ */
 function renderWarehouses(){
   const list = DB.data.warehouses;
-  $('#content').innerHTML = `
-    <div class="flex justify-between items-center mb-4">
-      <div class="text-muted">مدیریت انبارها و موجودی هر کالا</div>
-      <button class="btn btn-primary" onclick="warehouseForm()">➕ انبار جدید</button>
-    </div>
-    <div class="grid grid-3">
-      ${list.length? list.map(w=>{
-        const items = DB.data.products.map(p=>({p,q:stockOf(p.id,w.id)})).filter(x=>x.q!==0);
-        const totalValue = items.reduce((s,x)=>s+x.q*avgCostOf(x.p.id),0);
-        return `<div class="card">
-          <div class="card-header"><div class="card-title">🏭 ${w.name}</div>
-            <div class="flex gap-2">
-              <button class="btn btn-sm btn-ghost" onclick="warehouseForm('${w.id}')">✏️</button>
-              <button class="btn btn-sm btn-danger" onclick="deleteWarehouse('${w.id}')">🗑</button>
-            </div>
-          </div>
-          <div class="text-muted mb-3">${w.desc||'بدون توضیح'}</div>
-          <div class="flex justify-between mb-3" style="font-size:13px">
-            <span>تعداد اقلام: <b>${formatNum(items.length)}</b></span>
-            <span>ارزش: <b>${formatMoney(totalValue)}</b></span>
-          </div>
-          <div style="max-height:200px;overflow:auto">
-            ${items.length? `<table style="font-size:12px"><thead><tr><th>کالا</th><th>موجودی</th><th>بهای واحد</th></tr></thead><tbody>
-              ${items.map(x=>`<tr><td>${x.p.name}</td><td class="num">${formatNum(x.q)}</td><td class="num">${formatNum(avgCostOf(x.p.id))}</td></tr>`).join('')}
-            </tbody></table>`:'<div class="text-muted text-center">خالی</div>'}
-          </div>
-        </div>`;
-      }).join('') : `<div class="card" style="grid-column:1/-1"><div class="empty"><div class="icon">🏭</div><div class="title">انباری ثبت نشده</div><div class="sub">ابتدا یک انبار اضافه کنید</div></div></div>`}
-    </div>`;
+  let cardsHtml = '';
+  if(!list.length){
+    cardsHtml = '<div class="card" style="grid-column:1/-1"><div class="empty"><div class="icon">🏭</div><div class="title">انباری ثبت نشده</div><div class="sub">ابتدا یک انبار اضافه کنید</div></div></div>';
+  } else {
+    for(const w of list){
+      const items = DB.data.products.map(function(p){return {p:p,q:stockOf(p.id,w.id)};}).filter(function(x){return x.q!==0;});
+      const totalValue = items.reduce(function(s,x){return s+x.q*avgCostOf(x.p.id);},0);
+      let itemsTable = '';
+      if(items.length){
+        let rows = '';
+        for(const x of items){
+          rows += '<tr><td>'+x.p.name+'</td><td class="num">'+formatNum(x.q)+'</td><td class="num">'+formatNum(avgCostOf(x.p.id))+'</td></tr>';
+        }
+        itemsTable = '<table style="font-size:12px"><thead><tr><th>کالا</th><th>موجودی</th><th>بهای واحد</th></tr></thead><tbody>'+rows+'</tbody></table>';
+      } else {
+        itemsTable = '<div class="text-muted text-center">خالی</div>';
+      }
+      cardsHtml += '<div class="card">'+
+        '<div class="card-header"><div class="card-title">🏭 '+w.name+'</div>'+
+          '<div class="flex gap-2">'+
+            '<button class="btn btn-sm btn-ghost" onclick="warehouseForm(\''+w.id+'\')">✏️</button>'+
+            '<button class="btn btn-sm btn-danger" onclick="deleteWarehouse(\''+w.id+'\')">🗑</button>'+
+          '</div>'+
+        '</div>'+
+        '<div class="text-muted mb-3">'+(w.desc||'بدون توضیح')+'</div>'+
+        '<div class="flex justify-between mb-3" style="font-size:13px">'+
+          '<span>تعداد اقلام: <b>'+formatNum(items.length)+'</b></span>'+
+          '<span>ارزش: <b>'+formatMoney(totalValue)+'</b></span>'+
+        '</div>'+
+        '<div style="max-height:200px;overflow:auto">'+itemsTable+'</div>'+
+      '</div>';
+    }
+  }
+  $('#content').innerHTML =
+    '<div class="flex justify-between items-center mb-4">'+
+      '<div class="text-muted">مدیریت انبارها و موجودی هر کالا</div>'+
+      '<button class="btn btn-primary" onclick="warehouseForm()">➕ انبار جدید</button>'+
+    '</div>'+
+    '<div class="grid grid-3">'+cardsHtml+'</div>';
 }
 function warehouseForm(id){
-  const w = id? DB.data.warehouses.find(x=>x.id===id) : {name:'',desc:''};
-  openModal(id?'ویرایش انبار':'انبار جدید',`
-    <div class="form-group"><label class="form-label">نام انبار *</label><input class="form-control" id="wName" value="${w.name}"></div>
-    <div class="form-group"><label class="form-label">توضیحات</label><input class="form-control" id="wDesc" value="${w.desc||''}"></div>
-  `,`<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>
-     <button class="btn btn-primary" onclick="saveWarehouse('${id||''}')">ذخیره</button>`);
+  const w = id? DB.data.warehouses.find(function(x){return x.id===id;}) : {name:'',desc:''};
+  openModal(id?'ویرایش انبار':'انبار جدید',
+    '<div class="form-group"><label class="form-label">نام انبار *</label><input class="form-control" id="wName" value="'+w.name+'"></div>'+
+    '<div class="form-group"><label class="form-label">توضیحات</label><input class="form-control" id="wDesc" value="'+(w.desc||'')+'"></div>',
+    '<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>'+
+    '<button class="btn btn-primary" onclick="saveWarehouse(\''+(id||'')+'\')">ذخیره</button>'
+  );
 }
 function saveWarehouse(id){
   const name = $('#wName').value.trim();
   if(!name){toast('نام انبار را وارد کنید','error');return;}
-  const obj = {name,desc:$('#wDesc').value.trim()};
-  if(id){Object.assign(DB.data.warehouses.find(x=>x.id===id),obj);}
-  else{DB.data.warehouses.push({id:uid(),...obj});}
+  const obj = {name:name,desc:$('#wDesc').value.trim()};
+  if(id){Object.assign(DB.data.warehouses.find(function(x){return x.id===id;}),obj);}
+  else{DB.data.warehouses.push(Object.assign({id:uid()},obj));}
   DB.save(); closeModal(); renderWarehouses(); toast('انبار ذخیره شد','success');
 }
 function deleteWarehouse(id){
-  if(DB.data.stockMoves.some(m=>m.warehouseId===id)){toast('این انبار گردش کالا دارد','error');return;}
-  if(DB.data.invoices.some(i=>i.warehouseId===id)){toast('این انبار در فاکتورها استفاده شده','error');return;}
-  confirmAction('حذف این انبار؟',()=>{
-    DB.data.warehouses = DB.data.warehouses.filter(w=>w.id!==id);
+  if(DB.data.stockMoves.some(function(m){return m.warehouseId===id;})){toast('این انبار گردش کالا دارد','error');return;}
+  if(DB.data.invoices.some(function(i){return i.warehouseId===id;})){toast('این انبار در فاکتورها استفاده شده','error');return;}
+  confirmAction('حذف این انبار؟',function(){
+    DB.data.warehouses = DB.data.warehouses.filter(function(w){return w.id!==id;});
     DB.save(); renderWarehouses(); toast('انبار حذف شد','success');
   });
 }
 
-/* =========================================================
-   اشخاص
-   ========================================================= */
+/* ============ اشخاص ============ */
 let personFilter = 'all';
 function renderPersons(){
-  const list = DB.data.persons.map(p=>({...p,bal:personBalance(p.id)}));
+  const list = DB.data.persons.map(function(p){return Object.assign({},p,{bal:personBalance(p.id)});});
   let filtered = list;
-  if(personFilter==='debtor') filtered = list.filter(p=>p.bal<-0.5);
-  if(personFilter==='creditor') filtered = list.filter(p=>p.bal>0.5);
-  if(personFilter==='settled') filtered = list.filter(p=>Math.abs(p.bal)<=0.5);
-  $('#content').innerHTML = `
-    <div class="flex justify-between items-center mb-4 gap-3" style="flex-wrap:wrap">
-      <div class="filter-tabs">
-        <button class="filter-tab ${personFilter==='all'?'active':''}" onclick="setPersonFilter('all')">همه</button>
-        <button class="filter-tab ${personFilter==='debtor'?'active':''}" onclick="setPersonFilter('debtor')">بدهکار</button>
-        <button class="filter-tab ${personFilter==='creditor'?'active':''}" onclick="setPersonFilter('creditor')">بستانکار</button>
-        <button class="filter-tab ${personFilter==='settled'?'active':''}" onclick="setPersonFilter('settled')">تسویه</button>
-      </div>
-      <button class="btn btn-primary" onclick="personForm()">➕ شخص جدید</button>
-    </div>
-    <div class="card"><div class="table-wrap"><table><thead><tr>
-      <th>نام</th><th>تلفن</th><th>نوع</th><th>مانده</th><th>وضعیت</th><th>عملیات</th>
-    </tr></thead><tbody>
-      ${filtered.length? filtered.map(p=>{
-        const l = personBalanceLabel(p.bal);
-        return `<tr><td>${p.name}</td><td>${p.phone||'-'}</td>
-          <td><span class="badge badge-info">${p.type==='customer'?'مشتری':p.type==='supplier'?'تأمین‌کننده':'هردو'}</span></td>
-          <td class="num">${formatNum(Math.abs(p.bal))}</td>
-          <td><span class="badge ${l.cls}">${l.text}</span></td>
-          <td style="white-space:nowrap">
-            <button class="quick-tx quick-tx-in" onclick="quickTx('${p.id}','receive')" title="دریافت از ${p.name}">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-            </button>
-            <button class="quick-tx quick-tx-out" onclick="quickTx('${p.id}','pay')" title="پرداخت به ${p.name}">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </button>
-            <button class="btn btn-sm btn-ghost" onclick="personLedger('${p.id}')" title="گردش حساب">📋</button>
-            <button class="btn btn-sm btn-ghost" onclick="personForm('${p.id}')" title="ویرایش">✏️</button>
-            <button class="btn btn-sm btn-danger" onclick="deletePerson('${p.id}')" title="حذف">🗑</button>
-          </td></tr>`;
-      }).join('') : `<tr><td colspan="6"><div class="empty"><div class="icon">👥</div><div class="title">شخصی ثبت نشده</div></div></td></tr>`}
-    </tbody></table></div></div>`;
+  if(personFilter==='debtor') filtered = list.filter(function(p){return p.bal<-0.5;});
+  if(personFilter==='creditor') filtered = list.filter(function(p){return p.bal>0.5;});
+  if(personFilter==='settled') filtered = list.filter(function(p){return Math.abs(p.bal)<=0.5;});
+
+  let rowsHtml = '';
+  if(!filtered.length){
+    rowsHtml = '<tr><td colspan="6"><div class="empty"><div class="icon">👥</div><div class="title">شخصی ثبت نشده</div></div></td></tr>';
+  } else {
+    for(const p of filtered){
+      const l = personBalanceLabel(p.bal);
+      const typeLabel = p.type==='customer'?'مشتری':p.type==='supplier'?'تأمین‌کننده':'هردو';
+      rowsHtml += '<tr>'+
+        '<td>'+p.name+'</td>'+
+        '<td>'+(p.phone||'-')+'</td>'+
+        '<td><span class="badge badge-info">'+typeLabel+'</span></td>'+
+        '<td class="num">'+formatNum(Math.abs(p.bal))+'</td>'+
+        '<td><span class="badge '+l.cls+'">'+l.text+'</span></td>'+
+        '<td style="white-space:nowrap">'+
+          '<button class="quick-tx quick-tx-in" onclick="quickTx(\''+p.id+'\',\'receive\')" title="دریافت از '+p.name+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></button> '+
+          '<button class="quick-tx quick-tx-out" onclick="quickTx(\''+p.id+'\',\'pay\')" title="پرداخت به '+p.name+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button> '+
+          '<button class="btn btn-sm btn-ghost" onclick="personLedger(\''+p.id+'\')" title="گردش حساب">📋</button> '+
+          '<button class="btn btn-sm btn-ghost" onclick="personForm(\''+p.id+'\')" title="ویرایش">✏️</button> '+
+          '<button class="btn btn-sm btn-danger" onclick="deletePerson(\''+p.id+'\')" title="حذف">🗑</button>'+
+        '</td></tr>';
+    }
+  }
+
+  $('#content').innerHTML =
+    '<div class="flex justify-between items-center mb-4 gap-3" style="flex-wrap:wrap">'+
+      '<div class="filter-tabs">'+
+        '<button class="filter-tab '+(personFilter==='all'?'active':'')+'" onclick="setPersonFilter(\'all\')">همه</button>'+
+        '<button class="filter-tab '+(personFilter==='debtor'?'active':'')+'" onclick="setPersonFilter(\'debtor\')">بدهکار</button>'+
+        '<button class="filter-tab '+(personFilter==='creditor'?'active':'')+'" onclick="setPersonFilter(\'creditor\')">بستانکار</button>'+
+        '<button class="filter-tab '+(personFilter==='settled'?'active':'')+'" onclick="setPersonFilter(\'settled\')">تسویه</button>'+
+      '</div>'+
+      '<button class="btn btn-primary" onclick="personForm()">➕ شخص جدید</button>'+
+    '</div>'+
+    '<div class="card"><div class="table-wrap"><table><thead><tr>'+
+      '<th>نام</th><th>تلفن</th><th>نوع</th><th>مانده</th><th>وضعیت</th><th>عملیات</th>'+
+    '</tr></thead><tbody>'+rowsHtml+'</tbody></table></div></div>';
 }
+function setPersonFilter(f){personFilter=f;renderPersons();}
 
 function quickTx(personId, type){
-  const p = DB.data.persons.find(x=>x.id===personId);
+  const p = DB.data.persons.find(function(x){return x.id===personId;});
   if(!p){toast('شخص یافت نشد','error');return;}
   const isReceive = type==='receive';
-  const title = isReceive? `📥 دریافت وجه از ${p.name}` : `📤 پرداخت وجه به ${p.name}`;
-  openModal(title, `
-    <div class="form-group">
-      <label class="form-label">تاریخ</label>
-      <input class="form-control" id="qtxDate" value="${todayJalali()}" dir="ltr">
-    </div>
-    <div class="form-group">
-      <label class="form-label">مبلغ *</label>
-      <input class="form-control" data-thousands id="qtxAmount" value="0" placeholder="0">
-    </div>
-    <div class="form-group">
-      <label class="form-label">توضیحات (اختیاری)</label>
-      <input class="form-control" id="qtxNote" value="${isReceive?'دریافت وجه':'پرداخت وجه'}">
-    </div>
-    <div class="text-muted" style="font-size:11px;margin-top:8px">
-      ${isReceive 
-        ? '💡 مبلغی که از این شخص دریافت می‌کنید به صندوق اضافه شده و از بدهی او کم می‌شود.' 
-        : '💡 مبلغی که به این شخص پرداخت می‌کنید از صندوق کم شده و از بدهی شما به او کم می‌شود.'}
-    </div>
-  `, `
-    <button class="btn btn-ghost" onclick="closeModal()">انصراف</button>
-    <button class="btn ${isReceive?'btn-success':'btn-danger'}" onclick="saveQuickTx('${personId}','${type}')">
-      ${isReceive?'📥 ثبت دریافت':'📤 ثبت پرداخت'}
-    </button>
-  `);
-  setTimeout(()=>{
-    const inp = $('#qtxAmount');
-    if(inp){ inp.focus(); inp.select(); }
-  }, 50);
+  const title = isReceive? '📥 دریافت وجه از '+p.name : '📤 پرداخت وجه به '+p.name;
+  openModal(title,
+    '<div class="form-group"><label class="form-label">تاریخ</label><input class="form-control" id="qtxDate" value="'+todayJalali()+'" dir="ltr"></div>'+
+    '<div class="form-group"><label class="form-label">مبلغ *</label><input class="form-control" data-thousands id="qtxAmount" value="0" placeholder="0"></div>'+
+    '<div class="form-group"><label class="form-label">توضیحات (اختیاری)</label><input class="form-control" id="qtxNote" value="'+(isReceive?'دریافت وجه':'پرداخت وجه')+'"></div>'+
+    '<div class="text-muted" style="font-size:11px;margin-top:8px">'+
+      (isReceive ? '💡 مبلغی که از این شخص دریافت می‌کنید به صندوق اضافه شده و از بدهی او کم می‌شود.' : '💡 مبلغی که به این شخص پرداخت می‌کنید از صندوق کم شده و از بدهی شما به او کم می‌شود.')+
+    '</div>',
+    '<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>'+
+    '<button class="btn '+(isReceive?'btn-success':'btn-danger')+'" onclick="saveQuickTx(\''+personId+'\',\''+type+'\')">'+(isReceive?'📥 ثبت دریافت':'📤 ثبت پرداخت')+'</button>'
+  );
+  setTimeout(function(){const inp = $('#qtxAmount'); if(inp){inp.focus(); inp.select();}},50);
 }
-
 function saveQuickTx(personId, type){
   const date = $('#qtxDate').value.trim();
   if(!validJalali(date)){toast('تاریخ معتبر نیست','error');return;}
   const amount = parseNum($('#qtxAmount').value);
   if(amount<=0){toast('مبلغ را وارد کنید','error');return;}
   const note = $('#qtxNote').value.trim();
-  DB.data.transactions.push({
-    id: uid(),
-    date,
-    type,
-    personId,
-    amount,
-    note
-  });
-  DB.save();
-  closeModal();
-  renderPersons();
+  DB.data.transactions.push({id:uid(),date:date,type:type,personId:personId,amount:amount,note:note});
+  DB.save(); closeModal(); renderPersons();
   toast(type==='receive'?'دریافت ثبت شد':'پرداخت ثبت شد','success');
 }
 
-function setPersonFilter(f){personFilter=f;renderPersons();}
 function personForm(id){
-  const p = id? DB.data.persons.find(x=>x.id===id) : {name:'',phone:'',address:'',type:'customer',note:''};
-  openModal(id?'ویرایش شخص':'شخص جدید',`
-    <div class="form-group"><label class="form-label">نام *</label><input class="form-control" id="perName" value="${p.name}"></div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">تلفن</label><input class="form-control" id="perPhone" value="${p.phone||''}"></div>
-      <div class="form-group"><label class="form-label">نوع</label>
-        <select class="form-control" id="perType">
-          <option value="customer" ${p.type==='customer'?'selected':''}>مشتری</option>
-          <option value="supplier" ${p.type==='supplier'?'selected':''}>تأمین‌کننده</option>
-          <option value="both" ${p.type==='both'?'selected':''}>هردو</option>
-        </select></div>
-    </div>
-    <div class="form-group"><label class="form-label">آدرس</label><input class="form-control" id="perAddr" value="${p.address||''}"></div>
-    <div class="form-group"><label class="form-label">یادداشت</label><input class="form-control" id="perNote" value="${p.note||''}"></div>
-  `,`<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>
-     <button class="btn btn-primary" onclick="savePerson('${id||''}')">ذخیره</button>`);
+  const p = id? DB.data.persons.find(function(x){return x.id===id;}) : {name:'',phone:'',address:'',type:'customer',note:''};
+  openModal(id?'ویرایش شخص':'شخص جدید',
+    '<div class="form-group"><label class="form-label">نام *</label><input class="form-control" id="perName" value="'+p.name+'"></div>'+
+    '<div class="form-row">'+
+      '<div class="form-group"><label class="form-label">تلفن</label><input class="form-control" id="perPhone" value="'+(p.phone||'')+'"></div>'+
+      '<div class="form-group"><label class="form-label">نوع</label>'+
+        '<select class="form-control" id="perType">'+
+          '<option value="customer" '+(p.type==='customer'?'selected':'')+'>مشتری</option>'+
+          '<option value="supplier" '+(p.type==='supplier'?'selected':'')+'>تأمین‌کننده</option>'+
+          '<option value="both" '+(p.type==='both'?'selected':'')+'>هردو</option>'+
+        '</select></div>'+
+    '</div>'+
+    '<div class="form-group"><label class="form-label">آدرس</label><input class="form-control" id="perAddr" value="'+(p.address||'')+'"></div>'+
+    '<div class="form-group"><label class="form-label">یادداشت</label><input class="form-control" id="perNote" value="'+(p.note||'')+'"></div>',
+    '<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>'+
+    '<button class="btn btn-primary" onclick="savePerson(\''+(id||'')+'\')">ذخیره</button>'
+  );
 }
 function savePerson(id){
   const name = $('#perName').value.trim();
   if(!name){toast('نام شخص را وارد کنید','error');return;}
-  const obj = {name,phone:$('#perPhone').value.trim(),address:$('#perAddr').value.trim(),type:$('#perType').value,note:$('#perNote').value.trim()};
-  if(id){Object.assign(DB.data.persons.find(x=>x.id===id),obj);}
-  else{DB.data.persons.push({id:uid(),...obj});}
+  const obj = {name:name,phone:$('#perPhone').value.trim(),address:$('#perAddr').value.trim(),type:$('#perType').value,note:$('#perNote').value.trim()};
+  if(id){Object.assign(DB.data.persons.find(function(x){return x.id===id;}),obj);}
+  else{DB.data.persons.push(Object.assign({id:uid()},obj));}
   DB.save(); closeModal(); renderPersons(); toast('شخص ذخیره شد','success');
 }
 function deletePerson(id){
-  if(DB.data.invoices.some(i=>i.personId===id)){toast('این شخص فاکتور دارد','error');return;}
-  if(DB.data.transactions.some(t=>t.personId===id||t.toPersonId===id)){toast('این شخص تراکنش دارد','error');return;}
-  confirmAction('حذف این شخص؟',()=>{
-    DB.data.persons = DB.data.persons.filter(p=>p.id!==id);
+  if(DB.data.invoices.some(function(i){return i.personId===id;})){toast('این شخص فاکتور دارد','error');return;}
+  if(DB.data.transactions.some(function(t){return t.personId===id||t.toPersonId===id;})){toast('این شخص تراکنش دارد','error');return;}
+  confirmAction('حذف این شخص؟',function(){
+    DB.data.persons = DB.data.persons.filter(function(p){return p.id!==id;});
     DB.save(); renderPersons(); toast('شخص حذف شد','success');
   });
 }
 
-/* =========================================================
-   گردش حساب — با دکمه ویرایش روی هر ردیف
-   ========================================================= */
+/* ============ گردش حساب ============ */
 function personLedger(id){
-  const p = DB.data.persons.find(x=>x.id===id);
+  const p = DB.data.persons.find(function(x){return x.id===id;});
+  if(!p){toast('شخص یافت نشد','error');return;}
+
   const rows = [];
-  // فاکتورها
   for(const inv of DB.data.invoices){
     if(inv.personId===id){
       const rem = inv.total - (inv.paidAmount||0);
       rows.push({
-        date:inv.date,
-        desc:`فاکتور ${inv.type==='sale'?'فروش':'خرید'} #${inv.number}${rem>0?' (نسیه)':''}`,
-        amount:inv.total,
-        type:inv.type,
-        refType:'invoice',
-        refId:inv.id
+        date: inv.date,
+        desc: 'فاکتور ' + (inv.type==='sale'?'فروش':'خرید') + ' #' + inv.number + (rem>0?' (نسیه)':''),
+        amount: inv.total,
+        type: inv.type,
+        refType: 'invoice',
+        refId: inv.id
       });
     }
   }
-  // تراکنش‌ها
   for(const t of DB.data.transactions){
     if(t.personId===id || t.toPersonId===id){
       let desc = t.type==='receive'?'دریافت وجه':t.type==='pay'?'پرداخت وجه':'انتقال';
       if(t.type==='transfer'){
-        const other = t.personId===id? t.toPersonId : t.personId;
-        const op = DB.data.persons.find(x=>x.id===other);
-        desc = `انتقال ${t.personId===id?'به':'از'} ${op?.name||'?'}`;
+        const otherId = t.personId===id? t.toPersonId : t.personId;
+        const op = DB.data.persons.find(function(x){return x.id===otherId;});
+        desc = 'انتقال ' + (t.personId===id?'به':'از') + ' ' + (op?op.name:'?');
       }
       rows.push({
-        date:t.date,
-        desc,
-        amount:t.amount,
-        type:t.type,
-        refType:'transaction',
-        refId:t.id
+        date: t.date,
+        desc: desc,
+        amount: t.amount,
+        type: t.type,
+        refType: 'transaction',
+        refId: t.id
       });
     }
   }
-  rows.sort((a,b)=>b.date.localeCompare(a.date));
+  rows.sort(function(a,b){return b.date.localeCompare(a.date);});
+
   const bal = personBalance(id);
   const label = personBalanceLabel(bal);
-  openModal(`گردش حساب: ${p.name}`,`
-    <div class="flex justify-between mb-3 flex-wrap gap-2">
-      <div class="text-muted">تعداد تراکنش: ${rows.length}</div>
-      <div>وضعیت: <span class="badge ${label.cls}">${label.text} ${formatMoney(Math.abs(bal))}</span></div>
-    </div>
-    <div class="table-wrap"><table><thead><tr>
-      <th>تاریخ</th><th>شرح</th><th>مبلغ</th><th>نوع</th><th>عملیات</th>
-    </tr></thead><tbody>
-      ${rows.length? rows.map(r=>`<tr>
-        <td class="num">${r.date}</td>
-        <td>${r.desc}</td>
-        <td class="num">${formatNum(r.amount)}</td>
-        <td><span class="badge ${r.type==='sale'?'badge-success':r.type==='purchase'?'badge-danger':r.type==='receive'?'badge-info':'badge-warning'}">${r.type==='sale'?'فروش':r.type==='purchase'?'خرید':r.type==='receive'?'دریافت':r.type==='pay'?'پرداخت':'انتقال'}</span></td>
-        <td style="white-space:nowrap">
-          ${r.refType==='invoice'?`
-            <button class="btn btn-sm btn-ghost" onclick="closeModal();viewInvoice('${r.refId}')" title="مشاهده فاکتور">👁</button>
-            <button class="btn btn-sm btn-warning" onclick="closeModal();invoiceForm('${r.type}','${r.refId}')" title="ویرایش فاکتور">✏️</button>
-          `:`
-            <button class="btn btn-sm btn-warning" onclick="closeModal();txForm('${r.type}','${r.refId}')" title="ویرایش تراکنش">✏️</button>
-          `}
-        </td>
-      </tr>`).join('') : '<tr><td colspan="5" class="text-center text-muted">موردی ثبت نشده</td></tr>'}
-    </tbody></table></div>
-  `,`<button class="btn btn-ghost" onclick="closeModal()">بستن</button>`,'lg');
+
+  let rowsHtml = '';
+  if(!rows.length){
+    rowsHtml = '<tr><td colspan="5" class="text-center text-muted">موردی ثبت نشده</td></tr>';
+  } else {
+    for(const r of rows){
+      let typeBadge = '';
+      if(r.type==='sale') typeBadge = '<span class="badge badge-success">فروش</span>';
+      else if(r.type==='purchase') typeBadge = '<span class="badge badge-danger">خرید</span>';
+      else if(r.type==='receive') typeBadge = '<span class="badge badge-info">دریافت</span>';
+      else if(r.type==='pay') typeBadge = '<span class="badge badge-warning">پرداخت</span>';
+      else typeBadge = '<span class="badge badge-warning">انتقال</span>';
+
+      let actionBtns = '';
+      if(r.refType==='invoice'){
+        actionBtns =
+          '<button class="btn btn-sm btn-ghost" onclick="editFromLedger(\'invoice\',\''+r.refId+'\',\''+r.type+'\',true)">👁</button> '+
+          '<button class="btn btn-sm btn-warning" onclick="editFromLedger(\'invoice\',\''+r.refId+'\',\''+r.type+'\',false)">✏️</button>';
+      } else {
+        actionBtns =
+          '<button class="btn btn-sm btn-warning" onclick="editFromLedger(\'transaction\',\''+r.refId+'\',\''+r.type+'\',false)">✏️</button>';
+      }
+
+      rowsHtml += '<tr>'+
+        '<td class="num">'+r.date+'</td>'+
+        '<td>'+r.desc+'</td>'+
+        '<td class="num">'+formatNum(r.amount)+'</td>'+
+        '<td>'+typeBadge+'</td>'+
+        '<td style="white-space:nowrap">'+actionBtns+'</td>'+
+      '</tr>';
+    }
+  }
+
+  openModal('گردش حساب: '+p.name,
+    '<div class="flex justify-between mb-3 flex-wrap gap-2">'+
+      '<div class="text-muted">تعداد تراکنش: '+rows.length+'</div>'+
+      '<div>وضعیت: <span class="badge '+label.cls+'">'+label.text+' '+formatMoney(Math.abs(bal))+'</span></div>'+
+    '</div>'+
+    '<div class="table-wrap"><table><thead><tr>'+
+      '<th>تاریخ</th><th>شرح</th><th>مبلغ</th><th>نوع</th><th>عملیات</th>'+
+    '</tr></thead><tbody>'+rowsHtml+'</tbody></table></div>',
+    '<button class="btn btn-ghost" onclick="closeModal()">بستن</button>',
+    'lg'
+  );
 }
 
-/* =========================================================
-   فاکتورها
-   ========================================================= */
+function editFromLedger(refType, refId, invType, viewOnly){
+  closeModal();
+  setTimeout(function(){
+    if(refType==='invoice'){
+      if(viewOnly){viewInvoice(refId);}
+      else{invoiceForm(invType, refId);}
+    } else {
+      txForm(invType, refId);
+    }
+  }, 120);
+}
+
+/* ============ فاکتورها ============ */
 let invoiceFilter = 'all';
 function renderInvoices(){
-  let list = [...DB.data.invoices].sort((a,b)=>b.date.localeCompare(a.date));
-  if(invoiceFilter!=='all') list = list.filter(i=>i.type===invoiceFilter);
-  $('#content').innerHTML = `
-    <div class="flex justify-between items-center mb-4 gap-3" style="flex-wrap:wrap">
-      <div class="filter-tabs">
-        <button class="filter-tab ${invoiceFilter==='all'?'active':''}" onclick="setInvFilter('all')">همه</button>
-        <button class="filter-tab ${invoiceFilter==='sale'?'active':''}" onclick="setInvFilter('sale')">فروش</button>
-        <button class="filter-tab ${invoiceFilter==='purchase'?'active':''}" onclick="setInvFilter('purchase')">خرید</button>
-      </div>
-      <div class="flex gap-2">
-        <button class="btn btn-success" onclick="invoiceForm('sale')">🧾 فاکتور فروش</button>
-        <button class="btn btn-danger" onclick="invoiceForm('purchase')">🧾 فاکتور خرید</button>
-      </div>
-    </div>
-    <div class="card"><div class="table-wrap"><table><thead><tr>
-      <th>شماره</th><th>نوع</th><th>تاریخ</th><th>شخص</th><th>مبلغ کل</th><th>پرداخت شده</th><th>باقی‌مانده</th><th>عملیات</th>
-    </tr></thead><tbody>
-      ${list.length? list.map(i=>{
-        const person = DB.data.persons.find(p=>p.id===i.personId);
-        const rem = i.total - (i.paidAmount||0);
-        return `<tr>
-          <td>${i.number}</td>
-          <td><span class="badge ${i.type==='sale'?'badge-success':'badge-danger'}">${i.type==='sale'?'فروش':'خرید'}</span></td>
-          <td class="num">${i.date}</td>
-          <td>${person?.name||'-'}</td>
-          <td class="num">${formatNum(i.total)}</td>
-          <td class="num text-success">${formatNum(i.paidAmount||0)}</td>
-          <td class="num ${rem>0?'text-warning':'text-success'}">${formatNum(rem)}</td>
-          <td>
-            <button class="btn btn-sm btn-ghost" onclick="viewInvoice('${i.id}')" title="مشاهده">👁</button>
-            <button class="btn btn-sm btn-warning" onclick="invoiceForm('${i.type}','${i.id}')" title="ویرایش">✏️</button>
-            <button class="btn btn-sm btn-danger" onclick="deleteInvoice('${i.id}')" title="حذف">🗑</button>
-          </td></tr>`;
-      }).join('') : `<tr><td colspan="8"><div class="empty"><div class="icon">🧾</div><div class="title">فاکتوری ثبت نشده</div></div></td></tr>`}
-    </tbody></table></div></div>`;
+  let list = [].concat(DB.data.invoices).sort(function(a,b){return b.date.localeCompare(a.date);});
+  if(invoiceFilter!=='all') list = list.filter(function(i){return i.type===invoiceFilter;});
+
+  let rowsHtml = '';
+  if(!list.length){
+    rowsHtml = '<tr><td colspan="8"><div class="empty"><div class="icon">🧾</div><div class="title">فاکتوری ثبت نشده</div></div></td></tr>';
+  } else {
+    for(const i of list){
+      const person = DB.data.persons.find(function(p){return p.id===i.personId;});
+      const rem = i.total - (i.paidAmount||0);
+      rowsHtml += '<tr>'+
+        '<td>'+i.number+'</td>'+
+        '<td><span class="badge '+(i.type==='sale'?'badge-success':'badge-danger')+'">'+(i.type==='sale'?'فروش':'خرید')+'</span></td>'+
+        '<td class="num">'+i.date+'</td>'+
+        '<td>'+(person?person.name:'-')+'</td>'+
+        '<td class="num">'+formatNum(i.total)+'</td>'+
+        '<td class="num text-success">'+formatNum(i.paidAmount||0)+'</td>'+
+        '<td class="num '+(rem>0?'text-warning':'text-success')+'">'+formatNum(rem)+'</td>'+
+        '<td>'+
+          '<button class="btn btn-sm btn-ghost" onclick="viewInvoice(\''+i.id+'\')" title="مشاهده">👁</button> '+
+          '<button class="btn btn-sm btn-warning" onclick="invoiceForm(\''+i.type+'\',\''+i.id+'\')" title="ویرایش">✏️</button> '+
+          '<button class="btn btn-sm btn-danger" onclick="deleteInvoice(\''+i.id+'\')" title="حذف">🗑</button>'+
+        '</td></tr>';
+    }
+  }
+
+  $('#content').innerHTML =
+    '<div class="flex justify-between items-center mb-4 gap-3" style="flex-wrap:wrap">'+
+      '<div class="filter-tabs">'+
+        '<button class="filter-tab '+(invoiceFilter==='all'?'active':'')+'" onclick="setInvFilter(\'all\')">همه</button>'+
+        '<button class="filter-tab '+(invoiceFilter==='sale'?'active':'')+'" onclick="setInvFilter(\'sale\')">فروش</button>'+
+        '<button class="filter-tab '+(invoiceFilter==='purchase'?'active':'')+'" onclick="setInvFilter(\'purchase\')">خرید</button>'+
+      '</div>'+
+      '<div class="flex gap-2">'+
+        '<button class="btn btn-success" onclick="invoiceForm(\'sale\')">🧾 فاکتور فروش</button>'+
+        '<button class="btn btn-danger" onclick="invoiceForm(\'purchase\')">🧾 فاکتور خرید</button>'+
+      '</div>'+
+    '</div>'+
+    '<div class="card"><div class="table-wrap"><table><thead><tr>'+
+      '<th>شماره</th><th>نوع</th><th>تاریخ</th><th>شخص</th><th>مبلغ کل</th><th>پرداخت شده</th><th>باقی‌مانده</th><th>عملیات</th>'+
+    '</tr></thead><tbody>'+rowsHtml+'</tbody></table></div></div>';
 }
 function setInvFilter(f){invoiceFilter=f;renderInvoices();}
 function nextInvoiceNumber(type){
   const prefix = type==='sale'?'F':'P';
-  const nums = DB.data.invoices.filter(i=>i.type===type).map(i=>Number(i.number.replace(/\D/g,''))||0);
-  return prefix + '-' + String((Math.max(0,...nums)+1)).padStart(4,'0');
+  const nums = DB.data.invoices.filter(function(i){return i.type===type;}).map(function(i){return Number(i.number.replace(/\D/g,''))||0;});
+  return prefix + '-' + String(Math.max.apply(null,[0].concat(nums))+1).padStart(4,'0');
 }
 
 let invoiceItems = [];
-function invoiceForm(type, editId=null){
+function invoiceForm(type, editId){
+  editId = editId || null;
   if(!DB.data.persons.length){toast('ابتدا یک شخص اضافه کنید','warning');return;}
   if(!DB.data.warehouses.length){toast('ابتدا یک انبار اضافه کنید','warning');return;}
   if(!DB.data.products.length){toast('ابتدا یک کالا اضافه کنید','warning');return;}
@@ -1106,91 +1007,73 @@ function invoiceForm(type, editId=null){
   invoiceItems = [];
   let inv = null;
   if(editId){
-    inv = DB.data.invoices.find(x=>x.id===editId);
+    inv = DB.data.invoices.find(function(x){return x.id===editId;});
     invoiceItems = JSON.parse(JSON.stringify(inv.items));
     type = inv.type;
   }
   const date = inv? inv.date : todayJalali();
   const number = inv? inv.number : nextInvoiceNumber(type);
   const personId = inv? inv.personId : '';
-  const whId = inv? inv.warehouseId : (DB.data.warehouses[0]?.id||'');
+  const whId = inv? inv.warehouseId : (DB.data.warehouses[0]?DB.data.warehouses[0].id:'');
   const shippingCost = inv? (inv.shippingCost||0) : 0;
   const customsCost = inv? (inv.customsCost||0) : 0;
   const paidAmount = inv? (inv.paidAmount||0) : 0;
 
+  let personOptions = '<option value="">انتخاب کنید</option>';
+  for(const p of DB.data.persons){
+    personOptions += '<option value="'+p.id+'" '+(p.id===personId?'selected':'')+'>'+p.name+'</option>';
+  }
+  let whOptions = '';
+  for(const w of DB.data.warehouses){
+    whOptions += '<option value="'+w.id+'" '+(w.id===whId?'selected':'')+'>'+w.name+'</option>';
+  }
+
   openModal(
     (type==='sale'?'فاکتور فروش':'فاکتور خرید')+(editId?' (ویرایش)':''),
-    `
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">شماره فاکتور</label><input class="form-control" id="invNumber" value="${number}"></div>
-      <div class="form-group"><label class="form-label">تاریخ (شمسی)</label><input class="form-control" id="invDate" value="${date}" placeholder="1403/01/01" dir="ltr"></div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">${type==='sale'?'مشتری':'تأمین‌کننده'} *</label>
-        <select class="form-control" id="invPerson">
-          <option value="">انتخاب کنید</option>
-          ${DB.data.persons.map(p=>`<option value="${p.id}" ${p.id===personId?'selected':''}>${p.name}</option>`).join('')}
-        </select>
-      </div>
-      <div class="form-group"><label class="form-label">انبار *</label>
-        <select class="form-control" id="invWh">
-          ${DB.data.warehouses.map(w=>`<option value="${w.id}" ${w.id===whId?'selected':''}>${w.name}</option>`).join('')}
-        </select>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="flex justify-between items-center mb-3">
-      <div class="font-bold">اقلام فاکتور</div>
-      <button class="btn btn-sm btn-primary" onclick="addInvoiceItem()">➕ افزودن ردیف</button>
-    </div>
-    <div class="table-wrap" style="overflow-x:auto">
-      <table class="items-table"><thead><tr>
-        <th class="col-product">کالا</th>
-        <th class="col-qty">تعداد</th>
-        <th class="col-price">قیمت واحد</th>
-        <th class="col-total">جمع</th>
-        <th class="col-act"></th>
-      </tr></thead><tbody id="invItemsBody"></tbody></table>
-    </div>
-
-    <div class="divider"></div>
-    <div class="font-bold mb-3">هزینه‌های جانبی فاکتور</div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">🚚 هزینه حمل</label>
-        <input class="form-control" data-thousands id="invShipping" value="${formatNum(shippingCost)}"></div>
-      <div class="form-group"><label class="form-label">🛃 هزینه گمرکی</label>
-        <input class="form-control" data-thousands id="invCustoms" value="${formatNum(customsCost)}"></div>
-    </div>
-    <p class="text-muted" style="font-size:11px;margin-bottom:12px">
-      💡 هزینه‌های حمل و گمرکی به بهای تمام‌شده کالا اضافه می‌شوند و در محاسبه سود لحاظ می‌گردند.
-    </p>
-
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">💰 مبلغ پرداخت‌شده</label>
-        <input class="form-control" data-thousands id="invPaidAmount" value="${formatNum(paidAmount)}"></div>
-      <div class="form-group"><label class="form-label">توضیحات</label>
-        <input class="form-control" id="invNote" value="${inv?inv.note||'':''}"></div>
-    </div>
-    <p class="text-muted" style="font-size:11px;margin-bottom:8px">
-      💡 مبلغی که همین الان ${type==='sale'?'از مشتری دریافت کردید':'به تأمین‌کننده پرداخت کردید'} را وارد کنید. باقیمانده به عنوان نسیه روی حساب شخص ثبت می‌شود.
-    </p>
-
-    <div class="invoice-total mt-4">
-      <div class="row"><span>جمع اقلام:</span><span class="num" id="invSubtotal">0</span></div>
-      <div class="row warn"><span>هزینه حمل:</span><span class="num" id="invShipShow">0</span></div>
-      <div class="row warn"><span>هزینه گمرکی:</span><span class="num" id="invCustShow">0</span></div>
-      <div class="row total"><span>مبلغ نهایی:</span><span class="num" id="invTotal">0</span></div>
-      <div class="row highlight"><span>پرداخت شده:</span><span class="num" id="invPaidShow">0</span></div>
-      <div class="row" style="color:var(--danger-dark);font-weight:700"><span>باقی‌مانده (نسیه):</span><span class="num" id="invRemShow">0</span></div>
-    </div>
-    `,
-    `<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>
-     <button class="btn btn-primary" onclick="saveInvoice('${type}','${editId||''}')">💾 ذخیره فاکتور</button>`,
+    '<div class="form-row">'+
+      '<div class="form-group"><label class="form-label">شماره فاکتور</label><input class="form-control" id="invNumber" value="'+number+'"></div>'+
+      '<div class="form-group"><label class="form-label">تاریخ (شمسی)</label><input class="form-control" id="invDate" value="'+date+'" placeholder="1403/01/01" dir="ltr"></div>'+
+    '</div>'+
+    '<div class="form-row">'+
+      '<div class="form-group"><label class="form-label">'+(type==='sale'?'مشتری':'تأمین‌کننده')+' *</label><select class="form-control" id="invPerson">'+personOptions+'</select></div>'+
+      '<div class="form-group"><label class="form-label">انبار *</label><select class="form-control" id="invWh">'+whOptions+'</select></div>'+
+    '</div>'+
+    '<div class="divider"></div>'+
+    '<div class="flex justify-between items-center mb-3">'+
+      '<div class="font-bold">اقلام فاکتور</div>'+
+      '<button class="btn btn-sm btn-primary" onclick="addInvoiceItem()">➕ افزودن ردیف</button>'+
+    '</div>'+
+    '<div class="table-wrap" style="overflow-x:auto">'+
+      '<table class="items-table"><thead><tr>'+
+        '<th class="col-product">کالا</th><th class="col-qty">تعداد</th><th class="col-price">قیمت واحد</th><th class="col-total">جمع</th><th class="col-act"></th>'+
+      '</tr></thead><tbody id="invItemsBody"></tbody></table>'+
+    '</div>'+
+    '<div class="divider"></div>'+
+    '<div class="font-bold mb-3">هزینه‌های جانبی فاکتور</div>'+
+    '<div class="form-row">'+
+      '<div class="form-group"><label class="form-label">🚚 هزینه حمل</label><input class="form-control" data-thousands id="invShipping" value="'+formatNum(shippingCost)+'"></div>'+
+      '<div class="form-group"><label class="form-label">🛃 هزینه گمرکی</label><input class="form-control" data-thousands id="invCustoms" value="'+formatNum(customsCost)+'"></div>'+
+    '</div>'+
+    '<p class="text-muted" style="font-size:11px;margin-bottom:12px">💡 هزینه‌های حمل و گمرکی به بهای تمام‌شده کالا اضافه می‌شوند و در محاسبه سود لحاظ می‌گردند.</p>'+
+    '<div class="form-row">'+
+      '<div class="form-group"><label class="form-label">💰 مبلغ پرداخت‌شده</label><input class="form-control" data-thousands id="invPaidAmount" value="'+formatNum(paidAmount)+'"></div>'+
+      '<div class="form-group"><label class="form-label">توضیحات</label><input class="form-control" id="invNote" value="'+(inv?(inv.note||''):'')+'"></div>'+
+    '</div>'+
+    '<p class="text-muted" style="font-size:11px;margin-bottom:8px">💡 مبلغی که همین الان '+(type==='sale'?'از مشتری دریافت کردید':'به تأمین‌کننده پرداخت کردید')+' را وارد کنید. باقیمانده به عنوان نسیه روی حساب شخص ثبت می‌شود.</p>'+
+    '<div class="invoice-total mt-4">'+
+      '<div class="row"><span>جمع اقلام:</span><span class="num" id="invSubtotal">0</span></div>'+
+      '<div class="row warn"><span>هزینه حمل:</span><span class="num" id="invShipShow">0</span></div>'+
+      '<div class="row warn"><span>هزینه گمرکی:</span><span class="num" id="invCustShow">0</span></div>'+
+      '<div class="row total"><span>مبلغ نهایی:</span><span class="num" id="invTotal">0</span></div>'+
+      '<div class="row highlight"><span>پرداخت شده:</span><span class="num" id="invPaidShow">0</span></div>'+
+      '<div class="row" style="color:var(--danger-dark);font-weight:700"><span>باقی‌مانده (نسیه):</span><span class="num" id="invRemShow">0</span></div>'+
+    '</div>',
+    '<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>'+
+    '<button class="btn btn-primary" onclick="saveInvoice(\''+type+'\',\''+(editId||'')+'\')">💾 ذخیره فاکتور</button>',
     'lg'
   );
   renderInvoiceItems();
-
-  setTimeout(()=>{
+  setTimeout(function(){
     $('#invShipping').addEventListener('input',recalcInvoice);
     $('#invCustoms').addEventListener('input',recalcInvoice);
     $('#invPaidAmount').addEventListener('input',recalcInvoice);
@@ -1206,35 +1089,36 @@ function renderInvoiceItems(){
     recalcInvoice();
     return;
   }
-  body.innerHTML = invoiceItems.map((it,idx)=>invoiceItemsRowHTML(it,idx)).join('');
+  let html = '';
+  for(let idx=0; idx<invoiceItems.length; idx++){
+    html += invoiceItemsRowHTML(invoiceItems[idx], idx);
+  }
+  body.innerHTML = html;
   attachAllThousandsIn(body);
   recalcInvoice();
 }
-
 function invoiceItemsRowHTML(it,idx){
-  return `<tr data-row="${idx}">
-    <td class="col-product">
-      <select class="form-control product-select" onchange="updateItemProduct(${idx},this.value)">
-        <option value="">— انتخاب کالا —</option>
-        ${DB.data.products.map(x=>`<option value="${x.id}" ${x.id===it.productId?'selected':''}>${x.code? '['+x.code+'] ':''}${x.name}</option>`).join('')}
-      </select>
-    </td>
-    <td class="col-qty"><input class="form-control num" type="number" min="1" value="${it.qty}" oninput="updateItemQty(${idx},this.value)" style="width:100%"></td>
-    <td class="col-price"><input class="form-control num" data-thousands value="${formatNum(it.price)}" oninput="updateItemPrice(${idx},this.value)" style="width:100%"></td>
-    <td class="col-total"><span class="num" style="font-weight:700">${formatNum(it.qty*it.price)}</span></td>
-    <td class="col-act"><button class="btn btn-sm btn-danger" onclick="removeInvoiceItem(${idx})" title="حذف">✕</button></td>
-  </tr>`;
+  let productOptions = '<option value="">— انتخاب کالا —</option>';
+  for(const x of DB.data.products){
+    productOptions += '<option value="'+x.id+'" '+(x.id===it.productId?'selected':'')+'>'+(x.code?'['+x.code+'] ':'')+x.name+'</option>';
+  }
+  return '<tr data-row="'+idx+'">'+
+    '<td class="col-product"><select class="form-control product-select" onchange="updateItemProduct('+idx+',this.value)">'+productOptions+'</select></td>'+
+    '<td class="col-qty"><input class="form-control num" type="number" min="1" value="'+it.qty+'" oninput="updateItemQty('+idx+',this.value)" style="width:100%"></td>'+
+    '<td class="col-price"><input class="form-control num" data-thousands value="'+formatNum(it.price)+'" oninput="updateItemPrice('+idx+',this.value)" style="width:100%"></td>'+
+    '<td class="col-total"><span class="num" style="font-weight:700">'+formatNum(it.qty*it.price)+'</span></td>'+
+    '<td class="col-act"><button class="btn btn-sm btn-danger" onclick="removeInvoiceItem('+idx+')" title="حذف">✕</button></td>'+
+  '</tr>';
 }
-
 function updateItemProduct(idx,val){
   invoiceItems[idx].productId = val;
   if(val){
-    const p = DB.data.products.find(x=>x.id===val);
+    const p = DB.data.products.find(function(x){return x.id===val;});
     if(p && !invoiceItems[idx].price){
       const type = $('#invNumber').value.startsWith('F')?'sale':'purchase';
       invoiceItems[idx].price = type==='purchase'? (p.purchasePrice||0) : (p.salePrice||0);
-      const row = $(`#invItemsBody tr[data-row="${idx}"]`);
-      if(row){ const pi = $('.col-price input',row); if(pi) pi.value = formatNum(invoiceItems[idx].price); }
+      const row = $('#invItemsBody tr[data-row="'+idx+'"]');
+      if(row){ const pi = row.querySelector('.col-price input'); if(pi) pi.value = formatNum(invoiceItems[idx].price); }
     }
   }
   updateRowTotal(idx);
@@ -1251,19 +1135,19 @@ function updateItemPrice(idx,val){
   recalcInvoice();
 }
 function updateRowTotal(idx){
-  const row = $(`#invItemsBody tr[data-row="${idx}"]`);
+  const row = $('#invItemsBody tr[data-row="'+idx+'"]');
   if(!row)return;
-  const cell = $('.col-total .num',row);
+  const cell = row.querySelector('.col-total .num');
   if(cell) cell.textContent = formatNum(invoiceItems[idx].qty*invoiceItems[idx].price);
 }
 function addInvoiceItem(){ invoiceItems.push({productId:'',qty:1,price:0}); renderInvoiceItems(); }
 function removeInvoiceItem(idx){ invoiceItems.splice(idx,1); renderInvoiceItems(); }
 
 function recalcInvoice(){
-  const subtotal = invoiceItems.reduce((s,i)=>s+(i.qty*i.price),0);
-  const shipping = parseNum($('#invShipping')?.value||0);
-  const customs = parseNum($('#invCustoms')?.value||0);
-  const paid = parseNum($('#invPaidAmount')?.value||0);
+  const subtotal = invoiceItems.reduce(function(s,i){return s+(i.qty*i.price);},0);
+  const shipping = parseNum(($('#invShipping')||{}).value||0);
+  const customs = parseNum(($('#invCustoms')||{}).value||0);
+  const paid = parseNum(($('#invPaidAmount')||{}).value||0);
   const total = subtotal + shipping + customs;
   const remaining = total - paid;
   if($('#invSubtotal'))$('#invSubtotal').textContent = formatNum(subtotal);
@@ -1275,8 +1159,9 @@ function recalcInvoice(){
 }
 
 function saveInvoice(type,editId){
+  editId = editId || '';
   if(editId){
-    const inv = DB.data.invoices.find(x=>x.id===editId);
+    const inv = DB.data.invoices.find(function(x){return x.id===editId;});
     if(inv) type = inv.type;
   }
   const personId = $('#invPerson').value;
@@ -1286,20 +1171,20 @@ function saveInvoice(type,editId){
   if(!whId){toast('انبار را انتخاب کنید','error');return;}
   if(!validJalali(date)){toast('تاریخ معتبر نیست (مثال: 1403/01/01)','error');return;}
   if(!invoiceItems.length){toast('حداقل یک ردیف اضافه کنید','error');return;}
-  if(invoiceItems.some(i=>!i.productId)){toast('کالای هر ردیف را انتخاب کنید','error');return;}
+  if(invoiceItems.some(function(i){return !i.productId;})){toast('کالای هر ردیف را انتخاب کنید','error');return;}
 
   if(type==='sale'){
     for(const it of invoiceItems){
       const avail = stockOf(it.productId,whId,editId||null);
       if(avail < it.qty){
-        const p = DB.data.products.find(x=>x.id===it.productId);
-        toast(`موجودی کالای "${p.name}" کافی نیست (موجودی: ${avail})`,'error');
+        const p = DB.data.products.find(function(x){return x.id===it.productId;});
+        toast('موجودی کالای "'+p.name+'" کافی نیست (موجودی: '+avail+')','error');
         return;
       }
     }
   }
 
-  const subtotal = invoiceItems.reduce((s,i)=>s+(i.qty*i.price),0);
+  const subtotal = invoiceItems.reduce(function(s,i){return s+(i.qty*i.price);},0);
   const shippingCost = parseNum($('#invShipping').value);
   const customsCost = parseNum($('#invCustoms').value);
   const paidAmount = parseNum($('#invPaidAmount').value);
@@ -1308,150 +1193,179 @@ function saveInvoice(type,editId){
   const note = $('#invNote').value.trim();
 
   if(editId){
-    DB.data.stockMoves = DB.data.stockMoves.filter(m=>m.refId!==editId);
-    const inv = DB.data.invoices.find(x=>x.id===editId);
-    Object.assign(inv,{personId,warehouseId:whId,date,items:invoiceItems.map(i=>({...i})),shippingCost,customsCost,total,paidAmount,number,note});
+    DB.data.stockMoves = DB.data.stockMoves.filter(function(m){return m.refId!==editId;});
+    const inv = DB.data.invoices.find(function(x){return x.id===editId;});
+    Object.assign(inv,{personId:personId,warehouseId:whId,date:date,items:invoiceItems.map(function(i){return Object.assign({},i);}),shippingCost:shippingCost,customsCost:customsCost,total:total,paidAmount:paidAmount,number:number,note:note});
     for(const it of invoiceItems){
-      DB.data.stockMoves.push({id:uid(),date,type:type==='purchase'?'in':'out',productId:it.productId,warehouseId:whId,qty:it.qty,refType:'invoice',refId:editId});
+      DB.data.stockMoves.push({id:uid(),date:date,type:type==='purchase'?'in':'out',productId:it.productId,warehouseId:whId,qty:it.qty,refType:'invoice',refId:editId});
     }
   } else {
     const id = uid();
-    DB.data.invoices.push({id,type,number,date,personId,warehouseId:whId,items:invoiceItems.map(i=>({...i})),shippingCost,customsCost,total,paidAmount,note,createdAt:nowJalaliFull()});
+    DB.data.invoices.push({id:id,type:type,number:number,date:date,personId:personId,warehouseId:whId,items:invoiceItems.map(function(i){return Object.assign({},i);}),shippingCost:shippingCost,customsCost:customsCost,total:total,paidAmount:paidAmount,note:note,createdAt:nowJalaliFull()});
     for(const it of invoiceItems){
-      DB.data.stockMoves.push({id:uid(),date,type:type==='purchase'?'in':'out',productId:it.productId,warehouseId:whId,qty:it.qty,refType:'invoice',refId:id});
+      DB.data.stockMoves.push({id:uid(),date:date,type:type==='purchase'?'in':'out',productId:it.productId,warehouseId:whId,qty:it.qty,refType:'invoice',refId:id});
     }
   }
   DB.save(); closeModal(); renderInvoices(); toast('فاکتور ذخیره شد','success');
 }
 
 function viewInvoice(id){
-  const inv = DB.data.invoices.find(x=>x.id===id);
-  const person = DB.data.persons.find(p=>p.id===inv.personId);
-  const wh = DB.data.warehouses.find(w=>w.id===inv.warehouseId);
-  const items = inv.items.map(it=>{
-    const p = DB.data.products.find(x=>x.id===it.productId);
-    return {...it,name:p?.name||'?',unit:p?.unit||'',code:p?.code||''};
-  });
-  const sub = items.reduce((s,i)=>s+i.qty*i.price,0);
+  const inv = DB.data.invoices.find(function(x){return x.id===id;});
+  if(!inv){toast('فاکتور یافت نشد','error');return;}
+  const person = DB.data.persons.find(function(p){return p.id===inv.personId;});
+  const wh = DB.data.warehouses.find(function(w){return w.id===inv.warehouseId;});
+
+  let itemsRows = '';
+  let sub = 0;
+  for(let idx=0; idx<inv.items.length; idx++){
+    const it = inv.items[idx];
+    const p = DB.data.products.find(function(x){return x.id===it.productId;});
+    const name = p?p.name:'?';
+    const unit = p?(p.unit||''):'';
+    const code = p?(p.code||''):'';
+    sub += it.qty * it.price;
+    itemsRows += '<tr>'+
+      '<td>'+(idx+1)+'</td>'+
+      '<td>'+(code||'-')+'</td>'+
+      '<td>'+name+'</td>'+
+      '<td class="num">'+formatNum(it.qty)+' '+unit+'</td>'+
+      '<td class="num">'+formatNum(it.price)+'</td>'+
+      '<td class="num">'+formatNum(it.qty*it.price)+'</td>'+
+    '</tr>';
+  }
   const rem = inv.total - (inv.paidAmount||0);
-  openModal('مشاهده فاکتور',`
-    <div id="print-area">
-      <div style="text-align:center;margin-bottom:20px">
-        <h2 style="margin:0 0 4px;font-weight:800">${DB.data.settings.shopName}</h2>
-        <div class="text-muted">${inv.type==='sale'?'فاکتور فروش':'فاکتور خرید'}</div>
-      </div>
-      <div class="form-row mb-3">
-        <div><b>شماره:</b> ${inv.number}</div>
-        <div><b>تاریخ:</b> ${inv.date}</div>
-      </div>
-      <div class="form-row mb-3">
-        <div><b>${inv.type==='sale'?'مشتری':'تأمین‌کننده'}:</b> ${person?.name||'-'}</div>
-        <div><b>انبار:</b> ${wh?.name||'-'}</div>
-      </div>
-      <div class="table-wrap"><table><thead><tr><th>#</th><th>کد</th><th>کالا</th><th>تعداد</th><th>قیمت واحد</th><th>جمع</th></tr></thead><tbody>
-        ${items.map((i,idx)=>`<tr><td>${idx+1}</td><td>${i.code||'-'}</td><td>${i.name}</td><td class="num">${formatNum(i.qty)} ${i.unit}</td><td class="num">${formatNum(i.price)}</td><td class="num">${formatNum(i.qty*i.price)}</td></tr>`).join('')}
-      </tbody></table></div>
-      <div class="invoice-total mt-4">
-        <div class="row"><span>جمع اقلام:</span><span class="num">${formatNum(sub)}</span></div>
-        ${inv.shippingCost?`<div class="row"><span>هزینه حمل:</span><span class="num">${formatNum(inv.shippingCost)}</span></div>`:''}
-        ${inv.customsCost?`<div class="row"><span>هزینه گمرکی:</span><span class="num">${formatNum(inv.customsCost)}</span></div>`:''}
-        <div class="row total"><span>مبلغ نهایی:</span><span class="num">${formatMoney(inv.total)}</span></div>
-        <div class="row highlight"><span>پرداخت شده:</span><span class="num">${formatNum(inv.paidAmount||0)}</span></div>
-        <div class="row" style="color:var(--danger-dark);font-weight:700"><span>باقی‌مانده:</span><span class="num">${formatNum(rem)}</span></div>
-      </div>
-      ${inv.note?`<div class="mt-3"><b>توضیحات:</b> ${inv.note}</div>`:''}
-    </div>
-  `,`<button class="btn btn-ghost no-print" onclick="closeModal()">بستن</button>
-     <button class="btn btn-warning no-print" onclick="closeModal();invoiceForm('${inv.type}','${inv.id}')">✏️ ویرایش</button>
-     <button class="btn btn-primary no-print" onclick="window.print()">🖨 چاپ</button>`,'lg');
+
+  openModal('مشاهده فاکتور',
+    '<div id="print-area">'+
+      '<div style="text-align:center;margin-bottom:20px">'+
+        '<h2 style="margin:0 0 4px;font-weight:800">'+DB.data.settings.shopName+'</h2>'+
+        '<div class="text-muted">'+(inv.type==='sale'?'فاکتور فروش':'فاکتور خرید')+'</div>'+
+      '</div>'+
+      '<div class="form-row mb-3">'+
+        '<div><b>شماره:</b> '+inv.number+'</div>'+
+        '<div><b>تاریخ:</b> '+inv.date+'</div>'+
+      '</div>'+
+      '<div class="form-row mb-3">'+
+        '<div><b>'+(inv.type==='sale'?'مشتری':'تأمین‌کننده')+':</b> '+(person?person.name:'-')+'</div>'+
+        '<div><b>انبار:</b> '+(wh?wh.name:'-')+'</div>'+
+      '</div>'+
+      '<div class="table-wrap"><table><thead><tr><th>#</th><th>کد</th><th>کالا</th><th>تعداد</th><th>قیمت واحد</th><th>جمع</th></tr></thead><tbody>'+itemsRows+'</tbody></table></div>'+
+      '<div class="invoice-total mt-4">'+
+        '<div class="row"><span>جمع اقلام:</span><span class="num">'+formatNum(sub)+'</span></div>'+
+        (inv.shippingCost?'<div class="row"><span>هزینه حمل:</span><span class="num">'+formatNum(inv.shippingCost)+'</span></div>':'')+
+        (inv.customsCost?'<div class="row"><span>هزینه گمرکی:</span><span class="num">'+formatNum(inv.customsCost)+'</span></div>':'')+
+        '<div class="row total"><span>مبلغ نهایی:</span><span class="num">'+formatMoney(inv.total)+'</span></div>'+
+        '<div class="row highlight"><span>پرداخت شده:</span><span class="num">'+formatNum(inv.paidAmount||0)+'</span></div>'+
+        '<div class="row" style="color:var(--danger-dark);font-weight:700"><span>باقی‌مانده:</span><span class="num">'+formatNum(rem)+'</span></div>'+
+      '</div>'+
+      (inv.note?'<div class="mt-3"><b>توضیحات:</b> '+inv.note+'</div>':'')+
+    '</div>',
+    '<button class="btn btn-ghost no-print" onclick="closeModal()">بستن</button>'+
+    '<button class="btn btn-warning no-print" onclick="editFromViewInvoice(\''+inv.type+'\',\''+inv.id+'\')">✏️ ویرایش</button>'+
+    '<button class="btn btn-primary no-print" onclick="window.print()">🖨 چاپ</button>',
+    'lg'
+  );
+}
+function editFromViewInvoice(type, id){
+  closeModal();
+  setTimeout(function(){ invoiceForm(type, id); }, 120);
 }
 function deleteInvoice(id){
-  confirmAction('حذف این فاکتور؟ (گردش انبار نیز برگشت داده می‌شود)',()=>{
-    DB.data.invoices = DB.data.invoices.filter(i=>i.id!==id);
-    DB.data.stockMoves = DB.data.stockMoves.filter(m=>m.refId!==id);
+  confirmAction('حذف این فاکتور؟ (گردش انبار نیز برگشت داده می‌شود)',function(){
+    DB.data.invoices = DB.data.invoices.filter(function(i){return i.id!==id;});
+    DB.data.stockMoves = DB.data.stockMoves.filter(function(m){return m.refId!==id;});
     DB.save(); renderInvoices(); toast('فاکتور حذف شد','success');
   });
 }
 
-/* =========================================================
-   تراکنش‌ها
-   ========================================================= */
+/* ============ تراکنش‌ها ============ */
 function renderTransactions(){
-  const list = [...DB.data.transactions].sort((a,b)=>b.date.localeCompare(a.date));
-  $('#content').innerHTML = `
-    <div class="flex justify-between items-center mb-4">
-      <div class="text-muted">دریافت، پرداخت و انتقال بین اشخاص</div>
-      <div class="flex gap-2">
-        <button class="btn btn-success" onclick="txForm('receive')">📥 دریافت</button>
-        <button class="btn btn-danger" onclick="txForm('pay')">📤 پرداخت</button>
-        <button class="btn btn-warning" onclick="txForm('transfer')">🔁 انتقال</button>
-      </div>
-    </div>
-    <div class="card"><div class="table-wrap"><table><thead><tr>
-      <th>تاریخ</th><th>نوع</th><th>از / به</th><th>مبلغ</th><th>توضیح</th><th>عملیات</th>
-    </tr></thead><tbody>
-      ${list.length? list.map(t=>{
-        let who='-';
-        if(t.type==='receive'||t.type==='pay'){
-          const p = DB.data.persons.find(x=>x.id===t.personId); who = p?.name||'?';
-        } else if(t.type==='transfer'){
-          const from = DB.data.persons.find(x=>x.id===t.personId);
-          const to = DB.data.persons.find(x=>x.id===t.toPersonId);
-          who = `${from?.name||'?'} → ${to?.name||'?'}`;
-        }
-        return `<tr>
-          <td class="num">${t.date}</td>
-          <td><span class="badge ${t.type==='receive'?'badge-success':t.type==='pay'?'badge-danger':'badge-warning'}">${t.type==='receive'?'دریافت':t.type==='pay'?'پرداخت':'انتقال'}</span></td>
-          <td>${who}</td>
-          <td class="num">${formatNum(t.amount)}</td>
-          <td>${t.note||'-'}</td>
-          <td>
-            <button class="btn btn-sm btn-warning" onclick="txForm('${t.type}','${t.id}')" title="ویرایش">✏️</button>
-            <button class="btn btn-sm btn-danger" onclick="deleteTx('${t.id}')" title="حذف">🗑</button>
-          </td></tr>`;
-      }).join('') : `<tr><td colspan="6"><div class="empty"><div class="icon">💸</div><div class="title">تراکنشی ثبت نشده</div></div></td></tr>`}
-    </tbody></table></div></div>`;
+  const list = [].concat(DB.data.transactions).sort(function(a,b){return b.date.localeCompare(a.date);});
+  let rowsHtml = '';
+  if(!list.length){
+    rowsHtml = '<tr><td colspan="6"><div class="empty"><div class="icon">💸</div><div class="title">تراکنشی ثبت نشده</div></div></td></tr>';
+  } else {
+    for(const t of list){
+      let who = '-';
+      if(t.type==='receive'||t.type==='pay'){
+        const p = DB.data.persons.find(function(x){return x.id===t.personId;});
+        who = p?p.name:'?';
+      } else if(t.type==='transfer'){
+        const from = DB.data.persons.find(function(x){return x.id===t.personId;});
+        const to = DB.data.persons.find(function(x){return x.id===t.toPersonId;});
+        who = (from?from.name:'?')+' → '+(to?to.name:'?');
+      }
+      const badge = t.type==='receive'?'badge-success':t.type==='pay'?'badge-danger':'badge-warning';
+      const label = t.type==='receive'?'دریافت':t.type==='pay'?'پرداخت':'انتقال';
+      rowsHtml += '<tr>'+
+        '<td class="num">'+t.date+'</td>'+
+        '<td><span class="badge '+badge+'">'+label+'</span></td>'+
+        '<td>'+who+'</td>'+
+        '<td class="num">'+formatNum(t.amount)+'</td>'+
+        '<td>'+(t.note||'-')+'</td>'+
+        '<td>'+
+          '<button class="btn btn-sm btn-warning" onclick="txForm(\''+t.type+'\',\''+t.id+'\')" title="ویرایش">✏️</button> '+
+          '<button class="btn btn-sm btn-danger" onclick="deleteTx(\''+t.id+'\')" title="حذف">🗑</button>'+
+        '</td></tr>';
+    }
+  }
+  $('#content').innerHTML =
+    '<div class="flex justify-between items-center mb-4">'+
+      '<div class="text-muted">دریافت، پرداخت و انتقال بین اشخاص</div>'+
+      '<div class="flex gap-2">'+
+        '<button class="btn btn-success" onclick="txForm(\'receive\')">📥 دریافت</button>'+
+        '<button class="btn btn-danger" onclick="txForm(\'pay\')">📤 پرداخت</button>'+
+        '<button class="btn btn-warning" onclick="txForm(\'transfer\')">🔁 انتقال</button>'+
+      '</div>'+
+    '</div>'+
+    '<div class="card"><div class="table-wrap"><table><thead><tr>'+
+      '<th>تاریخ</th><th>نوع</th><th>از / به</th><th>مبلغ</th><th>توضیح</th><th>عملیات</th>'+
+    '</tr></thead><tbody>'+rowsHtml+'</tbody></table></div></div>';
 }
-function txForm(type, editId=null){
+function txForm(type, editId){
+  editId = editId || null;
   if(!DB.data.persons.length){toast('ابتدا شخص اضافه کنید','warning');return;}
-  const existing = editId? DB.data.transactions.find(t=>t.id===editId) : null;
+  const existing = editId? DB.data.transactions.find(function(t){return t.id===editId;}) : null;
   if(existing) type = existing.type;
   const isTransfer = type==='transfer';
+
+  let personsOptions = '<option value="">انتخاب</option>';
+  for(const p of DB.data.persons){
+    personsOptions += '<option value="'+p.id+'">'+p.name+'</option>';
+  }
+  let fromOptions = '<option value="">انتخاب</option>';
+  let toOptions = '<option value="">انتخاب</option>';
+  for(const p of DB.data.persons){
+    fromOptions += '<option value="'+p.id+'" '+(existing&&existing.personId===p.id?'selected':'')+'>'+p.name+'</option>';
+    toOptions += '<option value="'+p.id+'" '+(existing&&existing.toPersonId===p.id?'selected':'')+'>'+p.name+'</option>';
+  }
+  let personOptions2 = '<option value="">انتخاب</option>';
+  for(const p of DB.data.persons){
+    personOptions2 += '<option value="'+p.id+'" '+(existing&&existing.personId===p.id?'selected':'')+'>'+p.name+'</option>';
+  }
+
+  let body = '<div class="form-group"><label class="form-label">تاریخ</label><input class="form-control" id="txDate" value="'+(existing?existing.date:todayJalali())+'" dir="ltr"></div>';
+  if(isTransfer){
+    body += '<div class="form-group"><label class="form-label">از شخص (پرداخت‌کننده) *</label><select class="form-control" id="txFrom">'+fromOptions+'</select></div>';
+    body += '<div class="form-group"><label class="form-label">به شخص (دریافت‌کننده) *</label><select class="form-control" id="txTo">'+toOptions+'</select></div>';
+    body += '<p class="text-muted" style="font-size:11px;margin-bottom:8px">💡 انتقال یعنی شخص «از» پول را مستقیم به شخص «به» می‌دهد (بدون دخالت صندوق شما). بدهی/طلب هر دو نفر به‌روز می‌شود.</p>';
+  } else {
+    body += '<div class="form-group"><label class="form-label">شخص *</label><select class="form-control" id="txPerson">'+personOptions2+'</select></div>';
+  }
+  body += '<div class="form-group"><label class="form-label">مبلغ *</label><input class="form-control" data-thousands id="txAmount" value="'+(existing?formatNum(existing.amount):'0')+'"></div>';
+  body += '<div class="form-group"><label class="form-label">توضیحات</label><input class="form-control" id="txNote" value="'+(existing?(existing.note||''):'')+'"></div>';
+
   openModal(
     (type==='receive'?'ثبت دریافت وجه':type==='pay'?'ثبت پرداخت وجه':'انتقال بین اشخاص')+(editId?' (ویرایش)':''),
-    `
-    <div class="form-group"><label class="form-label">تاریخ</label><input class="form-control" id="txDate" value="${existing?existing.date:todayJalali()}" dir="ltr"></div>
-    ${isTransfer? `
-      <div class="form-group"><label class="form-label">از شخص (پرداخت‌کننده) *</label>
-        <select class="form-control" id="txFrom">
-          <option value="">انتخاب</option>
-          ${DB.data.persons.map(p=>`<option value="${p.id}" ${existing&&existing.personId===p.id?'selected':''}>${p.name}</option>`).join('')}
-        </select></div>
-      <div class="form-group"><label class="form-label">به شخص (دریافت‌کننده) *</label>
-        <select class="form-control" id="txTo">
-          <option value="">انتخاب</option>
-          ${DB.data.persons.map(p=>`<option value="${p.id}" ${existing&&existing.toPersonId===p.id?'selected':''}>${p.name}</option>`).join('')}
-        </select></div>
-      <p class="text-muted" style="font-size:11px;margin-bottom:8px">
-        💡 انتقال یعنی شخص «از» پول را مستقیم به شخص «به» می‌دهد (بدون دخالت صندوق شما). بدهی/طلب هر دو نفر به‌روز می‌شود.
-      </p>
-    `:`
-      <div class="form-group"><label class="form-label">شخص *</label>
-        <select class="form-control" id="txPerson">
-          <option value="">انتخاب</option>
-          ${DB.data.persons.map(p=>`<option value="${p.id}" ${existing&&existing.personId===p.id?'selected':''}>${p.name}</option>`).join('')}
-        </select></div>
-    `}
-    <div class="form-group"><label class="form-label">مبلغ *</label><input class="form-control" data-thousands id="txAmount" value="${existing?formatNum(existing.amount):'0'}"></div>
-    <div class="form-group"><label class="form-label">توضیحات</label><input class="form-control" id="txNote" value="${existing?existing.note||'':''}"></div>
-    `,
-    `<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>
-     <button class="btn btn-primary" onclick="saveTx('${type}','${editId||''}')">ذخیره</button>`
+    body,
+    '<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>'+
+    '<button class="btn btn-primary" onclick="saveTx(\''+type+'\',\''+(editId||'')+'\')">ذخیره</button>'
   );
 }
-function saveTx(type, editId=''){
+function saveTx(type, editId){
+  editId = editId || '';
   if(editId){
-    const ex = DB.data.transactions.find(t=>t.id===editId);
+    const ex = DB.data.transactions.find(function(t){return t.id===editId;});
     if(ex) type = ex.type;
   }
   const date = $('#txDate').value.trim();
@@ -1459,7 +1373,7 @@ function saveTx(type, editId=''){
   const amount = parseNum($('#txAmount').value);
   if(amount<=0){toast('مبلغ را وارد کنید','error');return;}
   const note = $('#txNote').value.trim();
-  const obj = {date,type,amount,note};
+  const obj = {date:date,type:type,amount:amount,note:note};
   if(type==='transfer'){
     const from = $('#txFrom').value;
     const to = $('#txTo').value;
@@ -1472,23 +1386,21 @@ function saveTx(type, editId=''){
     obj.personId = person;
   }
   if(editId){
-    const ex = DB.data.transactions.find(t=>t.id===editId);
+    const ex = DB.data.transactions.find(function(t){return t.id===editId;});
     Object.assign(ex,obj);
   } else {
-    DB.data.transactions.push({id:uid(),...obj});
+    DB.data.transactions.push(Object.assign({id:uid()},obj));
   }
   DB.save(); closeModal(); renderTransactions(); toast('تراکنش ذخیره شد','success');
 }
 function deleteTx(id){
-  confirmAction('حذف این تراکنش؟',()=>{
-    DB.data.transactions = DB.data.transactions.filter(t=>t.id!==id);
+  confirmAction('حذف این تراکنش؟',function(){
+    DB.data.transactions = DB.data.transactions.filter(function(t){return t.id!==id;});
     DB.save(); renderTransactions(); toast('حذف شد','success');
   });
 }
 
-/* =========================================================
-   سرمایه و سود
-   ========================================================= */
+/* ============ سرمایه ============ */
 function renderCapital(){
   const t = totals();
   const initial = DB.data.settings.initialCapital||0;
@@ -1497,49 +1409,45 @@ function renderCapital(){
   const totalAssets = t.cash + stockVal + t.receivable;
   const totalLiabAndCapital = t.payable + finalCapital;
 
-  $('#content').innerHTML = `
-    <div class="grid grid-3 mb-4">
-      <div class="stat"><div class="stat-label">سرمایه اولیه</div><div class="stat-value">${formatMoney(initial)}</div><div class="stat-icon">🏁</div></div>
-      <div class="stat s-success"><div class="stat-label">سود حاصل‌شده</div><div class="stat-value positive">${formatMoney(t.profit)}</div><div class="stat-icon">📈</div></div>
-      <div class="stat s-info"><div class="stat-label">سرمایه فعلی (تخمینی)</div><div class="stat-value">${formatMoney(finalCapital)}</div><div class="stat-icon">💰</div></div>
-    </div>
-    <div class="card mb-4">
-      <div class="card-header"><div class="card-title">ترازنامه ساده</div></div>
-      <div class="grid grid-2">
-        <div>
-          <div class="font-bold mb-3 text-success">دارایی‌ها</div>
-          <table style="font-size:13px">
-            <tr><td>موجودی نقدی</td><td class="num">${formatMoney(t.cash)}</td></tr>
-            <tr><td>ارزش انبار (بهای تمام‌شده)</td><td class="num">${formatMoney(stockVal)}</td></tr>
-            <tr><td>مطالبات از اشخاص</td><td class="num">${formatMoney(t.receivable)}</td></tr>
-            <tr style="border-top:2px solid var(--gray-200);font-weight:800"><td>جمع دارایی</td><td class="num">${formatMoney(totalAssets)}</td></tr>
-          </table>
-        </div>
-        <div>
-          <div class="font-bold mb-3 text-danger">بدهی‌ها و سرمایه</div>
-          <table style="font-size:13px">
-            <tr><td>بدهی به اشخاص</td><td class="num">${formatMoney(t.payable)}</td></tr>
-            <tr><td>سرمایه فعلی</td><td class="num">${formatMoney(finalCapital)}</td></tr>
-            <tr style="border-top:2px solid var(--gray-200);font-weight:800"><td>جمع</td><td class="num">${formatMoney(totalLiabAndCapital)}</td></tr>
-          </table>
-        </div>
-      </div>
-      <div class="divider"></div>
-      <div class="text-muted" style="font-size:11px">
-        💡 <b>سرمایه فعلی</b> = موجودی نقد + ارزش انبار + مطالبات − بدهی‌ها<br>
-        <span style="color:var(--warning-dark)">توجه: سود قبلاً در موجودی نقد (فروش نقدی) و مطالبات (فروش نسیه) لحاظ شده و دوباره اضافه نمی‌شود.</span>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header"><div class="card-title">تنظیم سرمایه اولیه</div></div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">سرمایه اولیه</label><input class="form-control" data-thousands id="capVal" value="${formatNum(initial)}"></div>
-        <div class="form-group"><label class="form-label">تاریخ شروع</label><input class="form-control" id="capDate" value="${DB.data.settings.initialCapitalDate||todayJalali()}" dir="ltr"></div>
-      </div>
-      <button class="btn btn-primary" onclick="saveCapital()">💾 ذخیره سرمایه اولیه</button>
-    </div>
-  `;
-  setTimeout(()=>attachAllThousandsIn($('#content')),10);
+  $('#content').innerHTML =
+    '<div class="grid grid-3 mb-4">'+
+      '<div class="stat"><div class="stat-label">سرمایه اولیه</div><div class="stat-value">'+formatMoney(initial)+'</div><div class="stat-icon">🏁</div></div>'+
+      '<div class="stat s-success"><div class="stat-label">سود حاصل‌شده</div><div class="stat-value positive">'+formatMoney(t.profit)+'</div><div class="stat-icon">📈</div></div>'+
+      '<div class="stat s-info"><div class="stat-label">سرمایه فعلی (تخمینی)</div><div class="stat-value">'+formatMoney(finalCapital)+'</div><div class="stat-icon">💰</div></div>'+
+    '</div>'+
+    '<div class="card mb-4">'+
+      '<div class="card-header"><div class="card-title">ترازنامه ساده</div></div>'+
+      '<div class="grid grid-2">'+
+        '<div>'+
+          '<div class="font-bold mb-3 text-success">دارایی‌ها</div>'+
+          '<table style="font-size:13px">'+
+            '<tr><td>موجودی نقدی</td><td class="num">'+formatMoney(t.cash)+'</td></tr>'+
+            '<tr><td>ارزش انبار (بهای تمام‌شده)</td><td class="num">'+formatMoney(stockVal)+'</td></tr>'+
+            '<tr><td>مطالبات از اشخاص</td><td class="num">'+formatMoney(t.receivable)+'</td></tr>'+
+            '<tr style="border-top:2px solid var(--gray-200);font-weight:800"><td>جمع دارایی</td><td class="num">'+formatMoney(totalAssets)+'</td></tr>'+
+          '</table>'+
+        '</div>'+
+        '<div>'+
+          '<div class="font-bold mb-3 text-danger">بدهی‌ها و سرمایه</div>'+
+          '<table style="font-size:13px">'+
+            '<tr><td>بدهی به اشخاص</td><td class="num">'+formatMoney(t.payable)+'</td></tr>'+
+            '<tr><td>سرمایه فعلی</td><td class="num">'+formatMoney(finalCapital)+'</td></tr>'+
+            '<tr style="border-top:2px solid var(--gray-200);font-weight:800"><td>جمع</td><td class="num">'+formatMoney(totalLiabAndCapital)+'</td></tr>'+
+          '</table>'+
+        '</div>'+
+      '</div>'+
+      '<div class="divider"></div>'+
+      '<div class="text-muted" style="font-size:11px">💡 <b>سرمایه فعلی</b> = موجودی نقد + ارزش انبار + مطالبات − بدهی‌ها<br><span style="color:var(--warning-dark)">توجه: سود قبلاً در موجودی نقد (فروش نقدی) و مطالبات (فروش نسیه) لحاظ شده و دوباره اضافه نمی‌شود.</span></div>'+
+    '</div>'+
+    '<div class="card">'+
+      '<div class="card-header"><div class="card-title">تنظیم سرمایه اولیه</div></div>'+
+      '<div class="form-row">'+
+        '<div class="form-group"><label class="form-label">سرمایه اولیه</label><input class="form-control" data-thousands id="capVal" value="'+formatNum(initial)+'"></div>'+
+        '<div class="form-group"><label class="form-label">تاریخ شروع</label><input class="form-control" id="capDate" value="'+(DB.data.settings.initialCapitalDate||todayJalali())+'" dir="ltr"></div>'+
+      '</div>'+
+      '<button class="btn btn-primary" onclick="saveCapital()">💾 ذخیره سرمایه اولیه</button>'+
+    '</div>';
+  setTimeout(function(){attachAllThousandsIn($('#content'));},10);
 }
 function saveCapital(){
   DB.data.settings.initialCapital = parseNum($('#capVal').value);
@@ -1547,101 +1455,102 @@ function saveCapital(){
   DB.save(); toast('سرمایه اولیه ذخیره شد','success'); renderCapital();
 }
 
-/* =========================================================
-   گزارش‌ها
-   ========================================================= */
+/* ============ گزارش‌ها ============ */
 function renderReports(){
   const t = totals();
   const months = lastSixMonths();
-  const monthSales = months.map(m=>{let s=0;for(const i of DB.data.invoices){if(i.type==='sale'&&jalaliMonth(i.date)===m)s+=i.total;}return s;});
-  const monthPurchases = months.map(m=>{let s=0;for(const i of DB.data.invoices){if(i.type==='purchase'&&jalaliMonth(i.date)===m)s+=i.total;}return s;});
-  const lowStock = DB.data.products.filter(p=>stockOf(p.id)<=p.minStock);
-  $('#content').innerHTML = `
-    <div class="grid grid-4 mb-4">
-      <div class="stat s-success"><div class="stat-label">کل فروش</div><div class="stat-value">${formatMoney(t.sales)}</div></div>
-      <div class="stat s-danger"><div class="stat-label">کل خرید</div><div class="stat-value">${formatMoney(t.purchases)}</div></div>
-      <div class="stat s-info"><div class="stat-label">سود ناخالص</div><div class="stat-value">${formatMoney(t.profit)}</div></div>
-      <div class="stat"><div class="stat-label">ارزش انبار</div><div class="stat-value">${formatMoney(stockValue())}</div></div>
-    </div>
-    <div class="grid grid-2 mb-4">
-      <div class="card"><div class="card-header"><div class="card-title">فروش و خرید ماهانه</div></div><canvas id="rChart1" height="220"></canvas></div>
-      <div class="card"><div class="card-header"><div class="card-title">کالاهای کم‌موجود</div></div>
-        ${lowStock.length? `<div class="table-wrap"><table><thead><tr><th>کالا</th><th>موجودی</th><th>حداقل</th></tr></thead><tbody>
-          ${lowStock.map(p=>`<tr><td>${p.name}</td><td class="num text-danger">${formatNum(stockOf(p.id))}</td><td class="num">${formatNum(p.minStock)}</td></tr>`).join('')}
-        </tbody></table></div>`:'<div class="empty"><div class="icon">✓</div><div class="title">همه کالاها موجودی کافی دارند</div></div>'}
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header"><div class="card-title">گزارش موجودی و بهای تمام‌شده</div></div>
-      <div class="table-wrap"><table><thead><tr><th>کد</th><th>کالا</th><th>موجودی</th><th>میانگین بهای تمام‌شده</th><th>ارزش موجودی</th></tr></thead><tbody>
-        ${DB".data.products value.length? DB.data.products.map(p=>{
-          const q = stockOf(p.id);
-          const avg = avgCostOf(p.id);
-          return `<tr><td>${p.code||'-'}</td><td>${p.name}</td><td class="num ${q<=p.minStock?'text-danger':''}">${formatNum(q)}</td><td class="num" style="color:var(--info);font-weight:700">${formatNum(avg)}</td><td class="num">${formatNum(q*avg)}</td></tr>`;
-        }).join('') : '<tr><td colspan="5" class="text-center text-muted">کالایی نیست</td></tr>'}
-      </tbody></table></div>
-    </div>
-  `;
-  setTimeout(()=>{
+  const monthSales = months.map(function(m){let s=0;for(const i of DB.data.invoices){if(i.type==='sale'&&jalaliMonth(i.date)===m)s+=i.total;}return s;});
+  const monthPurchases = months.map(function(m){let s=0;for(const i of DB.data.invoices){if(i.type==='purchase'&&jalaliMonth(i.date)===m)s+=i.total;}return s;});
+  const lowStock = DB.data.products.filter(function(p){return stockOf(p.id)<=p.minStock;});
+
+  let lowStockHtml = '';
+  if(lowStock.length){
+    let rows = '';
+    for(const p of lowStock){
+      rows += '<tr><td>'+p.name+'</td><td class="num text-danger">'+formatNum(stockOf(p.id))+'</td><td class="num">'+formatNum(p.minStock)+'</td></tr>';
+    }
+    lowStockHtml = '<div class="table-wrap"><table><thead><tr><th>کالا</th><th>موجودی</th><th>حداقل</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+  } else {
+    lowStockHtml = '<div class="empty"><div class="icon">✓</div><div class="title">همه کالاها موجودی کافی دارند</div></div>';
+  }
+
+  let stockRows = '';
+  if(DB.data.products.length){
+    for(const p of DB.data.products){
+      const q = stockOf(p.id);
+      const avg = avgCostOf(p.id);
+      stockRows += '<tr><td>'+(p.code||'-')+'</td><td>'+p.name+'</td><td class="num '+(q<=p.minStock?'text-danger':'')+'">'+formatNum(q)+'</td><td class="num" style="color:var(--info);font-weight:700">'+formatNum(avg)+'</td><td class="num">'+formatNum(q*avg)+'</td></tr>';
+    }
+  } else {
+    stockRows = '<tr><td colspan="5" class="text-center text-muted">کالایی نیست</td></tr>';
+  }
+
+  $('#content').innerHTML =
+    '<div class="grid grid-4 mb-4">'+
+      '<div class="stat s-success"><div class="stat-label">کل فروش</div><div class="stat-value">'+formatMoney(t.sales)+'</div></div>'+
+      '<div class="stat s-danger"><div class="stat-label">کل خرید</div><div class="stat-value">'+formatMoney(t.purchases)+'</div></div>'+
+      '<div class="stat s-info"><div class="stat-label">سود ناخالص</div><div class="stat-value">'+formatMoney(t.profit)+'</div></div>'+
+      '<div class="stat"><div class="stat-label">ارزش انبار</div><div class="stat-value">'+formatMoney(stockValue())+'</div></div>'+
+    '</div>'+
+    '<div class="grid grid-2 mb-4">'+
+      '<div class="card"><div class="card-header"><div class="card-title">فروش و خرید ماهانه</div></div><canvas id="rChart1" height="220"></canvas></div>'+
+      '<div class="card"><div class="card-header"><div class="card-title">کالاهای کم‌موجود</div></div>'+lowStockHtml+'</div>'+
+    '</div>'+
+    '<div class="card">'+
+      '<div class="card-header"><div class="card-title">گزارش موجودی و بهای تمام‌شده</div></div>'+
+      '<div class="table-wrap"><table><thead><tr><th>کد</th><th>کالا</th><th>موجودی</th><th>میانگین بهای تمام‌شده</th><th>ارزش موجودی</th></tr></thead><tbody>'+stockRows+'</tbody></table></div>'+
+    '</div>';
+  setTimeout(function(){
     new Chart($('#rChart1'),{
-      type:'line',data:{labels:months.map(m=>monthName(m)),datasets:[
+      type:'line',data:{labels:months.map(monthName),datasets:[
         {label:'فروش',data:monthSales,borderColor:'#10b981',backgroundColor:'rgba(16,185,129,.1)',tension:.35,fill:true,borderWidth:3},
         {label:'خرید',data:monthPurchases,borderColor:'#ef4444',backgroundColor:'rgba(239,68,68,.1)',tension:.35,fill:true,borderWidth:3}
       ]},
-      options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{family:'Estedad',weight:'600'}}}},scales:{y:{ticks:{font:{family:'Estedad'},callback:v=>formatNum(v)}},x:{ticks:{font:{family:'Estedad'}}}}}
+      options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{family:'Estedad',weight:'600'}}}},scales:{y:{ticks:{font:{family:'Estedad'},callback:function(v){return formatNum(v);}}},x:{ticks:{font:{family:'Estedad'}}}}}
     });
   },10);
 }
 
-/* =========================================================
-   تنظیمات
-   ========================================================= */
+/* ============ تنظیمات ============ */
 function renderSettings(){
   const s = DB.data.settings;
-  $('#content').innerHTML = `
-    <div class="grid grid-2">
-      <div class="card">
-        <div class="card-header"><div class="card-title">تنظیمات عمومی</div></div>
-        <div class="form-group"><label class="form-label">نام فروشگاه</label><input class="form-control" id="setShop="${s.shopName}"></div>
-        <div class="form-group"><label class="form-label">واحد پول</label>
-          <select class="form-control" id="setCurrency">
-            <option value="تومان" ${s.currency==='تومان'?'selected':''}>تومان</option>
-            <option value="ریال" ${s.currency==='ریال'?'selected':''}>ریال</option>
-          </select></div>
-        <button class="btn btn-primary" onclick="saveSettings()">💾 ذخیره تنظیمات</button>
-      </div>
-      <div class="card">
-        <div class="card-header"><div class="card-title">پشتیبان‌گیری</div></div>
-        <p class="text-muted mb-3">اطلاعات را در فایل JSON ذخیره یا بازیابی کنید.</p>
-        <div class="flex gap-2" style="flex-wrap:wrap">
-          <button class="btn btn-primary" onclick="exportData()">📤 دریافت فایل پشتیبان</button>
-          <label class="btn btn-success" style="cursor:pointer">
-            📥 بازیابی از فایل
-            <input type="file" accept=".json" onchange="importData(event)" style="display:none">
-          </label>
-        </div>
-        <div class="divider"></div>
-        <div class="card-header"><div class="card-title text-danger">منطقه خطر</div></div>
-        <div class="flex gap-2" style="flex-wrap:wrap">
-          <button class="btn btn-warning" onclick="resetAccountingData()">🧹 حذف اطلاعات حسابداری</button>
-          <button class="btn btn-danger" onclick="resetAllData()">🗑 حذف کل اطلاعات</button>
-        </div>
-        <p class="text-muted mt-3" style="font-size:11px">
-          - «حذف اطلاعات حسابداری» فقط فاکتورها، تراکنش‌ها و گردش انبار را پاک می‌کند.<br>
-          - «حذف کل اطلاعات» همه چیز را پاک می‌کند.
-        </p>
-      </div>
-    </div>
-    <div class="card mt-4">
-      <div class="card-header"><div class="card-title">اطلاعات سیستم</div></div>
-      <div class="grid grid-4">
-        <div class="stat"><div class="stat-label">اشخاص</div><div class="stat-value">${formatNum(DB.data.persons.length)}</div></div>
-        <div class="stat"><div class="stat-label">کالاها</div><div class="stat-value">${formatNum(DB.data.products.length)}</div></div>
-        <div class="stat"><div class="stat-label">انبارها</div><div class="stat-value">${formatNum(DB.data.warehouses.length)}</div></div>
-        <div class="stat"><div class="stat-label">فاکتورها</div><div class="stat-value">${formatNum(DB.data.invoices.length)}</div></div>
-      </div>
-    </div>
-  `;
+  $('#content').innerHTML =
+    '<div class="grid grid-2">'+
+      '<div class="card">'+
+        '<div class="card-header"><div class="card-title">تنظیمات عمومی</div></div>'+
+        '<div class="form-group"><label class="form-label">نام فروشگاه</label><input class="form-control" id="setShop" value="'+s.shopName+'"></div>'+
+        '<div class="form-group"><label class="form-label">واحد پول</label>'+
+          '<select class="form-control" id="setCurrency">'+
+            '<option value="تومان" '+(s.currency==='تومان'?'selected':'')+'>تومان</option>'+
+            '<option value="ریال" '+(s.currency==='ریال'?'selected':'')+'>ریال</option>'+
+          '</select></div>'+
+        '<button class="btn btn-primary" onclick="saveSettings()">💾 ذخیره تنظیمات</button>'+
+      '</div>'+
+      '<div class="card">'+
+        '<div class="card-header"><div class="card-title">پشتیبان‌گیری</div></div>'+
+        '<p class="text-muted mb-3">اطلاعات را در فایل JSON ذخیره یا بازیابی کنید.</p>'+
+        '<div class="flex gap-2" style="flex-wrap:wrap">'+
+          '<button class="btn btn-primary" onclick="exportData()">📤 دریافت فایل پشتیبان</button>'+
+          '<label class="btn btn-success" style="cursor:pointer">📥 بازیابی از فایل<input type="file" accept=".json" onchange="importData(event)" style="display:none"></label>'+
+        '</div>'+
+        '<div class="divider"></div>'+
+        '<div class="card-header"><div class="card-title text-danger">منطقه خطر</div></div>'+
+        '<div class="flex gap-2" style="flex-wrap:wrap">'+
+          '<button class="btn btn-warning" onclick="resetAccountingData()">🧹 حذف اطلاعات حسابداری</button>'+
+          '<button class="btn btn-danger" onclick="resetAllData()">🗑 حذف کل اطلاعات</button>'+
+        '</div>'+
+        '<p class="text-muted mt-3" style="font-size:11px">- «حذف اطلاعات حسابداری» فقط فاکتورها، تراکنش‌ها و گردش انبار را پاک می‌کند.<br>- «حذف کل اطلاعات» همه چیز را پاک می‌کند.</p>'+
+      '</div>'+
+    '</div>'+
+    '<div class="card mt-4">'+
+      '<div class="card-header"><div class="card-title">اطلاعات سیستم</div></div>'+
+      '<div class="grid grid-4">'+
+        '<div class="stat"><div class="stat-label">اشخاص</div><div class="stat-value">'+formatNum(DB.data.persons.length)+'</div></div>'+
+        '<div class="stat"><div class="stat-label">کالاها</div><div class="stat-value">'+formatNum(DB.data.products.length)+'</div></div>'+
+        '<div class="stat"><div class="stat-label">انبارها</div><div class="stat-value">'+formatNum(DB.data.warehouses.length)+'</div></div>'+
+        '<div class="stat"><div class="stat-label">فاکتورها</div><div class="stat-value">'+formatNum(DB.data.invoices.length)+'</div></div>'+
+      '</div>'+
+    '</div>';
 }
 function saveSettings(){
   DB.data.settings.shopName = $('#setShop').value.trim()||'فروشگاه من';
@@ -1655,7 +1564,7 @@ function exportData(){
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `backup-${new Date().toISOString().slice(0,10)}.json`;
+  a.download = 'backup-'+new Date().toISOString().slice(0,10)+'.json';
   a.click();
   URL.revokeObjectURL(url);
   toast('فایل پشتیبان دانلود شد','success');
@@ -1664,11 +1573,11 @@ function importData(e){
   const file = e.target.files[0];
   if(!file)return;
   const reader = new FileReader();
-  reader.onload = ev=>{
+  reader.onload = function(ev){
     try{
       const parsed = JSON.parse(ev.target.result);
-      confirmAction('اطلاعات فعلی جایگزین شود؟',()=>{
-        DB.data = {...DB.data,...parsed};
+      confirmAction('اطلاعات فعلی جایگزین شود؟',function(){
+        DB.data = Object.assign({},DB.data,parsed);
         DB.save();
         $('#sidebarShopName').textContent = DB.data.settings.shopName;
         toast('بازیابی انجام شد','success');
@@ -1680,23 +1589,21 @@ function importData(e){
   e.target.value='';
 }
 function resetAccountingData(){
-  confirmAction('همه فاکتورها، تراکنش‌ها و گردش انبار پاک شوند؟ (اشخاص، کالاها و انبارها حفظ می‌شوند)',()=>{
+  confirmAction('همه فاکتورها، تراکنش‌ها و گردش انبار پاک شوند؟ (اشخاص، کالاها و انبارها حفظ می‌شوند)',function(){
     DB.resetAccounting();
     toast('اطلاعات حسابداری پاک شد','success');
     navigate('dashboard');
   });
 }
 function resetAllData(){
-  confirmAction('⚠️ کل اطلاعات (فاکتورها، اشخاص، کالاها، انبارها) حذف شود؟ این عملیات برگشت‌پذیر نیست.',()=>{
+  confirmAction('⚠️ کل اطلاعات (فاکتورها، اشخاص، کالاها، انبارها) حذف شود؟ این عملیات برگشت‌پذیر نیست.',function(){
     DB.resetAll();
     toast('همه اطلاعات پاک شد','success');
     navigate('dashboard');
   });
 }
 
-/* =========================================================
-   شروع
-   ========================================================= */
+/* ============ شروع ============ */
 navigate('dashboard');
 </script>
 </body>
