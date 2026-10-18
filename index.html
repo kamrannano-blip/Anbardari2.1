@@ -9,17 +9,13 @@
 <meta name="apple-mobile-web-app-title" content="حسابداری">
 <meta name="mobile-web-app-capable" content="yes">
 <title>سیستم حسابداری و انبارداری</title>
-
-<!-- ✅ آیکون آیفون (Add to Home Screen) - نام دقیقاً مطابق فایل: DAVIN.PNG -->
 <link rel="apple-touch-icon" href="DAVIN.PNG">
 <link rel="apple-touch-icon" sizes="180x180" href="DAVIN.PNG">
 <link rel="apple-touch-icon" sizes="152x152" href="DAVIN.PNG">
 <link rel="apple-touch-icon" sizes="167x167" href="DAVIN.PNG">
 <link rel="apple-touch-icon" sizes="120x120" href="DAVIN.PNG">
 <link rel="apple-touch-icon" sizes="76x76" href="DAVIN.PNG">
-<!-- ✅ آیکون مرورگر و اندروید -->
 <link rel="icon" type="image/png" href="DAVIN.PNG">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Estedad:wght@300;400;500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -147,6 +143,28 @@ body{font-family:'Estedad','Vazirmatn',sans-serif;background:linear-gradient(135
 .btn-ghost:hover{background:linear-gradient(180deg,#f3f4f6,#e5e7eb)}
 .btn-sm{padding:6px 12px;font-size:12px}
 .btn-icon{padding:8px;width:36px;height:36px;justify-content:center}
+
+/* 🆕 دکمه‌های سریع دریافت/پرداخت */
+.quick-tx{
+  width:32px;height:32px;padding:0;border-radius:9px;
+  display:inline-flex;align-items:center;justify-content:center;
+  border:none;cursor:pointer;font-size:15px;font-weight:800;
+  transition:all .15s ease;position:relative;
+}
+.quick-tx:active{transform:translateY(2px)}
+.quick-tx-in{
+  background:linear-gradient(180deg,#10b981,#059669);color:#fff;
+  box-shadow:0 2px 0 #065f46,0 4px 8px rgba(16,185,129,.3);
+}
+.quick-tx-in:hover{background:linear-gradient(180deg,#059669,#047857)}
+.quick-tx-in:active{box-shadow:0 1px 0 #065f46,0 2px 4px rgba(16,185,129,.3)}
+.quick-tx-out{
+  background:linear-gradient(180deg,#ef4444,#dc2626);color:#fff;
+  box-shadow:0 2px 0 #991b1b,0 4px 8px rgba(239,68,68,.3);
+}
+.quick-tx-out:hover{background:linear-gradient(180deg,#dc2626,#b91c1c)}
+.quick-tx-out:active{box-shadow:0 1px 0 #991b1b,0 2px 4px rgba(239,68,68,.3)}
+.quick-tx svg{width:16px;height:16px;stroke-width:3}
 
 .form-group{margin-bottom:14px}
 .form-label{display:block;font-size:12px;font-weight:700;color:var(--gray-600);margin-bottom:6px}
@@ -476,9 +494,8 @@ const DB = {
 DB.load();
 
 /* =========================================================
-   محاسبات — با بهای تمام‌شده وزنی
+   محاسبات
    ========================================================= */
-
 function stockOf(productId,warehouseId=null,excludeInvoiceId=null){
   let total = 0;
   for(const m of DB.data.stockMoves){
@@ -534,9 +551,6 @@ function personBalance(personId){
     if(t.type==='receive' && t.personId===personId) bal += t.amount;
     if(t.type==='pay' && t.personId===personId) bal -= t.amount;
     if(t.type==='transfer'){
-      // ✅ اصلاح: انتقال از A به B یعنی A پول را به B داد
-      // A (پرداخت‌کننده): بدهی‌اش به ما کم می‌شود → balance += amount
-      // B (دریافت‌کننده): طلبش از ما کم می‌شود → balance -= amount
       if(t.personId===personId) bal += t.amount;
       if(t.toPersonId===personId) bal -= t.amount;
     }
@@ -590,12 +604,13 @@ function totals(){
   return {sales,purchases,cogs,profit,receivable,payable,cash};
 }
 
-// ✅ سرمایه فعلی تخمینی — طبق فرمول درخواستی کاربر
+// ✅ سرمایه فعلی = ارزش خالص دارایی‌ها
+// = موجودی نقد + ارزش انبار + مطالبات − بدهی‌ها
+// ⚠️ سود دوباره اضافه نمی‌شود چون قبلاً در نقد (فروش نقدی) یا مطالبات (فروش نسیه) لحاظ شده
 function currentCapital(){
   const t = totals();
   const stockVal = stockValue();
-  // سرمایه فعلی = موجودی نقد + ارزش انبار + مطالبات - بدهی‌ها + سود
-  return t.cash + stockVal + t.receivable - t.payable + t.profit;
+  return t.cash + stockVal + t.receivable - t.payable;
 }
 
 /* =========================================================
@@ -836,7 +851,7 @@ function deleteWarehouse(id){
 }
 
 /* =========================================================
-   اشخاص
+   اشخاص — با دکمه‌های سریع دریافت/پرداخت
    ========================================================= */
 let personFilter = 'all';
 function renderPersons(){
@@ -864,14 +879,77 @@ function renderPersons(){
           <td><span class="badge badge-info">${p.type==='customer'?'مشتری':p.type==='supplier'?'تأمین‌کننده':'هردو'}</span></td>
           <td class="num">${formatNum(Math.abs(p.bal))}</td>
           <td><span class="badge ${l.cls}">${l.text}</span></td>
-          <td>
+          <td style="white-space:nowrap">
+            <button class="quick-tx quick-tx-in" onclick="quickTx('${p.id}','receive')" title="دریافت از ${p.name}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </button>
+            <button class="quick-tx quick-tx-out" onclick="quickTx('${p.id}','pay')" title="پرداخت به ${p.name}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+            </button>
             <button class="btn btn-sm btn-ghost" onclick="personLedger('${p.id}')" title="گردش حساب">📋</button>
-            <button class="btn btn-sm btn-ghost" onclick="personForm('${p.id}')">✏️</button>
-            <button class="btn btn-sm btn-danger" onclick="deletePerson('${p.id}')">🗑</button>
+            <button class="btn btn-sm btn-ghost" onclick="personForm('${p.id}')" title="ویرایش">✏️</button>
+            <button class="btn btn-sm btn-danger" onclick="deletePerson('${p.id}')" title="حذف">🗑</button>
           </td></tr>`;
       }).join('') : `<tr><td colspan="6"><div class="empty"><div class="icon">👥</div><div class="title">شخصی ثبت نشده</div></div></td></tr>`}
     </tbody></table></div></div>`;
 }
+
+// 🆕 ثبت سریع تراکنش برای یک شخص
+function quickTx(personId, type){
+  const p = DB.data.persons.find(x=>x.id===personId);
+  if(!p){toast('شخص یافت نشد','error');return;}
+  const isReceive = type==='receive';
+  const title = isReceive? `📥 دریافت وجه از ${p.name}` : `📤 پرداخت وجه به ${p.name}`;
+  openModal(title, `
+    <div class="form-group">
+      <label class="form-label">تاریخ</label>
+      <input class="form-control" id="qtxDate" value="${todayJalali()}" dir="ltr">
+    </div>
+    <div class="form-group">
+      <label class="form-label">مبلغ *</label>
+      <input class="form-control" data-thousands id="qtxAmount" value="0" placeholder="0">
+    </div>
+    <div class="form-group">
+      <label class="form-label">توضیحات (اختیاری)</label>
+      <input class="form-control" id="qtxNote" value="${isReceive?'دریافت وجه':'پرداخت وجه'}">
+    </div>
+    <div class="text-muted" style="font-size:11px;margin-top:8px">
+      ${isReceive 
+        ? '💡 مبلغی که از این شخص دریافت می‌کنید به صندوق اضافه شده و از بدهی او کم می‌شود.' 
+        : '💡 مبلغی که به این شخص پرداخت می‌کنید از صندوق کم شده و از بدهی شما به او کم می‌شود.'}
+    </div>
+  `, `
+    <button class="btn btn-ghost" onclick="closeModal()">انصراف</button>
+    <button class="btn ${isReceive?'btn-success':'btn-danger'}" onclick="saveQuickTx('${personId}','${type}')">
+      ${isReceive?'📥 ثبت دریافت':'📤 ثبت پرداخت'}
+    </button>
+  `);
+  setTimeout(()=>{
+    const inp = $('#qtxAmount');
+    if(inp){ inp.focus(); inp.select(); }
+  }, 50);
+}
+
+function saveQuickTx(personId, type){
+  const date = $('#qtxDate').value.trim();
+  if(!validJalali(date)){toast('تاریخ معتبر نیست','error');return;}
+  const amount = parseNum($('#qtxAmount').value);
+  if(amount<=0){toast('مبلغ را وارد کنید','error');return;}
+  const note = $('#qtxNote').value.trim();
+  DB.data.transactions.push({
+    id: uid(),
+    date,
+    type,
+    personId,
+    amount,
+    note
+  });
+  DB.save();
+  closeModal();
+  renderPersons();
+  toast(type==='receive'?'دریافت ثبت شد':'پرداخت ثبت شد','success');
+}
+
 function setPersonFilter(f){personFilter=f;renderPersons();}
 function personForm(id){
   const p = id? DB.data.persons.find(x=>x.id===id) : {name:'',phone:'',address:'',type:'customer',note:''};
@@ -1414,14 +1492,15 @@ function renderCapital(){
           <div class="font-bold mb-3 text-danger">بدهی‌ها و سرمایه</div>
           <table style="font-size:13px">
             <tr><td>بدهی به اشخاص</td><td class="num">${formatMoney(t.payable)}</td></tr>
-            <tr><td>سرمایه فعلی (با سود)</td><td class="num">${formatMoney(finalCapital)}</td></tr>
+            <tr><td>سرمایه فعلی</td><td class="num">${formatMoney(finalCapital)}</td></tr>
             <tr style="border-top:2px solid var(--gray-200);font-weight:800"><td>جمع</td><td class="num">${formatMoney(totalLiabAndCapital)}</td></tr>
           </table>
         </div>
       </div>
       <div class="divider"></div>
       <div class="text-muted" style="font-size:11px">
-        💡 <b>سرمایه فعلی</b> = موجودی نقد + ارزش انبار + مطالبات − بدهی‌ها + سود حاصل‌شده
+        💡 <b>سرمایه فعلی</b> = موجودی نقد + ارزش انبار + مطالبات − بدهی‌ها<br>
+        <span style="color:var(--warning-dark)">توجه: سود قبلاً در موجودی نقد (فروش نقدی) و مطالبات (فروش نسیه) لحاظ شده و دوباره اضافه نمی‌شود.</span>
       </div>
     </div>
     <div class="card">
