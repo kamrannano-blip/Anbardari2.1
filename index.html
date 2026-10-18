@@ -5,152 +5,402 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>سیستم حسابداری و انبارداری</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Estedad:wght@300;400;500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jalaali-js@1.2.6/dist/jalaali.min.js"></script>
 <style>
 :root{
-  --primary:#4f46e5; --primary-dark:#4338ca; --primary-light:#eef2ff;
-  --success:#10b981; --success-light:#ecfdf5;
-  --danger:#ef4444; --danger-light:#fef2f2;
-  --warning:#f59e0b; --warning-light:#fffbeb;
+  --primary:#6366f1; --primary-dark:#4f46e5; --primary-light:#eef2ff;
+  --primary-glow:rgba(99,102,241,.35);
+  --success:#10b981; --success-light:#ecfdf5; --success-dark:#059669;
+  --danger:#ef4444; --danger-light:#fef2f2; --danger-dark:#dc2626;
+  --warning:#f59e0b; --warning-light:#fffbeb; --warning-dark:#d97706;
   --info:#3b82f6; --info-light:#eff6ff;
   --gray-50:#f9fafb; --gray-100:#f3f4f6; --gray-200:#e5e7eb;
   --gray-300:#d1d5db; --gray-400:#9ca3af; --gray-500:#6b7280;
   --gray-600:#4b5563; --gray-700:#374151; --gray-800:#1f2937; --gray-900:#111827;
-  --radius:12px; --radius-sm:8px;
-  --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
-  --shadow-lg:0 10px 25px rgba(0,0,0,.08),0 4px 10px rgba(0,0,0,.04);
+  --radius:14px; --radius-sm:10px;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.05);
+  --shadow:0 2px 6px rgba(17,24,39,.06),0 1px 3px rgba(17,24,39,.04);
+  --shadow-md:0 6px 16px rgba(17,24,39,.08),0 2px 6px rgba(17,24,39,.05);
+  --shadow-lg:0 15px 35px rgba(17,24,39,.1),0 6px 12px rgba(17,24,39,.06);
+  --shadow-3d:0 8px 0 -2px rgba(0,0,0,.08),0 12px 24px rgba(17,24,39,.1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Vazirmatn',sans-serif;background:var(--gray-50);color:var(--gray-800);font-size:14px;line-height:1.6}
+body{font-family:'Estedad','Vazirmatn',sans-serif;background:linear-gradient(135deg,#f8fafc 0%,#eef2ff 100%);background-attachment:fixed;color:var(--gray-800);font-size:14px;line-height:1.7;min-height:100vh}
 
 /* ---------- Layout ---------- */
 .app{display:flex;min-height:100vh}
-.sidebar{width:260px;background:#fff;border-left:1px solid var(--gray-200);padding:20px 0;position:fixed;top:0;right:0;bottom:0;overflow-y:auto;z-index:50;transition:transform .3s}
-.sidebar .brand{display:flex;align-items:center;gap:10px;padding:0 20px 20px;border-bottom:1px solid var(--gray-100);margin-bottom:16px}
-.sidebar .brand-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--primary),#7c3aed);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;font-weight:700}
-.sidebar .brand-text{font-weight:700;font-size:15px;color:var(--gray-800)}
-.sidebar .brand-sub{font-size:11px;color:var(--gray-500)}
-.nav-item{display:flex;align-items:center;gap:12px;padding:11px 20px;color:var(--gray-600);cursor:pointer;font-weight:500;border-right:3px solid transparent;transition:.15s;user-select:none}
-.nav-item:hover{background:var(--gray-50);color:var(--primary)}
-.nav-item.active{background:var(--primary-light);color:var(--primary);border-right-color:var(--primary)}
-.nav-item .icon{font-size:18px;width:22px;text-align:center}
-.main{margin-right:260px;flex:1;padding:24px;min-height:100vh}
-.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
-.page-title{font-size:22px;font-weight:700;color:var(--gray-900)}
-.page-sub{font-size:13px;color:var(--gray-500)}
-.menu-toggle{display:none;background:#fff;border:1px solid var(--gray-200);border-radius:8px;padding:8px 12px;cursor:pointer;font-size:18px}
 
-/* ---------- Cards ---------- */
-.card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;border:1px solid var(--gray-100)}
-.card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px}
-.card-title{font-size:15px;font-weight:700;color:var(--gray-800)}
-.grid{display:grid;gap:16px}
+.sidebar{
+  width:262px;
+  background:linear-gradient(180deg,#ffffff 0%,#f8faff 100%);
+  border-left:1px solid var(--gray-200);
+  padding:20px 0;position:fixed;top:0;right:0;bottom:0;overflow-y:auto;z-index:50;
+  transition:transform .3s;
+  box-shadow:2px 0 20px rgba(99,102,241,.06);
+}
+.sidebar .brand{
+  display:flex;align-items:center;gap:12px;
+  padding:0 20px 20px;border-bottom:1px solid var(--gray-100);margin-bottom:16px;
+}
+.sidebar .brand-icon{
+  width:46px;height:46px;
+  background:linear-gradient(135deg,var(--primary) 0%,#8b5cf6 60%,#a855f7 100%);
+  border-radius:13px;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:22px;font-weight:800;
+  box-shadow:
+    0 4px 0 rgba(76,29,149,.4),
+    0 8px 16px var(--primary-glow),
+    inset 0 1px 0 rgba(255,255,255,.3);
+  transform:perspective(300px) rotateX(4deg);
+}
+.sidebar .brand-text{font-weight:800;font-size:15px;color:var(--gray-900);letter-spacing:-.3px}
+.sidebar .brand-sub{font-size:11px;color:var(--gray-500);font-weight:500}
+
+.nav-item{
+  display:flex;align-items:center;gap:12px;
+  padding:11px 20px;margin:2px 10px;
+  color:var(--gray-600);cursor:pointer;font-weight:600;font-size:13.5px;
+  border-radius:10px;
+  transition:all .18s ease;
+  user-select:none;
+  position:relative;
+}
+.nav-item:hover{
+  background:var(--gray-100);
+  color:var(--primary);
+  transform:translateX(-2px);
+}
+.nav-item.active{
+  background:linear-gradient(135deg,var(--primary) 0%,#8b5cf6 100%);
+  color:#fff;
+  box-shadow:
+    0 4px 0 var(--primary-dark),
+    0 8px 20px var(--primary-glow);
+  transform:translateY(-1px);
+}
+.nav-item.active .icon{filter:drop-shadow(0 2px 2px rgba(0,0,0,.2))}
+.nav-item .icon{font-size:18px;width:22px;text-align:center;display:inline-block}
+
+.main{
+  margin-right:262px;flex:1;padding:24px 28px 120px;
+  min-height:100vh;position:relative;
+}
+
+.topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:24px;flex-wrap:wrap;gap:12px;
+  background:rgba(255,255,255,.75);
+  backdrop-filter:blur(12px);
+  padding:14px 20px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.8);
+  box-shadow:0 2px 6px rgba(17,24,39,.04);
+}
+.page-title{
+  font-size:22px;font-weight:800;color:var(--gray-900);
+  letter-spacing:-.5px;
+  background:linear-gradient(135deg,var(--gray-900),var(--primary-dark));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.menu-toggle{
+  display:none;background:#fff;border:1px solid var(--gray-200);
+  border-radius:10px;padding:8px 12px;cursor:pointer;font-size:18px;
+  box-shadow:var(--shadow);
+}
+
+/* ---------- Cards (3D) ---------- */
+.card{
+  background:#fff;
+  border-radius:var(--radius);
+  padding:22px;
+  border:1px solid rgba(229,231,235,.8);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.9) inset,
+    0 4px 12px rgba(17,24,39,.06),
+    0 12px 28px rgba(17,24,39,.06);
+  transition:transform .25s ease,box-shadow .25s ease;
+  position:relative;
+}
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.9) inset,
+    0 8px 22px rgba(17,24,39,.09),
+    0 20px 40px rgba(99,102,241,.08);
+}
+.card-header{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:16px;flex-wrap:wrap;gap:8px;
+}
+.card-title{font-size:15px;font-weight:800;color:var(--gray-800);letter-spacing:-.3px}
+
+.grid{display:grid;gap:18px}
 .grid-2{grid-template-columns:repeat(2,1fr)}
 .grid-3{grid-template-columns:repeat(3,1fr)}
 .grid-4{grid-template-columns:repeat(4,1fr)}
 @media(max-width:1024px){.grid-4{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
 
-/* ---------- Stat cards ---------- */
-.stat{padding:18px;border-radius:var(--radius);background:#fff;border:1px solid var(--gray-100);box-shadow:var(--shadow);position:relative;overflow:hidden}
-.stat::before{content:'';position:absolute;top:0;right:0;width:4px;height:100%;background:var(--primary)}
-.stat.s-success::before{background:var(--success)}
-.stat.s-danger::before{background:var(--danger)}
-.stat.s-warning::before{background:var(--warning)}
-.stat.s-info::before{background:var(--info)}
-.stat-label{font-size:12px;color:var(--gray-500);margin-bottom:6px;font-weight:500}
-.stat-value{font-size:20px;font-weight:700;color:var(--gray-900);letter-spacing:-.5px}
-.stat-value.positive{color:var(--success)}
-.stat-value.negative{color:var(--danger)}
-.stat-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:28px;opacity:.15}
+/* ---------- Stat cards (3D) ---------- */
+.stat{
+  padding:20px;border-radius:var(--radius);background:#fff;
+  border:1px solid rgba(229,231,235,.9);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.9) inset,
+    0 4px 12px rgba(17,24,39,.05),
+    0 1px 3px rgba(17,24,39,.04);
+  position:relative;overflow:hidden;
+  transition:all .25s ease;
+  transform-style:preserve-3d;
+}
+.stat:hover{
+  transform:translateY(-4px) perspective(500px) rotateX(2deg);
+  box-shadow:
+    0 12px 24px rgba(17,24,39,.1),
+    0 20px 40px rgba(99,102,241,.1);
+}
+.stat::before{
+  content:'';position:absolute;top:0;right:0;width:5px;height:100%;
+  background:linear-gradient(180deg,var(--primary),#8b5cf6);
+  box-shadow:0 0 12px var(--primary-glow);
+}
+.stat::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 100% 0%,rgba(99,102,241,.06),transparent 60%);
+  pointer-events:none;
+}
+.stat.s-success::before{background:linear-gradient(180deg,var(--success),#34d399);box-shadow:0 0 12px rgba(16,185,129,.4)}
+.stat.s-success::after{background:radial-gradient(circle at 100% 0%,rgba(16,185,129,.08),transparent 60%)}
+.stat.s-danger::before{background:linear-gradient(180deg,var(--danger),#f87171);box-shadow:0 0 12px rgba(239,68,68,.4)}
+.stat.s-danger::after{background:radial-gradient(circle at 100% 0%,rgba(239,68,68,.08),transparent 60%)}
+.stat.s-warning::before{background:linear-gradient(180deg,var(--warning),#fbbf24);box-shadow:0 0 12px rgba(245,158,11,.4)}
+.stat.s-warning::after{background:radial-gradient(circle at 100% 0%,rgba(245,158,11,.08),transparent 60%)}
+.stat.s-info::before{background:linear-gradient(180deg,var(--info),#60a5fa);box-shadow:0 0 12px rgba(59,130,246,.4)}
+.stat.s-info::after{background:radial-gradient(circle at 100% 0%,rgba(59,130,246,.08),transparent 60%)}
+.stat-label{font-size:12px;color:var(--gray-500);margin-bottom:6px;font-weight:600;position:relative;z-index:1}
+.stat-value{font-size:21px;font-weight:800;color:var(--gray-900);letter-spacing:-.7px;position:relative;z-index:1}
+.stat-value.positive{color:var(--success-dark)}
+.stat-value.negative{color:var(--danger-dark)}
+.stat-icon{
+  position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  font-size:32px;opacity:.12;pointer-events:none;
+  filter:drop-shadow(0 4px 6px rgba(0,0,0,.15));
+}
 
-/* ---------- Buttons ---------- */
-.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:var(--radius-sm);border:none;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:.15s;white-space:nowrap}
-.btn:active{transform:scale(.97)}
-.btn-primary{background:var(--primary);color:#fff}
-.btn-primary:hover{background:var(--primary-dark)}
-.btn-success{background:var(--success);color:#fff}
-.btn-success:hover{background:#059669}
-.btn-danger{background:var(--danger);color:#fff}
-.btn-danger:hover{background:#dc2626}
-.btn-warning{background:var(--warning);color:#fff}
-.btn-warning:hover{background:#d97706}
-.btn-ghost{background:var(--gray-100);color:var(--gray-700)}
-.btn-ghost:hover{background:var(--gray-200)}
-.btn-sm{padding:6px 11px;font-size:12px}
-.btn-icon{padding:8px;width:34px;height:34px;justify-content:center}
+/* ---------- Buttons (3D) ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:10px 18px;border-radius:10px;border:none;
+  font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;
+  transition:all .15s ease;white-space:nowrap;
+  position:relative;
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{
+  background:linear-gradient(180deg,#6366f1,#4f46e5);
+  color:#fff;
+  box-shadow:0 3px 0 #3730a3,0 6px 14px var(--primary-glow);
+}
+.btn-primary:hover{background:linear-gradient(180deg,#4f46e5,#4338ca)}
+.btn-primary:active{box-shadow:0 1px 0 #3730a3,0 2px 6px var(--primary-glow)}
+.btn-success{
+  background:linear-gradient(180deg,#10b981,#059669);
+  color:#fff;
+  box-shadow:0 3px 0 #065f46,0 6px 14px rgba(16,185,129,.35);
+}
+.btn-success:hover{background:linear-gradient(180deg,#059669,#047857)}
+.btn-success:active{box-shadow:0 1px 0 #065f46,0 2px 6px rgba(16,185,129,.3)}
+.btn-danger{
+  background:linear-gradient(180deg,#ef4444,#dc2626);
+  color:#fff;
+  box-shadow:0 3px 0 #991b1b,0 6px 14px rgba(239,68,68,.35);
+}
+.btn-danger:hover{background:linear-gradient(180deg,#dc2626,#b91c1c)}
+.btn-danger:active{box-shadow:0 1px 0 #991b1b,0 2px 6px rgba(239,68,68,.3)}
+.btn-warning{
+  background:linear-gradient(180deg,#f59e0b,#d97706);
+  color:#fff;
+  box-shadow:0 3px 0 #92400e,0 6px 14px rgba(245,158,11,.35);
+}
+.btn-warning:hover{background:linear-gradient(180deg,#d97706,#b45309)}
+.btn-ghost{
+  background:linear-gradient(180deg,#f9fafb,#f3f4f6);
+  color:var(--gray-700);
+  border:1px solid var(--gray-200);
+  box-shadow:0 1px 0 rgba(0,0,0,.03),0 2px 4px rgba(0,0,0,.04);
+}
+.btn-ghost:hover{background:linear-gradient(180deg,#f3f4f6,#e5e7eb)}
+.btn-sm{padding:6px 12px;font-size:12px}
+.btn-icon{padding:8px;width:36px;height:36px;justify-content:center}
 
 /* ---------- Forms ---------- */
 .form-group{margin-bottom:14px}
-.form-label{display:block;font-size:12px;font-weight:600;color:var(--gray-600);margin-bottom:6px}
-.form-control{width:100%;padding:9px 12px;border:1px solid var(--gray-300);border-radius:var(--radius-sm);font-family:inherit;font-size:13px;background:#fff;transition:.15s;color:var(--gray-800)}
-.form-control:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-light)}
+.form-label{display:block;font-size:12px;font-weight:700;color:var(--gray-600);margin-bottom:6px}
+.form-control{
+  width:100%;padding:10px 12px;
+  border:1.5px solid var(--gray-200);border-radius:10px;
+  font-family:inherit;font-size:13px;background:#fff;
+  transition:all .18s ease;color:var(--gray-800);
+  box-shadow:0 1px 2px rgba(0,0,0,.03) inset;
+}
+.form-control:hover{border-color:var(--gray-300)}
+.form-control:focus{
+  outline:none;border-color:var(--primary);
+  box-shadow:0 0 0 4px var(--primary-light),0 1px 2px rgba(0,0,0,.03) inset;
+  background:#fff;
+}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:640px){.form-row{grid-template-columns:1fr}}
 input[type=number]{direction:ltr;text-align:right}
 
 /* ---------- Tables ---------- */
-.table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--gray-100)}
+.table-wrap{
+  overflow-x:auto;border-radius:var(--radius);
+  border:1px solid var(--gray-100);
+  box-shadow:0 1px 2px rgba(17,24,39,.03);
+}
 table{width:100%;border-collapse:collapse;font-size:13px;background:#fff}
-th{background:var(--gray-50);padding:11px 12px;text-align:right;font-weight:600;color:var(--gray-600);font-size:12px;border-bottom:1px solid var(--gray-200);white-space:nowrap}
-td{padding:11px 12px;border-bottom:1px solid var(--gray-100);color:var(--gray-700)}
+th{
+  background:linear-gradient(180deg,#f9fafb,#f3f4f6);
+  padding:12px 14px;text-align:right;font-weight:700;
+  color:var(--gray-700);font-size:12px;
+  border-bottom:1px solid var(--gray-200);white-space:nowrap;
+}
+td{padding:12px 14px;border-bottom:1px solid var(--gray-100);color:var(--gray-700)}
 tr:last-child td{border-bottom:none}
-tbody tr:hover{background:var(--gray-50)}
-.num{direction:ltr;text-align:right;font-variant-numeric:tabular-nums}
+tbody tr{transition:background .12s}
+tbody tr:hover{background:linear-gradient(90deg,var(--primary-light),transparent)}
+.num{direction:ltr;text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
 
 /* ---------- Badges ---------- */
-.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
-.badge-success{background:var(--success-light);color:var(--success)}
-.badge-danger{background:var(--danger-light);color:var(--danger)}
-.badge-warning{background:var(--warning-light);color:var(--warning)}
+.badge{
+  display:inline-block;padding:4px 11px;border-radius:20px;
+  font-size:11px;font-weight:700;
+  box-shadow:0 1px 2px rgba(0,0,0,.04);
+}
+.badge-success{background:var(--success-light);color:var(--success-dark)}
+.badge-danger{background:var(--danger-light);color:var(--danger-dark)}
+.badge-warning{background:var(--warning-light);color:var(--warning-dark)}
 .badge-info{background:var(--info-light);color:var(--info)}
 .badge-gray{background:var(--gray-100);color:var(--gray-600)}
 
-/* ---------- Modal ---------- */
-.modal-overlay{position:fixed;inset:0;background:rgba(17,24,39,.5);z-index:100;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(2px)}
+/* ---------- Modal (3D) ---------- */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(17,24,39,.55);
+  z-index:100;display:none;align-items:center;justify-content:center;
+  padding:16px;backdrop-filter:blur(4px);
+}
 .modal-overlay.show{display:flex}
-.modal{background:#fff;border-radius:var(--radius);width:100%;max-width:600px;max-height:90vh;overflow-y:auto;box-shadow:var(--shadow-lg);animation:slideUp .2s}
+.modal{
+  background:#fff;border-radius:16px;width:100%;max-width:600px;
+  max-height:90vh;overflow-y:auto;
+  box-shadow:
+    0 25px 50px -12px rgba(0,0,0,.25),
+    0 0 0 1px rgba(255,255,255,.5) inset;
+  animation:slideUp .25s cubic-bezier(.4,0,.2,1);
+}
 .modal.modal-lg{max-width:900px}
-@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.modal-header{padding:16px 20px;border-bottom:1px solid var(--gray-100);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;z-index:1}
-.modal-title{font-size:16px;font-weight:700}
-.modal-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--gray-400);width:30px;height:30px;border-radius:6px}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-header{
+  padding:18px 22px;border-bottom:1px solid var(--gray-100);
+  display:flex;justify-content:space-between;align-items:center;
+  position:sticky;top:0;background:#fff;z-index:1;border-radius:16px 16px 0 0;
+}
+.modal-title{font-size:16px;font-weight:800;color:var(--gray-900)}
+.modal-close{
+  background:none;border:none;font-size:22px;cursor:pointer;
+  color:var(--gray-400);width:32px;height:32px;border-radius:8px;
+  transition:all .15s;
+}
 .modal-close:hover{background:var(--gray-100);color:var(--gray-700)}
-.modal-body{padding:20px}
-.modal-footer{padding:14px 20px;border-top:1px solid var(--gray-100);display:flex;gap:8px;justify-content:flex-end;position:sticky;bottom:0;background:#fff}
+.modal-body{padding:22px}
+.modal-footer{
+  padding:16px 22px;border-top:1px solid var(--gray-100);
+  display:flex;gap:8px;justify-content:flex-end;
+  position:sticky;bottom:0;background:#fff;
+  border-radius:0 0 16px 16px;
+}
 
 /* ---------- Empty state ---------- */
 .empty{text-align:center;padding:40px 20px;color:var(--gray-400)}
-.empty .icon{font-size:40px;margin-bottom:10px;opacity:.4}
-.empty .title{font-weight:600;color:var(--gray-500);margin-bottom:4px}
+.empty .icon{font-size:42px;margin-bottom:10px;opacity:.35}
+.empty .title{font-weight:700;color:var(--gray-500);margin-bottom:4px}
 .empty .sub{font-size:12px}
 
-/* ---------- Toast ---------- */
-.toast{position:fixed;bottom:20px;left:20px;background:var(--gray-900);color:#fff;padding:12px 18px;border-radius:10px;box-shadow:var(--shadow-lg);z-index:200;font-size:13px;font-weight:500;opacity:0;transform:translateY(10px);transition:.25s;pointer-events:none}
-.toast.show{opacity:1;transform:translateY(0)}
-.toast.success{background:var(--success)}
-.toast.error{background:var(--danger)}
-.toast.warning{background:var(--warning)}
+/* ---------- Toast (3D) ---------- */
+.toast{
+  position:fixed;bottom:24px;left:24px;
+  background:linear-gradient(180deg,#1f2937,#111827);
+  color:#fff;padding:13px 20px;border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,.25),0 4px 0 rgba(0,0,0,.3);
+  z-index:200;font-size:13px;font-weight:600;
+  opacity:0;transform:translateY(15px) scale(.95);transition:.3s cubic-bezier(.4,0,.2,1);
+  pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateY(0) scale(1)}
+.toast.success{background:linear-gradient(180deg,#10b981,#059669);box-shadow:0 10px 25px rgba(16,185,129,.35),0 4px 0 #065f46}
+.toast.error{background:linear-gradient(180deg,#ef4444,#dc2626);box-shadow:0 10px 25px rgba(239,68,68,.35),0 4px 0 #991b1b}
+.toast.warning{background:linear-gradient(180deg,#f59e0b,#d97706);box-shadow:0 10px 25px rgba(245,158,11,.35),0 4px 0 #92400e}
 
 /* ---------- Misc ---------- */
 .flex{display:flex}.items-center{align-items:center}.justify-between{justify-content:space-between}
 .gap-2{gap:8px}.gap-3{gap:12px}.gap-4{gap:16px}
-.mb-3{margin-bottom:12px}.mb-4{margin-bottom:16px}.mt-3{margin-top:12px}.mt-4{margin-top:16px}
+.mb-3{margin-bottom:12px}.mb-4{margin-bottom:18px}.mt-3{margin-top:12px}.mt-4{margin-top:18px}
 .text-center{text-align:center}
 .text-muted{color:var(--gray-500);font-size:12px}
-.text-success{color:var(--success)}.text-danger{color:var(--danger)}.text-warning{color:var(--warning)}
-.font-bold{font-weight:700}
-.divider{height:1px;background:var(--gray-100);margin:16px 0}
+.text-success{color:var(--success-dark)}.text-danger{color:var(--danger-dark)}.text-warning{color:var(--warning-dark)}
+.font-bold{font-weight:800}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--gray-200),transparent);margin:18px 0}
 .hidden{display:none!important}
-.filter-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-.filter-tab{padding:7px 14px;border-radius:20px;background:var(--gray-100);color:var(--gray-600);font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:.15s}
-.filter-tab:hover{background:var(--gray-200)}
-.filter-tab.active{background:var(--primary);color:#fff}
-.search-box{position:relative;flex:1;max-width:280px}
-.search-box input{padding-right:34px}
-.search-box::before{content:'🔍';position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:12px;opacity:.5}
+.filter-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.filter-tab{
+  padding:8px 16px;border-radius:20px;
+  background:#fff;color:var(--gray-600);
+  font-size:12px;font-weight:700;cursor:pointer;border:1.5px solid var(--gray-200);
+  font-family:inherit;transition:all .18s ease;
+  box-shadow:0 1px 2px rgba(0,0,0,.03);
+}
+.filter-tab:hover{background:var(--gray-50);border-color:var(--gray-300)}
+.filter-tab.active{
+  background:linear-gradient(180deg,#6366f1,#4f46e5);color:#fff;border-color:transparent;
+  box-shadow:0 3px 0 #3730a3,0 4px 12px var(--primary-glow);
+}
+.search-box{position:relative;flex:1;max-width:300px}
+.search-box input{padding-right:38px}
+.search-box::before{content:'🔍';position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.5}
+
+/* ---------- Footer Signature ---------- */
+.footer-signature{
+  position:fixed;bottom:0;left:0;right:262px;
+  background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(248,250,252,.98));
+  backdrop-filter:blur(12px);
+  border-top:1px solid rgba(229,231,235,.9);
+  padding:11px 24px;
+  text-align:center;
+  font-size:11.5px;color:var(--gray-600);
+  z-index:40;
+  box-shadow:0 -4px 20px rgba(17,24,39,.06);
+}
+.footer-signature .sig-line{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.footer-signature .sig-name{
+  font-weight:800;letter-spacing:.6px;
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  font-size:12.5px;
+}
+.footer-signature .sig-tel{
+  direction:ltr;font-variant-numeric:tabular-nums;
+  color:var(--gray-700);font-weight:700;
+  padding:2px 10px;border-radius:20px;
+  background:linear-gradient(180deg,#eef2ff,#e0e7ff);
+  font-size:11px;
+}
+.footer-signature .sig-sep{opacity:.3}
+@media(max-width:900px){
+  .footer-signature{right:0}
+}
 
 /* ---------- Invoice Print ---------- */
 @media print{
@@ -158,6 +408,7 @@ tbody tr:hover{background:var(--gray-50)}
   #print-area,#print-area *{visibility:visible}
   #print-area{position:absolute;top:0;right:0;width:100%;padding:20px;background:#fff}
   .no-print{display:none!important}
+  .footer-signature{display:none!important}
 }
 
 /* ---------- Responsive sidebar ---------- */
@@ -169,16 +420,27 @@ tbody tr:hover{background:var(--gray-50)}
 }
 
 /* ---------- Scrollbar ---------- */
-::-webkit-scrollbar{width:8px;height:8px}
-::-webkit-scrollbar-track{background:var(--gray-100)}
-::-webkit-scrollbar-thumb{background:var(--gray-300);border-radius:4px}
-::-webkit-scrollbar-thumb:hover{background:var(--gray-400)}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,var(--gray-300),var(--gray-400));
+  border-radius:6px;border:2px solid transparent;background-clip:content-box;
+}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--gray-400),var(--gray-500));background-clip:content-box;border:2px solid transparent}
 
 /* ---------- Items table in invoice ---------- */
 .items-table input,.items-table select{padding:6px 8px;font-size:12px}
-.invoice-total{background:var(--gray-50);padding:14px 18px;border-radius:var(--radius-sm);display:flex;flex-direction:column;gap:6px}
+.invoice-total{
+  background:linear-gradient(135deg,#f8fafc,#eef2ff);
+  padding:16px 20px;border-radius:var(--radius-sm);
+  display:flex;flex-direction:column;gap:7px;
+  border:1px solid var(--gray-100);
+}
 .invoice-total .row{display:flex;justify-content:space-between;font-size:13px}
-.invoice-total .row.total{font-size:15px;font-weight:700;color:var(--primary);padding-top:8px;border-top:1px solid var(--gray-200);margin-top:4px}
+.invoice-total .row.total{
+  font-size:16px;font-weight:800;color:var(--primary-dark);
+  padding-top:10px;border-top:2px dashed var(--gray-300);margin-top:6px;
+}
 </style>
 </head>
 <body>
@@ -209,14 +471,25 @@ tbody tr:hover{background:var(--gray-50)}
   <!-- MAIN -->
   <main class="main">
     <div class="topbar">
-      <div>
+      <div class="flex items-center gap-3">
         <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
         <span class="page-title" id="pageTitle">داشبورد</span>
       </div>
-      <div class="text-muted" id="todayDate"></div>
+      <div class="text-muted" id="todayDate" style="font-weight:600"></div>
     </div>
     <div id="content"></div>
   </main>
+</div>
+
+<!-- FOOTER SIGNATURE -->
+<div class="footer-signature">
+  <div class="sig-line">
+    <span>طراحی و ساخته شده توسط:</span>
+    <span class="sig-name">KAMRAN - DAVIN</span>
+    <span class="sig-sep">|</span>
+    <span>TEL</span>
+    <span class="sig-tel">09121759942</span>
+  </div>
 </div>
 
 <!-- MODAL -->
@@ -255,7 +528,6 @@ function formatMoney(n){
   const cur = DB.data.settings.currency || 'تومان';
   return formatNum(n)+' '+cur;
 }
-// برای input ها: نمایش با کاما
 function attachThousands(input){
   input.addEventListener('input',()=>{
     const raw = input.value.replace(/[^\d-]/g,'');
@@ -279,10 +551,6 @@ function jalaliMonth(jstr){
   if(!jstr)return '';
   const parts = jstr.split('/');
   return parts[0]+'/'+parts[1];
-}
-function jalaliYear(jstr){
-  if(!jstr)return '';
-  return jstr.split('/')[0];
 }
 function validJalali(s){
   if(!s)return false;
@@ -325,7 +593,7 @@ function attachAllThousandsIn(container){
 // ---------- Confirm ----------
 function confirmAction(msg,onYes){
   openModal('تأیید عملیات',
-    `<p style="font-size:14px;line-height:1.8">${msg}</p>`,
+    `<p style="font-size:14px;line-height:1.9">${msg}</p>`,
     `<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>
      <button class="btn btn-danger" id="confirmYes">بله، انجام بده</button>`
   );
@@ -339,12 +607,7 @@ const DB_KEY = 'hesabdar_v1';
 const DB = {
   data: {
     settings:{shopName:'فروشگاه من',currency:'تومان',initialCapital:0,initialCapitalDate:'',taxPercent:0},
-    warehouses:[],   // {id,name,desc}
-    products:[],     // {id,code,name,unit,purchasePrice,salePrice,minStock}
-    persons:[],      // {id,name,phone,address,type:'customer'|'supplier'|'both',note}
-    invoices:[],     // {id,type:'purchase'|'sale',number,date,personId,warehouseId,items:[{productId,qty,price,discount}],discount,tax,note,total,paid}
-    transactions:[], // {id,date,type:'receive'|'pay'|'transfer',personId,toPersonId,amount,note}
-    stockMoves:[]    // برای رهگیری: {id,date,type:'in'|'out',productId,warehouseId,qty,refType,refId}
+    warehouses:[],products:[],persons:[],invoices:[],transactions:[],stockMoves:[]
   },
   load(){
     try{
@@ -377,10 +640,8 @@ const DB = {
 DB.load();
 
 /* =========================================================
-   بخش ۳: محاسبات (موجودی، مانده اشخاص، سرمایه)
+   بخش ۳: محاسبات
    ========================================================= */
-
-// موجودی یک کالا در یک انبار
 function stockOf(productId,warehouseId=null){
   let total = 0;
   for(const m of DB.data.stockMoves){
@@ -390,50 +651,29 @@ function stockOf(productId,warehouseId=null){
   }
   return total;
 }
-
-// مانده شخص: مثبت = بستانکار (طلبکار از ما / ما به او بدهکاریم)
-// قرارداد: از دید فروشگاه
-//  - فاکتور فروش => شخص به ما بدهکار می‌شود (مانده حساب شخص کاهش می‌یابد؟ نه، بدهکاری او نسبت به ما افزایش => در محاسبه "طلب ما از شخص" بالا می‌رود)
-//  ساده‌سازی: balance = (جمع پرداختی‌های ما به شخص) - (جمع دریافتی‌های ما از شخص) + (فروش نسیه) - (خرید نسیه)؟
-// بهتر است اینطور تعریف کنیم:
-//  balance > 0  => شخص بستانکار است (ما به او بدهکاریم) - باید پرداخت کنیم
-//  balance < 0  => شخص بدهکار است (او به ما بدهکار است) - باید دریافت کنیم
-// محاسبه:
-//  - فاکتور فروش (نسیه): شخص به ما بدهکار می‌شود => balance -= total
-//  - فاکتور خرید (نسیه): ما به شخص بدهکار می‌شویم => balance += total
-//  - تراکنش دریافت (receive): ما از شخص پول گرفتیم => balance += amount (بدهی او کم می‌شود)
-//  - تراکنش پرداخت (pay): ما به شخص پول دادیم => balance -= amount
-//  - انتقال بین اشخاص: از A به B (پرداخت بدهی A و دریافت از B)؟ در UI مشخص می‌کنیم.
 function personBalance(personId){
   let bal = 0;
-  // فاکتورها
   for(const inv of DB.data.invoices){
     if(inv.personId!==personId)continue;
-    if(inv.paid)continue; // اگر نقدی پرداخت شد، روی مانده اثر ندارد
-    if(inv.type==='sale') bal -= inv.total; // شخص بدهکار می‌شود
-    if(inv.type==='purchase') bal += inv.total; // ما بدهکار می‌شویم
+    if(inv.paid)continue;
+    if(inv.type==='sale') bal -= inv.total;
+    if(inv.type==='purchase') bal += inv.total;
   }
-  // تراکنش‌ها
   for(const t of DB.data.transactions){
     if(t.type==='receive' && t.personId===personId) bal += t.amount;
     if(t.type==='pay' && t.personId===personId) bal -= t.amount;
     if(t.type==='transfer'){
-      // از شخص A (پرداخت) به شخص B (دریافت)
-      if(t.personId===personId) bal -= t.amount;      // ما به A پرداخت کردیم => بدهی ما به A کم می‌شود => balance -=
-      if(t.toPersonId===personId) bal += t.amount;    // ما از B دریافت کردیم => بدهی B به ما کم می‌شود => balance +=
+      if(t.personId===personId) bal -= t.amount;
+      if(t.toPersonId===personId) bal += t.amount;
     }
   }
   return bal;
 }
-// تفسیر: bal>0 => ما بدهکاریم (بستانکار شخص)
-//         bal<0 => شخص بدهکار است
 function personBalanceLabel(bal){
   if(Math.abs(bal)<1) return {text:'تسویه',cls:'badge-gray'};
   if(bal>0) return {text:'بستانکار',cls:'badge-success'};
   return {text:'بدهکار',cls:'badge-danger'};
 }
-
-// ارزش انبار (به قیمت خرید)
 function stockValue(){
   let v=0;
   for(const p of DB.data.products){
@@ -442,16 +682,12 @@ function stockValue(){
   }
   return v;
 }
-
-// جمع فروش، خرید، سود
 function totals(){
   let sales=0,purchases=0;
   for(const inv of DB.data.invoices){
     if(inv.type==='sale') sales += inv.total;
     if(inv.type==='purchase') purchases += inv.total;
   }
-  // سود ناخالص = فروش - بهای تمام شده فروش رفته
-  // برای سادگی: از stockMoves نوع out که refType=sale محاسبه کنیم
   let cogs = 0;
   for(const inv of DB.data.invoices){
     if(inv.type!=='sale')continue;
@@ -461,14 +697,12 @@ function totals(){
     }
   }
   const profit = sales - cogs;
-  // طلب و بدهی
   let receivable=0,payable=0;
   for(const p of DB.data.persons){
     const b = personBalance(p.id);
     if(b<0) receivable += -b;
     if(b>0) payable += b;
   }
-  // نقد: سرمایه اولیه + دریافت‌ها - پرداخت‌ها - خریدهای نقدی + فروش‌های نقدی
   let cash = DB.data.settings.initialCapital||0;
   for(const inv of DB.data.invoices){
     if(inv.paid){
@@ -501,10 +735,8 @@ const pageTitles = {
   dashboard:'داشبورد',invoices:'فاکتورها',products:'کالاها',warehouses:'انبارها',
   persons:'اشخاص',transactions:'تراکنش‌ها',capital:'سرمایه و سود',reports:'گزارش‌ها',settings:'تنظیمات'
 };
-let currentPage = 'dashboard';
 
 function navigate(page){
-  currentPage = page;
   $$('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.page===page));
   $('#pageTitle').textContent = pageTitles[page];
   $('#sidebar').classList.remove('open');
@@ -563,29 +795,23 @@ function renderDashboard(){
     </div>
   `;
 
-  // Chart 1: روند ۶ ماه
   const months = lastSixMonths();
-  const salesData = months.map(m=>{
-    let s=0; for(const inv of DB.data.invoices){ if(inv.type==='sale' && jalaliMonth(inv.date)===m) s+=inv.total; } return s;
-  });
-  const purchaseData = months.map(m=>{
-    let s=0; for(const inv of DB.data.invoices){ if(inv.type==='purchase' && jalaliMonth(inv.date)===m) s+=inv.total; } return s;
-  });
+  const salesData = months.map(m=>{let s=0;for(const inv of DB.data.invoices){if(inv.type==='sale'&&jalaliMonth(inv.date)===m)s+=inv.total;}return s;});
+  const purchaseData = months.map(m=>{let s=0;for(const inv of DB.data.invoices){if(inv.type==='purchase'&&jalaliMonth(inv.date)===m)s+=inv.total;}return s;});
   if(dashChart)dashChart.destroy();
   dashChart = new Chart($('#chart1'),{
     type:'bar',
     data:{
       labels:months.map(m=>monthName(m)),
       datasets:[
-        {label:'فروش',data:salesData,backgroundColor:'#10b981',borderRadius:6},
-        {label:'خرید',data:purchaseData,backgroundColor:'#ef4444',borderRadius:6}
+        {label:'فروش',data:salesData,backgroundColor:'#10b981',borderRadius:8,borderSkipped:false},
+        {label:'خرید',data:purchaseData,backgroundColor:'#ef4444',borderRadius:8,borderSkipped:false}
       ]
     },
-    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{family:'Vazirmatn'}}}},
-      scales:{y:{ticks:{font:{family:'Vazirmatn'},callback:v=>formatNum(v)}},x:{ticks:{font:{family:'Vazirmatn'}}}}}
+    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{family:'Estedad',weight:'600'}}}},
+      scales:{y:{ticks:{font:{family:'Estedad'},callback:v=>formatNum(v)}},x:{ticks:{font:{family:'Estedad'}}}}}
   });
 
-  // Chart 2: ترکیب
   if(dashChart2)dashChart2.destroy();
   dashChart2 = new Chart($('#chart2'),{
     type:'doughnut',
@@ -593,7 +819,7 @@ function renderDashboard(){
       labels:['نقد','انبار','مطالبات'],
       datasets:[{data:[Math.max(t.cash,0),stockValue(),t.receivable],backgroundColor:['#3b82f6','#f59e0b','#10b981'],borderWidth:0}]
     },
-    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{family:'Vazirmatn'}}}}}
+    options:{responsive:true,cutout:'65%',plugins:{legend:{position:'bottom',labels:{font:{family:'Estedad',weight:'600'}}}}}
   });
 }
 function monthName(m){
@@ -689,19 +915,14 @@ function saveProduct(id){
   const name = $('#pName').value.trim();
   if(!name){toast('نام کالا را وارد کنید','error');return;}
   const obj = {
-    code:$('#pCode').value.trim(),
-    name,
+    code:$('#pCode').value.trim(),name,
     unit:$('#pUnit').value.trim()||'عدد',
     purchasePrice:parseNum($('#pPurchase').value),
     salePrice:parseNum($('#pSale').value),
     minStock:parseNum($('#pMin').value)
   };
-  if(id){
-    const p = DB.data.products.find(x=>x.id===id);
-    Object.assign(p,obj);
-  } else {
-    DB.data.products.push({id:uid(),...obj});
-  }
+  if(id){Object.assign(DB.data.products.find(x=>x.id===id),obj);}
+  else{DB.data.products.push({id:uid(),...obj});}
   DB.save(); closeModal(); renderProducts(); toast('کالا ذخیره شد','success');
 }
 function deleteProduct(id){
@@ -726,7 +947,6 @@ function renderWarehouses(){
     <div class="grid grid-3">
       ${list.length? list.map(w=>{
         const items = DB.data.products.map(p=>({p,q:stockOf(p.id,w.id)})).filter(x=>x.q!==0);
-        const totalQty = items.reduce((s,x)=>s+x.q,0);
         const totalValue = items.reduce((s,x)=>s+x.q*(x.p.purchasePrice||0),0);
         return `<div class="card">
           <div class="card-header"><div class="card-title">🏭 ${w.name}</div>
@@ -858,7 +1078,7 @@ function personLedger(id){
   const rows = [];
   for(const inv of DB.data.invoices){
     if(inv.personId===id){
-      rows.push({date:inv.date,desc:`فاکتور ${inv.type==='sale'?'فروش':'خرید'} #${inv.number}`,amount:inv.total,type:inv.type,paid:inv.paid});
+      rows.push({date:inv.date,desc:`فاکتور ${inv.type==='sale'?'فروش':'خرید'} #${inv.number}`,amount:inv.total,type:inv.type});
     }
   }
   for(const t of DB.data.transactions){
@@ -869,7 +1089,7 @@ function personLedger(id){
         const op = DB.data.persons.find(x=>x.id===other);
         desc = `انتقال ${t.personId===id?'به':'از'} ${op?.name||'?'}`;
       }
-      rows.push({date:t.date,desc,amount:t.amount,type:t.type,paid:true,note:t.note});
+      rows.push({date:t.date,desc,amount:t.amount,type:t.type,note:t.note});
     }
   }
   rows.sort((a,b)=>b.date.localeCompare(a.date));
@@ -935,19 +1155,16 @@ function renderInvoices(){
     </div>`;
 }
 function setInvFilter(f){invoiceFilter=f;renderInvoices();}
-
 function nextInvoiceNumber(type){
   const prefix = type==='sale'?'F':'P';
   const nums = DB.data.invoices.filter(i=>i.type===type).map(i=>Number(i.number.replace(/\D/g,''))||0);
   return prefix + '-' + String((Math.max(0,...nums)+1)).padStart(4,'0');
 }
-
 let invoiceItems = [];
 function invoiceForm(type, editId=null){
   if(!DB.data.persons.length){toast('ابتدا یک شخص اضافه کنید','warning');return;}
   if(!DB.data.warehouses.length){toast('ابتدا یک انبار اضافه کنید','warning');return;}
   if(!DB.data.products.length){toast('ابتدا یک کالا اضافه کنید','warning');return;}
-
   invoiceItems = [];
   let inv = null;
   if(editId){ inv = DB.data.invoices.find(x=>x.id===editId); invoiceItems = JSON.parse(JSON.stringify(inv.items)); }
@@ -1009,7 +1226,6 @@ function invoiceForm(type, editId=null){
      <button class="btn btn-primary" onclick="saveInvoice('${type}','${editId||''}')">💾 ذخیره فاکتور</button>`,
     'lg'
   );
-
   renderInvoiceItems();
   setTimeout(()=>{
     $('#invDiscount').addEventListener('input',recalcInvoice);
@@ -1025,7 +1241,6 @@ function renderInvoiceItems(){
     return;
   }
   body.innerHTML = invoiceItems.map((it,idx)=>{
-    const p = DB.data.products.find(x=>x.id===it.productId);
     return `<tr>
       <td>
         <select class="form-control" onchange="updateItem(${idx},'productId',this.value)">
@@ -1042,14 +1257,8 @@ function renderInvoiceItems(){
   attachAllThousandsIn(body);
   recalcInvoice();
 }
-function addInvoiceItem(){
-  invoiceItems.push({productId:'',qty:1,price:0});
-  renderInvoiceItems();
-}
-function removeInvoiceItem(idx){
-  invoiceItems.splice(idx,1);
-  renderInvoiceItems();
-}
+function addInvoiceItem(){ invoiceItems.push({productId:'',qty:1,price:0}); renderInvoiceItems(); }
+function removeInvoiceItem(idx){ invoiceItems.splice(idx,1); renderInvoiceItems(); }
 function updateItem(idx,key,val){
   if(key==='qty') invoiceItems[idx].qty = Math.max(1,Number(val)||1);
   else if(key==='price') invoiceItems[idx].price = parseNum(val);
@@ -1081,7 +1290,6 @@ function saveInvoice(type,editId){
   if(!invoiceItems.length){toast('حداقل یک ردیف اضافه کنید','error');return;}
   if(invoiceItems.some(i=>!i.productId)){toast('کالای هر ردیف را انتخاب کنید','error');return;}
   if(type==='sale'){
-    // بررسی موجودی
     for(const it of invoiceItems){
       if(stockOf(it.productId,whId) < it.qty){
         const p = DB.data.products.find(x=>x.id===it.productId);
@@ -1100,20 +1308,14 @@ function saveInvoice(type,editId){
   const note = $('#invNote').value.trim();
 
   if(editId){
-    // حذف stockMoves قبلی
     DB.data.stockMoves = DB.data.stockMoves.filter(m=>m.refId!==editId);
     const inv = DB.data.invoices.find(x=>x.id===editId);
     Object.assign(inv,{personId,warehouseId:whId,date,items:invoiceItems.map(i=>({...i})),discount,tax,total,paid,number,note});
   } else {
     const id = uid();
     DB.data.invoices.push({id,type,number,date,personId,warehouseId:whId,items:invoiceItems.map(i=>({...i})),discount,tax,total,paid,note,createdAt:nowJalaliFull()});
-    // ثبت گردش انبار
     for(const it of invoiceItems){
-      DB.data.stockMoves.push({
-        id:uid(),date,type:type==='purchase'?'in':'out',
-        productId:it.productId,warehouseId:whId,qty:it.qty,
-        refType:'invoice',refId:id
-      });
+      DB.data.stockMoves.push({id:uid(),date,type:type==='purchase'?'in':'out',productId:it.productId,warehouseId:whId,qty:it.qty,refType:'invoice',refId:id});
     }
   }
   DB.save(); closeModal(); renderInvoices(); toast('فاکتور ذخیره شد','success');
@@ -1130,7 +1332,7 @@ function viewInvoice(id){
   openModal('مشاهده فاکتور',`
     <div id="print-area">
       <div style="text-align:center;margin-bottom:20px">
-        <h2 style="margin:0 0 4px">${DB.data.settings.shopName}</h2>
+        <h2 style="margin:0 0 4px;font-weight:800">${DB.data.settings.shopName}</h2>
         <div class="text-muted">${inv.type==='sale'?'فاکتور فروش':'فاکتور خرید'}</div>
       </div>
       <div class="form-row mb-3">
@@ -1280,7 +1482,6 @@ function renderCapital(){
       <div class="stat s-success"><div class="stat-label">سود حاصل‌شده</div><div class="stat-value positive">${formatMoney(t.profit)}</div><div class="stat-icon">📈</div></div>
       <div class="stat s-info"><div class="stat-label">سرمایه فعلی (تخمینی)</div><div class="stat-value">${formatMoney(finalCapital)}</div><div class="stat-icon">💰</div></div>
     </div>
-
     <div class="card mb-4">
       <div class="card-header"><div class="card-title">ترازنامه ساده</div></div>
       <div class="grid grid-2">
@@ -1290,7 +1491,7 @@ function renderCapital(){
             <tr><td>موجودی نقدی</td><td class="num">${formatMoney(t.cash)}</td></tr>
             <tr><td>ارزش انبار (به بهای خرید)</td><td class="num">${formatMoney(stockVal)}</td></tr>
             <tr><td>مطالبات از اشخاص</td><td class="num">${formatMoney(t.receivable)}</td></tr>
-            <tr style="border-top:2px solid var(--gray-200);font-weight:700"><td>جمع دارایی</td><td class="num">${formatMoney(totalAssets)}</td></tr>
+            <tr style="border-top:2px solid var(--gray-200);font-weight:800"><td>جمع دارایی</td><td class="num">${formatMoney(totalAssets)}</td></tr>
           </table>
         </div>
         <div>
@@ -1299,12 +1500,11 @@ function renderCapital(){
             <tr><td>بدهی به اشخاص</td><td class="num">${formatMoney(t.payable)}</td></tr>
             <tr><td>سرمایه اولیه</td><td class="num">${formatMoney(initial)}</td></tr>
             <tr><td>سود انباشته</td><td class="num">${formatMoney(t.profit)}</td></tr>
-            <tr style="border-top:2px solid var(--gray-200);font-weight:700"><td>جمع بدهی و سرمایه</td><td class="num">${formatMoney(t.payable + initial + t.profit)}</td></tr>
+            <tr style="border-top:2px solid var(--gray-200);font-weight:800"><td>جمع بدهی و سرمایه</td><td class="num">${formatMoney(t.payable + initial + t.profit)}</td></tr>
           </table>
         </div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-header"><div class="card-title">تنظیم سرمایه اولیه</div></div>
       <div class="form-row">
@@ -1319,10 +1519,8 @@ function renderCapital(){
   setTimeout(()=>attachAllThousandsIn($('#content')),10);
 }
 function saveCapital(){
-  const v = parseNum($('#capVal').value);
-  const d = $('#capDate').value.trim();
-  DB.data.settings.initialCapital = v;
-  DB.data.settings.initialCapitalDate = d;
+  DB.data.settings.initialCapital = parseNum($('#capVal').value);
+  DB.data.settings.initialCapitalDate = $('#capDate').value.trim();
   DB.save(); toast('سرمایه اولیه ذخیره شد','success'); renderCapital();
 }
 
@@ -1334,9 +1532,7 @@ function renderReports(){
   const months = lastSixMonths();
   const monthSales = months.map(m=>{let s=0;for(const i of DB.data.invoices){if(i.type==='sale'&&jalaliMonth(i.date)===m)s+=i.total;}return s;});
   const monthPurchases = months.map(m=>{let s=0;for(const i of DB.data.invoices){if(i.type==='purchase'&&jalaliMonth(i.date)===m)s+=i.total;}return s;});
-
   const lowStock = DB.data.products.filter(p=>stockOf(p.id)<=p.minStock);
-
   $('#content').innerHTML = `
     <div class="grid grid-4 mb-4">
       <div class="stat s-success"><div class="stat-label">کل فروش</div><div class="stat-value">${formatMoney(t.sales)}</div></div>
@@ -1344,7 +1540,6 @@ function renderReports(){
       <div class="stat s-info"><div class="stat-label">سود ناخالص</div><div class="stat-value">${formatMoney(t.profit)}</div></div>
       <div class="stat"><div class="stat-label">ارزش انبار</div><div class="stat-value">${formatMoney(stockValue())}</div></div>
     </div>
-
     <div class="grid grid-2 mb-4">
       <div class="card">
         <div class="card-header"><div class="card-title">فروش و خرید ماهانه</div></div>
@@ -1357,7 +1552,6 @@ function renderReports(){
         </tbody></table></div>`:'<div class="empty"><div class="icon">✓</div><div class="title">همه کالاها موجودی کافی دارند</div></div>'}
       </div>
     </div>
-
     <div class="card">
       <div class="card-header"><div class="card-title">گزارش موجودی کالاها</div></div>
       <div class="table-wrap"><table><thead><tr>
@@ -1379,12 +1573,12 @@ function renderReports(){
       data:{
         labels:months.map(m=>monthName(m)),
         datasets:[
-          {label:'فروش',data:monthSales,borderColor:'#10b981',backgroundColor:'rgba(16,185,129,.1)',tension:.3,fill:true},
-          {label:'خرید',data:monthPurchases,borderColor:'#ef4444',backgroundColor:'rgba(239,68,68,.1)',tension:.3,fill:true}
+          {label:'فروش',data:monthSales,borderColor:'#10b981',backgroundColor:'rgba(16,185,129,.1)',tension:.35,fill:true,borderWidth:3},
+          {label:'خرید',data:monthPurchases,borderColor:'#ef4444',backgroundColor:'rgba(239,68,68,.1)',tension:.35,fill:true,borderWidth:3}
         ]
       },
-      options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{family:'Vazirmatn'}}}},
-        scales:{y:{ticks:{font:{family:'Vazirmatn'},callback:v=>formatNum(v)}},x:{ticks:{font:{family:'Vazirmatn'}}}}}
+      options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{family:'Estedad',weight:'600'}}}},
+        scales:{y:{ticks:{font:{family:'Estedad'},callback:v=>formatNum(v)}},x:{ticks:{font:{family:'Estedad'}}}}}
     });
   },10);
 }
@@ -1409,7 +1603,6 @@ function renderSettings(){
           <input class="form-control" id="setTax" type="number" value="${s.taxPercent||0}"></div>
         <button class="btn btn-primary" onclick="saveSettings()">💾 ذخیره تنظیمات</button>
       </div>
-
       <div class="card">
         <div class="card-header"><div class="card-title">پشتیبان‌گیری</div></div>
         <p class="text-muted mb-3">اطلاعات را در فایل JSON ذخیره یا بازیابی کنید.</p>
@@ -1432,7 +1625,6 @@ function renderSettings(){
         </p>
       </div>
     </div>
-
     <div class="card mt-4">
       <div class="card-header"><div class="card-title">اطلاعات سیستم</div></div>
       <div class="grid grid-4">
