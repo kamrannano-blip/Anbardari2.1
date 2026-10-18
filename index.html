@@ -16,15 +16,17 @@
 <link rel="apple-touch-icon" sizes="120x120" href="DAVIN.PNG">
 <link rel="apple-touch-icon" sizes="76x76" href="DAVIN.PNG">
 <link rel="icon" type="image/png" href="DAVIN.PNG">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Estedad:wght@300;400;500;600;700;800;900&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/gh/rastikerdar/peyda-font@v1.0.0/dist/font-face.css" rel="stylesheet">
+
+<!-- فونت ایران سنس (IRANSans) -->
+<link href="https://cdn.jsdelivr.net/gh/font-store/font-IRANSans/IRANSansWeb.css" rel="stylesheet">
+
+<!-- کتابخانه‌ها -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jalaali-js@1.2.6/dist/jalaali.min.js"></script>
+
 <style>
 /* =====================================================
-   🌙 تم دارک لوکس - بر اساس طرح Audi
+   🌙 تم دارک لوکس - فونت ایران سنس
    ===================================================== */
 :root{
   --bg-main:#0f1419;
@@ -68,7 +70,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{
-  font-family:'Peyda','Estedad','Vazirmatn',sans-serif;
+  font-family:'IRANSans', 'IRANSansWeb', Tahoma, sans-serif;
   font-weight:500;
   letter-spacing:-.01em;
   background:var(--bg-main);
@@ -401,7 +403,7 @@ tbody tr:hover{background:var(--bg-hover)}
   direction:ltr;text-align:right;
   font-variant-numeric:tabular-nums;
   font-weight:700;
-  font-family:'Estedad','Vazirmatn',monospace;
+  font-family:'IRANSans', sans-serif;
 }
 
 /* ==================== BADGES ==================== */
@@ -1018,7 +1020,7 @@ let dashChart=null, dashChart2=null;
 const chartTheme = {
   color:'#8b95a5',
   grid:'rgba(255,255,255,.06)',
-  font:{family:'Estedad',weight:'600'}
+  font:{family:'IRANSans, sans-serif', weight:'600'}
 };
 function renderDashboard(){
   const t = totals();
@@ -1047,6 +1049,7 @@ function renderDashboard(){
   const months = lastSixMonths();
   const salesData = months.map(function(m){let s=0;for(const inv of DB.data.invoices){if(inv.type==='sale'&&jalaliMonth(inv.date)===m)s+=inv.total;}return s;});
   const purchaseData = months.map(function(m){let s=0;for(const inv of DB.data.invoices){if(inv.type==='purchase'&&jalaliMonth(inv.date)===m)s+=inv.total;}return s;});
+  
   if(dashChart)dashChart.destroy();
   dashChart = new Chart($('#chart1'),{
     type:'bar',data:{labels:months.map(monthName),datasets:[
@@ -1810,11 +1813,11 @@ function renderTransactions(){
       '<div class="flex gap-2">'+
         '<button class="btn btn-success" onclick="txForm(\'receive\')">📥 دریافت</button>'+
         '<button class="btn btn-danger" onclick="txForm(\'pay\')">📤 پرداخت</button>'+
-        '<button class="btn btn-warning" onclick="txForm(\'transfer\')">🔁 انتقال</ندbutton>'+
+        '<button class="btn btn-warning" onclick="txForm(\'transfer\')">🔁 انتقال</button>'+
       '</div>'+
-    '</وق شماdiv).>'+
-    '<div class="card ب"><div class="tableده-wrap"><table><thead><ی/tr>'+
-      '<th>تطلباریخ</th><th>نوع</th><th>از / به</th><th>مبلغ</th><th>توضیح</th><th>عملیات</th>'+
+    '</div>'+
+    '<div class="card"><div class="table-wrap"><table><thead><tr>'+
+      '<th>تاریخ</th><th>نوع</th><th>از / به</th><th>مبلغ</th><th>توضیح</th><th>عملیات</th>'+
     '</tr></thead><tbody>'+rowsHtml+'</tbody></table></div></div>';
 }
 function txForm(type, editId){
@@ -1835,7 +1838,7 @@ function txForm(type, editId){
   if(isTransfer){
     body += '<div class="form-group"><label class="form-label">از شخص (پرداخت‌کننده) *</label><select class="form-control" id="txFrom">'+fromOptions+'</select></div>';
     body += '<div class="form-group"><label class="form-label">به شخص (دریافت‌کننده) *</label><select class="form-control" id="txTo">'+toOptions+'</select></div>';
-    body += '<p class="text-muted" style="font-size:11px;margin-bottom:8px">💡 انتقال یعنی شخص «از» پول را مستقیم به شخص «به» می‌دهد (بدون دخالت ص هر دو نفر به‌روز می‌شود.</p>';
+    body += '<p class="text-muted" style="font-size:11px;margin-bottom:8px">💡 انتقال یعنی شخص «از» پول را مستقیم به شخص «به» می‌دهد (بدون دخالت صندوق شما). بدهی/طلب هر دو نفر به‌روز می‌شود.</p>';
   } else {
     body += '<div class="form-group"><label class="form-label">شخص *</label><select class="form-control" id="txPerson">'+personOptions2+'</select></div>';
   }
@@ -1922,7 +1925,7 @@ function renderCapital(){
         '</div>'+
       '</div>'+
       '<div class="divider"></div>'+
-      '<div class="text-muted" style="font-size:11px">💡 <b style="color:var(--text-main)">سرمایه فعلی</b> = موجودی نقد + ارزش انبار + مطالبات − بدهی‌ها<br><span style="color:var(--warning)">توجه: سNumود قبلاً(st در موجودی نقد (ockفروش نقدی) و مطالباتOf (فروش(p نسیه) لحاظ.id شده و دوباره اضافه نمی‌شود.</span></div>'+
+      '<div class="text-muted" style="font-size:11px">💡 <b style="color:var(--text-main)">سرمایه فعلی</b> = موجودی نقد + ارزش انبار + مطالبات − بدهی‌ها<br><span style="color:var(--warning)">توجه: سود قبلاً در موجودی نقد (فروش نقدی) و مطالبات (فروش نسیه) لحاظ شده و دوباره اضافه نمی‌شود.</span></div>'+
     '</div>'+
     '<div class="card">'+
       '<div class="card-header"><div class="card-title">تنظیم سرمایه اولیه</div></div>'+
@@ -1951,7 +1954,7 @@ function renderReports(){
   if(lowStock.length){
     let rows = '';
     for(const p of lowStock){
-      rows += '<tr><td>'+p.name+'</td><td class="num text-danger">'+format))+'</td><td class="num">'+formatNum(p.minStock)+'</td></tr>';
+      rows += '<tr><td>'+p.name+'</td><td class="num text-danger">'+formatNum(stockOf(p.id))+'</td><td class="num">'+formatNum(p.minStock)+'</td></tr>';
     }
     lowStockHtml = '<div class="table-wrap"><table><thead><tr><th>کالا</th><th>موجودی</th><th>حداقل</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
   } else {
