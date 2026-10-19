@@ -139,12 +139,13 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
 .hidden-date-input{display:none!important;}
 
 /* ============ 🆕 جدول اقلام فاکتور — عرض درصدی ============ */
-.items-table{min-width:0!important;width:100%;table-layout:fixed;}
-.items-table th,.items-table td{padding:6px 4px!important;}
-.items-table .col-product{width:50%;}
+.items-table{min-width:100%!important;width:100%;table-layout:fixed;overflow:visible;}
+.items-table th,.items-table td{padding:6px 4px!important;overflow:visible;}
+.items-table .col-product{width:65%;}
+.items-table .col-stock{width:8%;}
 .items-table .col-qty{width:15%;}
-.items-table .col-price{width:20%;}
-.items-table .col-total{width:15%;}
+.items-table .col-price{width:39%;}
+.items-table .col-total{width:31.5%;}
 .items-table .col-act{width:5%;}
 .items-table input,.items-table select{
   font-size:12px!important;
@@ -155,10 +156,26 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
 }
 .items-table .col-qty input{font-size:13px!important;font-weight:700!important;}
 .items-table .col-price input{font-size:12px!important;font-weight:700!important;}
-.items-table .col-total .num{font-size:12px!important;}
+.items-table .col-total .num{font-size:12px!important;font-weight:700;display:block;text-align:center;}
+.items-table .col-stock .stock-badge{display:block;text-align:center;font-size:11px;font-weight:800;padding:6px 2px;border-radius:6px;background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.3);min-height:34px;line-height:22px;font-variant-numeric:tabular-nums;}
+.items-table .col-stock .stock-badge.stock-out{background:rgba(239,68,68,.12);color:#f87171;border-color:rgba(239,68,68,.3);}
+.items-table .col-stock .stock-badge.stock-low{background:rgba(245,158,11,.12);color:#fbbf24;border-color:rgba(245,158,11,.3);}
 
-/* ============ 🆕 لیست کالا — مرتب و ثابت ============ */
-.smart-select-list{max-height:260px;overflow-y:auto;background:var(--bg-input);border:1px solid var(--border-medium);border-radius:8px;margin-top:4px;}
+/* ============ 🆕 لیست کالا — dropdown شناور با اسکرول ============ */
+.smart-select-list{
+  position:absolute;
+  top:100%;
+  right:0;
+  left:0;
+  margin-top:4px;
+  max-height:88px;
+  overflow-y:auto;
+  background:var(--bg-card-2);
+  border:1px solid var(--border-strong);
+  border-radius:8px;
+  z-index:5000;
+  box-shadow:0 12px 35px rgba(0,0,0,.7);
+}
 .smart-select-list.hidden{display:none;}
 .ss-product-item{
   padding:10px 12px;
@@ -170,23 +187,15 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
   gap:8px;
   height:44px;
   box-sizing:border-box;
-  transition:all .15s;
+  transition:background .15s;
 }
-.ss-product-item:hover{background:var(--bg-hover);transform:translateX(-2px);}
+.ss-product-item:last-child{border-bottom:none;}
+.ss-product-item:hover{background:var(--bg-hover);}
 .ss-product-item.selected{background:rgba(230,57,70,.12);border-right:3px solid var(--accent);}
-.ss-product-item.selected .ss-product-name::before{content:'✓ ';color:var(--accent);font-weight:900;}
-.ss-product-item.stock-good{background:rgba(16,185,129,.04);}
-.ss-product-item.stock-low{background:rgba(245,158,11,.04);}
-.ss-product-item.stock-out{background:rgba(239,68,68,.04);}
 .ss-product-name{flex:1;font-size:13px;color:var(--text-main);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.ss-product-code{font-size:10px;color:var(--text-sub);font-weight:700;background:var(--bg-card-2);padding:1px 5px;border-radius:4px;margin-left:6px;}
-.ss-product-stock{font-size:11px;font-weight:800;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
-.ss-stock-good{background:rgba(16,185,129,.15);color:#34d399;border:1px solid rgba(16,185,129,.3);}
-.ss-stock-low{background:rgba(245,158,11,.15);color:#fbbf24;border:1px solid rgba(245,158,11,.3);}
-.ss-stock-out{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.3);}
 
 /* 🆕 انیمیشن Dropdown */
-.smart-select-list:not(.hidden){animation:slideDown .2s ease;}
+.smart-select-list:not(.hidden){animation:slideDown .18s ease;}
 @keyframes slideDown{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
 
 /* ============ Smart Select (مشتری) ============ */
@@ -277,14 +286,14 @@ tbody tr:hover{background:var(--bg-hover)}
   .date3-select{font-size:12px;padding:7px 4px;padding-left:16px;height:34px;}
   .date3-display{font-size:10px;padding:3px 8px;}
   .date3-row{grid-template-columns:1fr 1.2fr 1fr;gap:4px;}
-  .items-table .col-product{width:45%;}
+  .items-table .col-product{width:60%;}
+  .items-table .col-stock{width:8%;}
   .items-table .col-qty{width:15%;}
-  .items-table .col-price{width:22%;}
-  .items-table .col-total{width:13%;}
+  .items-table .col-price{width:42%;}
+  .items-table .col-total{width:30%;}
   .items-table .col-act{width:5%;}
   .items-table input,.items-table select{font-size:11px!important;padding:5px 3px!important;}
   .ss-product-name{font-size:12px;}
-  .ss-product-stock{font-size:10px;padding:2px 6px;}
 }
 @media(min-width:901px){.sidebar{transform: translateX(0) !important;}}
 ::-webkit-scrollbar{width:6px;height:6px}
@@ -489,8 +498,6 @@ function initDatepickers(){
     var initialStr = jy+'/'+String(jm).padStart(2,'0')+'/'+String(jd).padStart(2,'0');
     inp.value = initialStr;
     
-    // 🆕 ترتیب در HTML: روز، ماه، سال
-    // در RTL: روز سمت راست ← ماه وسط ← سال سمت چپ
     wrap.innerHTML = 
       '<div class="date3-row">' +
         '<select class="date3-select" data-day="'+inp.id+'" title="روز">'+dayOpts+'</select>' +
@@ -1003,7 +1010,7 @@ function renderWarehouses(){
   const list = DB.data.warehouses;
   let cardsHtml = '';
   if(!list.length){
-    cardsHtml = '<div class="card" style="grid-column:1/-1"><div class="empty"><div class="icon">🏭</div><div class="title">انباری ثبت نشده</div><div class="sub">ابتدا یک انبار اضافه کنید</div></div></div>';
+    cardsHtml = '<div class="card" style="grid-column:1/-1"><div class="empty"><div class="icon">🏭</div><div class="title">انباری ثبت نشده</div></div></div>';
   } else {
     for(const w of list){
       const items = DB.data.products.map(function(p){return {p:p,q:stockOf(p.id,w.id)};}).filter(function(x){return x.q!==0;});
@@ -1066,7 +1073,8 @@ function deleteWarehouse(id){
     DB.save(); renderWarehouses(); toast('انبار حذف شد','success');
   });
 }
-  /* ============ اشخاص ============ */
+
+/* ============ اشخاص ============ */
 let personFilter = 'all';
 let personSearch = '';
 
@@ -1138,7 +1146,7 @@ function renderPersons(){
     });
   }
 }
-function setPersonFilter(f){
+  function setPersonFilter(f){
   personFilter = f;
   renderPersons();
   setTimeout(function(){ if($('#personSearchInput')) $('#personSearchInput').focus(); }, 10);
@@ -1334,7 +1342,7 @@ function nextInvoiceNumber(type){
   return prefix + '-' + String(Math.max.apply(null,[0].concat(nums))+1).padStart(4,'0');
 }
 
-/* 🆕 ساخت جستجوی کالا با نمایش موجودی — مرتب و ثابت */
+/* 🆕 ساخت جستجوی کالا — فقط نام کالا (بدون کد و موجودی) */
 function buildProductSearch(idx, currentProductId){
   var p = currentProductId ? DB.data.products.find(function(x){return x.id===currentProductId;}) : null;
   var html = '<div style="position:relative">' +
@@ -1343,14 +1351,9 @@ function buildProductSearch(idx, currentProductId){
   
   for(var i=0; i<DB.data.products.length; i++){
     var x = DB.data.products[i];
-    var qty = stockOf(x.id);
-    var stockCls = qty > 10 ? 'ss-stock-good' : (qty > 0 ? 'ss-stock-low' : 'ss-stock-out');
-    var stockLabel = qty > 0 ? formatNum(qty) : 'ناموجود';
     var isSel = (x.id === currentProductId) ? ' selected' : '';
-    var rowCls = qty > 10 ? 'stock-good' : (qty > 0 ? 'stock-low' : 'stock-out');
-    html += '<div class="ss-product-item ' + rowCls + isSel + '" data-id="' + x.id + '" data-name="' + x.name + '" onclick="selectProductForInvoice(' + idx + ', \'' + x.id + '\')">' +
-      '<div class="ss-product-name">' + (x.code ? '<span class="ss-product-code">' + x.code + '</span> ' : '') + x.name + '</div>' +
-      '<div class="ss-product-stock ' + stockCls + '">📦 ' + stockLabel + '</div>' +
+    html += '<div class="ss-product-item' + isSel + '" data-id="' + x.id + '" data-name="' + x.name + '" onclick="selectProductForInvoice(' + idx + ', \'' + x.id + '\')">' +
+      '<div class="ss-product-name">' + x.name + '</div>' +
     '</div>';
   }
   html += '</div></div>';
@@ -1369,11 +1372,19 @@ function selectProductForInvoice(idx, id){
   document.getElementById('invProdSearch_' + idx).value = p.name;
   document.getElementById('invProdList_' + idx).classList.add('hidden');
   
+  // 🆕 نمایش موجودی در ستون جدید
+  var stockCell = document.getElementById('invStock_' + idx);
+  if(stockCell){
+    var qty = stockOf(id);
+    var stockCls = qty > 10 ? '' : (qty > 0 ? ' stock-low' : ' stock-out');
+    stockCell.innerHTML = '<span class="stock-badge' + stockCls + '">' + (qty > 0 ? formatNum(qty) : '0') + '</span>';
+  }
+  
   if(!invoiceItems[idx].price){
     var type = document.getElementById('invNumber').value.startsWith('F') ? 'sale' : 'purchase';
     invoiceItems[idx].price = type==='purchase' ? (p.purchasePrice||0) : (p.salePrice||0);
     var row = document.querySelector('#invItemsBody tr[data-row="' + idx + '"]');
-    if(row){ var pi = row.querySelectorAll('input')[1]; if(pi) pi.value = formatNum(invoiceItems[idx].price); }
+    if(row){ var pi = row.querySelectorAll('input')[2]; if(pi) pi.value = formatNum(invoiceItems[idx].price); }
   }
   updateRowTotal(idx);
   recalcInvoice();
@@ -1435,7 +1446,7 @@ function invoiceForm(type, editId){
     '</div>'+
     '<div class="divider"></div>'+
     '<div class="flex justify-between items-center mb-3"><div class="font-bold">اقلام</div><button class="btn btn-sm btn-primary" onclick="addInvoiceItem()">➕ افزودن</button></div>'+
-    '<div class="table-wrap" style="overflow-x:auto"><table class="items-table"><thead><tr><th class="col-product">کالا</th><th class="col-qty">تعداد</th><th class="col-price">قیمت</th><th class="col-total">جمع</th><th class="col-act"></th></tr></thead><tbody id="invItemsBody"></tbody></table></div>'+
+    '<div class="table-wrap" style="overflow-x:auto"><table class="items-table"><thead><tr><th class="col-product">کالا</th><th class="col-stock">موجودی</th><th class="col-qty">تعداد</th><th class="col-price">قیمت</th><th class="col-total">جمع</th><th class="col-act"></th></tr></thead><tbody id="invItemsBody"></tbody></table></div>'+
     '<div class="divider"></div>'+
     '<div class="font-bold mb-3">هزینه‌های جانبی</div>'+
     '<div class="form-row">'+
@@ -1472,7 +1483,7 @@ function renderInvoiceItems(){
   const body = $('#invItemsBody');
   if(!body)return;
   if(!invoiceItems.length){
-    body.innerHTML = '<tr><td colspan="5" class="text-center text-muted" style="padding:16px">ردیفی اضافه نشده</td></tr>';
+    body.innerHTML = '<tr><td colspan="6" class="text-center text-muted" style="padding:16px">ردیفی اضافه نشده</td></tr>';
     recalcInvoice(); return;
   }
   let html = '';
@@ -1503,11 +1514,18 @@ function renderInvoiceItems(){
   recalcInvoice();
 }
 function invoiceItemsRowHTML(it,idx){
+  const qty = it.productId ? stockOf(it.productId) : null;
+  let stockBadge = '<span class="stock-badge" style="background:transparent;border:1px dashed var(--border-medium);color:var(--text-muted);">—</span>';
+  if(qty !== null){
+    const stockCls = qty > 10 ? '' : (qty > 0 ? ' stock-low' : ' stock-out');
+    stockBadge = '<span class="stock-badge' + stockCls + '">' + formatNum(qty) + '</span>';
+  }
   return '<tr data-row="'+idx+'">'+
     '<td class="col-product">'+buildProductSearch(idx, it.productId)+'</td>'+
+    '<td class="col-stock" id="invStock_'+idx+'">'+stockBadge+'</td>'+
     '<td class="col-qty"><input class="form-control num" type="number" min="1" value="'+it.qty+'" oninput="updateItemQty('+idx+',this.value)"></td>'+
     '<td class="col-price"><input class="form-control num" data-thousands value="'+formatNum(it.price)+'" oninput="updateItemPrice('+idx+',this.value)"></td>'+
-    '<td class="col-total"><span class="num" style="font-weight:700">'+formatNum(it.qty*it.price)+'</span></td>'+
+    '<td class="col-total"><span class="num">'+formatNum(it.qty*it.price)+'</span></td>'+
     '<td class="col-act"><button class="btn btn-sm btn-danger" onclick="removeInvoiceItem('+idx+')">✕</button></td>'+
   '</tr>';
 }
@@ -1843,7 +1861,8 @@ function deleteExpense(id){
     DB.save(); renderExpenses(); toast('حذف شد','success');
   });
 }
-  /* ============ سرمایه ============ */
+
+/* ============ سرمایه ============ */
 function renderCapital(){
   const t = totals();
   const initial = DB.data.settings.initialCapital||0;
