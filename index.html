@@ -416,7 +416,7 @@ tbody tr:hover{background:var(--bg-hover)}
 <div class="toast" id="toast"></div>
 
 <script>
-   /* ============ ابزارهای عمومی ============ */
+  /* ============ ابزارهای عمومی ============ */
 const $ = (s,el)=> (el||document).querySelector(s);
 const $$ = (s,el)=> Array.prototype.slice.call((el||document).querySelectorAll(s));
 
@@ -936,9 +936,9 @@ function deleteWarehouse(id){
     DB.save(); renderWarehouses(); toast('انبار حذف شد','success');
   });
 }
-   /* ============ اشخاص ============ */
+  /* ============ اشخاص ============ */
 let personFilter = 'all';
-let personSearch = ''; // 🆕 متغیر جستجو
+let personSearch = '';
 
 function renderPersons(){
   const list = DB.data.persons.map(function(p){return Object.assign({},p,{bal:personBalance(p.id)});});
@@ -1011,7 +1011,6 @@ function renderPersons(){
 function setPersonFilter(f){
   personFilter = f;
   renderPersons();
-  // حفظ فوکوس در فیلد جستجو بعد از رندر مجدد
   setTimeout(function(){ if($('#personSearchInput')) $('#personSearchInput').focus(); }, 10);
 }
 function quickTx(personId, type){
@@ -1398,7 +1397,7 @@ function deleteInvoice(id){
 }
 
 /* ============ تراکنش‌ها ============ */
-let txSearch = ''; // 🆕 متغیر جستجو
+let txSearch = '';
 
 function renderTransactions(){
   const list = [].concat(DB.data.transactions).sort(function(a,b){return b.date.localeCompare(a.date);});
@@ -1468,9 +1467,9 @@ function txForm(type, editId){
   const existing = editId? DB.data.transactions.find(function(t){return t.id===editId;}) : null;
   if(existing) type = existing.type;
   const isTransfer = type==='transfer';
-  let fromOptions = '<option value="">انتخاب</option>'; let toOptions = '<option value="">انتخاب</option>'; letث personOptions2 = '<option value="">بتانتخاب</option>';
- دریافت  for(const p of DB':.data.persons){
-    fromtypeOptions += '<option value==="'+p.id+'" '+(existing&&existing.personId===p.id?'selected':'')+'>'+p.name+'</option>';
+  let fromOptions = '<option value="">انتخاب</option>'; let toOptions = '<option value="">انتخاب</option>'; let personOptions2 = '<option value="">انتخاب</option>';
+  for(const p of DB.data.persons){
+    fromOptions += '<option value="'+p.id+'" '+(existing&&existing.personId===p.id?'selected':'')+'>'+p.name+'</option>';
     toOptions += '<option value="'+p.id+'" '+(existing&&existing.toPersonId===p.id?'selected':'')+'>'+p.name+'</option>';
     personOptions2 += '<option value="'+p.id+'" '+(existing&&existing.personId===p.id?'selected':'')+'>'+p.name+'</option>';
   }
@@ -1483,7 +1482,7 @@ function txForm(type, editId){
   }
   body += '<div class="form-group"><label class="form-label">مبلغ *</label><input class="form-control" data-thousands id="txAmount" value="'+(existing?formatNum(existing.amount):'0')+'"></div>';
   body += '<div class="form-group"><label class="form-label">توضیحات</label><input class="form-control" id="txNote" value="'+(existing?(existing.note||''):'')+'"></div>';
-  openModal((type==='receive'?'='pay'?'ثبت پرداخت':'انتقال')+(editId?' (ویرایش)':''), body,
+  openModal((type==='receive'?'ثبت دریافت':type==='pay'?'ثبت پرداخت':'انتقال')+(editId?' (ویرایش)':''), body,
     '<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>'+
     '<button class="btn btn-primary" onclick="saveTx(\''+type+'\',\''+(editId||'')+'\')">ذخیره</button>'
   );
@@ -1609,7 +1608,7 @@ function deleteExpense(id){
     DB.save(); renderExpenses(); toast('حذف شد','success');
   });
 }
-   /* ============ سرمایه ============ */
+  /* ============ سرمایه ============ */
 function renderCapital(){
   const t = totals();
   const initial = DB.data.settings.initialCapital||0;
@@ -1793,7 +1792,7 @@ function renderReports(){
       '<div class="card"><div class="card-header"><div class="card-title">سود و زیان بازه</div></div>'+
         '<table style="font-size:13px;min-width:100%">'+
           '<tr><td>فروش</td><td class="num" style="color:var(--success)">'+formatMoney(fSales)+'</td></tr>'+
-          '<tr><td>بهای تمام‌شده</td><td class="num" style="color:var(--danger)">−'+formatMoney(fCogs)+'</td></tr>'+
+          '<tr><td>بهای تمام‌شده</td><td class="num" style="‌ها و هزینهcolor:var(--danger)">−'+formatMoney(fCogs)+'</td></tr>'+
           '<tr style="border-top:1px solid var(--border-soft)"><td><b>سود ناخالص</b></td><td class="num"><b>'+formatMoney(fSales-fCogs)+'</b></td></tr>'+
           '<tr><td>هزینه‌ها</td><td class="num" style="color:var(--warning)">−'+formatMoney(fExpenses)+'</td></tr>'+
           '<tr style="border-top:2px solid var(--gold);font-weight:800;font-size:14px"><td><b style="color:var(--gold-light)">سود خالص</b></td><td class="num" style="color:'+(fProfit>=0?'var(--success)':'var(--danger)')+'"><b>'+formatMoney(fProfit)+'</b></td></tr>'+
@@ -1927,7 +1926,7 @@ function importData(e){
   e.target.value='';
 }
 function resetAccountingData(){
-  confirmAction('همه فاکتورها، تراکنش‌ها و هزینه‌ها پاک شوند؟',function(){
+  confirmAction('همه فاکتورها، تراکنش‌ها پاک شوند؟',function(){
     DB.resetAccounting();
     toast('پاک شد','success');
     navigate('dashboard');
