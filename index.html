@@ -138,28 +138,65 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
 }
 .hidden-date-input{display:none!important;}
 
-/* ============ 🆕 جدول اقلام فاکتور — عرض درصدی ============ */
-.items-table{min-width:100%!important;width:100%;table-layout:fixed;overflow:visible;}
-.items-table th,.items-table td{padding:6px 4px!important;overflow:visible;}
-.items-table .col-product{width:65%;}
-.items-table .col-stock{width:8%;}
-.items-table .col-qty{width:15%;}
-.items-table .col-price{width:39%;}
-.items-table .col-total{width:31.5%;}
-.items-table .col-act{width:5%;}
-.items-table input,.items-table select{
-  font-size:12px!important;
-  padding:6px 4px!important;
-  height:34px!important;
-  min-height:34px!important;
-  border-radius:6px!important;
+/* ============ 🆕 جدول اقلام فاکتور — اسکرول‌پذیر ============ */
+/* کادر بیرونی جدول اقلام: ارتفاع ثابت + اسکرول عمودی + افقی */
+.items-wrap{
+  max-height: 320px !important;
+  overflow-y: auto !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
 }
-.items-table .col-qty input{font-size:13px!important;font-weight:700!important;}
-.items-table .col-price input{font-size:12px!important;font-weight:700!important;}
-.items-table .col-total .num{font-size:12px!important;font-weight:700;display:block;text-align:center;}
-.items-table .col-stock .stock-badge{display:block;text-align:center;font-size:11px;font-weight:800;padding:6px 2px;border-radius:6px;background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.3);min-height:34px;line-height:22px;font-variant-numeric:tabular-nums;}
+.items-table{
+  min-width: 900px !important;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.items-table thead th{
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg-card-2);
+}
+.items-table th,.items-table td{padding:6px 4px !important;vertical-align: middle;}
+.items-table .col-product{width:50%;}
+.items-table .col-stock{width:10%;}
+.items-table .col-qty{width:10%;}
+.items-table .col-price{width:20%;}
+.items-table .col-total{width:7%;}
+.items-table .col-act{width:3%;}
+.items-table input,.items-table select{
+  font-size:12px !important;
+  padding:6px 4px !important;
+  height:34px !important;
+  min-height:34px !important;
+  border-radius:6px !important;
+  width:100% !important;
+}
+.items-table .col-qty input{font-size:13px !important;font-weight:700 !important;text-align:center;}
+.items-table .col-price input{font-size:12px !important;font-weight:700 !important;}
+.items-table .col-total .num{font-size:12px !important;font-weight:700;display:block;text-align:center;direction:ltr;}
+.items-table .col-stock .stock-badge{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  font-weight:800;
+  height:34px;
+  min-height:34px;
+  border-radius:6px;
+  background:rgba(59,130,246,.12);
+  color:#60a5fa;
+  border:1px solid rgba(59,130,246,.3);
+  font-variant-numeric:tabular-nums;
+  direction:ltr;
+  width:100%;
+}
 .items-table .col-stock .stock-badge.stock-out{background:rgba(239,68,68,.12);color:#f87171;border-color:rgba(239,68,68,.3);}
 .items-table .col-stock .stock-badge.stock-low{background:rgba(245,158,11,.12);color:#fbbf24;border-color:rgba(245,158,11,.3);}
+.items-table .col-stock .stock-badge.stock-empty{background:transparent;border:1px dashed var(--border-medium);color:var(--text-muted);}
 
 /* ============ 🆕 لیست کالا — dropdown شناور با اسکرول ============ */
 .smart-select-list{
@@ -286,13 +323,9 @@ tbody tr:hover{background:var(--bg-hover)}
   .date3-select{font-size:12px;padding:7px 4px;padding-left:16px;height:34px;}
   .date3-display{font-size:10px;padding:3px 8px;}
   .date3-row{grid-template-columns:1fr 1.2fr 1fr;gap:4px;}
-  .items-table .col-product{width:60%;}
-  .items-table .col-stock{width:8%;}
-  .items-table .col-qty{width:15%;}
-  .items-table .col-price{width:42%;}
-  .items-table .col-total{width:30%;}
-  .items-table .col-act{width:5%;}
-  .items-table input,.items-table select{font-size:11px!important;padding:5px 3px!important;}
+  .items-wrap{max-height:280px !important;}
+  .items-table{min-width:820px !important;}
+  .items-table input,.items-table select{font-size:11px !important;padding:5px 3px !important;}
   .ss-product-name{font-size:12px;}
 }
 @media(min-width:901px){.sidebar{transform: translateX(0) !important;}}
@@ -430,12 +463,12 @@ function openModal(title,body,footer,size){
   $('#modalBox').className = 'modal '+(size==='lg'?'modal-lg':'');
   $('#modalOverlay').classList.add('show');
   attachAllThousandsIn($('#modalBody'));
-  attachAllThousandsIn($('#modalFooter'));
-  setTimeout(function(){ initDatepickers(); }, 100);
+  attachAllThousandsIn;($('#modalFooter'));
+ j  setTimeout(function(){ initDatepmickers(); }, 100);
 }
-function closeModal(){
-  $('#modalOverlay').classList.remove('show');
-  $('#modalBody').innerHTML='';
+function closeModal =(){
+  $('#modalOverlay'). jclassList.remove('show');
+ .j $('#modalBody').innerHTML='';
   $('#modalFooter').innerHTML='';
 }
 function attachAllThousandsIn(container){
@@ -452,8 +485,6 @@ function confirmAction(msg,onYes){
 
 /* =====================================================
    🆕 انتخاب تاریخ — ۳ Select در یک خط
-   ترتیب در HTML: روز، ماه، سال
-   با dir=rtl: روز (راست) ← ماه (وسط) ← سال (چپ)
    ===================================================== */
 var JALALI_MONTH_NAMES = ['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
 
@@ -475,7 +506,7 @@ function initDatepickers(){
     } else {
       var g = new Date();
       var j = jalaali.toJalaali(g.getFullYear(), g.getMonth()+1, g.getDate());
-      jy = j.jy; jm = j.jm; jd = j.jd;
+      jy = j.jym; jd = j.jd;
     }
     
     var wrap = document.createElement('div');
@@ -842,8 +873,7 @@ function navigate(page){
 $$('.nav-item').forEach(function(n){n.onclick=function(){navigate(n.dataset.page);};});
 $('#todayDate').textContent = todayJalali();
 $('#sidebarShopName').textContent = DB.data.settings.shopName || 'فروشگاه من';
-
-/* ============ داشبورد ============ */
+  /* ============ داشبورد ============ */
 let dashChart=null, dashChart2=null;
 const chartTheme = {
   color:'#8b95a5',
@@ -1146,7 +1176,7 @@ function renderPersons(){
     });
   }
 }
-  function setPersonFilter(f){
+function setPersonFilter(f){
   personFilter = f;
   renderPersons();
   setTimeout(function(){ if($('#personSearchInput')) $('#personSearchInput').focus(); }, 10);
@@ -1446,7 +1476,7 @@ function invoiceForm(type, editId){
     '</div>'+
     '<div class="divider"></div>'+
     '<div class="flex justify-between items-center mb-3"><div class="font-bold">اقلام</div><button class="btn btn-sm btn-primary" onclick="addInvoiceItem()">➕ افزودن</button></div>'+
-    '<div class="table-wrap" style="overflow-x:auto"><table class="items-table"><thead><tr><th class="col-product">کالا</th><th class="col-stock">موجودی</th><th class="col-qty">تعداد</th><th class="col-price">قیمت</th><th class="col-total">جمع</th><th class="col-act"></th></tr></thead><tbody id="invItemsBody"></tbody></table></div>'+
+    '<div class="table-wrap items-wrap"><table class="items-table"><thead><tr><th class="col-product">کالا</th><th class="col-stock">موجودی</th><th class="col-qty">تعداد</th><th class="col-price">قیمت</th><th class="col-total">جمع</th><th class="col-act"></th></tr></thead><tbody id="invItemsBody"></tbody></table></div>'+
     '<div class="divider"></div>'+
     '<div class="font-bold mb-3">هزینه‌های جانبی</div>'+
     '<div class="form-row">'+
@@ -1515,10 +1545,10 @@ function renderInvoiceItems(){
 }
 function invoiceItemsRowHTML(it,idx){
   const qty = it.productId ? stockOf(it.productId) : null;
-  let stockBadge = '<span class="stock-badge" style="background:transparent;border:1px dashed var(--border-medium);color:var(--text-muted);">—</span>';
+  let stockBadge = '<span class="stock-badge stock-empty">—</span>';
   if(qty !== null){
     const stockCls = qty > 10 ? '' : (qty > 0 ? ' stock-low' : ' stock-out');
-    stockBadge = '<span class="stock-badge' + stockCls + '">' + formatNum(qty) + '</span>';
+    stockBadge = '<span class="stock-badge' + stockCls + '">' + (qty > 0 ? formatNum(qty) : '0') + '</span>';
   }
   return '<tr data-row="'+idx+'">'+
     '<td class="col-product">'+buildProductSearch(idx, it.productId)+'</td>'+
