@@ -95,12 +95,12 @@ body{font-family:'IRANSharp', 'IRANSans', Tahoma, sans-serif;font-weight:500;bac
 .form-control{width:100%;padding:11px 12px;border:1px solid var(--border-medium);border-radius:var(--radius-sm);font-family:inherit;font-size:16px;background:var(--bg-input);color:#ffffff;transition:all .2s}
 .form-control:focus{outline:none;border-color:var(--accent);background:#0c1118}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:640px){.formfont-row{grid-template-column-familys:1fr}}
-input[type=number]{direction:l:'tr;text-align:right}
+@media(max-width:640px){.form-row{grid-template-columns:1fr}}
+input[type=number]{direction:ltr;text-align:right}
 select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");background-repeat:no-repeat;background-position:left 12px center;background-size:16px;padding-left:36px;appearance:none;}
 
 /* استایل تقویم شمسی دارک */
-.datepicker-plot-area{border-radius:12px !important;box-shadow:0 10px 40px rgba(0,0,0,.8) !important;z-index:2000 !important;IRANSharp' !important}
+.datepicker-plot-area{border-radius:12px !important;box-shadow:0 10px 40px rgba(0,0,0,.8) !important;z-index:2000 !important;font-family:'IRANSharp' !important}
 .dtp-navigator{border-bottom:1px solid var(--border-medium);padding:5px 0}
 .dtp-navigator .btn-navigate, .dtp-navigator select{background:var(--bg-card-2);color:var(--text-main);border:1px solid var(--border-medium);border-radius:6px}
 .dtp-plot{background:var(--bg-card) !important;}
@@ -133,7 +133,6 @@ tbody tr:hover{background:var(--bg-hover)}
 .modal-body{padding:18px}
 .modal-footer{padding:14px 18px;border-top:1px solid var(--border-soft);display:flex;gap:8px;justify-content:flex-end;position:sticky;bottom:0;background:var(--bg-card);flex-wrap:wrap}
 
-/* منوی انتخاب هوشمند با جستجو */
 .smart-select-list{max-height:200px;overflow-y:auto;background:var(--bg-input);border:1px solid var(--border-medium);border-radius:8px;margin-top:5px;}
 .smart-select-item{padding:8px 12px;cursor:pointer;border-bottom:1px solid var(--border-soft);font-size:13px;}
 .smart-select-item:hover{background:var(--bg-hover);color:var(--accent);}
@@ -168,7 +167,46 @@ tbody tr:hover{background:var(--bg-hover)}
 .footer-signature .sig-brand{font-weight:900;font-size:12.5px;letter-spacing:2px;background:linear-gradient(135deg,#f4e5a1 0%,#d4af37 40%,#b8860b 70%,#f4e5a1 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .footer-signature .sig-design{font-weight:700;font-size:9.5px;color:#8b95a5;letter-spacing:1.5px;text-transform:uppercase}
 .footer-signature .sig-tel{font-weight:800;font-size:11px;color:#d4af37;direction:ltr;letter-spacing:1px}
-@media(max-width:900px){.sidebar{transform:translateX(100%)}.sidebar.open{transform:translateX(0)}.main{margin-right:0;padding:12px 12px 170px;width:100%}.menu-toggle{display:inline-flex}.footer-signature{right:0}.page-title{font-size:16px}.stat{padding:12px}.stat-value{font-size:15px}.stat-icon{font-size:22px;left:6px}.card{padding:12px}.btn{padding:7px 10px;font-size:11.5px}table{font-size:11.5px}th,td{padding:8px 8px}}
+
+/* ============ 🆕 رفع مشکل سایدبار در موبایل ============ */
+@media(max-width:900px){
+  .sidebar{
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  .sidebar.open{
+    transform: translateX(0);
+  }
+  .main{
+    margin-right:0;
+    padding:12px 12px 170px;
+    width:100%;
+  }
+  .menu-toggle{
+    display:inline-flex;
+  }
+  .footer-signature{
+    right:0;
+  }
+  .page-title{
+    font-size:16px;
+  }
+  .stat{padding:12px}
+  .stat-value{font-size:15px}
+  .stat-icon{font-size:22px;left:6px}
+  .card{padding:12px}
+  .btn{padding:7px 10px;font-size:11.5px}
+  table{font-size:11.5px}
+  th,td{padding:8px 8px}
+}
+
+/* برای اطمینان از اینکه سایدبار در دسکتاپ همیشه باز است */
+@media(min-width:901px){
+  .sidebar{
+    transform: translateX(0) !important;
+  }
+}
+
 ::-webkit-scrollbar{width:6px;height:6px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--bg-card-2);border-radius:3px}
@@ -301,7 +339,6 @@ function openModal(title,body,footer,size){
   $('#modalOverlay').classList.add('show');
   attachAllThousandsIn($('#modalBody'));
   attachAllThousandsIn($('#modalFooter'));
-  // 🆕 فعال‌سازی تقویم شمسی روی همه فیلدهای date
   setTimeout(initDatepickers, 100);
 }
 function closeModal(){
@@ -321,7 +358,7 @@ function confirmAction(msg,onYes){
   $('#confirmYes').onclick = function(){closeModal();onYes();};
 }
 
-/* 🆕 فعال‌سازی تقویم شمسی برای همه فیلدهای دارای data-datepicker */
+/* 🆕 فعال‌سازی تقویم شمسی */
 function initDatepickers(){
   $$('input[data-datepicker]').forEach(function(inp){
     if($(inp).hasClass('datepicker-initialized')) return;
@@ -331,21 +368,15 @@ function initDatepickers(){
       initialValue: false,
       autoClose: true,
       observer: true,
-      calendar: {
-        persian: { locale: 'fa', showHint: true }
-      },
-      toolbox: {
-        calendarSwitch: { enabled: false }
-      },
-      navigator: {
-        scroll: { enabled: true }
-      }
+      calendar: { persian: { locale: 'fa', showHint: true } },
+      toolbox: { calendarSwitch: { enabled: false } },
+      navigator: { scroll: { enabled: true } }
     });
   });
 }
 
 /* ============ دیتابیس ============ */
-const DB_KEY = 'hesabdar_v5'; // ارتقا برای ذخیره فیلدهای جدید
+const DB_KEY = 'hesabdar_v5';
 const DB = {
   data: {
     settings:{shopName:'فروشگاه من',currency:'تومان',initialCapital:0,initialCapitalDate:'',taxPercent:0},
@@ -362,7 +393,7 @@ const DB = {
         this.data.invoices.forEach(function(inv){
           if(inv.airShippingCost===undefined) inv.airShippingCost = 0;
           if(inv.groundShippingCost===undefined) inv.groundShippingCost = 0;
-          if(inv.shippingCost===undefined)inv.shippingCost=0; // سازگاری با نسخه قبل
+          if(inv.shippingCost===undefined)inv.shippingCost=0;
           if(inv.customsCost===undefined)inv.customsCost=0;
           if(inv.paidAmount===undefined)inv.paidAmount = inv.paid? inv.total : 0;
         });
@@ -381,7 +412,6 @@ const DB = {
     this.save();
   },
   resetAccounting:function(){
-    // 🆕 پاک کردن سرمایه اولیه هم انجام می‌شود
     this.data.settings.initialCapital = 0;
     this.data.settings.initialCapitalDate = '';
     this.data.invoices = [];
@@ -425,7 +455,7 @@ function avgCostOf(productId, excludeInvoiceId){
     const ratio = invoiceItemsSum>0 ? itemSubtotal/invoiceItemsSum : 0;
     const airShare = (x.inv.airShippingCost||0) * ratio;
     const groundShare = (x.inv.groundShippingCost||0) * ratio;
-    const shippingShare = (x.inv.shippingCost||0) * ratio; // سازگاری
+    const shippingShare = (x.inv.shippingCost||0) * ratio;
     const customsShare = (x.inv.customsCost||0) * ratio;
     const itemCost = itemSubtotal + airShare + groundShare + shippingShare + customsShare;
     totalQty += item.qty;
@@ -475,15 +505,11 @@ function totals(){
   let cogs = 0;
   for(const inv of DB.data.invoices){
     if(inv.type!=='sale')continue;
-    for(const it of inv.items){
-      cogs += avgCostOf(it.productId) * it.qty;
-    }
+    for(const it of inv.items){ cogs += avgCostOf(it.productId) * it.qty; }
   }
   let totalExpenses = 0;
   if(DB.data.expenses){
-    for(const e of DB.data.expenses){
-      totalExpenses += e.amount;
-    }
+    for(const e of DB.data.expenses){ totalExpenses += e.amount; }
   }
   const profit = sales - cogs - totalExpenses;
   
@@ -504,11 +530,7 @@ function totals(){
   }
   cash -= totalExpenses;
   
-  return {
-    sales:sales, purchases:purchases, cogs:cogs, profit:profit,
-    receivable:receivable, payable:payable, cash:cash,
-    totalExpenses:totalExpenses
-  };
+  return {sales, purchases, cogs, profit, receivable, payable, cash, totalExpenses};
 }
 function currentCapital(){
   const t = totals();
@@ -549,7 +571,7 @@ const pageTitles = {
 function navigate(page){
   $$('.nav-item').forEach(function(n){n.classList.toggle('active',n.dataset.page===page);});
   $('#pageTitle').textContent = pageTitles[page];
-  $('#sidebar').classList.remove('open');
+  $('#sidebar').classList.remove('open'); // بستن سایدبار در موبایل
   pages[page]();
 }
 $$('.nav-item').forEach(function(n){n.onclick=function(){navigate(n.dataset.page);};});
@@ -993,7 +1015,6 @@ function renderInvoices(){
   let list = [].concat(DB.data.invoices).sort(function(a,b){return b.date.localeCompare(a.date);});
   if(invoiceFilter!=='all') list = list.filter(function(i){return i.type===invoiceFilter;});
   
-  // 🆕 جستجوی فاکتور
   if(invSearch.trim()){
     const q = invSearch.trim().toLowerCase();
     list = list.filter(function(i){
@@ -1043,7 +1064,7 @@ function renderInvoices(){
   if(searchInput){
     searchInput.addEventListener('input', function(e){
       invSearch = e.target.value;
-      renderInvoices(); // رندر مجدد برای اعمال فیلتر
+      renderInvoices();
       setTimeout(function(){ if($('#invSearchInput')) { $('#invSearchInput').focus(); const val = $('#invSearchInput').value; $('#invSearchInput').value=''; $('#invSearchInput').value=val; } }, 10);
     });
   }
@@ -1055,7 +1076,6 @@ function nextInvoiceNumber(type){
   return prefix + '-' + String(Math.max.apply(null,[0].concat(nums))+1).padStart(4,'0');
 }
 
-/* 🆕 کامپوننت جستجوی کالا */
 function buildProductSearch(idx, currentProductId){
   const p = currentProductId ? DB.data.products.find(function(x){return x.id===currentProductId;}) : null;
   let html = '<div class="form-group" style="margin-bottom:0">'+
@@ -1172,7 +1192,6 @@ function renderInvoiceItems(){
   body.innerHTML = html;
   attachAllThousandsIn(body);
   
-  // 🆕 فعال‌سازی جستجوی کالا برای هر ردیف
   for(let idx=0; idx<invoiceItems.length; idx++){
     const inp = $('#invProdSearch_'+idx);
     if(inp){
@@ -1348,8 +1367,8 @@ function renderTransactions(){
       '<div class="text-muted">دریافت، پرداخت و انتقال</div>'+
       '<div class="flex gap-2">'+
         '<button class="btn btn-success" onclick="txForm(\'receive\')">📥 دریافت</button>'+
-        '<button class="btn btn-danger" onclick="txForm(\'pay\')">📤 پرداخت</button>'+
-        '<button class="btn btn-warning" onclick="txForm(\'transfer\')">🔁 انتقال</button>'+
+        '<button class="btn btn-danger" onclick=" classtxForm(\'pay\')">📤 پرداخت</="button>'+
+        '<button class="btn btn-wstat"><div classarning" onclick="txForm(\'transfer\')">🔁 انتقال</button>'+
       '</div>'+
     '</div>'+
     '<div class="card"><div class="table-wrap"><table><thead><tr><th>تاریخ</th><th>نوع</th><th>از / به</th><th>مبلغ</th><th>توضیح</th><th>عملیات</th></tr></thead><tbody id="txBody">'+buildRows(filtered)+'</tbody></table></div></div>';
@@ -1457,7 +1476,7 @@ function renderExpenses(){
   $('#content').innerHTML =
     '<div class="grid grid-3 mb-4">'+
       '<div class="stat s-danger"><div class="stat-label">کل هزینه</div><div class="stat-value negative">'+formatMoney(total)+'</div><div class="stat-icon">💸</div></div>'+
-      '<div class="stat"><div class="stat-label">تعداد</div><div class="stat-value">'+formatNum(list.length)+'</div><div class="stat-icon">🧮</div></div>'+
+      '<div="stat-label">تعداد</div><div class="stat-value">'+formatNum(list.length)+'</div><div class="stat-icon">🧮</div></div>'+
       '<div class="stat s-gold"><div class="stat-label">میانگین</div><div class="stat-value gold">'+(list.length?formatMoney(total/list.length):formatMoney(0))+'</div><div class="stat-icon">📊</div></div>'+
     '</div>'+
     '<div class="grid grid-2 mb-4">'+
@@ -1861,7 +1880,7 @@ function installApp() {
 }
 
 /* ============ شروع ============ */
-initDatepickers(); // بارگذاری اولیه
+initDatepickers();
 navigate('dashboard');
 </script>
 </body>
