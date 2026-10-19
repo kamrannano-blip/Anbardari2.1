@@ -17,10 +17,6 @@
 <link rel="apple-touch-icon" sizes="120x120" href="DAVIN.PNG">
 <link rel="icon" type="image/png" href="DAVIN.PNG">
 <link href="https://cdn.jsdelivr.net/gh/font-store/font-IRANSharp/IRANSharp.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/persian-date@1.1.0/dist/persian-date.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/js/persian-datepicker.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jalaali-js@1.2.6/dist/jalaali.min.js"></script>
 <style>
@@ -43,9 +39,9 @@ body{font-family:'IRANSharp', 'IRANSans', Tahoma, sans-serif;font-weight:500;bac
 .app{display:flex;min-height:100vh;min-height:100dvh;width:100%}
 .sidebar{width:260px;background:#0f1419;border-left:1px solid var(--border-soft);padding:0 0 20px;position:fixed;top:0;right:0;bottom:0;overflow-y:auto;z-index:60;transition:transform .3s cubic-bezier(.4,0,.2,1);box-shadow:-4px 0 20px rgba(0,0,0,.4);padding-top: calc(var(--safe-top) + 12px);padding-bottom: calc(var(--safe-bottom) + 20px)}
 .sidebar .brand{display:flex;align-items:center;gap:12px;padding:0 18px 18px;border-bottom:1px solid var(--border-soft);margin-bottom:14px}
-.sidebar .brand-icon{width:48px;height:48px;background:#ffffff;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--border-medium);flex-shrink:0;position:relative}
-.sidebar .brand-icon img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0}
-.sidebar .brand-icon .brand-fallback{color:#0f1419;font-weight:900;font-size:20px;display:none;align-items:center;justify-content:center;width:100%;height:100%}
+.sidebar .brand-icon{width:48px;height:48px;background:linear-gradient(135deg,#f4e5a1 0%,#d4af37 50%,#b8860b 100%);border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--border-medium);flex-shrink:0;position:relative;box-shadow:0 2px 8px rgba(212,175,55,.3);}
+.sidebar .brand-icon .brand-fallback{color:#0f1419;font-weight:900;font-size:22px;display:flex;align-items:center;justify-content:center;width:100%;height:100%;position:relative;z-index:1}
+.sidebar .brand-icon img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;z-index:2}
 .sidebar .brand-text{font-weight:800;font-size:15px;color:#ffffff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px}
 .sidebar .brand-sub{font-size:11px;color:var(--text-sub);margin-top:2px}
 .nav-item{display:flex;align-items:center;gap:12px;padding:12px 18px;margin:2px 10px;color:var(--text-sub);cursor:pointer;font-weight:600;font-size:13.5px;border-radius:10px;transition:all .2s;user-select:none}
@@ -100,17 +96,67 @@ body{font-family:'IRANSharp', 'IRANSans', Tahoma, sans-serif;font-weight:500;bac
 input[type=number]{direction:ltr;text-align:right}
 select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");background-repeat:no-repeat;background-position:left 12px center;background-size:16px;padding-left:36px;appearance:none;}
 
-/* تقویم شمسی دارک */
-.datepicker-plot-area{border-radius:12px !important;box-shadow:0 10px 40px rgba(0,0,0,.85) !important;z-index:99999 !important;font-family:'IRANSharp' !important;background:var(--bg-card) !important;border:1px solid var(--border-medium) !important;}
-.datepicker-plot-area .datepicker-day-view .table-days td span{color:var(--text-main) !important;}
-.datepicker-plot-area .datepicker-day-view .table-days td span:hover{background:var(--accent) !important;color:#fff !important;}
-.datepicker-plot-area .datepicker-day-view .table-days td.selected span{background:var(--accent) !important;color:#fff !important;}
-.datepicker-plot-area .datepicker-month-view .month-item, .datepicker-plot-area .datepicker-year-view .year-item{color:var(--text-main) !important;}
-.datepicker-plot-area .datepicker-month-view .month-item.selected, .datepicker-plot-area .datepicker-year-view .year-item.selected{background:var(--accent) !important;color:#fff !important;}
-.datepicker-plot-area .toolbox{background:var(--bg-card-2) !important;}
-.datepicker-plot-area .btn-switch, .datepicker-plot-area .btn-navigate{background:var(--bg-card-2) !important;color:var(--text-main) !important;border:1px solid var(--border-medium) !important;}
-.datepicker-plot-area .navigator .btn-navigate{color:var(--text-main) !important;}
-.datepicker-plot-area .toolbox .btn-today{background:var(--accent) !important;color:#fff !important;}
+/* ============ 🆕 تقویم شمسی سفارشی ============ */
+.jdp-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100000;display:none;align-items:center;justify-content:center;padding:16px;}
+.jdp-overlay.open{display:flex;}
+.jdp{background:var(--bg-card);border-radius:14px;border:1px solid var(--border-medium);box-shadow:0 25px 60px rgba(0,0,0,.8);width:100%;max-width:320px;overflow:hidden;animation:jdpSlide .25s ease;}
+@keyframes jdpSlide{from{opacity:0;transform:translateY(20px) scale(.95);}to{opacity:1;transform:translateY(0) scale(1);}}
+.jdp-header{background:linear-gradient(135deg,var(--accent) 0%,#dc2f3c 100%);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;}
+.jdp-title{color:#fff;font-weight:800;font-size:14px;letter-spacing:.3px;}
+.jdp-close{background:rgba(255,255,255,.2);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.jdp-close:hover{background:rgba(255,255,255,.35);}
+.jdp-nav{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--bg-card-2);border-bottom:1px solid var(--border-soft);}
+.jdp-nav-btn{background:var(--bg-input);border:1px solid var(--border-medium);color:var(--text-main);width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.jdp-nav-btn:hover{background:var(--bg-hover);border-color:var(--accent);color:var(--accent);}
+.jdp-nav-center{display:flex;gap:8px;align-items:center;}
+.jdp-select{background:var(--bg-input);border:1px solid var(--border-medium);color:var(--text-main);padding:6px 24px 6px 10px;border-radius:6px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");background-repeat:no-repeat;background-position:left 8px center;background-size:12px;}
+.jdp-select:focus{outline:none;border-color:var(--accent);}
+.jdp-weekdays{display:grid;grid-template-columns:repeat(7,1fr);background:var(--bg-card-2);padding:8px 8px;border-bottom:1px solid var(--border-soft);}
+.jdp-weekday{text-align:center;font-size:11px;font-weight:800;color:var(--text-sub);padding:4px 0;}
+.jdp-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:10px 8px;background:var(--bg-card);}
+.jdp-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--text-main);border-radius:8px;cursor:pointer;transition:all .15s;background:transparent;border:1px solid transparent;}
+.jdp-day:hover:not(.jdp-empty):not(.jdp-disabled){background:var(--bg-hover);border-color:var(--border-medium);}
+.jdp-day.jdp-empty{cursor:default;opacity:0;}
+.jdp-day.jdp-disabled{opacity:.3;cursor:not-allowed;}
+.jdp-day.jdp-today{border-color:var(--accent);color:var(--accent);font-weight:800;}
+.jdp-day.jdp-selected{background:linear-gradient(135deg,var(--accent) 0%,#dc2f3c 100%);color:#fff;font-weight:800;box-shadow:0 2px 8px var(--accent-glow);border-color:transparent;}
+.jdp-day.jdp-friday{color:#f87171;}
+.jdp-day.jdp-selected.jdp-friday{color:#fff;}
+.jdp-footer{padding:12px 16px;background:var(--bg-card-2);border-top:1px solid var(--border-soft);display:flex;gap:8px;justify-content:space-between;}
+.jdp-btn{padding:8px 14px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:700;transition:all .15s;}
+.jdp-btn-today{background:var(--bg-input);color:var(--text-main);border:1px solid var(--border-medium);}
+.jdp-btn-today:hover{border-color:var(--info);color:var(--info);}
+.jdp-btn-confirm{background:linear-gradient(135deg,var(--success) 0%,#059669 100%);color:#fff;box-shadow:0 2px 8px rgba(16,185,129,.3);flex:1;}
+.jdp-btn-confirm:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(16,185,129,.5);}
+.jdp-btn-confirm:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+
+/* ============ Smart Select ============ */
+.smart-select-wrap{position:relative;width:100%}
+.smart-select-display{width:100%;padding:11px 36px 11px 12px;border:1px solid var(--border-medium);border-radius:var(--radius-sm);font-family:inherit;font-size:15px;background:var(--bg-input);color:#ffffff;cursor:pointer;display:flex;align-items:center;justify-content:space-between;min-height:44px;transition:all .2s;}
+.smart-select-display:hover{border-color:var(--border-strong);}
+.smart-select-display.active{border-color:var(--accent);}
+.smart-select-display .ph{color:var(--text-muted);}
+.smart-select-display::after{content:'▼';font-size:10px;color:var(--text-sub);margin-right:8px;}
+.smart-select-panel{position:absolute;top:100%;left:0;right:0;margin-top:4px;background:var(--bg-card-2);border:1px solid var(--border-strong);border-radius:var(--radius-sm);box-shadow:0 15px 40px rgba(0,0,0,.6);z-index:10000;display:none;overflow:hidden;}
+.smart-select-panel.open{display:block;}
+.smart-select-panel .ss-search{padding:8px;border-bottom:1px solid var(--border-soft);}
+.smart-select-panel .ss-search input{width:100%;padding:8px 10px;border:1px solid var(--border-medium);border-radius:6px;background:var(--bg-input);color:#fff;font-family:inherit;font-size:14px;}
+.smart-select-panel .ss-list{max-height:250px;overflow-y:auto;}
+.smart-select-panel .ss-item{padding:10px 14px;cursor:pointer;border-bottom:1px solid var(--border-soft);font-size:14px;color:var(--text-main);transition:background .15s;}
+.smart-select-panel .ss-item:hover{background:var(--bg-hover);color:var(--accent);}
+.smart-select-panel .ss-item.selected{background:rgba(230,57,70,.15);color:var(--accent);font-weight:700;}
+.smart-select-panel .ss-empty{padding:14px;text-align:center;color:var(--text-muted);font-size:13px;}
+
+/* 🆕 آیتم‌های محصول با موجودی */
+.ss-product-item{padding:10px 14px;cursor:pointer;border-bottom:1px solid var(--border-soft);display:flex;justify-content:space-between;align-items:center;gap:8px;transition:background .15s;}
+.ss-product-item:hover{background:var(--bg-hover);}
+.ss-product-item.selected{background:rgba(230,57,70,.15);}
+.ss-product-name{flex:1;font-size:13.5px;color:var(--text-main);font-weight:600;}
+.ss-product-code{font-size:11px;color:var(--text-sub);font-weight:700;background:var(--bg-input);padding:2px 6px;border-radius:4px;margin-left:6px;}
+.ss-product-stock{font-size:11.5px;font-weight:800;padding:3px 8px;border-radius:20px;white-space:nowrap;display:inline-flex;align-items:center;gap:3px;}
+.ss-stock-good{background:rgba(16,185,129,.15);color:#34d399;border:1px solid rgba(16,185,129,.3);}
+.ss-stock-low{background:rgba(245,158,11,.15);color:#fbbf24;border:1px solid rgba(245,158,11,.3);}
+.ss-stock-out{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.3);}
 
 .table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border-soft);background:var(--bg-input);width:100%;max-width:100%;-webkit-overflow-scrolling:touch}
 table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:100%}
@@ -135,23 +181,6 @@ tbody tr:hover{background:var(--bg-hover)}
 .modal-close{background:var(--bg-card-2);border:1px solid var(--border-medium);font-size:18px;cursor:pointer;color:var(--text-sub);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center}
 .modal-body{padding:18px}
 .modal-footer{padding:14px 18px;border-top:1px solid var(--border-soft);display:flex;gap:8px;justify-content:flex-end;position:sticky;bottom:0;background:var(--bg-card);flex-wrap:wrap}
-
-/* کامپوننت Smart Select */
-.smart-select-wrap{position:relative;width:100%}
-.smart-select-display{width:100%;padding:11px 36px 11px 12px;border:1px solid var(--border-medium);border-radius:var(--radius-sm);font-family:inherit;font-size:15px;background:var(--bg-input);color:#ffffff;cursor:pointer;display:flex;align-items:center;justify-content:space-between;min-height:44px;transition:all .2s;}
-.smart-select-display:hover{border-color:var(--border-strong);}
-.smart-select-display.active{border-color:var(--accent);}
-.smart-select-display .ph{color:var(--text-muted);}
-.smart-select-display::after{content:'▼';font-size:10px;color:var(--text-sub);margin-right:8px;}
-.smart-select-panel{position:absolute;top:100%;left:0;right:0;margin-top:4px;background:var(--bg-card-2);border:1px solid var(--border-strong);border-radius:var(--radius-sm);box-shadow:0 15px 40px rgba(0,0,0,.6);z-index:10000;display:none;overflow:hidden;}
-.smart-select-panel.open{display:block;}
-.smart-select-panel .ss-search{padding:8px;border-bottom:1px solid var(--border-soft);}
-.smart-select-panel .ss-search input{width:100%;padding:8px 10px;border:1px solid var(--border-medium);border-radius:6px;background:var(--bg-input);color:#fff;font-family:inherit;font-size:14px;}
-.smart-select-panel .ss-list{max-height:220px;overflow-y:auto;}
-.smart-select-panel .ss-item{padding:10px 14px;cursor:pointer;border-bottom:1px solid var(--border-soft);font-size:14px;color:var(--text-main);transition:background .15s;}
-.smart-select-panel .ss-item:hover{background:var(--bg-hover);color:var(--accent);}
-.smart-select-panel .ss-item.selected{background:rgba(230,57,70,.15);color:var(--accent);font-weight:700;}
-.smart-select-panel .ss-empty{padding:14px;text-align:center;color:var(--text-muted);font-size:13px;}
 
 .empty{text-align:center;padding:36px 16px;color:var(--text-muted)}
 .empty .icon{font-size:36px;margin-bottom:10px;opacity:.4}
@@ -211,8 +240,8 @@ tbody tr:hover{background:var(--bg-hover)}
   <aside class="sidebar" id="sidebar">
     <div class="brand">
       <div class="brand-icon">
-        <img src="DAVIN.PNG" alt="DAVIN" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <span class="brand-fallback">ح</span>
+        <img src="DAVIN.PNG" alt="DAVIN" onerror="this.style.display='none';">
       </div>
       <div>
         <div class="brand-text" id="sidebarShopName">فروشگاه من</div>
@@ -334,7 +363,7 @@ function openModal(title,body,footer,size){
   $('#modalOverlay').classList.add('show');
   attachAllThousandsIn($('#modalBody'));
   attachAllThousandsIn($('#modalFooter'));
-  setTimeout(function(){ initDatepickers(); }, 200);
+  setTimeout(function(){ initDatepickers(); }, 100);
 }
 function closeModal(){
   $('#modalOverlay').classList.remove('show');
@@ -353,30 +382,182 @@ function confirmAction(msg,onYes){
   $('#confirmYes').onclick = function(){closeModal();onYes();};
 }
 
-/* 🆕 فعال‌سازی تقویم شمسی */
+/* =====================================================
+   🆕 تقویم شمسی سفارشی (بدون کتابخانه)
+   ===================================================== */
+var jdpMonths = ['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
+var jdpWeekdays = ['ش','ی','د','س','چ','پ','ج'];
+var jdpState = { targetId: null, year: 0, month: 0, day: 0, selected: null };
+
+function openJdp(targetInputId){
+  var input = document.getElementById(targetInputId);
+  if(!input) return;
+  var val = (input.value||'').trim();
+  var jy, jm, jd;
+  if(validJalali(val)){
+    var parts = val.split('/').map(Number);
+    jy = parts[0]; jm = parts[1]; jd = parts[2];
+  } else {
+    var g = new Date();
+    var j = jalaali.toJalaali(g.getFullYear(), g.getMonth()+1, g.getDate());
+    jy = j.jy; jm = j.jm; jd = j.jd;
+  }
+  jdpState.targetId = targetInputId;
+  jdpState.year = jy;
+  jdpState.month = jm;
+  jdpState.selected = { y: jy, m: jm, d: jd };
+  renderJdp();
+  document.getElementById('jdpOverlay').classList.add('open');
+}
+
+function closeJdp(){
+  document.getElementById('jdpOverlay').classList.remove('open');
+  jdpState.targetId = null;
+}
+
+function jdpDaysInMonth(jy, jm){
+  if(jm<=6) return 31;
+  if(jm<=11) return 30;
+  // اسفند: بررسی کبیسه
+  return jalaali.isLeapJalaaliYear(jy) ? 30 : 29;
+}
+
+function jdpFirstWeekday(jy, jm){
+  // محاسبه روز هفته اول ماه (0=شنبه ... 6=جمعه)
+  var g = jalaali.toGregorian(jy, jm, 1);
+  var date = new Date(g.gy, g.gm-1, g.gd);
+  // در جاوااسکریپت: 0=یکشنبه, 6=شنبه. ما می‌خوایم 0=شنبه
+  return (date.getDay() + 1) % 7;
+}
+
+function renderJdp(){
+  var y = jdpState.year, m = jdpState.month;
+  var days = jdpDaysInMonth(y, m);
+  var firstDay = jdpFirstWeekday(y, m);
+  var todayJ = (function(){
+    var g = new Date();
+    var j = jalaali.toJalaali(g.getFullYear(), g.getMonth()+1, g.getDate());
+    return {y:j.jy, m:j.jm, d:j.jd};
+  })();
+  
+  // سال‌ها: از ۱۳۹۰ تا ۱۴۲۰
+  var yearsOpts = '';
+  for(var yy = 1390; yy <= 1420; yy++){
+    yearsOpts += '<option value="'+yy+'" '+(yy===y?'selected':'')+'>'+yy+'</option>';
+  }
+  var monthsOpts = '';
+  for(var mm = 1; mm <= 12; mm++){
+    monthsOpts += '<option value="'+mm+'" '+(mm===m?'selected':'')+'>'+jdpMonths[mm-1]+'</option>';
+  }
+  
+  var daysHtml = '';
+  // خانه‌های خالی برای روزهای قبل
+  for(var e = 0; e < firstDay; e++){
+    daysHtml += '<div class="jdp-day jdp-empty"></div>';
+  }
+  for(var d = 1; d <= days; d++){
+    var isToday = (y === todayJ.y && m === todayJ.m && d === todayJ.d);
+    var isSelected = jdpState.selected && jdpState.selected.y === y && jdpState.selected.m === m && jdpState.selected.d === d;
+    var isFriday = ((firstDay + d - 1) % 7) === 6;
+    var cls = 'jdp-day';
+    if(isToday) cls += ' jdp-today';
+    if(isSelected) cls += ' jdp-selected';
+    if(isFriday) cls += ' jdp-friday';
+    daysHtml += '<div class="'+cls+'" data-day="'+d+'" onclick="jdpSelectDay('+d+')">'+d+'</div>';
+  }
+  
+  var monthName = jdpMonths[m-1];
+  
+  var html = ''+
+    '<div class="jdp-overlay" id="jdpOverlay" onclick="if(event.target===this)closeJdp()">'+
+      '<div class="jdp" onclick="event.stopPropagation()">'+
+        '<div class="jdp-header">'+
+          '<div class="jdp-title">📅 انتخاب تاریخ — '+monthName+' '+y+'</div>'+
+          '<button class="jdp-close" onclick="closeJdp()">×</button>'+
+        '</div>'+
+        '<div class="jdp-nav">'+
+          '<button class="jdp-nav-btn" onclick="jdpPrevMonth()">›</button>'+
+          '<div class="jdp-nav-center">'+
+            '<select class="jdp-select" onchange="jdpState.month=Number(this.value);renderJdp()">'+monthsOpts+'</select>'+
+            '<select class="jdp-select" onchange="jdpState.year=Number(this.value);renderJdp()">'+yearsOpts+'</select>'+
+          '</div>'+
+          '<button class="jdp-nav-btn" onclick="jdpNextMonth()">‹</button>'+
+        '</div>'+
+        '<div class="jdp-weekdays">'+
+          jdpWeekdays.map(function(w){ return '<div class="jdp-weekday">'+w+'</div>'; }).join('')+
+        '</div>'+
+        '<div class="jdp-days">'+daysHtml+'</div>'+
+        '<div class="jdp-footer">'+
+          '<button class="jdp-btn jdp-btn-today" onclick="jdpGoToday()">امروز</button>'+
+          '<button class="jdp-btn jdp-btn-confirm" onclick="jdpConfirm()">✔ تأیید تاریخ</button>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  
+  document.getElementById('jdpOverlay').outerHTML = html;
+}
+
+function jdpPrevMonth(){
+  jdpState.month--;
+  if(jdpState.month < 1){ jdpState.month = 12; jdpState.year--; }
+  renderJdp();
+}
+function jdpNextMonth(){
+  jdpState.month++;
+  if(jdpState.month > 12){ jdpState.month = 1; jdpState.year++; }
+  renderJdp();
+}
+function jdpSelectDay(d){
+  jdpState.selected = { y: jdpState.year, m: jdpState.month, d: d };
+  renderJdp();
+}
+function jdpGoToday(){
+  var g = new Date();
+  var j = jalaali.toJalaali(g.getFullYear(), g.getMonth()+1, g.getDate());
+  jdpState.year = j.jy;
+  jdpState.month = j.jm;
+  jdpState.selected = { y: j.jy, m: j.jm, d: j.jd };
+  renderJdp();
+}
+function jdpConfirm(){
+  if(!jdpState.selected) return;
+  var s = jdpState.selected;
+  var str = s.y + '/' + String(s.m).padStart(2,'0') + '/' + String(s.d).padStart(2,'0');
+  if(jdpState.targetId){
+    var input = document.getElementById(jdpState.targetId);
+    if(input) input.value = str;
+  }
+  closeJdp();
+}
+
 function initDatepickers(){
-  if(typeof jQuery === 'undefined') return;
-  if(!jQuery.fn.persianDatepicker) return;
-  jQuery('input[data-datepicker]').each(function(){
-    var $el = jQuery(this);
-    if($el.hasClass('datepicker-initialized')) return;
-    $el.addClass('datepicker-initialized');
-    try{
-      $el.persianDatepicker({
-        format: 'YYYY/MM/DD',
-        initialValue: false,
-        autoClose: true,
-        observer: true,
-        calendar: { persian: { locale: 'fa', showHint: true, leapYearMode: 'algorithmic' } },
-        toolbox: { calendarSwitch: { enabled: false }, todayButton: { enabled: true, text: { fa: 'امروز' } } },
-        navigator: { scroll: { enabled: true } },
-        timePicker: { enabled: false }
-      });
-    }catch(e){ console.warn('Datepicker error:', e); }
+  document.querySelectorAll('input[data-datepicker]').forEach(function(inp){
+    if(inp._jdpAttached) return;
+    inp._jdpAttached = true;
+    // اگر ID نداره، بهش ID می‌دیم
+    if(!inp.id) inp.id = 'jdpInput_' + Math.random().toString(36).slice(2,8);
+    inp.setAttribute('readonly', 'readonly');
+    inp.style.cursor = 'pointer';
+    inp.addEventListener('click', function(e){
+      e.preventDefault();
+      openJdp(inp.id);
+    });
+    inp.addEventListener('focus', function(e){
+      e.preventDefault();
+      openJdp(inp.id);
+    });
   });
 }
 
-/* 🆕 Smart Select — اصلاح‌شده با document مستقیم */
+/* ساخت overlay اولیه */
+document.addEventListener('DOMContentLoaded', function(){
+  var overlay = document.createElement('div');
+  overlay.className = 'jdp-overlay';
+  overlay.id = 'jdpOverlay';
+  document.body.appendChild(overlay);
+});
+
+/* ============ Smart Select ============ */
 function buildSmartSelect(options){
   var selItem = null;
   for(var i=0; i<options.items.length; i++){
@@ -1172,33 +1353,50 @@ function nextInvoiceNumber(type){
   return prefix + '-' + String(Math.max.apply(null,[0].concat(nums))+1).padStart(4,'0');
 }
 
+/* 🆕 ساخت جستجوی کالا با نمایش موجودی */
 function buildProductSearch(idx, currentProductId){
-  const p = currentProductId ? DB.data.products.find(function(x){return x.id===currentProductId;}) : null;
-  let html = '<div class="form-group" style="margin-bottom:0">'+
-    '<div class="search-box" style="max-width:100%"><input class="form-control" id="invProdSearch_'+idx+'" placeholder="جستجوی کالا..." value="'+(p?p.name:'')+'"></div>'+
-    '<div class="smart-select-list hidden" id="invProdList_'+idx+'">'+
-      DB.data.products.map(function(x){
-        return '<div class="smart-select-item '+(x.id===currentProductId?'selected':'')+'" data-id="'+x.id+'" data-name="'+x.name+'" onclick="selectProductForInvoice('+idx+',\''+x.id+'\')">'+(x.code?'['+x.code+'] ':'')+x.name+'</div>';
-      }).join('')+
-    '</div>'+
-  '</div>';
+  var p = currentProductId ? DB.data.products.find(function(x){return x.id===currentProductId;}) : null;
+  var html = '<div class="form-group" style="margin-bottom:0">' +
+    '<div class="search-box" style="max-width:100%">' +
+      '<input class="form-control" id="invProdSearch_' + idx + '" placeholder="جستجوی کالا..." value="' + (p ? p.name : '') + '" onclick="showProductList(' + idx + ')">' +
+    '</div>' +
+    '<div class="smart-select-list hidden" id="invProdList_' + idx + '">';
+  
+  for(var i=0; i<DB.data.products.length; i++){
+    var x = DB.data.products[i];
+    var qty = stockOf(x.id);
+    var stockCls = qty > 10 ? 'ss-stock-good' : (qty > 0 ? 'ss-stock-low' : 'ss-stock-out');
+    var stockLabel = qty > 0 ? formatNum(qty) : 'ناموجود';
+    var isSel = (x.id === currentProductId) ? ' selected' : '';
+    html += '<div class="ss-product-item' + isSel + '" data-id="' + x.id + '" data-name="' + x.name + '" onclick="selectProductForInvoice(' + idx + ', \'' + x.id + '\')">' +
+      '<div class="ss-product-name">' + (x.code ? '<span class="ss-product-code">' + x.code + '</span> ' : '') + x.name + '</div>' +
+      '<div class="ss-product-stock ' + stockCls + '">📦 ' + stockLabel + '</div>' +
+    '</div>';
+  }
+  html += '</div></div>';
   return html;
 }
 
+function showProductList(idx){
+  var list = document.getElementById('invProdList_' + idx);
+  if(list) list.classList.remove('hidden');
+}
+
 function selectProductForInvoice(idx, id){
-  const p = DB.data.products.find(function(x){return x.id===id;});
-  if(!p)return;
+  var p = DB.data.products.find(function(x){return x.id===id;});
+  if(!p) return;
   invoiceItems[idx].productId = id;
-  $('#invProdSearch_'+idx).value = p.name;
-  $('#invProdList_'+idx).classList.add('hidden');
+  document.getElementById('invProdSearch_' + idx).value = p.name;
+  document.getElementById('invProdList_' + idx).classList.add('hidden');
   
   if(!invoiceItems[idx].price){
-    const type = $('#invNumber').value.startsWith('F')?'sale':'purchase';
-    invoiceItems[idx].price = type==='purchase'? (p.purchasePrice||0) : (p.salePrice||0);
-    const row = $('#invItemsBody tr[data-row="'+idx+'"]');
-    if(row){ const pi = row.querySelectorAll('input')[1]; if(pi) pi.value = formatNum(invoiceItems[idx].price); }
+    var type = document.getElementById('invNumber').value.startsWith('F') ? 'sale' : 'purchase';
+    invoiceItems[idx].price = type==='purchase' ? (p.purchasePrice||0) : (p.salePrice||0);
+    var row = document.querySelector('#invItemsBody tr[data-row="' + idx + '"]');
+    if(row){ var pi = row.querySelectorAll('input')[1]; if(pi) pi.value = formatNum(invoiceItems[idx].price); }
   }
-  updateRowTotal(idx); recalcInvoice();
+  updateRowTotal(idx);
+  recalcInvoice();
 }
 
 let invoiceItems = [];
@@ -1314,10 +1512,10 @@ function renderInvoiceItems(){
         const list = $('#invProdList_'+idx);
         if(!list) return;
         list.classList.remove('hidden');
-        const items = list.querySelectorAll('.smart-select-item');
+        const items = list.querySelectorAll('.ss-product-item');
         items.forEach(function(it){
-          const name = it.getAttribute('data-name').toLowerCase();
-          it.style.display = name.includes(q) ? 'block' : 'none';
+          const name = (it.getAttribute('data-name')||'').toLowerCase();
+          it.style.display = name.includes(q) ? 'flex' : 'none';
         });
       });
     }
@@ -1357,11 +1555,11 @@ function recalcInvoice(){
   if($('#invCustShow'))$('#invCustShow').textContent = formatNum(customs);
   if($('#invTotal'))$('#invTotal').textContent = formatNum(total);
   if($('#invPaidShow'))$('#invPaidShow').textContent = formatNum(paid);
-  if($('#invRemShow'))$('#invRemShow').textContent = formatNum(remaining);
+  if($('#invRemShow'))$('#invRemShow').textContent = formatNum(remainingc);
 }
-function saveInvoice(type,editId){
-  editId = editId || '';
-  if(editId){ const inv = DB.data.invoices.find(function(x){return x.id===editId;}); if(inv) type = inv.type; }
+function save.iconInvoice(type,edit+'Id){
+  editId '+ = editId || '';
+ c if(editId){ const inv = DB.data.invoices.find(function(x){return x.id===editId;}); if(inv) type = inv.type; }
   var personId = document.getElementById('invPersonValue') ? document.getElementById('invPersonValue').value : '';
   const whId = $('#invWh').value;
   const date = $('#invDate').value.trim();
@@ -1609,7 +1807,7 @@ function renderExpenses(){
   let catCardsHtml = '';
   const catKeys = Object.keys(byCategory);
   if(catKeys.length){
-    for(const k of catKeys){ const c = getCategoryInfo(k); catCardsHtml += '<div style="display:flex;justify-content:space-between;padding:10px 12px;background:var(--bg-card-2);border-radius:8px;margin-bottom:8px;border:1px solid var(--border-soft)"><span>'+c.icon+' '+c.label+'</span><b style="color:var(--danger)">'+formatMoney(byCategory[k])+'</b></div>'; }
+    for(const k of catKeys){ const c = getCategoryInfo(k); catCardsHtml += '<div style="display:flex;justify-content:space-between;padding:10px 12px;background:var(--bg-card-2);border-radius:8px;margin-bottom:8px;border:1px solid var(--border-soft)"><span>'+.label+'</span><b style="color:var(--danger)">'+formatMoney(byCategory[k])+'</b></div>'; }
   } else { catCardsHtml = '<div class="text-muted text-center" style="padding:20px">خالی</div>'; }
   $('#content').innerHTML =
     '<div class="grid grid-3 mb-4">'+
@@ -2018,7 +2216,17 @@ function installApp() {
 }
 
 /* ============ شروع ============ */
-setTimeout(function(){ initDatepickers(); }, 300);
+/* ایجاد overlay تقویم در بدنه */
+(function(){
+  if(!document.getElementById('jdpOverlay')){
+    var overlay = document.createElement('div');
+    overlay.className = 'jdp-overlay';
+    overlay.id = 'jdpOverlay';
+    document.body.appendChild(overlay);
+  }
+})();
+
+setTimeout(function(){ initDatepickers(); }, 100);
 navigate('dashboard');
 </script>
 </body>
