@@ -118,7 +118,8 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
 
 /* ============ جدول اقلام فاکتور ============ */
 .items-wrap{
-  max-height: 320px !important;
+  min-height: 180px !important;
+  max-height: 360px !important;
   overflow-y: auto !important;
   overflow-x: auto !important;
   -webkit-overflow-scrolling: touch;
@@ -142,12 +143,12 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
   vertical-align: middle;
   overflow: visible;
 }
-.items-table .col-product{width:40%;}
+.items-table .col-product{width:33%;}
 .items-table .col-stock{width:10%;}
 .items-table .col-qty{width:10%;}
-.items-table .col-price{width:20%;}
-.items-table .col-total{width:12%;}
-.items-table .col-act{width:8%;}
+.items-table .col-price{width:18.4%;}
+.items-table .col-total{width:15.6%;}
+.items-table .col-act{width:13%;}
 
 .items-table .col-product input{
   font-size:13px !important;
@@ -177,7 +178,7 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
   font-weight:700 !important;
 }
 .items-table .col-total .num{
-  font-size:12px !important;
+  font-size:13px !important;
   font-weight:700;
   display:flex;
   align-items:center;
@@ -216,7 +217,7 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
   width:100%;
 }
 
-/* ============ Dropdown کالا — دقیقاً مثل smart select مشتری ============ */
+/* ============ Dropdown کالا — سراسری (خارج از جدول) ============ */
 .prod-dd-wrap{position:relative;width:100%}
 .prod-dd-input{
   width:100%;
@@ -233,23 +234,20 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
   transition:border-color .2s;
 }
 .prod-dd-input:focus{outline:none;border-color:var(--accent);}
-.prod-dd-panel{
-  position:absolute;
-  top:100%;
-  right:0;
-  left:0;
-  margin-top:4px;
+
+#globalProdDropdown{
+  position:fixed;
   background:var(--bg-card-2);
   border:1px solid var(--border-strong);
   border-radius:8px;
-  box-shadow:0 15px 40px rgba(0,0,0,.6);
-  z-index:10000;
+  box-shadow:0 15px 40px rgba(0,0,0,.7);
+  z-index:99999;
   display:none;
   overflow:hidden;
 }
-.prod-dd-panel.open{display:block;}
-.prod-dd-search{padding:8px;border-bottom:1px solid var(--border-soft);}
-.prod-dd-search input{
+#globalProdDropdown.open{display:block;}
+#globalProdDropdown .pdd-search{padding:8px;border-bottom:1px solid var(--border-soft);}
+#globalProdDropdown .pdd-search input{
   width:100%;
   padding:8px 10px;
   border:1px solid var(--border-medium);
@@ -259,23 +257,18 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
   font-family:inherit;
   font-size:13px;
 }
-.prod-dd-list{max-height:180px;overflow-y:auto;}
-.prod-dd-item{
+#globalProdDropdown .pdd-list{max-height:180px;overflow-y:auto;}
+#globalProdDropdown .pdd-item{
   padding:10px 14px;
   cursor:pointer;
   border-bottom:1px solid var(--border-soft);
   font-size:13px;
   color:var(--text-main);
   transition:background .15s;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:8px;
 }
-.prod-dd-item:last-child{border-bottom:none;}
-.prod-dd-item:hover{background:var(--bg-hover);color:var(--accent);}
-.prod-dd-item.selected{background:rgba(230,57,70,.15);color:var(--accent);font-weight:700;}
-.prod-dd-empty{padding:14px;text-align:center;color:var(--text-muted);font-size:13px;}
+#globalProdDropdown .pdd-item:last-child{border-bottom:none;}
+#globalProdDropdown .pdd-item:hover{background:var(--bg-hover);color:var(--accent);}
+#globalProdDropdown .pdd-empty{padding:14px;text-align:center;color:var(--text-muted);font-size:13px;}
 
 /* ============ Smart Select (مشتری) ============ */
 .smart-select-wrap{position:relative;width:100%}
@@ -365,7 +358,7 @@ tbody tr:hover{background:var(--bg-hover)}
   .date3-select{font-size:12px;padding:7px 4px;padding-left:16px;height:34px;}
   .date3-display{font-size:10px;padding:3px 8px;}
   .date3-row{grid-template-columns:1fr 1.2fr 1fr;gap:4px;}
-  .items-wrap{max-height:280px !important;}
+  .items-wrap{min-height:160px !important;max-height:300px !important;}
   .items-table{min-width:820px !important;width:820px !important;}
 }
 @media(min-width:901px){.sidebar{transform: translateX(0) !important;}}
@@ -435,6 +428,11 @@ tbody tr:hover{background:var(--bg-hover)}
 </div>
 
 <div class="toast" id="toast"></div>
+
+<div id="globalProdDropdown">
+  <div class="pdd-search"><input type="text" id="globalPddSearch" placeholder="جستجو..." oninput="filterGlobalPdd(this.value)"></div>
+  <div class="pdd-list" id="globalPddList"></div>
+</div>
 
 <script>
   /* ============ ابزارهای عمومی ============ */
@@ -1370,54 +1368,73 @@ function nextInvoiceNumber(type){
   return prefix + '-' + String(Math.max.apply(null,[0].concat(nums))+1).padStart(4,'0');
 }
 
-/* ============ جستجوی کالا — مثل smart select مشتری ============ */
+/* ============ جستجوی کالا — dropdown سراسری ============ */
+var currentProdDDIdx = null;
+
 function buildProductSearch(idx, currentProductId){
   var p = currentProductId ? DB.data.products.find(function(x){return x.id===currentProductId;}) : null;
   var displayValue = p ? p.name : '';
-  
-  var html = '<div class="prod-dd-wrap" id="prodDdWrap_' + idx + '">' +
-    '<input type="text" class="prod-dd-input" id="invProdSearch_' + idx + '" placeholder="جستجوی کالا..." value="' + displayValue + '" onclick="toggleProdDD(' + idx + ')">' +
-    '<div class="prod-dd-panel" id="prodDdPanel_' + idx + '">' +
-      '<div class="prod-dd-search"><input type="text" id="prodDdSearch_' + idx + '" placeholder="جستجو..." oninput="filterProdDD(' + idx + ', this.value)" onclick="event.stopPropagation()"></div>' +
-      '<div class="prod-dd-list" id="prodDdList_' + idx + '">';
-  
-  for(var i=0; i<DB.data.products.length; i++){
-    var x = DB.data.products[i];
-    var isSel = (x.id === currentProductId) ? ' selected' : '';
-    html += '<div class="prod-dd-item' + isSel + '" data-id="' + x.id + '" data-name="' + x.name + '" onclick="selectProdDD(' + idx + ', \'' + x.id + '\')">' + x.name + '</div>';
-  }
-  
-  html += '</div></div></div>';
+  var html = '<div class="prod-dd-wrap">' +
+    '<input type="text" class="prod-dd-input" id="invProdSearch_' + idx + '" placeholder="جستجوی کالا..." value="' + displayValue + '" onclick="openGlobalProdDD(' + idx + ', this)">' +
+  '</div>';
   return html;
 }
 
-function toggleProdDD(idx){
-  var panel = document.getElementById('prodDdPanel_' + idx);
-  if(!panel) return;
-  var isOpen = panel.classList.contains('open');
+function openGlobalProdDD(idx, inputEl){
+  var dd = document.getElementById('globalProdDropdown');
+  if(!dd) return;
   
-  document.querySelectorAll('.prod-dd-panel.open').forEach(function(p){ p.classList.remove('open'); });
-  
-  if(!isOpen){
-    panel.classList.add('open');
-    var search = document.getElementById('prodDdSearch_' + idx);
-    if(search){ setTimeout(function(){ search.focus(); }, 50); }
+  if(dd.classList.contains('open') && currentProdDDIdx === idx){
+    closeGlobalProdDD();
+    return;
   }
+  
+  currentProdDDIdx = idx;
+  
+  var listEl = document.getElementById('globalPddList');
+  var html = '';
+  for(var i=0; i<DB.data.products.length; i++){
+    var x = DB.data.products[i];
+    html += '<div class="pdd-item" data-id="' + x.id + '" data-name="' + x.name + '" onclick="selectGlobalPddItem(\'' + x.id + '\')">' + x.name + '</div>';
+  }
+  if(!DB.data.products.length){
+    html = '<div class="pdd-empty">کالایی ثبت نشده</div>';
+  }
+  listEl.innerHTML = html;
+  
+  var searchInp = document.getElementById('globalPddSearch');
+  if(searchInp) searchInp.value = '';
+  
+  var rect = inputEl.getBoundingClientRect();
+  dd.style.left = rect.left + 'px';
+  dd.style.top = (rect.bottom + 4) + 'px';
+  dd.style.width = rect.width + 'px';
+  
+  dd.classList.add('open');
+  
+  if(searchInp){ setTimeout(function(){ searchInp.focus(); }, 50); }
 }
 
-function filterProdDD(idx, q){
-  var list = document.getElementById('prodDdList_' + idx);
-  if(!list) return;
+function closeGlobalProdDD(){
+  var dd = document.getElementById('globalProdDropdown');
+  if(dd) dd.classList.remove('open');
+  currentProdDDIdx = null;
+}
+
+function filterGlobalPdd(q){
+  var listEl = document.getElementById('globalPddList');
+  if(!listEl) return;
   q = (q||'').toLowerCase().trim();
-  var items = list.querySelectorAll('.prod-dd-item');
+  var items = listEl.querySelectorAll('.pdd-item');
   items.forEach(function(it){
     var name = (it.getAttribute('data-name')||'').toLowerCase();
-    if(!q || name.indexOf(q) !== -1){ it.style.display = 'flex'; }
-    else { it.style.display = 'none'; }
+    it.style.display = (!q || name.indexOf(q) !== -1) ? 'block' : 'none';
   });
 }
 
-function selectProdDD(idx, id){
+function selectGlobalPddItem(id){
+  if(currentProdDDIdx === null) return;
+  var idx = currentProdDDIdx;
   var p = DB.data.products.find(function(x){return x.id===id;});
   if(!p) return;
   
@@ -1426,8 +1443,7 @@ function selectProdDD(idx, id){
   var inp = document.getElementById('invProdSearch_' + idx);
   if(inp) inp.value = p.name;
   
-  var panel = document.getElementById('prodDdPanel_' + idx);
-  if(panel) panel.classList.remove('open');
+  closeGlobalProdDD();
   
   var stockCell = document.getElementById('invStock_' + idx);
   if(stockCell){
@@ -1449,10 +1465,23 @@ function selectProdDD(idx, id){
   recalcInvoice();
 }
 
+/* بستن با کلیک بیرون */
 document.addEventListener('click', function(e){
-  if(!e.target.closest('.prod-dd-wrap')){
-    document.querySelectorAll('.prod-dd-panel.open').forEach(function(p){ p.classList.remove('open'); });
-  }
+  var dd = document.getElementById('globalProdDropdown');
+  if(!dd || !dd.classList.contains('open')) return;
+  var isInsideDD = e.target.closest('#globalProdDropdown');
+  var isOnInput = e.target.closest('.prod-dd-input');
+  if(!isInsideDD && !isOnInput){ closeGlobalProdDD(); }
+});
+
+/* بستن با اسکرول (گزینه A) */
+window.addEventListener('scroll', function(){
+  closeGlobalProdDD();
+}, true);
+
+/* بستن با تغییر اندازه */
+window.addEventListener('resize', function(){
+  closeGlobalProdDD();
 });
 
 let invoiceItems = [];
@@ -2156,15 +2185,15 @@ function renderSettings(){
           '<button class="btn btn-warning" onclick="resetAccountingData()">🧹 حذف حسابداری</button>'+
           '<button class="btn btn-danger" onclick="resetAllData()">🗑 حذف کل</button>'+
         '</div>'+
-        '<p class="text-muted mt-3" style="font-size:11px">- «حذف حسابداری» فاکتورها، تراکنش‌ها، هزینه‌ها و <b>سرمایه اولیه</b> را پاک می‌کند.<br>- «حذف کل» همه چیز را پاک می‌کند.</p>'+
-      '</div>'+
+        '<p class="text-muted mt-3" style="font-size:11px">- «حذف حسابداری» فاکتورها، تراکنش‌ها، هزینه‌ها و <b>سرمایه اولیه</b> را پاک می‌کند+
+.<br>- «حذف کل» همه چیز را پاک می‌ک       ند.</p>'+
+      '< '</div>'+
     '</div>'+
-    '<div class="card mt-4">'+
-      '<div class="card-header"><div class="card-title">اطلاعات سیستم</div></div>'+
+div    '<div class="card mt- class4">'+
+      '<div=" class="card-header"><div class="card-title">اطلاعات سیستم</div></div>'+
       '<div class="grid grid-4">'+
         '<div class="stat"><div class="stat-label">اشخاص</div><div class="stat-value">'+formatNum(DB.data.persons.length)+'</div></div>'+
-        '<div class="stat"><div class="stat-label">کالاها</div><div class="stat-value">'+formatNum(DB.data.products.length)+'</div></div>'+
-        '<div class="stat"><div class="stat-label">انبارها</div><div class="stat-value">'+formatNum(DB.data.warehouses.length)+'</div></div>'+
+        '<div class="stat"><div class="stat-label">کالاها</div><div class="stat-value">'+formatNum(DB.data.products.length)+'</div></div>'stat"><div class="stat-label">انبارها</div><div class="stat-value">'+formatNum(DB.data.warehouses.length)+'</div></div>'+
         '<div class="stat s-gold"><div class="stat-label">هزینه‌ها</div><div class="stat-value gold">'+formatNum((DB.data.expenses||[]).length)+'</div></div>'+
       '</div>'+
     '</div>';
