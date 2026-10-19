@@ -89,46 +89,57 @@ body{font-family:'IRANSharp', 'IRANSans', Tahoma, sans-serif;font-weight:500;bac
 .quick-tx svg{width:16px;height:16px;stroke-width:3}
 .form-group{margin-bottom:14px}
 .form-label{display:block;font-size:12px;font-weight:700;color:var(--text-sub);margin-bottom:6px}
-.form-control{width:100%;padding:11px 12px;border:1px solid var(--border-medium);border-radius:var(--radius-sm);font-family:inherit;font-size:16px;background:var(--bg-input);color:#ffffff;transition:all .2s}
-.form-control:focus{outline:none;border-color:var(--accent);background:#0c1118}
+.form-control{width:100%;padding:11px 12px;border:1px solid var(--border-medium);border-radius:var(--radius-sm);font-family:inherit;font-size:16px;-rowbackground:var(--bg-input);color:#ffffff{;transition:all .display2s}
+.form:grid-control:focus;{outline:none;border-color:var(--accent);background:#0c1118}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:640px){.form-row{grid-template-columns:1fr}}
 input[type=number]{direction:ltr;text-align:right}
 select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");background-repeat:no-repeat;background-position:left 12px center;background-size:16px;padding-left:36px;appearance:none;}
 
-/* ============ 🆕 تقویم شمسی سفارشی ============ */
-.jdp-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100000;display:none;align-items:center;justify-content:center;padding:16px;}
-.jdp-overlay.open{display:flex;}
-.jdp{background:var(--bg-card);border-radius:14px;border:1px solid var(--border-medium);box-shadow:0 25px 60px rgba(0,0,0,.8);width:100%;max-width:320px;overflow:hidden;animation:jdpSlide .25s ease;}
-@keyframes jdpSlide{from{opacity:0;transform:translateY(20px) scale(.95);}to{opacity:1;transform:translateY(0) scale(1);}}
-.jdp-header{background:linear-gradient(135deg,var(--accent) 0%,#dc2f3c 100%);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;}
-.jdp-title{color:#fff;font-weight:800;font-size:14px;letter-spacing:.3px;}
-.jdp-close{background:rgba(255,255,255,.2);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .15s;}
-.jdp-close:hover{background:rgba(255,255,255,.35);}
-.jdp-nav{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--bg-card-2);border-bottom:1px solid var(--border-soft);}
-.jdp-nav-btn{background:var(--bg-input);border:1px solid var(--border-medium);color:var(--text-main);width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .15s;}
-.jdp-nav-btn:hover{background:var(--bg-hover);border-color:var(--accent);color:var(--accent);}
-.jdp-nav-center{display:flex;gap:8px;align-items:center;}
-.jdp-select{background:var(--bg-input);border:1px solid var(--border-medium);color:var(--text-main);padding:6px 24px 6px 10px;border-radius:6px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");background-repeat:no-repeat;background-position:left 8px center;background-size:12px;}
-.jdp-select:focus{outline:none;border-color:var(--accent);}
-.jdp-weekdays{display:grid;grid-template-columns:repeat(7,1fr);background:var(--bg-card-2);padding:8px 8px;border-bottom:1px solid var(--border-soft);}
-.jdp-weekday{text-align:center;font-size:11px;font-weight:800;color:var(--text-sub);padding:4px 0;}
-.jdp-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:10px 8px;background:var(--bg-card);}
-.jdp-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--text-main);border-radius:8px;cursor:pointer;transition:all .15s;background:transparent;border:1px solid transparent;}
-.jdp-day:hover:not(.jdp-empty):not(.jdp-disabled){background:var(--bg-hover);border-color:var(--border-medium);}
-.jdp-day.jdp-empty{cursor:default;opacity:0;}
-.jdp-day.jdp-disabled{opacity:.3;cursor:not-allowed;}
-.jdp-day.jdp-today{border-color:var(--accent);color:var(--accent);font-weight:800;}
-.jdp-day.jdp-selected{background:linear-gradient(135deg,var(--accent) 0%,#dc2f3c 100%);color:#fff;font-weight:800;box-shadow:0 2px 8px var(--accent-glow);border-color:transparent;}
-.jdp-day.jdp-friday{color:#f87171;}
-.jdp-day.jdp-selected.jdp-friday{color:#fff;}
-.jdp-footer{padding:12px 16px;background:var(--bg-card-2);border-top:1px solid var(--border-soft);display:flex;gap:8px;justify-content:space-between;}
-.jdp-btn{padding:8px 14px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:700;transition:all .15s;}
-.jdp-btn-today{background:var(--bg-input);color:var(--text-main);border:1px solid var(--border-medium);}
-.jdp-btn-today:hover{border-color:var(--info);color:var(--info);}
-.jdp-btn-confirm{background:linear-gradient(135deg,var(--success) 0%,#059669 100%);color:#fff;box-shadow:0 2px 8px rgba(16,185,129,.3);flex:1;}
-.jdp-btn-confirm:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(16,185,129,.5);}
-.jdp-btn-confirm:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+/* ============ 🆕 انتخاب تاریخ ۳ Select ============ */
+.date3-wrap{margin-top:6px;}
+.date3grid-template-columns:1fr 2fr 1.2fr;gap:8px;}
+.date3-field{display:flex;flex-direction:column;}
+.date3-label{font-size:11px;font-weight:700;color:var(--text-sub);margin-bottom:4px;text-align:center;}
+.date3-select{
+  width:100%;
+  padding:10px 8px;
+  border:1px solid var(--border-medium);
+  border-radius:var(--radius-sm);
+  font-family:inherit;
+  font-size:15px;
+  font-weight:700;
+  background:var(--bg-input);
+  color:#ffffff;
+  cursor:pointer;
+  transition:all .2s;
+  text-align:center;
+  appearance:none;
+  -webkit-appearance:none;
+  background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat:no-repeat;
+  background-position:left 8px center;
+  background-size:12px;
+  padding-left:26px;
+}
+.date3-select:hover{border-color:var(--border-strong);}
+.date3-select:focus{outline:none;border-color:var(--accent);background-color:#0c1118;}
+.date3-select option{background:var(--bg-card);color:#fff;padding:8px;}
+.date3-display{
+  margin-top:8px;
+  padding:8px 12px;
+  background:linear-gradient(135deg,rgba(212,175,55,.08) 0%,rgba(212,175,55,.15) 100%);
+  border:1px solid rgba(212,175,55,.3);
+  border-radius:8px;
+  font-size:12px;
+  font-weight:700;
+  color:var(--gold-light);
+  text-align:center;
+  font-variant-numeric:tabular-nums;
+  direction:ltr;
+  letter-spacing:1px;
+}
+.hidden-date-input{display:none!important;}
 
 /* ============ Smart Select ============ */
 .smart-select-wrap{position:relative;width:100%}
@@ -226,6 +237,8 @@ tbody tr:hover{background:var(--bg-hover)}
   .btn{padding:7px 10px;font-size:11.5px}
   table{font-size:11.5px}
   th,td{padding:8px 8px}
+  .date3-row{grid-template-columns:1fr 1.5fr 1fr;gap:6px;}
+  .date3-select{font-size:14px;padding:9px 6px;padding-left:22px;}
 }
 @media(min-width:901px){.sidebar{transform: translateX(0) !important;}}
 ::-webkit-scrollbar{width:6px;height:6px}
@@ -383,179 +396,106 @@ function confirmAction(msg,onYes){
 }
 
 /* =====================================================
-   🆕 تقویم شمسی سفارشی (بدون کتابخانه)
+   🆕 انتخاب تاریخ با ۳ Select (روز، ماه، سال)
    ===================================================== */
-var jdpMonths = ['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
-var jdpWeekdays = ['ش','ی','د','س','چ','پ','ج'];
-var jdpState = { targetId: null, year: 0, month: 0, day: 0, selected: null };
-
-function openJdp(targetInputId){
-  var input = document.getElementById(targetInputId);
-  if(!input) return;
-  var val = (input.value||'').trim();
-  var jy, jm, jd;
-  if(validJalali(val)){
-    var parts = val.split('/').map(Number);
-    jy = parts[0]; jm = parts[1]; jd = parts[2];
-  } else {
-    var g = new Date();
-    var j = jalaali.toJalaali(g.getFullYear(), g.getMonth()+1, g.getDate());
-    jy = j.jy; jm = j.jm; jd = j.jd;
-  }
-  jdpState.targetId = targetInputId;
-  jdpState.year = jy;
-  jdpState.month = jm;
-  jdpState.selected = { y: jy, m: jm, d: jd };
-  renderJdp();
-  document.getElementById('jdpOverlay').classList.add('open');
-}
-
-function closeJdp(){
-  document.getElementById('jdpOverlay').classList.remove('open');
-  jdpState.targetId = null;
-}
-
-function jdpDaysInMonth(jy, jm){
-  if(jm<=6) return 31;
-  if(jm<=11) return 30;
-  // اسفند: بررسی کبیسه
-  return jalaali.isLeapJalaaliYear(jy) ? 30 : 29;
-}
-
-function jdpFirstWeekday(jy, jm){
-  // محاسبه روز هفته اول ماه (0=شنبه ... 6=جمعه)
-  var g = jalaali.toGregorian(jy, jm, 1);
-  var date = new Date(g.gy, g.gm-1, g.gd);
-  // در جاوااسکریپت: 0=یکشنبه, 6=شنبه. ما می‌خوایم 0=شنبه
-  return (date.getDay() + 1) % 7;
-}
-
-function renderJdp(){
-  var y = jdpState.year, m = jdpState.month;
-  var days = jdpDaysInMonth(y, m);
-  var firstDay = jdpFirstWeekday(y, m);
-  var todayJ = (function(){
-    var g = new Date();
-    var j = jalaali.toJalaali(g.getFullYear(), g.getMonth()+1, g.getDate());
-    return {y:j.jy, m:j.jm, d:j.jd};
-  })();
-  
-  // سال‌ها: از ۱۳۹۰ تا ۱۴۲۰
-  var yearsOpts = '';
-  for(var yy = 1390; yy <= 1420; yy++){
-    yearsOpts += '<option value="'+yy+'" '+(yy===y?'selected':'')+'>'+yy+'</option>';
-  }
-  var monthsOpts = '';
-  for(var mm = 1; mm <= 12; mm++){
-    monthsOpts += '<option value="'+mm+'" '+(mm===m?'selected':'')+'>'+jdpMonths[mm-1]+'</option>';
-  }
-  
-  var daysHtml = '';
-  // خانه‌های خالی برای روزهای قبل
-  for(var e = 0; e < firstDay; e++){
-    daysHtml += '<div class="jdp-day jdp-empty"></div>';
-  }
-  for(var d = 1; d <= days; d++){
-    var isToday = (y === todayJ.y && m === todayJ.m && d === todayJ.d);
-    var isSelected = jdpState.selected && jdpState.selected.y === y && jdpState.selected.m === m && jdpState.selected.d === d;
-    var isFriday = ((firstDay + d - 1) % 7) === 6;
-    var cls = 'jdp-day';
-    if(isToday) cls += ' jdp-today';
-    if(isSelected) cls += ' jdp-selected';
-    if(isFriday) cls += ' jdp-friday';
-    daysHtml += '<div class="'+cls+'" data-day="'+d+'" onclick="jdpSelectDay('+d+')">'+d+'</div>';
-  }
-  
-  var monthName = jdpMonths[m-1];
-  
-  var html = ''+
-    '<div class="jdp-overlay" id="jdpOverlay" onclick="if(event.target===this)closeJdp()">'+
-      '<div class="jdp" onclick="event.stopPropagation()">'+
-        '<div class="jdp-header">'+
-          '<div class="jdp-title">📅 انتخاب تاریخ — '+monthName+' '+y+'</div>'+
-          '<button class="jdp-close" onclick="closeJdp()">×</button>'+
-        '</div>'+
-        '<div class="jdp-nav">'+
-          '<button class="jdp-nav-btn" onclick="jdpPrevMonth()">›</button>'+
-          '<div class="jdp-nav-center">'+
-            '<select class="jdp-select" onchange="jdpState.month=Number(this.value);renderJdp()">'+monthsOpts+'</select>'+
-            '<select class="jdp-select" onchange="jdpState.year=Number(this.value);renderJdp()">'+yearsOpts+'</select>'+
-          '</div>'+
-          '<button class="jdp-nav-btn" onclick="jdpNextMonth()">‹</button>'+
-        '</div>'+
-        '<div class="jdp-weekdays">'+
-          jdpWeekdays.map(function(w){ return '<div class="jdp-weekday">'+w+'</div>'; }).join('')+
-        '</div>'+
-        '<div class="jdp-days">'+daysHtml+'</div>'+
-        '<div class="jdp-footer">'+
-          '<button class="jdp-btn jdp-btn-today" onclick="jdpGoToday()">امروز</button>'+
-          '<button class="jdp-btn jdp-btn-confirm" onclick="jdpConfirm()">✔ تأیید تاریخ</button>'+
-        '</div>'+
-      '</div>'+
-    '</div>';
-  
-  document.getElementById('jdpOverlay').outerHTML = html;
-}
-
-function jdpPrevMonth(){
-  jdpState.month--;
-  if(jdpState.month < 1){ jdpState.month = 12; jdpState.year--; }
-  renderJdp();
-}
-function jdpNextMonth(){
-  jdpState.month++;
-  if(jdpState.month > 12){ jdpState.month = 1; jdpState.year++; }
-  renderJdp();
-}
-function jdpSelectDay(d){
-  jdpState.selected = { y: jdpState.year, m: jdpState.month, d: d };
-  renderJdp();
-}
-function jdpGoToday(){
-  var g = new Date();
-  var j = jalaali.toJalaali(g.getFullYear(), g.getMonth()+1, g.getDate());
-  jdpState.year = j.jy;
-  jdpState.month = j.jm;
-  jdpState.selected = { y: j.jy, m: j.jm, d: j.jd };
-  renderJdp();
-}
-function jdpConfirm(){
-  if(!jdpState.selected) return;
-  var s = jdpState.selected;
-  var str = s.y + '/' + String(s.m).padStart(2,'0') + '/' + String(s.d).padStart(2,'0');
-  if(jdpState.targetId){
-    var input = document.getElementById(jdpState.targetId);
-    if(input) input.value = str;
-  }
-  closeJdp();
-}
+var JALALI_MONTH_NAMES = ['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
 
 function initDatepickers(){
   document.querySelectorAll('input[data-datepicker]').forEach(function(inp){
-    if(inp._jdpAttached) return;
-    inp._jdpAttached = true;
-    // اگر ID نداره، بهش ID می‌دیم
-    if(!inp.id) inp.id = 'jdpInput_' + Math.random().toString(36).slice(2,8);
-    inp.setAttribute('readonly', 'readonly');
-    inp.style.cursor = 'pointer';
-    inp.addEventListener('click', function(e){
-      e.preventDefault();
-      openJdp(inp.id);
-    });
-    inp.addEventListener('focus', function(e){
-      e.preventDefault();
-      openJdp(inp.id);
-    });
+    if(inp._d3Attached) return;
+    inp._d3Attached = true;
+    
+    if(!inp.id) inp.id = 'dateInput_' + Math.random().toString(36).slice(2,8);
+    
+    // مخفی کردن input اصلی
+    inp.style.display = 'none';
+    inp.classList.add('hidden-date-input');
+    
+    // خواندن مقدار فعلی
+    var val = (inp.value||'').trim();
+    var jy, jm, jd;
+    if(validJalali(val)){
+      var parts = val.split('/').map(Number);
+      jy = parts[0]; jm = parts[1]; jd = parts[2];
+    } else {
+      var g = new Date();
+      var j = jalaali.toJalaali(g.getFullYear(), g.getMonth()+1, g.getDate());
+      jy = j.jy; jm = j.jm; jd = j.jd;
+    }
+    
+    // ساخت ۳ Select
+    var wrap = document.createElement('div');
+    wrap.className = 'date3-wrap';
+    wrap.id = 'dateWrap_' + inp.id;
+    
+    // روز: 1 تا 31
+    var dayOpts = '';
+    for(var d=1; d<=31; d++){
+      dayOpts += '<option value="'+d+'" '+(d===jd?'selected':'')+'>'+String(d).padStart(2,'0')+'</option>';
+    }
+    // ماه: 1 تا 12
+    var monthOpts = '';
+    for(var m=1; m<=12; m++){
+      monthOpts += '<option value="'+m+'" '+(m===jm?'selected':'')+'>'+String(m).padStart(2,'0')+' — '+JALALI_MONTH_NAMES[m-1]+'</option>';
+    }
+    // سال: 1400 تا 1500
+    var yearOpts = '';
+    for(var y=1400; y<=1500; y++){
+      yearOpts += '<option value="'+y+'" '+(y===jy?'selected':'')+'>'+y+'</option>';
+    }
+    
+    var initialStr = jy+'/'+String(jm).padStart(2,'0')+'/'+String(jd).padStart(2,'0');
+    inp.value = initialStr;
+    
+    wrap.innerHTML = 
+      '<div class="date3-row">' +
+        '<div class="date3-field"><label class="date3-label">روز</label><select class="date3-select" data-day="'+inp.id+'">'+dayOpts+'</select></div>' +
+        '<div class="date3-field"><label class="date3-label">ماه</label><select class="date3-select" data-month="'+inp.id+'">'+monthOpts+'</select></div>' +
+        '<div class="date3-field"><label class="date3-label">سال</label><select class="date3-select" data-year="'+inp.id+'">'+yearOpts+'</select></div>' +
+      '</div>' +
+      '<div class="date3-display" id="dateDisplay_'+inp.id+'">📅 '+initialStr+'</div>';
+    
+    inp.parentNode.insertBefore(wrap, inp.nextSibling);
+    
+    // رویدادهای تغییر
+    wrap.querySelector('[data-day]').addEventListener('change', function(){ updateDate3(inp.id); });
+    wrap.querySelector('[data-month]').addEventListener('change', function(){ updateDate3(inp.id); });
+    wrap.querySelector('[data-year]').addEventListener('change', function(){ updateDate3(inp.id); });
   });
 }
 
-/* ساخت overlay اولیه */
-document.addEventListener('DOMContentLoaded', function(){
-  var overlay = document.createElement('div');
-  overlay.className = 'jdp-overlay';
-  overlay.id = 'jdpOverlay';
-  document.body.appendChild(overlay);
-});
+function updateDate3(inputId){
+  var wrap = document.getElementById('dateWrap_' + inputId);
+  var inp = document.getElementById(inputId);
+  if(!wrap || !inp) return;
+  var d = parseInt(wrap.querySelector('[data-day]').value) || 1;
+  var m = parseInt(wrap.querySelector('[data-month]').value) || 1;
+  var y = parseInt(wrap.querySelector('[data-year]').value) || 1404;
+  
+  // بررسی تعداد روزهای ماه
+  var maxDay = (m<=6) ? 31 : (m<=11 ? 30 : (jalaali.isLeapJalaaliYear(y) ? 30 : 29));
+  if(d > maxDay) d = maxDay;
+  
+  var daySel = wrap.querySelector('[data-day]');
+  // به‌روزرسانی گزینه‌های روز
+  if(daySel.options.length !== maxDay){
+    daySel.innerHTML = '';
+    for(var i=1; i<=maxDay; i++){
+      var opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = String(i).padStart(2,'0');
+      if(i === d) opt.selected = true;
+      daySel.appendChild(opt);
+    }
+  } else {
+    daySel.value = d;
+  }
+  
+  var dateStr = y+'/'+String(m).padStart(2,'0')+'/'+String(d).padStart(2,'0');
+  inp.value = dateStr;
+  var disp = document.getElementById('dateDisplay_' + inputId);
+  if(disp) disp.textContent = '📅 '+dateStr;
+}
 
 /* ============ Smart Select ============ */
 function buildSmartSelect(options){
@@ -1555,11 +1495,11 @@ function recalcInvoice(){
   if($('#invCustShow'))$('#invCustShow').textContent = formatNum(customs);
   if($('#invTotal'))$('#invTotal').textContent = formatNum(total);
   if($('#invPaidShow'))$('#invPaidShow').textContent = formatNum(paid);
-  if($('#invRemShow'))$('#invRemShow').textContent = formatNum(remainingc);
+  if($('#invRemShow'))$('#invRemShow').textContent = formatNum(remaining);
 }
-function save.iconInvoice(type,edit+'Id){
-  editId '+ = editId || '';
- c if(editId){ const inv = DB.data.invoices.find(function(x){return x.id===editId;}); if(inv) type = inv.type; }
+function saveInvoice(type,editId){
+  editId = editId || '';
+  if(editId){ const inv = DB.data.invoices.find(function(x){return x.id===editId;}); if(inv) type = inv.type; }
   var personId = document.getElementById('invPersonValue') ? document.getElementById('invPersonValue').value : '';
   const whId = $('#invWh').value;
   const date = $('#invDate').value.trim();
@@ -1807,7 +1747,7 @@ function renderExpenses(){
   let catCardsHtml = '';
   const catKeys = Object.keys(byCategory);
   if(catKeys.length){
-    for(const k of catKeys){ const c = getCategoryInfo(k); catCardsHtml += '<div style="display:flex;justify-content:space-between;padding:10px 12px;background:var(--bg-card-2);border-radius:8px;margin-bottom:8px;border:1px solid var(--border-soft)"><span>'+.label+'</span><b style="color:var(--danger)">'+formatMoney(byCategory[k])+'</b></div>'; }
+    for(const k of catKeys){ const c = getCategoryInfo(k); catCardsHtml += '<div style="display:flex;justify-content:space-between;padding:10px 12px;background:var(--bg-card-2);border-radius:8px;margin-bottom:8px;border:1px solid var(--border-soft)"><span>'+c.icon+' '+c.label+'</span><b style="color:var(--danger)">'+formatMoney(byCategory[k])+'</b></div>'; }
   } else { catCardsHtml = '<div class="text-muted text-center" style="padding:20px">خالی</div>'; }
   $('#content').innerHTML =
     '<div class="grid grid-3 mb-4">'+
@@ -2216,16 +2156,6 @@ function installApp() {
 }
 
 /* ============ شروع ============ */
-/* ایجاد overlay تقویم در بدنه */
-(function(){
-  if(!document.getElementById('jdpOverlay')){
-    var overlay = document.createElement('div');
-    overlay.className = 'jdp-overlay';
-    overlay.id = 'jdpOverlay';
-    document.body.appendChild(overlay);
-  }
-})();
-
 setTimeout(function(){ initDatepickers(); }, 100);
 navigate('dashboard');
 </script>
