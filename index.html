@@ -89,59 +89,107 @@ body{font-family:'IRANSharp', 'IRANSans', Tahoma, sans-serif;font-weight:500;bac
 .quick-tx svg{width:16px;height:16px;stroke-width:3}
 .form-group{margin-bottom:14px}
 .form-label{display:block;font-size:12px;font-weight:700;color:var(--text-sub);margin-bottom:6px}
-.form-control{width:100%;padding:11px 12px;border:1px solid var(--border-medium);border-radius:var(--radius-sm);font-family:inherit;font-size:16px;-rowbackground:var(--bg-input);color:#ffffff{;transition:all .display2s}
-.form:grid-control:focus;{outline:none;border-color:var(--accent);background:#0c1118}
+.form-control{width:100%;padding:11px 12px;border:1px solid var(--border-medium);border-radius:var(--radius-sm);font-family:inherit;font-size:16px;background:var(--bg-input);color:#ffffff;transition:all .2s}
+.form-control:focus{outline:none;border-color:var(--accent);background:#0c1118}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:640px){.form-row{grid-template-columns:1fr}}
 input[type=number]{direction:ltr;text-align:right}
 select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");background-repeat:no-repeat;background-position:left 12px center;background-size:16px;padding-left:36px;appearance:none;}
 
-/* ============ 🆕 انتخاب تاریخ ۳ Select ============ */
-.date3-wrap{margin-top:6px;}
-.date3grid-template-columns:1fr 2fr 1.2fr;gap:8px;}
-.date3-field{display:flex;flex-direction:column;}
-.date3-label{font-size:11px;font-weight:700;color:var(--text-sub);margin-bottom:4px;text-align:center;}
+/* ============ 🆕 کادر تاریخ ۳ Select در یک خط ============ */
+.date3-wrap{display:flex;flex-direction:column;gap:6px;margin-top:2px;}
+.date3-row{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:6px;direction:rtl;}
 .date3-select{
   width:100%;
-  padding:10px 8px;
+  padding:8px 6px;
   border:1px solid var(--border-medium);
-  border-radius:var(--radius-sm);
+  border-radius:8px;
   font-family:inherit;
-  font-size:15px;
+  font-size:13px;
   font-weight:700;
   background:var(--bg-input);
   color:#ffffff;
   cursor:pointer;
   transition:all .2s;
   text-align:center;
+  height:36px;
   appearance:none;
   -webkit-appearance:none;
   background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat:no-repeat;
-  background-position:left 8px center;
-  background-size:12px;
-  padding-left:26px;
+  background-position:left 6px center;
+  background-size:10px;
+  padding-left:20px;
 }
 .date3-select:hover{border-color:var(--border-strong);}
 .date3-select:focus{outline:none;border-color:var(--accent);background-color:#0c1118;}
 .date3-select option{background:var(--bg-card);color:#fff;padding:8px;}
 .date3-display{
-  margin-top:8px;
-  padding:8px 12px;
-  background:linear-gradient(135deg,rgba(212,175,55,.08) 0%,rgba(212,175,55,.15) 100%);
+  padding:4px 10px;
+  background:linear-gradient(135deg,rgba(212,175,55,.12) 0%,rgba(212,175,55,.2) 100%);
   border:1px solid rgba(212,175,55,.3);
-  border-radius:8px;
-  font-size:12px;
+  border-radius:6px;
+  font-size:11px;
   font-weight:700;
   color:var(--gold-light);
   text-align:center;
   font-variant-numeric:tabular-nums;
-  direction:ltr;
-  letter-spacing:1px;
+  letter-spacing:.5px;
 }
 .hidden-date-input{display:none!important;}
 
-/* ============ Smart Select ============ */
+/* ============ 🆕 جدول اقلام فاکتور — عرض درصدی ============ */
+.items-table{min-width:0!important;width:100%;table-layout:fixed;}
+.items-table th,.items-table td{padding:6px 4px!important;}
+.items-table .col-product{width:50%;}
+.items-table .col-qty{width:15%;}
+.items-table .col-price{width:20%;}
+.items-table .col-total{width:15%;}
+.items-table .col-act{width:5%;}
+.items-table input,.items-table select{
+  font-size:12px!important;
+  padding:6px 4px!important;
+  height:34px!important;
+  min-height:34px!important;
+  border-radius:6px!important;
+}
+.items-table .col-qty input{font-size:13px!important;font-weight:700!important;}
+.items-table .col-price input{font-size:12px!important;font-weight:700!important;}
+.items-table .col-total .num{font-size:12px!important;}
+
+/* ============ 🆕 لیست کالا — مرتب و ثابت ============ */
+.smart-select-list{max-height:260px;overflow-y:auto;background:var(--bg-input);border:1px solid var(--border-medium);border-radius:8px;margin-top:4px;}
+.smart-select-list.hidden{display:none;}
+.ss-product-item{
+  padding:10px 12px;
+  cursor:pointer;
+  border-bottom:1px solid var(--border-soft);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  height:44px;
+  box-sizing:border-box;
+  transition:all .15s;
+}
+.ss-product-item:hover{background:var(--bg-hover);transform:translateX(-2px);}
+.ss-product-item.selected{background:rgba(230,57,70,.12);border-right:3px solid var(--accent);}
+.ss-product-item.selected .ss-product-name::before{content:'✓ ';color:var(--accent);font-weight:900;}
+.ss-product-item.stock-good{background:rgba(16,185,129,.04);}
+.ss-product-item.stock-low{background:rgba(245,158,11,.04);}
+.ss-product-item.stock-out{background:rgba(239,68,68,.04);}
+.ss-product-name{flex:1;font-size:13px;color:var(--text-main);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ss-product-code{font-size:10px;color:var(--text-sub);font-weight:700;background:var(--bg-card-2);padding:1px 5px;border-radius:4px;margin-left:6px;}
+.ss-product-stock{font-size:11px;font-weight:800;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+.ss-stock-good{background:rgba(16,185,129,.15);color:#34d399;border:1px solid rgba(16,185,129,.3);}
+.ss-stock-low{background:rgba(245,158,11,.15);color:#fbbf24;border:1px solid rgba(245,158,11,.3);}
+.ss-stock-out{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.3);}
+
+/* 🆕 انیمیشن Dropdown */
+.smart-select-list:not(.hidden){animation:slideDown .2s ease;}
+@keyframes slideDown{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+
+/* ============ Smart Select (مشتری) ============ */
 .smart-select-wrap{position:relative;width:100%}
 .smart-select-display{width:100%;padding:11px 36px 11px 12px;border:1px solid var(--border-medium);border-radius:var(--radius-sm);font-family:inherit;font-size:15px;background:var(--bg-input);color:#ffffff;cursor:pointer;display:flex;align-items:center;justify-content:space-between;min-height:44px;transition:all .2s;}
 .smart-select-display:hover{border-color:var(--border-strong);}
@@ -157,17 +205,6 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
 .smart-select-panel .ss-item:hover{background:var(--bg-hover);color:var(--accent);}
 .smart-select-panel .ss-item.selected{background:rgba(230,57,70,.15);color:var(--accent);font-weight:700;}
 .smart-select-panel .ss-empty{padding:14px;text-align:center;color:var(--text-muted);font-size:13px;}
-
-/* 🆕 آیتم‌های محصول با موجودی */
-.ss-product-item{padding:10px 14px;cursor:pointer;border-bottom:1px solid var(--border-soft);display:flex;justify-content:space-between;align-items:center;gap:8px;transition:background .15s;}
-.ss-product-item:hover{background:var(--bg-hover);}
-.ss-product-item.selected{background:rgba(230,57,70,.15);}
-.ss-product-name{flex:1;font-size:13.5px;color:var(--text-main);font-weight:600;}
-.ss-product-code{font-size:11px;color:var(--text-sub);font-weight:700;background:var(--bg-input);padding:2px 6px;border-radius:4px;margin-left:6px;}
-.ss-product-stock{font-size:11.5px;font-weight:800;padding:3px 8px;border-radius:20px;white-space:nowrap;display:inline-flex;align-items:center;gap:3px;}
-.ss-stock-good{background:rgba(16,185,129,.15);color:#34d399;border:1px solid rgba(16,185,129,.3);}
-.ss-stock-low{background:rgba(245,158,11,.15);color:#fbbf24;border:1px solid rgba(245,158,11,.3);}
-.ss-stock-out{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.3);}
 
 .table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border-soft);background:var(--bg-input);width:100%;max-width:100%;-webkit-overflow-scrolling:touch}
 table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:100%}
@@ -237,8 +274,17 @@ tbody tr:hover{background:var(--bg-hover)}
   .btn{padding:7px 10px;font-size:11.5px}
   table{font-size:11.5px}
   th,td{padding:8px 8px}
-  .date3-row{grid-template-columns:1fr 1.5fr 1fr;gap:6px;}
-  .date3-select{font-size:14px;padding:9px 6px;padding-left:22px;}
+  .date3-select{font-size:12px;padding:7px 4px;padding-left:16px;height:34px;}
+  .date3-display{font-size:10px;padding:3px 8px;}
+  .date3-row{grid-template-columns:1fr 1.2fr 1fr;gap:4px;}
+  .items-table .col-product{width:45%;}
+  .items-table .col-qty{width:15%;}
+  .items-table .col-price{width:22%;}
+  .items-table .col-total{width:13%;}
+  .items-table .col-act{width:5%;}
+  .items-table input,.items-table select{font-size:11px!important;padding:5px 3px!important;}
+  .ss-product-name{font-size:12px;}
+  .ss-product-stock{font-size:10px;padding:2px 6px;}
 }
 @media(min-width:901px){.sidebar{transform: translateX(0) !important;}}
 ::-webkit-scrollbar{width:6px;height:6px}
@@ -396,7 +442,9 @@ function confirmAction(msg,onYes){
 }
 
 /* =====================================================
-   🆕 انتخاب تاریخ با ۳ Select (روز، ماه، سال)
+   🆕 انتخاب تاریخ — ۳ Select در یک خط
+   ترتیب در HTML: روز، ماه، سال
+   با dir=rtl: روز (راست) ← ماه (وسط) ← سال (چپ)
    ===================================================== */
 var JALALI_MONTH_NAMES = ['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
 
@@ -407,11 +455,9 @@ function initDatepickers(){
     
     if(!inp.id) inp.id = 'dateInput_' + Math.random().toString(36).slice(2,8);
     
-    // مخفی کردن input اصلی
     inp.style.display = 'none';
     inp.classList.add('hidden-date-input');
     
-    // خواندن مقدار فعلی
     var val = (inp.value||'').trim();
     var jy, jm, jd;
     if(validJalali(val)){
@@ -423,22 +469,18 @@ function initDatepickers(){
       jy = j.jy; jm = j.jm; jd = j.jd;
     }
     
-    // ساخت ۳ Select
     var wrap = document.createElement('div');
     wrap.className = 'date3-wrap';
     wrap.id = 'dateWrap_' + inp.id;
     
-    // روز: 1 تا 31
     var dayOpts = '';
     for(var d=1; d<=31; d++){
       dayOpts += '<option value="'+d+'" '+(d===jd?'selected':'')+'>'+String(d).padStart(2,'0')+'</option>';
     }
-    // ماه: 1 تا 12
     var monthOpts = '';
     for(var m=1; m<=12; m++){
       monthOpts += '<option value="'+m+'" '+(m===jm?'selected':'')+'>'+String(m).padStart(2,'0')+' — '+JALALI_MONTH_NAMES[m-1]+'</option>';
     }
-    // سال: 1400 تا 1500
     var yearOpts = '';
     for(var y=1400; y<=1500; y++){
       yearOpts += '<option value="'+y+'" '+(y===jy?'selected':'')+'>'+y+'</option>';
@@ -447,17 +489,18 @@ function initDatepickers(){
     var initialStr = jy+'/'+String(jm).padStart(2,'0')+'/'+String(jd).padStart(2,'0');
     inp.value = initialStr;
     
+    // 🆕 ترتیب در HTML: روز، ماه، سال
+    // در RTL: روز سمت راست ← ماه وسط ← سال سمت چپ
     wrap.innerHTML = 
       '<div class="date3-row">' +
-        '<div class="date3-field"><label class="date3-label">روز</label><select class="date3-select" data-day="'+inp.id+'">'+dayOpts+'</select></div>' +
-        '<div class="date3-field"><label class="date3-label">ماه</label><select class="date3-select" data-month="'+inp.id+'">'+monthOpts+'</select></div>' +
-        '<div class="date3-field"><label class="date3-label">سال</label><select class="date3-select" data-year="'+inp.id+'">'+yearOpts+'</select></div>' +
+        '<select class="date3-select" data-day="'+inp.id+'" title="روز">'+dayOpts+'</select>' +
+        '<select class="date3-select" data-month="'+inp.id+'" title="ماه">'+monthOpts+'</select>' +
+        '<select class="date3-select" data-year="'+inp.id+'" title="سال">'+yearOpts+'</select>' +
       '</div>' +
       '<div class="date3-display" id="dateDisplay_'+inp.id+'">📅 '+initialStr+'</div>';
     
     inp.parentNode.insertBefore(wrap, inp.nextSibling);
     
-    // رویدادهای تغییر
     wrap.querySelector('[data-day]').addEventListener('change', function(){ updateDate3(inp.id); });
     wrap.querySelector('[data-month]').addEventListener('change', function(){ updateDate3(inp.id); });
     wrap.querySelector('[data-year]').addEventListener('change', function(){ updateDate3(inp.id); });
@@ -472,12 +515,10 @@ function updateDate3(inputId){
   var m = parseInt(wrap.querySelector('[data-month]').value) || 1;
   var y = parseInt(wrap.querySelector('[data-year]').value) || 1404;
   
-  // بررسی تعداد روزهای ماه
   var maxDay = (m<=6) ? 31 : (m<=11 ? 30 : (jalaali.isLeapJalaaliYear(y) ? 30 : 29));
   if(d > maxDay) d = maxDay;
   
   var daySel = wrap.querySelector('[data-day]');
-  // به‌روزرسانی گزینه‌های روز
   if(daySel.options.length !== maxDay){
     daySel.innerHTML = '';
     for(var i=1; i<=maxDay; i++){
@@ -497,7 +538,7 @@ function updateDate3(inputId){
   if(disp) disp.textContent = '📅 '+dateStr;
 }
 
-/* ============ Smart Select ============ */
+/* ============ Smart Select (انتخاب شخص) ============ */
 function buildSmartSelect(options){
   var selItem = null;
   for(var i=0; i<options.items.length; i++){
@@ -1293,13 +1334,11 @@ function nextInvoiceNumber(type){
   return prefix + '-' + String(Math.max.apply(null,[0].concat(nums))+1).padStart(4,'0');
 }
 
-/* 🆕 ساخت جستجوی کالا با نمایش موجودی */
+/* 🆕 ساخت جستجوی کالا با نمایش موجودی — مرتب و ثابت */
 function buildProductSearch(idx, currentProductId){
   var p = currentProductId ? DB.data.products.find(function(x){return x.id===currentProductId;}) : null;
-  var html = '<div class="form-group" style="margin-bottom:0">' +
-    '<div class="search-box" style="max-width:100%">' +
-      '<input class="form-control" id="invProdSearch_' + idx + '" placeholder="جستجوی کالا..." value="' + (p ? p.name : '') + '" onclick="showProductList(' + idx + ')">' +
-    '</div>' +
+  var html = '<div style="position:relative">' +
+    '<input class="form-control" id="invProdSearch_' + idx + '" placeholder="جستجوی کالا..." value="' + (p ? p.name : '') + '" onclick="showProductList(' + idx + ')">' +
     '<div class="smart-select-list hidden" id="invProdList_' + idx + '">';
   
   for(var i=0; i<DB.data.products.length; i++){
@@ -1308,7 +1347,8 @@ function buildProductSearch(idx, currentProductId){
     var stockCls = qty > 10 ? 'ss-stock-good' : (qty > 0 ? 'ss-stock-low' : 'ss-stock-out');
     var stockLabel = qty > 0 ? formatNum(qty) : 'ناموجود';
     var isSel = (x.id === currentProductId) ? ' selected' : '';
-    html += '<div class="ss-product-item' + isSel + '" data-id="' + x.id + '" data-name="' + x.name + '" onclick="selectProductForInvoice(' + idx + ', \'' + x.id + '\')">' +
+    var rowCls = qty > 10 ? 'stock-good' : (qty > 0 ? 'stock-low' : 'stock-out');
+    html += '<div class="ss-product-item ' + rowCls + isSel + '" data-id="' + x.id + '" data-name="' + x.name + '" onclick="selectProductForInvoice(' + idx + ', \'' + x.id + '\')">' +
       '<div class="ss-product-name">' + (x.code ? '<span class="ss-product-code">' + x.code + '</span> ' : '') + x.name + '</div>' +
       '<div class="ss-product-stock ' + stockCls + '">📦 ' + stockLabel + '</div>' +
     '</div>';
@@ -1395,7 +1435,7 @@ function invoiceForm(type, editId){
     '</div>'+
     '<div class="divider"></div>'+
     '<div class="flex justify-between items-center mb-3"><div class="font-bold">اقلام</div><button class="btn btn-sm btn-primary" onclick="addInvoiceItem()">➕ افزودن</button></div>'+
-    '<div class="table-wrap" style="overflow-x:auto"><table class="items-table" style="min-width:800px"><thead><tr><th style="width:200px">کالا</th><th style="width:70px">تعداد</th><th style="width:100px">قیمت</th><th>جمع</th><th></th></tr></thead><tbody id="invItemsBody"></tbody></table></div>'+
+    '<div class="table-wrap" style="overflow-x:auto"><table class="items-table"><thead><tr><th class="col-product">کالا</th><th class="col-qty">تعداد</th><th class="col-price">قیمت</th><th class="col-total">جمع</th><th class="col-act"></th></tr></thead><tbody id="invItemsBody"></tbody></table></div>'+
     '<div class="divider"></div>'+
     '<div class="font-bold mb-3">هزینه‌های جانبی</div>'+
     '<div class="form-row">'+
@@ -1464,11 +1504,11 @@ function renderInvoiceItems(){
 }
 function invoiceItemsRowHTML(it,idx){
   return '<tr data-row="'+idx+'">'+
-    '<td>'+buildProductSearch(idx, it.productId)+'</td>'+
-    '<td><input class="form-control num" type="number" min="1" value="'+it.qty+'" oninput="updateItemQty('+idx+',this.value)"></td>'+
-    '<td><input class="form-control num" data-thousands value="'+formatNum(it.price)+'" oninput="updateItemPrice('+idx+',this.value)"></td>'+
-    '<td><span class="num" style="font-weight:700">'+formatNum(it.qty*it.price)+'</span></td>'+
-    '<td><button class="btn btn-sm btn-danger" onclick="removeInvoiceItem('+idx+')">✕</button></td>'+
+    '<td class="col-product">'+buildProductSearch(idx, it.productId)+'</td>'+
+    '<td class="col-qty"><input class="form-control num" type="number" min="1" value="'+it.qty+'" oninput="updateItemQty('+idx+',this.value)"></td>'+
+    '<td class="col-price"><input class="form-control num" data-thousands value="'+formatNum(it.price)+'" oninput="updateItemPrice('+idx+',this.value)"></td>'+
+    '<td class="col-total"><span class="num" style="font-weight:700">'+formatNum(it.qty*it.price)+'</span></td>'+
+    '<td class="col-act"><button class="btn btn-sm btn-danger" onclick="removeInvoiceItem('+idx+')">✕</button></td>'+
   '</tr>';
 }
 function updateItemQty(idx,val){ invoiceItems[idx].qty = Math.max(1,Number(val)||1); updateRowTotal(idx); recalcInvoice(); }
@@ -1476,7 +1516,7 @@ function updateItemPrice(idx,val){ invoiceItems[idx].price = parseNum(val); upda
 function updateRowTotal(idx){
   const row = $('#invItemsBody tr[data-row="'+idx+'"]');
   if(!row)return;
-  const cell = row.querySelectorAll('td')[3].querySelector('.num');
+  const cell = row.querySelector('.col-total .num');
   if(cell) cell.textContent = formatNum(invoiceItems[idx].qty*invoiceItems[idx].price);
 }
 function addInvoiceItem(){ invoiceItems.push({productId:'',qty:1,price:0}); renderInvoiceItems(); }
