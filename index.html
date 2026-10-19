@@ -100,14 +100,25 @@ body{font-family:'IRANSharp', 'IRANSans', Tahoma, sans-serif;font-weight:500;bac
 input[type=number]{direction:ltr;text-align:right}
 select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");background-repeat:no-repeat;background-position:left 12px center;background-size:16px;padding-left:36px;appearance:none;}
 
-.datepicker-plot-area{border-radius:12px !important;box-shadow:0 10px 40px rgba(0,0,0,.8) !important;z-index:2000 !important;font-family:'IRANSharp' !important}
-.dtp-navigator{border-bottom:1px solid var(--border-medium);padding:5px 0}
-.dtp-navigator .btn-navigate, .dtp-navigator select{background:var(--bg-card-2);color:var(--text-main);border:1px solid var(--border-medium);border-radius:6px}
-.dtp-plot{background:var(--bg-card) !important;}
-.dtp-day{color:var(--text-main) !important}
-.dtp-day.selected, .dtp-day:hover{background:var(--accent) !important;color:#fff !important}
-.dtp-month, .dtp-year{color:var(--text-main) !important;cursor:pointer}
-.dtp-month.selected, .dtp-year.selected{background:var(--accent) !important;color:#fff !important}
+/* 🆕 استایل تقویم شمسی دارک (اصلاح شده) */
+.datepicker-plot-area{border-radius:12px !important;box-shadow:0 10px 40px rgba(0,0,0,.85) !important;z-index:99999 !important;font-family:'IRANSharp' !important;background:var(--bg-card) !important;border:1px solid var(--border-medium) !important;}
+.datepicker-plot-area .datepicker-day-view .table-days td span{color:var(--text-main) !important;}
+.datepicker-plot-area .datepicker-day-view .table-days td span:hover{background:var(--accent) !important;color:#fff !important;}
+.datepicker-plot-area .datepicker-day-view .table-days td.selected span{background:var(--accent) !important;color:#fff !important;}
+.datepicker-plot-area .datepicker-day-view .table-days td.selected span:hover{background:var(--accent-hover) !important;}
+.datepicker-plot-area .datepicker-month-view .month-item, .datepicker-plot-area .datepicker-year-view .year-item{color:var(--text-main) !important;}
+.datepicker-plot-area .datepicker-month-view .month-item:hover, .datepicker-plot-area .datepicker-year-view .year-item:hover{background:var(--accent) !important;color:#fff !important;}
+.datepicker-plot-area .datepicker-month-view .month-item.selected, .datepicker-plot-area .datepicker-year-view .year-item.selected{background:var(--accent) !important;color:#fff !important;}
+.datepicker-plot-area .toolbox, .datepicker-plot-area .navigator{background:var(--bg-card-2) !important;border-color:var(--border-soft) !important;}
+.datepicker-plot-area .btn-switch, .datepicker-plot-area .btn-navigate{background:var(--bg-card-2) !important;color:var(--text-main) !important;border:1px solid var(--border-medium) !important;border-radius:6px !important;}
+.datepicker-plot-area .btn-switch:hover, .datepicker-plot-area .btn-navigate:hover{background:var(--bg-hover) !important;color:var(--accent) !important;}
+.datepicker-plot-area .navigator .btn-navigate{color:var(--text-main) !important;}
+.datepicker-plot-area .toolbox .btn-today{background:var(--accent) !important;color:#fff !important;}
+.datepicker-plot-area .header{background:var(--bg-card-2) !important;}
+.datepicker-plot-area .header span{color:var(--text-main) !important;}
+.datepicker-plot-area .datepicker-day-view .table-days td.today span{border-color:var(--accent) !important;color:var(--accent) !important;}
+.datepicker-plot-area .datepicker-day-view .table-days td.other-month span{opacity:.35 !important;}
+.datepicker-plot-area .datepicker-day-view .table-days td.disabled span{color:var(--text-muted) !important;}
 
 .table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border-soft);background:var(--bg-input);width:100%;max-width:100%;-webkit-overflow-scrolling:touch}
 table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:100%}
@@ -133,10 +144,22 @@ tbody tr:hover{background:var(--bg-hover)}
 .modal-body{padding:18px}
 .modal-footer{padding:14px 18px;border-top:1px solid var(--border-soft);display:flex;gap:8px;justify-content:flex-end;position:sticky;bottom:0;background:var(--bg-card);flex-wrap:wrap}
 
-.smart-select-list{max-height:200px;overflow-y:auto;background:var(--bg-input);border:1px solid var(--border-medium);border-radius:8px;margin-top:5px;}
-.smart-select-item{padding:8px 12px;cursor:pointer;border-bottom:1px solid var(--border-soft);font-size:13px;}
-.smart-select-item:hover{background:var(--bg-hover);color:var(--accent);}
-.smart-select-item.selected{background:rgba(230,57,70,.15);color:var(--accent);font-weight:700;}
+/* 🆕 کامپوننت Smart Select (جستجوی داخل Dropdown) */
+.smart-select-wrap{position:relative;width:100%}
+.smart-select-display{width:100%;padding:11px 36px 11px 12px;border:1px solid var(--border-medium);border-radius:var(--radius-sm);font-family:inherit;font-size:15px;background:var(--bg-input);color:#ffffff;cursor:pointer;display:flex;align-items:center;justify-content:space-between;min-height:44px;transition:all .2s;}
+.smart-select-display:hover{border-color:var(--border-strong);}
+.smart-select-display.active{border-color:var(--accent);}
+.smart-select-display .ph{color:var(--text-muted);}
+.smart-select-display::after{content:'▼';font-size:10px;color:var(--text-sub);margin-right:8px;}
+.smart-select-panel{position:absolute;top:100%;left:0;right:0;margin-top:4px;background:var(--bg-card-2);border:1px solid var(--border-strong);border-radius:var(--radius-sm);box-shadow:0 15px 40px rgba(0,0,0,.6);z-index:10000;display:none;overflow:hidden;}
+.smart-select-panel.open{display:block;}
+.smart-select-panel .ss-search{padding:8px;border-bottom:1px solid var(--border-soft);}
+.smart-select-panel .ss-search input{width:100%;padding:8px 10px;border:1px solid var(--border-medium);border-radius:6px;background:var(--bg-input);color:#fff;font-family:inherit;font-size:14px;}
+.smart-select-panel .ss-list{max-height:220px;overflow-y:auto;}
+.smart-select-panel .ss-item{padding:10px 14px;cursor:pointer;border-bottom:1px solid var(--border-soft);font-size:14px;color:var(--text-main);transition:background .15s;}
+.smart-select-panel .ss-item:hover{background:var(--bg-hover);color:var(--accent);}
+.smart-select-panel .ss-item.selected{background:rgba(230,57,70,.15);color:var(--accent);font-weight:700;}
+.smart-select-panel .ss-empty{padding:14px;text-align:center;color:var(--text-muted);font-size:13px;}
 
 .empty{text-align:center;padding:36px 16px;color:var(--text-muted)}
 .empty .icon{font-size:36px;margin-bottom:10px;opacity:.4}
@@ -321,7 +344,8 @@ function openModal(title,body,footer,size){
   $('#modalOverlay').classList.add('show');
   attachAllThousandsIn($('#modalBody'));
   attachAllThousandsIn($('#modalFooter'));
-  setTimeout(initDatepickers, 100);
+  // 🆕 فعال‌سازی تقویم شمسی بعد از باز شدن modal
+  setTimeout(function(){ initDatepickers(); }, 150);
 }
 function closeModal(){
   $('#modalOverlay').classList.remove('show');
@@ -340,22 +364,150 @@ function confirmAction(msg,onYes){
   $('#confirmYes').onclick = function(){closeModal();onYes();};
 }
 
-/* 🆕 فعال‌سازی تقویم شمسی */
+/* 🆕 فعال‌سازی تقویم شمسی — اصلاح شده */
 function initDatepickers(){
-  $$('input[data-datepicker]').forEach(function(inp){
-    if($(inp).hasClass('datepicker-initialized')) return;
-    $(inp).addClass('datepicker-initialized');
-    $(inp).persianDatepicker({
-      format: 'YYYY/MM/DD',
-      initialValue: false,
-      autoClose: true,
-      observer: true,
-      calendar: { persian: { locale: 'fa', showHint: true } },
-      toolbox: { calendarSwitch: { enabled: false } },
-      navigator: { scroll: { enabled: true } }
-    });
+  if(typeof jQuery === 'undefined' || typeof jQuery.fn.persianDatepicker === 'undefined'){
+    console.warn('کتابخانه تقویم شمسی بارگذاری نشده');
+    return;
+  }
+  jQuery('input[data-datepicker]').each(function(){
+    var $el = jQuery(this);
+    if($el.hasClass('datepicker-initialized')) return;
+    $el.addClass('datepicker-initialized');
+    try{
+      $el.persianDatepicker({
+        format: 'YYYY/MM/DD',
+        initialValue: false,
+        autoClose: true,
+        observer: true,
+        calendar: {
+          persian: {
+            locale: 'fa',
+            showHint: true,
+            leapYearMode: 'algorithmic'
+          }
+        },
+        toolbox: {
+          calendarSwitch: { enabled: false },
+          todayButton: { enabled: true, text: { fa: 'امروز' } }
+        },
+        navigator: {
+          scroll: { enabled: true }
+        },
+        timePicker: {
+          enabled: false
+        }
+      });
+    }catch(e){
+      console.warn('خطا در ساخت تقویم:', e);
+    }
   });
 }
+
+/* 🆕 کامپوننت Smart Select (جستجوی داخل Dropdown) */
+function buildSmartSelect(options){
+  // options: {id, placeholder, items: [{value, label, sub}], selected, onSelect (function name as string)}
+  var selItem = null;
+  for(var i=0; i<options.items.length; i++){
+    if(options.items[i].value === options.selected){
+      selItem = options.items[i];
+      break;
+    }
+  }
+  var displayText = selItem ? selItem.label : (options.placeholder || 'انتخاب کنید');
+  var isPlaceholder = !selItem;
+
+  var html = '<div class="smart-select-wrap" id="ssWrap_'+options.id+'">'+
+    '<div class="smart-select-display '+(isPlaceholder?'':'has-value')+'" id="ssDisplay_'+options.id+'" onclick="toggleSmartSelect(\''+options.id+'\')">'+
+      '<span class="'+(isPlaceholder?'ph':'')+'">'+displayText+'</span>'+
+    '</div>'+
+    '<div class="smart-select-panel" id="ssPanel_'+options.id+'">'+
+      '<div class="ss-search"><input type="text" placeholder="جستجو..." oninput="filterSmartSelect(\''+options.id+'\', this.value)"></div>'+
+      '<div class="ss-list" id="ssList_'+options.id+'">';
+
+  for(var j=0; j<options.items.length; j++){
+    var it = options.items[j];
+    var isSel = (it.value === options.selected) ? ' selected' : '';
+    var dataLabel = it.label.replace(/"/g,'&quot;');
+    html += '<div class="ss-item'+isSel+'" data-value="'+it.value+'" data-label="'+dataLabel+'" onclick="selectSmartItem(\''+options.id+'\', \''+it.value+'\', \''+options.onSelect+'\')">'+it.label+'</div>';
+  }
+  html += '</div>'+
+    '<div class="ss-empty hidden" id="ssEmpty_'+options.id+'">نتیجه‌ای یافت نشد</div>'+
+  '</div>'+
+  '</div>';
+
+  return html;
+}
+
+function toggleSmartSelect(id){
+  var panel = $('#ssPanel_'+id);
+  var display = $('#ssDisplay_'+id);
+  if(!panel) return;
+  var isOpen = panel.classList.contains('open');
+  // بستن بقیه
+  $$('.smart-select-panel.open').forEach(function(p){ p.classList.remove('open'); });
+  $$('.smart-select-display.active').forEach(function(d){ d.classList.remove('active'); });
+  if(!isOpen){
+    panel.classList.add('open');
+    if(display) display.classList.add('active');
+    var inp = panel.querySelector('.ss-search input');
+    if(inp){ setTimeout(function(){ inp.focus(); }, 50); }
+  }
+}
+
+function filterSmartSelect(id, q){
+  var list = $('#ssList_'+id);
+  var empty = $('#ssEmpty_'+id);
+  if(!list) return;
+  q = (q||'').toLowerCase().trim();
+  var items = list.querySelectorAll('.ss-item');
+  var visibleCount = 0;
+  items.forEach(function(it){
+    var label = (it.getAttribute('data-label')||'').toLowerCase();
+    if(!q || label.includes(q)){
+      it.style.display = 'block';
+      visibleCount++;
+    } else {
+      it.style.display = 'none';
+    }
+  });
+  if(empty) empty.classList.toggle('hidden', visibleCount > 0);
+}
+
+function selectSmartItem(id, value, callbackName){
+  var list = $('#ssList_'+id);
+  if(!list) return;
+  var items = list.querySelectorAll('.ss-item');
+  var selectedLabel = '';
+  items.forEach(function(it){
+    if(it.getAttribute('data-value') === value){
+      it.classList.add('selected');
+      selectedLabel = it.getAttribute('data-label');
+    } else {
+      it.classList.remove('selected');
+    }
+  });
+  var display = $('#ssDisplay_'+id);
+  if(display){
+    display.innerHTML = '<span>'+selectedLabel+'</span>';
+    display.classList.add('has-value');
+  }
+  var panel = $('#ssPanel_'+id);
+  if(panel) panel.classList.remove('open');
+  if(display) display.classList.remove('active');
+
+  if(callbackName && typeof window[callbackName] === 'function'){
+    window[callbackName](value);
+  }
+}
+
+// بستن Smart Select با کلیک بیرون
+document.addEventListener('click', function(e){
+  if(!e.target.closest('.smart-select-wrap')){
+    $$('.smart-select-panel.open').forEach(function(p){ p.classList.remove('open'); });
+    $$('.smart-select-display.active').forEach(function(d){ d.classList.remove('active'); });
+  }
+});
 
 /* ============ دیتابیس ============ */
 const DB_KEY = 'hesabdar_v5';
@@ -553,7 +705,7 @@ const pageTitles = {
 function navigate(page){
   $$('.nav-item').forEach(function(n){n.classList.toggle('active',n.dataset.page===page);});
   $('#pageTitle').textContent = pageTitles[page];
-  $('#sidebar').classList.remove('open'); // بستن سایدبار در موبایل
+  $('#sidebar').classList.remove('open');
   pages[page]();
 }
 $$('.nav-item').forEach(function(n){n.onclick=function(){navigate(n.dataset.page);};});
@@ -1088,6 +1240,13 @@ function selectProductForInvoice(idx, id){
 }
 
 let invoiceItems = [];
+
+// 🆕 انتخاب شخص برای فاکتور (callback Smart Select)
+function onInvoicePersonSelected(personId){
+  var hidden = document.getElementById('invPersonValue');
+  if(hidden) hidden.value = personId;
+}
+
 function invoiceForm(type, editId){
   editId = editId || null;
   if(!DB.data.persons.length){toast('ابتدا شخص اضافه کنید','warning');return;}
@@ -1109,10 +1268,19 @@ function invoiceForm(type, editId){
   const customsCost = inv? (inv.customsCost||0) : 0;
   const paidAmount = inv? (inv.paidAmount||0) : 0;
   
-  let personOptions = '<option value="">انتخاب کنید</option>';
-  for(const p of DB.data.persons){
-    personOptions += '<option value="'+p.id+'" '+(p.id===personId?'selected':'')+'>'+p.name+'</option>';
+  // 🆕 Smart Select برای اشخاص
+  var personItems = [];
+  for(var pi=0; pi<DB.data.persons.length; pi++){
+    personItems.push({value: DB.data.persons[pi].id, label: DB.data.persons[pi].name});
   }
+  var personSelectHTML = buildSmartSelect({
+    id: 'invPerson',
+    placeholder: 'انتخاب شخص...',
+    items: personItems,
+    selected: personId,
+    onSelect: 'onInvoicePersonSelected'
+  });
+
   let whOptions = '';
   for(const w of DB.data.warehouses){
     whOptions += '<option value="'+w.id+'" '+(w.id===whId?'selected':'')+'>'+w.name+'</option>';
@@ -1124,7 +1292,7 @@ function invoiceForm(type, editId){
       '<div class="form-group"><label class="form-label">تاریخ</label><input class="form-control" id="invDate" value="'+date+'" data-datepicker></div>'+
     '</div>'+
     '<div class="form-row">'+
-      '<div class="form-group"><label class="form-label">'+(type==='sale'?'مشتری':'تأمین‌کننده')+' *</label><select class="form-control" id="invPerson">'+personOptions+'</select></div>'+
+      '<div class="form-group"><label class="form-label">'+(type==='sale'?'مشتری':'تأمین‌کننده')+' *</label>'+personSelectHTML+'<input type="hidden" id="invPersonValue" value="'+personId+'"></div>'+
       '<div class="form-group"><label class="form-label">انبار *</label><select class="form-control" id="invWh">'+whOptions+'</select></div>'+
     '</div>'+
     '<div class="divider"></div>'+
@@ -1234,7 +1402,7 @@ function recalcInvoice(){
 function saveInvoice(type,editId){
   editId = editId || '';
   if(editId){ const inv = DB.data.invoices.find(function(x){return x.id===editId;}); if(inv) type = inv.type; }
-  const personId = $('#invPerson').value;
+  var personId = document.getElementById('invPersonValue') ? document.getElementById('invPersonValue').value : '';
   const whId = $('#invWh').value;
   const date = $('#invDate').value.trim();
   if(!personId){toast('شخص را انتخاب کنید','error');return;}
@@ -1243,10 +1411,11 @@ function saveInvoice(type,editId){
   if(!invoiceItems.length){toast('حداقل یک ردیف اضافه کنید','error');return;}
   if(invoiceItems.some(function(i){return !i.productId;})){toast('کالا را انتخاب کنید','error');return;}
   if(type==='sale'){
-    for(const it of invoiceItems){
-      const avail = stockOf(it.productId,whId,editId||null);
-      if(avail < it.qty){
-        const p = DB.data.products.find(function(x){return x.id===it.productId;});
+    for(const it of invoiceTxItems){
+      const avail = stockOf(list(it.productId,whId,editId||null);
+     , if(av txail < it.qty){
+        const p = DB.data.products.findSearch);
+ (function $('#(x){return x.id===it.productcontentId;});
         toast('موجودی "'+p.name+'" کافی نیست','error'); return;
       }
     }
@@ -1332,25 +1501,24 @@ function renderTransactions(){
     let html = '';
     for(const t of arr){
       let who = '-';
-      if(t.type==='receive'||t.type==='pay'){ const p = DB.data.persons.find(function(x){return x.id===t.personId;}); who = p?p.name:'?'; }
-      else if(t.type==='transfer'){ const from = DB.data.persons.find(function(x){return x.id===t.personId;}); const to = DB.data.persons.find(function(x){return x.id===t.toPersonId;}); who = (from?from.name:'?')+' → '+(to?to.name:'?'); }
-      const badge = t.type==='receive'?'badge-success':t.type==='pay'?'badge-danger':'badge-warning';
-      const label = t.type==='receive'?'دریافت':t.type==='pay'?'پرداخت':'انتقال';
+      if(t.type==='receive'||t.type==='pay'){ const p = DB.data.persons.find(function(x){return x.id===t.personId;}); who = p?p.name:'').?'; }
+      else if(t.type==='transferinner'){ const from = DB.data.persons.find(function(x){return x.id===t.personId;}); const to = DB.data.persons.find(function(x){return x.id===t.toPersonId;}); who =HTML (from?from.name:'?')+' → '+(to?to.name =
+:'?'); }
+      const badge = t.type==='receive'?'badge-success':t.type==='pay'?'badge-danger':'   badge-warning';
+      const label = '< t.type==='receive'?'دریافت':t.type==='pay'?'پرداخت':'انتقال';
       html += '<tr><td class="num">'+t.date+'</td><td><span class="badge '+badge+'">'+label+'</span></td><td>'+who+'</td><td class="num">'+formatNum(t.amount)+'</td><td>'+(t.note||'-')+'</td><td><button class="btn btn-sm btn-warning" onclick="txForm(\''+t.type+'\',\''+t.id+'\')">✏️</button> <button class="btn btn-sm btn-danger" onclick="deleteTx(\''+t.id+'\')">🗑</button></td></tr>';
     }
     return html;
   }
-  const filtered = filterTx(list, txSearch);
-  $('#content').innerHTML =
-    '<div class="card mb-3" style="padding:10px 12px">'+
+  const filtered = filterdiv class="card mb-3" style="padding:10px 12px">'+
       '<div class="search-box" style="max-width:none"><input class="form-control" id="txSearchInput" placeholder="جستجوی نام شخص..." value="'+txSearch.replace(/"/g,'&quot;')+'"></div>'+
     '</div>'+
     '<div class="flex justify-between items-center mb-4" style="flex-wrap:wrap;gap:8px">'+
       '<div class="text-muted">دریافت، پرداخت و انتقال</div>'+
       '<div class="flex gap-2">'+
         '<button class="btn btn-success" onclick="txForm(\'receive\')">📥 دریافت</button>'+
-        '<button class="btn btn-danger" onclick=" classtxForm(\'pay\')">📤 پرداخت</="button>'+
-        '<button class="btn btn-wstat"><div classarning" onclick="txForm(\'transfer\')">🔁 انتقال</button>'+
+        '<button class="btn btn-danger" onclick="txForm(\'pay\')">📤 پرداخت</button>'+
+        '<button class="btn btn-warning" onclick="txForm(\'transfer\')">🔁 انتقال</button>'+
       '</div>'+
     '</div>'+
     '<div class="card"><div class="table-wrap"><table><thead><tr><th>تاریخ</th><th>نوع</th><th>از / به</th><th>مبلغ</th><th>توضیح</th><th>عملیات</th></tr></thead><tbody id="txBody">'+buildRows(filtered)+'</tbody></table></div></div>';
@@ -1363,24 +1531,53 @@ function renderTransactions(){
     });
   }
 }
+
+// 🆕 انتخاب اشخاص برای تراکنش (callbacks Smart Select)
+function onTxFromSelected(personId){ var h = document.getElementById('txFromValue'); if(h) h.value = personId; }
+function onTxToSelected(personId){ var h = document.getElementById('txToValue'); if(h) h.value = personId; }
+function onTxPersonSelected(personId){ var h = document.getElementById('txPersonValue'); if(h) h.value = personId; }
+
 function txForm(type, editId){
   editId = editId || null;
   if(!DB.data.persons.length){toast('ابتدا شخص اضافه کنید','warning');return;}
   const existing = editId? DB.data.transactions.find(function(t){return t.id===editId;}) : null;
   if(existing) type = existing.type;
   const isTransfer = type==='transfer';
-  let fromOptions = '<option value="">انتخاب</option>'; let toOptions = '<option value="">انتخاب</option>'; let personOptions2 = '<option value="">انتخاب</option>';
-  for(const p of DB.data.persons){
-    fromOptions += '<option value="'+p.id+'" '+(existing&&existing.personId===p.id?'selected':'')+'>'+p.name+'</option>';
-    toOptions += '<option value="'+p.id+'" '+(existing&&existing.toPersonId===p.id?'selected':'')+'>'+p.name+'</option>';
-    personOptions2 += '<option value="'+p.id+'" '+(existing&&existing.personId===p.id?'selected':'')+'>'+p.name+'</option>';
+  
+  // آماده‌سازی آیتم‌های Smart Select
+  var personItems = [];
+  for(var pi=0; pi<DB.data.persons.length; pi++){
+    personItems.push({value: DB.data.persons[pi].id, label: DB.data.persons[pi].name});
   }
+  
+  var fromSelectHTML = buildSmartSelect({
+    id: 'txFrom',
+    placeholder: 'انتخاب شخص...',
+    items: personItems,
+    selected: existing ? existing.personId : '',
+    onSelect: 'onTxFromSelected'
+  });
+  var toSelectHTML = buildSmartSelect({
+    id: 'txTo',
+    placeholder: 'انتخاب شخص...',
+    items: personItems,
+    selected: existing ? existing.toPersonId : '',
+    onSelect: 'onTxToSelected'
+  });
+  var personSelectHTML = buildSmartSelect({
+    id: 'txPerson',
+    placeholder: 'انتخاب شخص...',
+    items: personItems,
+    selected: existing ? existing.personId : '',
+    onSelect: 'onTxPersonSelected'
+  });
+
   let body = '<div class="form-group"><label class="form-label">تاریخ</label><input class="form-control" id="txDate" value="'+(existing?existing.date:todayJalali())+'" data-datepicker></div>';
   if(isTransfer){
-    body += '<div class="form-group"><label class="form-label">از شخص *</label><select class="form-control" id="txFrom">'+fromOptions+'</select></div>';
-    body += '<div class="form-group"><label class="form-label">به شخص *</label><select class="form-control" id="txTo">'+toOptions+'</select></div>';
+    body += '<div class="form-group"><label class="form-label">از شخص *</label>'+fromSelectHTML+'<input type="hidden" id="txFromValue" value="'+(existing?existing.personId:'')+'"></div>';
+    body += '<div class="form-group"><label class="form-label">به شخص *</label>'+toSelectHTML+'<input type="hidden" id="txToValue" value="'+(existing?existing.toPersonId:'')+'"></div>';
   } else {
-    body += '<div class="form-group"><label class="form-label">شخص *</label><select class="form-control" id="txPerson">'+personOptions2+'</select></div>';
+    body += '<div class="form-group"><label class="form-label">شخص *</label>'+personSelectHTML+'<input type="hidden" id="txPersonValue" value="'+(existing?existing.personId:'')+'"></div>';
   }
   body += '<div class="form-group"><label class="form-label">مبلغ *</label><input class="form-control" data-thousands id="txAmount" value="'+(existing?formatNum(existing.amount):'0')+'"></div>';
   body += '<div class="form-group"><label class="form-label">توضیحات</label><input class="form-control" id="txNote" value="'+(existing?(existing.note||''):'')+'"></div>';
@@ -1399,12 +1596,13 @@ function saveTx(type, editId){
   const note = $('#txNote').value.trim();
   const obj = {date:date,type:type,amount:amount,note:note};
   if(type==='transfer'){
-    const from = $('#txFrom').value; const to = $('#txTo').value;
+    var from = document.getElementById('txFromValue') ? document.getElementById('txFromValue').value : '';
+    var to = document.getElementById('txToValue') ? document.getElementById('txToValue').value : '';
     if(!from||!to){toast('هر دو شخص را انتخاب کنید','error');return;}
     if(from===to){toast('اشخاص باید متفاوت باشند','error');return;}
     obj.personId = from; obj.toPersonId = to;
   } else {
-    const person = $('#txPerson').value;
+    var person = document.getElementById('txPersonValue') ? document.getElementById('txPersonValue').value : '';
     if(!person){toast('شخص را انتخاب کنید','error');return;}
     obj.personId = person;
   }
@@ -1458,7 +1656,7 @@ function renderExpenses(){
   $('#content').innerHTML =
     '<div class="grid grid-3 mb-4">'+
       '<div class="stat s-danger"><div class="stat-label">کل هزینه</div><div class="stat-value negative">'+formatMoney(total)+'</div><div class="stat-icon">💸</div></div>'+
-      '<div="stat-label">تعداد</div><div class="stat-value">'+formatNum(list.length)+'</div><div class="stat-icon">🧮</div></div>'+
+      '<div class="stat"><div class="stat-label">تعداد</div><div class="stat-value">'+formatNum(list.length)+'</div><div class="stat-icon">🧮</div></div>'+
       '<div class="stat s-gold"><div class="stat-label">میانگین</div><div class="stat-value gold">'+(list.length?formatMoney(total/list.length):formatMoney(0))+'</div><div class="stat-icon">📊</div></div>'+
     '</div>'+
     '<div class="grid grid-2 mb-4">'+
@@ -1862,7 +2060,7 @@ function installApp() {
 }
 
 /* ============ شروع ============ */
-initDatepickers();
+setTimeout(function(){ initDatepickers(); }, 300);
 navigate('dashboard');
 </script>
 </body>
