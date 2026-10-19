@@ -17,152 +17,47 @@
 <link rel="apple-touch-icon" sizes="120x120" href="DAVIN.PNG">
 <link rel="icon" type="image/png" href="DAVIN.PNG">
 <link href="https://cdn.jsdelivr.net/gh/font-store/font-IRANSharp/IRANSharp.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jalaali-js@1.2.6/dist/jalaali.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/persian-date@1.1.0/dist/persian-date.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/js/persian-datepicker.min.js"></script>
 <style>
 :root{
-  --bg-main:#0f1419;
-  --bg-card:#1a2332;
-  --bg-card-2:#1e2a3a;
-  --bg-input:#0a0e14;
-  --bg-hover:#243043;
-  --border-soft:rgba(255,255,255,.06);
-  --border-medium:rgba(255,255,255,.1);
-  --border-strong:rgba(255,255,255,.15);
-  --text-main:#ffffff;
-  --text-sub:#8b95a5;
-  --text-muted:#5a6474;
-  --accent:#e63946;
-  --accent-hover:#dc2f3c;
-  --accent-glow:rgba(230,57,70,.35);
-  --success:#10b981;
-  --success-hover:#059669;
-  --success-glow:rgba(16,185,129,.3);
-  --danger:#ef4444;
-  --danger-hover:#dc2626;
-  --warning:#f59e0b;
-  --warning-hover:#d97706;
-  --info:#3b82f6;
-  --gold:#d4af37;
-  --gold-light:#f4e5a1;
-  --radius:14px;
-  --radius-sm:10px;
-  --radius-lg:18px;
+  --bg-main:#0f1419; --bg-card:#1a2332; --bg-card-2:#1e2a3a; --bg-input:#0a0e14; --bg-hover:#243043;
+  --border-soft:rgba(255,255,255,.06); --border-medium:rgba(255,255,255,.1); --border-strong:rgba(255,255,255,.15);
+  --text-main:#ffffff; --text-sub:#8b95a5; --text-muted:#5a6474;
+  --accent:#e63946; --accent-hover:#dc2f3c; --accent-glow:rgba(230,57,70,.35);
+  --success:#10b981; --success-hover:#059669; --success-glow:rgba(16,185,129,.3);
+  --danger:#ef4444; --danger-hover:#dc2626; --warning:#f59e0b; --warning-hover:#d97706;
+  --info:#3b82f6; --gold:#d4af37; --gold-light:#f4e5a1;
+  --radius:14px; --radius-sm:10px; --radius-lg:18px;
   --shadow-card:0 4px 20px rgba(0,0,0,.25),0 1px 0 rgba(255,255,255,.03) inset;
   --shadow-card-hover:0 8px 30px rgba(0,0,0,.35),0 1px 0 rgba(255,255,255,.05) inset;
-  --safe-top: env(safe-area-inset-top, 0px);
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px); --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{background:var(--bg-main);-webkit-text-size-adjust:100%}
-body{
-  font-family:'IRANSharp', 'IRANSans', Tahoma, sans-serif;
-  font-weight:500;
-  background:var(--bg-main);
-  color:var(--text-main);
-  font-size:14px;
-  line-height:1.7;
-  min-height:100vh;
-  min-height:100dvh;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-  padding-top: var(--safe-top);
-  padding-bottom: var(--safe-bottom);
-}
+body{font-family:'IRANSharp', 'IRANSans', Tahoma, sans-serif;font-weight:500;background:var(--bg-main);color:var(--text-main);font-size:14px;line-height:1.7;min-height:100vh;min-height:100dvh;-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-top: var(--safe-top);padding-bottom: var(--safe-bottom)}
 .app{display:flex;min-height:100vh;min-height:100dvh;width:100%}
-.sidebar{
-  width:260px;
-  background:#0f1419;
-  border-left:1px solid var(--border-soft);
-  padding:0 0 20px;
-  position:fixed;
-  top:0;right:0;bottom:0;
-  overflow-y:auto;
-  z-index:60;
-  transition:transform .3s cubic-bezier(.4,0,.2,1);
-  box-shadow:-4px 0 20px rgba(0,0,0,.4);
-  padding-top: calc(var(--safe-top) + 12px);
-  padding-bottom: calc(var(--safe-bottom) + 20px);
-}
-.sidebar .brand{
-  display:flex;align-items:center;gap:12px;
-  padding:0 18px 18px;
-  border-bottom:1px solid var(--border-soft);
-  margin-bottom:14px;
-}
-.sidebar .brand-icon{
-  width:48px;height:48px;
-  background:#ffffff;
-  border-radius:12px;
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;
-  border:1px solid var(--border-medium);
-  flex-shrink:0;
-}
+.sidebar{width:260px;background:#0f1419;border-left:1px solid var(--border-soft);padding:0 0 20px;position:fixed;top:0;right:0;bottom:0;overflow-y:auto;z-index:60;transition:transform .3s cubic-bezier(.4,0,.2,1);box-shadow:-4px 0 20px rgba(0,0,0,.4);padding-top: calc(var(--safe-top) + 12px);padding-bottom: calc(var(--safe-bottom) + 20px)}
+.sidebar .brand{display:flex;align-items:center;gap:12px;padding:0 18px 18px;border-bottom:1px solid var(--border-soft);margin-bottom:14px}
+.sidebar .brand-icon{width:48px;height:48px;background:#ffffff;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--border-medium);flex-shrink:0}
 .sidebar .brand-icon img{width:100%;height:100%;object-fit:cover;display:block}
 .sidebar .brand-text{font-weight:800;font-size:15px;color:#ffffff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px}
 .sidebar .brand-sub{font-size:11px;color:var(--text-sub);margin-top:2px}
-.nav-item{
-  display:flex;align-items:center;gap:12px;
-  padding:12px 18px;margin:2px 10px;
-  color:var(--text-sub);cursor:pointer;
-  font-weight:600;font-size:13.5px;
-  border-radius:10px;transition:all .2s;user-select:none;
-}
+.nav-item{display:flex;align-items:center;gap:12px;padding:12px 18px;margin:2px 10px;color:var(--text-sub);cursor:pointer;font-weight:600;font-size:13.5px;border-radius:10px;transition:all .2s;user-select:none}
 .nav-item:hover{background:var(--bg-hover);color:var(--text-main)}
 .nav-item.active{background:var(--accent);color:#fff;box-shadow:0 4px 15px var(--accent-glow)}
 .nav-item .icon{font-size:18px;width:22px;text-align:center;display:inline-block}
-.main{
-  margin-right:260px;
-  flex:1;
-  padding:14px 20px 130px;
-  min-height:100vh;min-height:100dvh;
-  position:relative;
-  overflow-x:hidden;
-  width:calc(100% - 260px);
-}
-.topbar{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:16px;flex-wrap:wrap;gap:10px;
-  background:var(--bg-card);
-  padding:12px 16px;
-  border-radius:var(--radius);
-  border:1px solid var(--border-soft);
-  box-shadow:var(--shadow-card);
-  width:100%;
-  position:relative;
-  z-index:1;
-}
+.main{margin-right:260px;flex:1;padding:14px 20px 130px;min-height:100vh;min-height:100dvh;position:relative;overflow-x:hidden;width:calc(100% - 260px)}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px;background:var(--bg-card);padding:12px 16px;border-radius:var(--radius);border:1px solid var(--border-soft);box-shadow:var(--shadow-card);width:100%;position:relative;z-index:1}
 .page-title{font-size:18px;font-weight:800;color:#ffffff}
 #todayDate{font-size:12px;color:var(--text-sub);font-weight:600}
-.menu-toggle{
-  display:none;
-  background:var(--bg-card-2);
-  border:1px solid var(--border-medium);
-  border-radius:10px;
-  padding:8px 12px;cursor:pointer;
-  color:#ffffff;font-size:18px;
-  line-height:1;
-  min-width:42px;
-  min-height:42px;
-  align-items:center;justify-content:center;
-}
-.card{
-  background:var(--bg-card);
-  border-radius:var(--radius);
-  padding:16px;
-  border:1px solid var(--border-soft);
-  box-shadow:var(--shadow-card);
-  transition:all .3s;
-  width:100%;max-width:100%;
-  overflow:hidden;
-}
-.card-header{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:12px;flex-wrap:wrap;gap:8px;
-  padding-bottom:10px;
-  border-bottom:1px solid var(--border-soft);
-}
+.menu-toggle{display:none;background:var(--bg-card-2);border:1px solid var(--border-medium);border-radius:10px;padding:8px 12px;cursor:pointer;color:#ffffff;font-size:18px;line-height:1;min-width:42px;min-height:42px;align-items:center;justify-content:center}
+.card{background:var(--bg-card);border-radius:var(--radius);padding:16px;border:1px solid var(--border-soft);box-shadow:var(--shadow-card);transition:all .3s;width:100%;max-width:100%;overflow:hidden}
+.card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;padding-bottom:10px;border-bottom:1px solid var(--border-soft)}
 .card-title{font-size:13.5px;font-weight:800;color:#ffffff}
 .grid{display:grid;gap:12px;width:100%}
 .grid-2{grid-template-columns:repeat(2,1fr)}
@@ -170,15 +65,7 @@ body{
 .grid-4{grid-template-columns:repeat(4,1fr)}
 @media(max-width:1024px){.grid-4{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
-.stat{
-  padding:14px;
-  border-radius:var(--radius);
-  background:linear-gradient(145deg,var(--bg-card-2) 0%,var(--bg-card) 100%);
-  border:1px solid var(--border-soft);
-  box-shadow:var(--shadow-card);
-  position:relative;overflow:hidden;
-  width:100%;
-}
+.stat{padding:14px;border-radius:var(--radius);background:linear-gradient(145deg,var(--bg-card-2) 0%,var(--bg-card) 100%);border:1px solid var(--border-soft);box-shadow:var(--shadow-card);position:relative;overflow:hidden;width:100%}
 .stat::before{content:'';position:absolute;top:0;right:0;width:4px;height:100%;background:var(--accent);border-radius:0 4px 4px 0}
 .stat.s-success::before{background:var(--success)}
 .stat.s-danger::before{background:var(--danger)}
@@ -191,12 +78,7 @@ body{
 .stat-value.negative{color:var(--danger)}
 .stat-value.gold{color:var(--gold-light)}
 .stat-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:28px;opacity:.08;pointer-events:none}
-.btn{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:9px 14px;border-radius:var(--radius-sm);
-  border:none;font-family:inherit;font-size:12.5px;font-weight:700;
-  cursor:pointer;transition:all .2s;white-space:nowrap;position:relative;
-}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:var(--radius-sm);border:none;font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap;position:relative}
 .btn:active{transform:scale(.97)}
 .btn-primary{background:var(--accent);color:#fff;box-shadow:0 2px 8px var(--accent-glow)}
 .btn-success{background:var(--success);color:#fff;box-shadow:0 2px 8px var(--success-glow)}
@@ -210,32 +92,24 @@ body{
 .quick-tx svg{width:16px;height:16px;stroke-width:3}
 .form-group{margin-bottom:14px}
 .form-label{display:block;font-size:12px;font-weight:700;color:var(--text-sub);margin-bottom:6px}
-.form-control{
-  width:100%;padding:11px 12px;
-  border:1px solid var(--border-medium);
-  border-radius:var(--radius-sm);
-  font-family:inherit;font-size:16px;
-  background:var(--bg-input);
-  color:#ffffff;
-  transition:all .2s;
-}
+.form-control{width:100%;padding:11px 12px;border:1px solid var(--border-medium);border-radius:var(--radius-sm);font-family:inherit;font-size:16px;background:var(--bg-input);color:#ffffff;transition:all .2s}
 .form-control:focus{outline:none;border-color:var(--accent);background:#0c1118}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:640px){.form-row{grid-template-columns:1fr}}
-input[type=number]{direction:ltr;text-align:right}
-select.form-control{
-  background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-  background-repeat:no-repeat;background-position:left 12px center;background-size:16px;
-  padding-left:36px;appearance:none;
-}
-.table-wrap{
-  overflow-x:auto;
-  border-radius:var(--radius);
-  border:1px solid var(--border-soft);
-  background:var(--bg-input);
-  width:100%;max-width:100%;
-  -webkit-overflow-scrolling:touch;
-}
+@media(max-width:640px){.formfont-row{grid-template-column-familys:1fr}}
+input[type=number]{direction:l:'tr;text-align:right}
+select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");background-repeat:no-repeat;background-position:left 12px center;background-size:16px;padding-left:36px;appearance:none;}
+
+/* استایل تقویم شمسی دارک */
+.datepicker-plot-area{border-radius:12px !important;box-shadow:0 10px 40px rgba(0,0,0,.8) !important;z-index:2000 !important;IRANSharp' !important}
+.dtp-navigator{border-bottom:1px solid var(--border-medium);padding:5px 0}
+.dtp-navigator .btn-navigate, .dtp-navigator select{background:var(--bg-card-2);color:var(--text-main);border:1px solid var(--border-medium);border-radius:6px}
+.dtp-plot{background:var(--bg-card) !important;}
+.dtp-day{color:var(--text-main) !important}
+.dtp-day.selected, .dtp-day:hover{background:var(--accent) !important;color:#fff !important}
+.dtp-month, .dtp-year{color:var(--text-main) !important;cursor:pointer}
+.dtp-month.selected, .dtp-year.selected{background:var(--accent) !important;color:#fff !important}
+
+.table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border-soft);background:var(--bg-input);width:100%;max-width:100%;-webkit-overflow-scrolling:touch}
 table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:100%}
 th{background:var(--bg-card-2);padding:11px 12px;text-align:right;font-weight:700;color:var(--text-sub);font-size:11.5px;border-bottom:1px solid var(--border-medium);white-space:nowrap}
 td{padding:11px 12px;border-bottom:1px solid var(--border-soft);color:#ffffff}
@@ -248,25 +122,9 @@ tbody tr:hover{background:var(--bg-hover)}
 .badge-info{background:rgba(59,130,246,.15);color:#60a5fa;border-color:rgba(59,130,246,.3)}
 .badge-gray{background:rgba(139,149,165,.15);color:var(--text-sub);border-color:rgba(139,149,165,.25)}
 .badge-gold{background:rgba(212,175,55,.15);color:var(--gold-light);border-color:rgba(212,175,55,.35)}
-.modal-overlay{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,.75);
-  z-index:100;display:none;
-  align-items:center;justify-content:center;
-  padding:16px;
-  padding-top: calc(var(--safe-top) + 16px);
-  padding-bottom: calc(var(--safe-bottom) + 16px);
-}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;display:none;align-items:center;justify-content:center;padding:16px;padding-top: calc(var(--safe-top) + 16px);padding-bottom: calc(var(--safe-bottom) + 16px);}
 .modal-overlay.show{display:flex}
-.modal{
-  background:var(--bg-card);
-  border-radius:var(--radius-lg);
-  width:100%;max-width:600px;
-  max-height:90vh;overflow-y:auto;
-  border:1px solid var(--border-medium);
-  box-shadow:0 25px 60px rgba(0,0,0,.6);
-  animation:slideUp .3s;
-}
+.modal{background:var(--bg-card);border-radius:var(--radius-lg);width:100%;max-width:600px;max-height:90vh;overflow-y:auto;border:1px solid var(--border-medium);box-shadow:0 25px 60px rgba(0,0,0,.6);animation:slideUp .3s;}
 .modal.modal-lg{max-width:900px}
 @keyframes slideUp{from{opacity:0;transform:translateY(30px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
 .modal-header{padding:16px 18px;border-bottom:1px solid var(--border-soft);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--bg-card);z-index:1}
@@ -274,24 +132,17 @@ tbody tr:hover{background:var(--bg-hover)}
 .modal-close{background:var(--bg-card-2);border:1px solid var(--border-medium);font-size:18px;cursor:pointer;color:var(--text-sub);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center}
 .modal-body{padding:18px}
 .modal-footer{padding:14px 18px;border-top:1px solid var(--border-soft);display:flex;gap:8px;justify-content:flex-end;position:sticky;bottom:0;background:var(--bg-card);flex-wrap:wrap}
+
+/* منوی انتخاب هوشمند با جستجو */
+.smart-select-list{max-height:200px;overflow-y:auto;background:var(--bg-input);border:1px solid var(--border-medium);border-radius:8px;margin-top:5px;}
+.smart-select-item{padding:8px 12px;cursor:pointer;border-bottom:1px solid var(--border-soft);font-size:13px;}
+.smart-select-item:hover{background:var(--bg-hover);color:var(--accent);}
+.smart-select-item.selected{background:rgba(230,57,70,.15);color:var(--accent);font-weight:700;}
+
 .empty{text-align:center;padding:36px 16px;color:var(--text-muted)}
 .empty .icon{font-size:36px;margin-bottom:10px;opacity:.4}
 .empty .title{font-weight:700;color:var(--text-sub);margin-bottom:4px;font-size:13.5px}
-.toast{
-  position:fixed;
-  bottom: calc(80px + var(--safe-bottom));
-  left:16px;right:16px;
-  max-width:400px;
-  margin:0 auto;
-  background:var(--bg-card-2);color:#ffffff;
-  padding:12px 16px;border-radius:10px;
-  box-shadow:0 10px 30px rgba(0,0,0,.5);
-  z-index:200;font-size:13px;font-weight:700;
-  opacity:0;transform:translateY(20px);
-  transition:.3s;pointer-events:none;
-  border:1px solid var(--border-medium);
-  text-align:center;
-}
+.toast{position:fixed;bottom: calc(80px + var(--safe-bottom));left:16px;right:16px;max-width:400px;margin:0 auto;background:var(--bg-card-2);color:#ffffff;padding:12px 16px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.5);z-index:200;font-size:13px;font-weight:700;opacity:0;transform:translateY(20px);transition:.3s;pointer-events:none;border:1px solid var(--border-medium);text-align:center;}
 .toast.show{opacity:1;transform:translateY(0)}
 .toast.success{background:rgba(16,185,129,.2);color:#34d399;border-color:rgba(16,185,129,.5)}
 .toast.error{background:rgba(239,68,68,.2);color:#f87171;border-color:rgba(239,68,68,.5)}
@@ -312,49 +163,16 @@ tbody tr:hover{background:var(--bg-hover)}
 .search-box::before{content:'🔍';position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.5;pointer-events:none}
 .chart-container{position:relative;width:100%;height:220px;max-height:220px;overflow:hidden}
 @media(max-width:640px){.chart-container{height:180px;max-height:180px}}
-.footer-signature{
-  position:fixed;
-  bottom:0;left:0;right:260px;
-  background:linear-gradient(180deg,rgba(15,20,25,.98) 0%,rgba(10,14,20,1) 100%);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  border-top:1px solid rgba(212,175,55,.25);
-  padding:8px 16px;
-  padding-bottom: calc(8px + var(--safe-bottom));
-  text-align:center;
-  z-index:45;
-}
+.footer-signature{position:fixed;bottom:0;left:0;right:260px;background:linear-gradient(180deg,rgba(15,20,25,.98) 0%,rgba(10,14,20,1) 100%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(212,175,55,.25);padding:8px 16px;padding-bottom: calc(8px + var(--safe-bottom));text-align:center;z-index:45;}
 .footer-signature .sig-line{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;line-height:1.4}
 .footer-signature .sig-brand{font-weight:900;font-size:12.5px;letter-spacing:2px;background:linear-gradient(135deg,#f4e5a1 0%,#d4af37 40%,#b8860b 70%,#f4e5a1 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .footer-signature .sig-design{font-weight:700;font-size:9.5px;color:#8b95a5;letter-spacing:1.5px;text-transform:uppercase}
 .footer-signature .sig-tel{font-weight:800;font-size:11px;color:#d4af37;direction:ltr;letter-spacing:1px}
-@media(max-width:900px){
-  .sidebar{transform:translateX(100%)}
-  .sidebar.open{transform:translateX(0)}
-  .main{margin-right:0;padding:12px 12px 170px;width:100%}
-  .menu-toggle{display:inline-flex}
-  .footer-signature{right:0}
-  .page-title{font-size:16px}
-  .stat{padding:12px}
-  .stat-value{font-size:15px}
-  .stat-icon{font-size:22px;left:6px}
-  .card{padding:12px}
-  .btn{padding:7px 10px;font-size:11.5px}
-  table{font-size:11.5px}
-  th,td{padding:8px 8px}
-}
+@media(max-width:900px){.sidebar{transform:translateX(100%)}.sidebar.open{transform:translateX(0)}.main{margin-right:0;padding:12px 12px 170px;width:100%}.menu-toggle{display:inline-flex}.footer-signature{right:0}.page-title{font-size:16px}.stat{padding:12px}.stat-value{font-size:15px}.stat-icon{font-size:22px;left:6px}.card{padding:12px}.btn{padding:7px 10px;font-size:11.5px}table{font-size:11.5px}th,td{padding:8px 8px}}
 ::-webkit-scrollbar{width:6px;height:6px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--bg-card-2);border-radius:3px}
-@media print{
-  body *{visibility:hidden}
-  #print-area,#print-area *{visibility:visible}
-  #print-area{position:absolute;top:0;right:0;width:100%;padding:20px;background:#fff;color:#000}
-  .no-print{display:none!important}
-  .footer-signature{display:none!important}
-  .sidebar{display:none!important}
-  .menu-toggle{display:none!important}
-}
+@media print{body *{visibility:hidden}#print-area,#print-area *{visibility:visible}#print-area{position:absolute;top:0;right:0;width:100%;padding:20px;background:#fff;color:#000}.no-print{display:none!important}.footer-signature{display:none!important}.sidebar{display:none!important}.menu-toggle{display:none!important}}
 </style>
 </head>
 <body>
@@ -483,6 +301,8 @@ function openModal(title,body,footer,size){
   $('#modalOverlay').classList.add('show');
   attachAllThousandsIn($('#modalBody'));
   attachAllThousandsIn($('#modalFooter'));
+  // 🆕 فعال‌سازی تقویم شمسی روی همه فیلدهای date
+  setTimeout(initDatepickers, 100);
 }
 function closeModal(){
   $('#modalOverlay').classList.remove('show');
@@ -501,8 +321,31 @@ function confirmAction(msg,onYes){
   $('#confirmYes').onclick = function(){closeModal();onYes();};
 }
 
+/* 🆕 فعال‌سازی تقویم شمسی برای همه فیلدهای دارای data-datepicker */
+function initDatepickers(){
+  $$('input[data-datepicker]').forEach(function(inp){
+    if($(inp).hasClass('datepicker-initialized')) return;
+    $(inp).addClass('datepicker-initialized');
+    $(inp).persianDatepicker({
+      format: 'YYYY/MM/DD',
+      initialValue: false,
+      autoClose: true,
+      observer: true,
+      calendar: {
+        persian: { locale: 'fa', showHint: true }
+      },
+      toolbox: {
+        calendarSwitch: { enabled: false }
+      },
+      navigator: {
+        scroll: { enabled: true }
+      }
+    });
+  });
+}
+
 /* ============ دیتابیس ============ */
-const DB_KEY = 'hesabdar_v4';
+const DB_KEY = 'hesabdar_v5'; // ارتقا برای ذخیره فیلدهای جدید
 const DB = {
   data: {
     settings:{shopName:'فروشگاه من',currency:'تومان',initialCapital:0,initialCapitalDate:'',taxPercent:0},
@@ -517,7 +360,9 @@ const DB = {
         this.data.settings = Object.assign({shopName:'فروشگاه من',currency:'تومان',initialCapital:0,initialCapitalDate:'',taxPercent:0}, this.data.settings);
         if(!this.data.expenses) this.data.expenses = [];
         this.data.invoices.forEach(function(inv){
-          if(inv.shippingCost===undefined)inv.shippingCost=0;
+          if(inv.airShippingCost===undefined) inv.airShippingCost = 0;
+          if(inv.groundShippingCost===undefined) inv.groundShippingCost = 0;
+          if(inv.shippingCost===undefined)inv.shippingCost=0; // سازگاری با نسخه قبل
           if(inv.customsCost===undefined)inv.customsCost=0;
           if(inv.paidAmount===undefined)inv.paidAmount = inv.paid? inv.total : 0;
         });
@@ -536,6 +381,9 @@ const DB = {
     this.save();
   },
   resetAccounting:function(){
+    // 🆕 پاک کردن سرمایه اولیه هم انجام می‌شود
+    this.data.settings.initialCapital = 0;
+    this.data.settings.initialCapitalDate = '';
     this.data.invoices = [];
     this.data.transactions = [];
     this.data.stockMoves = [];
@@ -575,9 +423,11 @@ function avgCostOf(productId, excludeInvoiceId){
     const itemSubtotal = item.qty * item.price;
     const invoiceItemsSum = x.inv.items.reduce(function(s,it){return s+it.qty*it.price;},0);
     const ratio = invoiceItemsSum>0 ? itemSubtotal/invoiceItemsSum : 0;
-    const shippingShare = (x.inv.shippingCost||0) * ratio;
+    const airShare = (x.inv.airShippingCost||0) * ratio;
+    const groundShare = (x.inv.groundShippingCost||0) * ratio;
+    const shippingShare = (x.inv.shippingCost||0) * ratio; // سازگاری
     const customsShare = (x.inv.customsCost||0) * ratio;
-    const itemCost = itemSubtotal + shippingShare + customsShare;
+    const itemCost = itemSubtotal + airShare + groundShare + shippingShare + customsShare;
     totalQty += item.qty;
     totalValue += itemCost;
   }
@@ -1019,7 +869,7 @@ function quickTx(personId, type){
   const isReceive = type==='receive';
   const title = isReceive? '📥 دریافت وجه از '+p.name : '📤 پرداخت وجه به '+p.name;
   openModal(title,
-    '<div class="form-group"><label class="form-label">تاریخ</label><input class="form-control" id="qtxDate" value="'+todayJalali()+'" dir="ltr"></div>'+
+    '<div class="form-group"><label class="form-label">تاریخ</label><input class="form-control" id="qtxDate" value="'+todayJalali()+'" data-datepicker></div>'+
     '<div class="form-group"><label class="form-label">مبلغ *</label><input class="form-control" data-thousands id="qtxAmount" value="0" placeholder="0"></div>'+
     '<div class="form-group"><label class="form-label">توضیحات</label><input class="form-control" id="qtxNote" value="'+(isReceive?'دریافت وجه':'پرداخت وجه')+'"></div>'+
     '<div class="text-muted" style="font-size:11px;margin-top:8px">'+
@@ -1138,12 +988,24 @@ function editFromLedger(refType, refId, invType, viewOnly){
 
 /* ============ فاکتورها ============ */
 let invoiceFilter = 'all';
+let invSearch = '';
 function renderInvoices(){
   let list = [].concat(DB.data.invoices).sort(function(a,b){return b.date.localeCompare(a.date);});
   if(invoiceFilter!=='all') list = list.filter(function(i){return i.type===invoiceFilter;});
+  
+  // 🆕 جستجوی فاکتور
+  if(invSearch.trim()){
+    const q = invSearch.trim().toLowerCase();
+    list = list.filter(function(i){
+      const p = DB.data.persons.find(function(x){return x.id===i.personId;});
+      const pName = p ? p.name.toLowerCase() : '';
+      return (i.number||'').toLowerCase().includes(q) || i.date.includes(q) || pName.includes(q);
+    });
+  }
+
   let rowsHtml = '';
   if(!list.length){
-    rowsHtml = '<tr><td colspan="8"><div class="empty"><div class="icon">🧾</div><div class="title">فاکتوری ثبت نشده</div></div></td></tr>';
+    rowsHtml = '<tr><td colspan="8"><div class="empty"><div class="icon">🧾</div><div class="title">'+(invSearch?'نتیجه‌ای یافت نشد':'فاکتوری ثبت نشده')+'</div></div></td></tr>';
   } else {
     for(const i of list){
       const person = DB.data.persons.find(function(p){return p.id===i.personId;});
@@ -1161,6 +1023,9 @@ function renderInvoices(){
     }
   }
   $('#content').innerHTML =
+    '<div class="card mb-3" style="padding:10px 12px">'+
+      '<div class="search-box" style="max-width:none"><input class="form-control" id="invSearchInput" placeholder="جستجوی شماره فاکتور یا نام شخص..." value="'+invSearch.replace(/"/g,'&quot;')+'"></div>'+
+    '</div>'+
     '<div class="flex justify-between items-center mb-4 gap-3" style="flex-wrap:wrap">'+
       '<div class="filter-tabs">'+
         '<button class="filter-tab '+(invoiceFilter==='all'?'active':'')+'" onclick="setInvFilter(\'all\')">همه</button>'+
@@ -1173,6 +1038,15 @@ function renderInvoices(){
       '</div>'+
     '</div>'+
     '<div class="card"><div class="table-wrap"><table><thead><tr><th>شماره</th><th>نوع</th><th>تاریخ</th><th>شخص</th><th>کل</th><th>پرداخت</th><th>باقی</th><th>عملیات</th></tr></thead><tbody>'+rowsHtml+'</tbody></table></div></div>';
+
+  const searchInput = $('#invSearchInput');
+  if(searchInput){
+    searchInput.addEventListener('input', function(e){
+      invSearch = e.target.value;
+      renderInvoices(); // رندر مجدد برای اعمال فیلتر
+      setTimeout(function(){ if($('#invSearchInput')) { $('#invSearchInput').focus(); const val = $('#invSearchInput').value; $('#invSearchInput').value=''; $('#invSearchInput').value=val; } }, 10);
+    });
+  }
 }
 function setInvFilter(f){invoiceFilter=f;renderInvoices();}
 function nextInvoiceNumber(type){
@@ -1180,6 +1054,37 @@ function nextInvoiceNumber(type){
   const nums = DB.data.invoices.filter(function(i){return i.type===type;}).map(function(i){return Number(i.number.replace(/\D/g,''))||0;});
   return prefix + '-' + String(Math.max.apply(null,[0].concat(nums))+1).padStart(4,'0');
 }
+
+/* 🆕 کامپوننت جستجوی کالا */
+function buildProductSearch(idx, currentProductId){
+  const p = currentProductId ? DB.data.products.find(function(x){return x.id===currentProductId;}) : null;
+  let html = '<div class="form-group" style="margin-bottom:0">'+
+    '<div class="search-box" style="max-width:100%"><input class="form-control" id="invProdSearch_'+idx+'" placeholder="جستجوی کالا..." value="'+(p?p.name:'')+'"></div>'+
+    '<div class="smart-select-list hidden" id="invProdList_'+idx+'">'+
+      DB.data.products.map(function(x){
+        return '<div class="smart-select-item '+(x.id===currentProductId?'selected':'')+'" data-id="'+x.id+'" data-name="'+x.name+'" onclick="selectProductForInvoice('+idx+',\''+x.id+'\')">'+(x.code?'['+x.code+'] ':'')+x.name+'</div>';
+      }).join('')+
+    '</div>'+
+  '</div>';
+  return html;
+}
+
+function selectProductForInvoice(idx, id){
+  const p = DB.data.products.find(function(x){return x.id===id;});
+  if(!p)return;
+  invoiceItems[idx].productId = id;
+  $('#invProdSearch_'+idx).value = p.name;
+  $('#invProdList_'+idx).classList.add('hidden');
+  
+  if(!invoiceItems[idx].price){
+    const type = $('#invNumber').value.startsWith('F')?'sale':'purchase';
+    invoiceItems[idx].price = type==='purchase'? (p.purchasePrice||0) : (p.salePrice||0);
+    const row = $('#invItemsBody tr[data-row="'+idx+'"]');
+    if(row){ const pi = row.querySelectorAll('input')[1]; if(pi) pi.value = formatNum(invoiceItems[idx].price); }
+  }
+  updateRowTotal(idx); recalcInvoice();
+}
+
 let invoiceItems = [];
 function invoiceForm(type, editId){
   editId = editId || null;
@@ -1197,9 +1102,11 @@ function invoiceForm(type, editId){
   const number = inv? inv.number : nextInvoiceNumber(type);
   const personId = inv? inv.personId : '';
   const whId = inv? inv.warehouseId : (DB.data.warehouses[0]?DB.data.warehouses[0].id:'');
-  const shippingCost = inv? (inv.shippingCost||0) : 0;
+  const airShippingCost = inv? (inv.airShippingCost||0) : 0;
+  const groundShippingCost = inv? (inv.groundShippingCost||0) : 0;
   const customsCost = inv? (inv.customsCost||0) : 0;
   const paidAmount = inv? (inv.paidAmount||0) : 0;
+  
   let personOptions = '<option value="">انتخاب کنید</option>';
   for(const p of DB.data.persons){
     personOptions += '<option value="'+p.id+'" '+(p.id===personId?'selected':'')+'>'+p.name+'</option>';
@@ -1212,7 +1119,7 @@ function invoiceForm(type, editId){
     (type==='sale'?'فاکتور فروش':'فاکتور خرید')+(editId?' (ویرایش)':''),
     '<div class="form-row">'+
       '<div class="form-group"><label class="form-label">شماره فاکتور</label><input class="form-control" id="invNumber" value="'+number+'"></div>'+
-      '<div class="form-group"><label class="form-label">تاریخ</label><input class="form-control" id="invDate" value="'+date+'" dir="ltr"></div>'+
+      '<div class="form-group"><label class="form-label">تاریخ</label><input class="form-control" id="invDate" value="'+date+'" data-datepicker></div>'+
     '</div>'+
     '<div class="form-row">'+
       '<div class="form-group"><label class="form-label">'+(type==='sale'?'مشتری':'تأمین‌کننده')+' *</label><select class="form-control" id="invPerson">'+personOptions+'</select></div>'+
@@ -1220,21 +1127,23 @@ function invoiceForm(type, editId){
     '</div>'+
     '<div class="divider"></div>'+
     '<div class="flex justify-between items-center mb-3"><div class="font-bold">اقلام</div><button class="btn btn-sm btn-primary" onclick="addInvoiceItem()">➕ افزودن</button></div>'+
-    '<div class="table-wrap" style="overflow-x:auto"><table class="items-table"><thead><tr><th style="min-width:150px">کالا</th><th style="width:70px">تعداد</th><th style="width:100px">قیمت</th><th>جمع</th><th></th></tr></thead><tbody id="invItemsBody"></tbody></table></div>'+
+    '<div class="table-wrap" style="overflow-x:auto"><table class="items-table" style="min-width:800px"><thead><tr><th style="width:200px">کالا</th><th style="width:70px">تعداد</th><th style="width:100px">قیمت</th><th>جمع</th><th></th></tr></thead><tbody id="invItemsBody"></tbody></table></div>'+
     '<div class="divider"></div>'+
     '<div class="font-bold mb-3">هزینه‌های جانبی</div>'+
     '<div class="form-row">'+
-      '<div class="form-group"><label class="form-label">🚚 حمل</label><input class="form-control" data-thousands id="invShipping" value="'+formatNum(shippingCost)+'"></div>'+
-      '<div class="form-group"><label class="form-label">🛃 گمرکی</label><input class="form-control" data-thousands id="invCustoms" value="'+formatNum(customsCost)+'"></div>'+
+      '<div class="form-group"><label class="form-label">✈️ حمل هوایی</label><input class="form-control" data-thousands id="invAirShipping" value="'+formatNum(airShippingCost)+'"></div>'+
+      '<div class="form-group"><label class="form-label">🚛 حمل زمینی</label><input class="form-control" data-thousands id="invGroundShipping" value="'+formatNum(groundShippingCost)+'"></div>'+
     '</div>'+
     '<div class="form-row">'+
+      '<div class="form-group"><label class="form-label">🛃 گمرکی</label><input class="form-control" data-thousands id="invCustoms" value="'+formatNum(customsCost)+'"></div>'+
       '<div class="form-group"><label class="form-label">💰 مبلغ پرداخت‌شده</label><input class="form-control" data-thousands id="invPaidAmount" value="'+formatNum(paidAmount)+'"></div>'+
-      '<div class="form-group"><label class="form-label">توضیحات</label><input class="form-control" id="invNote" value="'+(inv?(inv.note||''):'')+'"></div>'+
     '</div>'+
+    '<div class="form-group"><label class="form-label">توضیحات</label><input class="form-control" id="invNote" value="'+(inv?(inv.note||''):'')+'"></div>'+
     '<div class="invoice-total mt-4">'+
       '<div class="row"><span>جمع اقلام:</span><span class="num" id="invSubtotal">0</span></div>'+
-      '<div class="row warn"><span>هزینه حمل:</span><span class="num" id="invShipShow">0</span></div>'+
-      '<div class="row warn"><span>هزینه گمرکی:</span><span class="num" id="invCustShow">0</span></div>'+
+      '<div class="row warn"><span>حمل هوایی:</span><span class="num" id="invAirShipShow">0</span></div>'+
+      '<div class="row warn"><span>حمل زمینی:</span><span class="num" id="invGroundShipShow">0</span></div>'+
+      '<div class="row warn"><span>گمرکی:</span><span class="num" id="invCustShow">0</span></div>'+
       '<div class="row total"><span>مبلغ نهایی:</span><span class="num" id="invTotal">0</span></div>'+
       '<div class="row highlight"><span>پرداخت شده:</span><span class="num" id="invPaidShow">0</span></div>'+
       '<div class="row" style="color:var(--danger);font-weight:700"><span>باقی‌مانده:</span><span class="num" id="invRemShow">0</span></div>'+
@@ -1244,7 +1153,8 @@ function invoiceForm(type, editId){
   );
   renderInvoiceItems();
   setTimeout(function(){
-    $('#invShipping').addEventListener('input',recalcInvoice);
+    $('#invAirShipping').addEventListener('input',recalcInvoice);
+    $('#invGroundShipping').addEventListener('input',recalcInvoice);
     $('#invCustoms').addEventListener('input',recalcInvoice);
     $('#invPaidAmount').addEventListener('input',recalcInvoice);
     recalcInvoice();
@@ -1261,33 +1171,38 @@ function renderInvoiceItems(){
   for(let idx=0; idx<invoiceItems.length; idx++){ html += invoiceItemsRowHTML(invoiceItems[idx], idx); }
   body.innerHTML = html;
   attachAllThousandsIn(body);
+  
+  // 🆕 فعال‌سازی جستجوی کالا برای هر ردیف
+  for(let idx=0; idx<invoiceItems.length; idx++){
+    const inp = $('#invProdSearch_'+idx);
+    if(inp){
+      inp.addEventListener('focus', function(){
+        const list = $('#invProdList_'+idx);
+        if(list) list.classList.remove('hidden');
+      });
+      inp.addEventListener('input', function(e){
+        const q = e.target.value.toLowerCase();
+        const list = $('#invProdList_'+idx);
+        if(!list) return;
+        list.classList.remove('hidden');
+        const items = list.querySelectorAll('.smart-select-item');
+        items.forEach(function(it){
+          const name = it.getAttribute('data-name').toLowerCase();
+          it.style.display = name.includes(q) ? 'block' : 'none';
+        });
+      });
+    }
+  }
   recalcInvoice();
 }
 function invoiceItemsRowHTML(it,idx){
-  let productOptions = '<option value="">— انتخاب —</option>';
-  for(const x of DB.data.products){
-    productOptions += '<option value="'+x.id+'" '+(x.id===it.productId?'selected':'')+'>'+(x.code?'['+x.code+'] ':'')+x.name+'</option>';
-  }
   return '<tr data-row="'+idx+'">'+
-    '<td><select class="form-control" onchange="updateItemProduct('+idx+',this.value)">'+productOptions+'</select></td>'+
+    '<td>'+buildProductSearch(idx, it.productId)+'</td>'+
     '<td><input class="form-control num" type="number" min="1" value="'+it.qty+'" oninput="updateItemQty('+idx+',this.value)"></td>'+
     '<td><input class="form-control num" data-thousands value="'+formatNum(it.price)+'" oninput="updateItemPrice('+idx+',this.value)"></td>'+
     '<td><span class="num" style="font-weight:700">'+formatNum(it.qty*it.price)+'</span></td>'+
     '<td><button class="btn btn-sm btn-danger" onclick="removeInvoiceItem('+idx+')">✕</button></td>'+
   '</tr>';
-}
-function updateItemProduct(idx,val){
-  invoiceItems[idx].productId = val;
-  if(val){
-    const p = DB.data.products.find(function(x){return x.id===val;});
-    if(p && !invoiceItems[idx].price){
-      const type = $('#invNumber').value.startsWith('F')?'sale':'purchase';
-      invoiceItems[idx].price = type==='purchase'? (p.purchasePrice||0) : (p.salePrice||0);
-      const row = $('#invItemsBody tr[data-row="'+idx+'"]');
-      if(row){ const pi = row.querySelectorAll('input')[1]; if(pi) pi.value = formatNum(invoiceItems[idx].price); }
-    }
-  }
-  updateRowTotal(idx); recalcInvoice();
 }
 function updateItemQty(idx,val){ invoiceItems[idx].qty = Math.max(1,Number(val)||1); updateRowTotal(idx); recalcInvoice(); }
 function updateItemPrice(idx,val){ invoiceItems[idx].price = parseNum(val); updateRowTotal(idx); recalcInvoice(); }
@@ -1301,13 +1216,15 @@ function addInvoiceItem(){ invoiceItems.push({productId:'',qty:1,price:0}); rend
 function removeInvoiceItem(idx){ invoiceItems.splice(idx,1); renderInvoiceItems(); }
 function recalcInvoice(){
   const subtotal = invoiceItems.reduce(function(s,i){return s+(i.qty*i.price);},0);
-  const shipping = parseNum(($('#invShipping')||{}).value||0);
+  const airShipping = parseNum(($('#invAirShipping')||{}).value||0);
+  const groundShipping = parseNum(($('#invGroundShipping')||{}).value||0);
   const customs = parseNum(($('#invCustoms')||{}).value||0);
   const paid = parseNum(($('#invPaidAmount')||{}).value||0);
-  const total = subtotal + shipping + customs;
+  const total = subtotal + airShipping + groundShipping + customs;
   const remaining = total - paid;
   if($('#invSubtotal'))$('#invSubtotal').textContent = formatNum(subtotal);
-  if($('#invShipShow'))$('#invShipShow').textContent = formatNum(shipping);
+  if($('#invAirShipShow'))$('#invAirShipShow').textContent = formatNum(airShipping);
+  if($('#invGroundShipShow'))$('#invGroundShipShow').textContent = formatNum(groundShipping);
   if($('#invCustShow'))$('#invCustShow').textContent = formatNum(customs);
   if($('#invTotal'))$('#invTotal').textContent = formatNum(total);
   if($('#invPaidShow'))$('#invPaidShow').textContent = formatNum(paid);
@@ -1334,20 +1251,22 @@ function saveInvoice(type,editId){
     }
   }
   const subtotal = invoiceItems.reduce(function(s,i){return s+(i.qty*i.price);},0);
-  const shippingCost = parseNum($('#invShipping').value);
+  const airShippingCost = parseNum($('#invAirShipping').value);
+  const groundShippingCost = parseNum($('#invGroundShipping').value);
   const customsCost = parseNum($('#invCustoms').value);
   const paidAmount = parseNum($('#invPaidAmount').value);
-  const total = subtotal + shippingCost + customsCost;
+  const total = subtotal + airShippingCost + groundShippingCost + customsCost;
   const number = $('#invNumber').value.trim();
   const note = $('#invNote').value.trim();
+  
   if(editId){
     DB.data.stockMoves = DB.data.stockMoves.filter(function(m){return m.refId!==editId;});
     const inv = DB.data.invoices.find(function(x){return x.id===editId;});
-    Object.assign(inv,{personId:personId,warehouseId:whId,date:date,items:invoiceItems.map(function(i){return Object.assign({},i);}),shippingCost:shippingCost,customsCost:customsCost,total:total,paidAmount:paidAmount,number:number,note:note});
+    Object.assign(inv,{personId:personId,warehouseId:whId,date:date,items:invoiceItems.map(function(i){return Object.assign({},i);}),airShippingCost:airShippingCost,groundShippingCost:groundShippingCost,customsCost:customsCost,total:total,paidAmount:paidAmount,number:number,note:note});
     for(const it of invoiceItems){ DB.data.stockMoves.push({id:uid(),date:date,type:type==='purchase'?'in':'out',productId:it.productId,warehouseId:whId,qty:it.qty,refType:'invoice',refId:editId}); }
   } else {
     const id = uid();
-    DB.data.invoices.push({id:id,type:type,number:number,date:date,personId:personId,warehouseId:whId,items:invoiceItems.map(function(i){return Object.assign({},i);}),shippingCost:shippingCost,customsCost:customsCost,total:total,paidAmount:paidAmount,note:note,createdAt:nowJalaliFull()});
+    DB.data.invoices.push({id:id,type:type,number:number,date:date,personId:personId,warehouseId:whId,items:invoiceItems.map(function(i){return Object.assign({},i);}),airShippingCost:airShippingCost,groundShippingCost:groundShippingCost,customsCost:customsCost,total:total,paidAmount:paidAmount,note:note,createdAt:nowJalaliFull()});
     for(const it of invoiceItems){ DB.data.stockMoves.push({id:uid(),date:date,type:type==='purchase'?'in':'out',productId:it.productId,warehouseId:whId,qty:it.qty,refType:'invoice',refId:id}); }
   }
   DB.save(); closeModal(); renderInvoices(); toast('فاکتور ذخیره شد','success');
@@ -1374,7 +1293,8 @@ function viewInvoice(id){
       '<div class="table-wrap"><table><thead><tr><th>#</th><th>کد</th><th>کالا</th><th>تعداد</th><th>قیمت</th><th>جمع</th></tr></thead><tbody>'+itemsRows+'</tbody></table></div>'+
       '<div class="invoice-total mt-4">'+
         '<div class="row"><span>جمع اقلام:</span><span class="num">'+formatNum(sub)+'</span></div>'+
-        (inv.shippingCost?'<div class="row"><span>حمل:</span><span class="num">'+formatNum(inv.shippingCost)+'</span></div>':'')+
+        (inv.airShippingCost?'<div class="row"><span>حمل هوایی:</span><span class="num">'+formatNum(inv.airShippingCost)+'</span></div>':'')+
+        (inv.groundShippingCost?'<div class="row"><span>حمل زمینی:</span><span class="num">'+formatNum(inv.groundShippingCost)+'</span></div>':'')+
         (inv.customsCost?'<div class="row"><span>گمرکی:</span><span class="num">'+formatNum(inv.customsCost)+'</span></div>':'')+
         '<div class="row total"><span>نهایی:</span><span class="num">'+formatMoney(inv.total)+'</span></div>'+
         '<div class="row highlight"><span>پرداخت:</span><span class="num">'+formatNum(inv.paidAmount||0)+'</span></div>'+
@@ -1398,32 +1318,16 @@ function deleteInvoice(id){
 
 /* ============ تراکنش‌ها ============ */
 let txSearch = '';
-
 function renderTransactions(){
   const list = [].concat(DB.data.transactions).sort(function(a,b){return b.date.localeCompare(a.date);});
-  
   function getTxPersonNames(t){
-    if(t.type==='receive'||t.type==='pay'){
-      const p = DB.data.persons.find(function(x){return x.id===t.personId;});
-      return p ? p.name : '?';
-    } else if(t.type==='transfer'){
-      const from = DB.data.persons.find(function(x){return x.id===t.personId;});
-      const to = DB.data.persons.find(function(x){return x.id===t.toPersonId;});
-      return (from?from.name:'?')+' '+(to?to.name:'?');
-    }
+    if(t.type==='receive'||t.type==='pay'){ const p = DB.data.persons.find(function(x){return x.id===t.personId;}); return p ? p.name : '?'; }
+    else if(t.type==='transfer'){ const from = DB.data.persons.find(function(x){return x.id===t.personId;}); const to = DB.data.persons.find(function(x){return x.id===t.toPersonId;}); return (from?from.name:'?')+' '+(to?to.name:'?'); }
     return '?';
   }
-  
-  function filterTx(arr, q){
-    if(!q) return arr;
-    q = q.toLowerCase();
-    return arr.filter(function(t){ return getTxPersonNames(t).toLowerCase().includes(q); });
-  }
-  
+  function filterTx(arr, q){ if(!q) return arr; q = q.toLowerCase(); return arr.filter(function(t){ return getTxPersonNames(t).toLowerCase().includes(q); }); }
   function buildRows(arr){
-    if(!arr.length){
-      return '<tr><td colspan="6"><div class="empty"><div class="icon">💸</div><div class="title">'+(txSearch?'نتیجه‌ای یافت نشد':'تراکنشی ثبت نشده')+'</div></div></td></tr>';
-    }
+    if(!arr.length){ return '<tr><td colspan="6"><div class="empty"><div class="icon">💸</div><div class="title">'+(txSearch?'نتیجه‌ای یافت نشد':'تراکنشی ثبت نشده')+'</div></div></td></tr>'; }
     let html = '';
     for(const t of arr){
       let who = '-';
@@ -1435,9 +1339,7 @@ function renderTransactions(){
     }
     return html;
   }
-  
   const filtered = filterTx(list, txSearch);
-  
   $('#content').innerHTML =
     '<div class="card mb-3" style="padding:10px 12px">'+
       '<div class="search-box" style="max-width:none"><input class="form-control" id="txSearchInput" placeholder="جستجوی نام شخص..." value="'+txSearch.replace(/"/g,'&quot;')+'"></div>'+
@@ -1451,7 +1353,6 @@ function renderTransactions(){
       '</div>'+
     '</div>'+
     '<div class="card"><div class="table-wrap"><table><thead><tr><th>تاریخ</th><th>نوع</th><th>از / به</th><th>مبلغ</th><th>توضیح</th><th>عملیات</th></tr></thead><tbody id="txBody">'+buildRows(filtered)+'</tbody></table></div></div>';
-  
   const searchInput = $('#txSearchInput');
   if(searchInput){
     searchInput.addEventListener('input', function(e){
@@ -1473,7 +1374,7 @@ function txForm(type, editId){
     toOptions += '<option value="'+p.id+'" '+(existing&&existing.toPersonId===p.id?'selected':'')+'>'+p.name+'</option>';
     personOptions2 += '<option value="'+p.id+'" '+(existing&&existing.personId===p.id?'selected':'')+'>'+p.name+'</option>';
   }
-  let body = '<div class="form-group"><label class="form-label">تاریخ</label><input class="form-control" id="txDate" value="'+(existing?existing.date:todayJalali())+'" dir="ltr"></div>';
+  let body = '<div class="form-group"><label class="form-label">تاریخ</label><input class="form-control" id="txDate" value="'+(existing?existing.date:todayJalali())+'" data-datepicker></div>';
   if(isTransfer){
     body += '<div class="form-group"><label class="form-label">از شخص *</label><select class="form-control" id="txFrom">'+fromOptions+'</select></div>';
     body += '<div class="form-group"><label class="form-label">به شخص *</label><select class="form-control" id="txTo">'+toOptions+'</select></div>';
@@ -1553,7 +1454,6 @@ function renderExpenses(){
   if(catKeys.length){
     for(const k of catKeys){ const c = getCategoryInfo(k); catCardsHtml += '<div style="display:flex;justify-content:space-between;padding:10px 12px;background:var(--bg-card-2);border-radius:8px;margin-bottom:8px;border:1px solid var(--border-soft)"><span>'+c.icon+' '+c.label+'</span><b style="color:var(--danger)">'+formatMoney(byCategory[k])+'</b></div>'; }
   } else { catCardsHtml = '<div class="text-muted text-center" style="padding:20px">خالی</div>'; }
-  
   $('#content').innerHTML =
     '<div class="grid grid-3 mb-4">'+
       '<div class="stat s-danger"><div class="stat-label">کل هزینه</div><div class="stat-value negative">'+formatMoney(total)+'</div><div class="stat-icon">💸</div></div>'+
@@ -1572,7 +1472,7 @@ function expenseForm(id){
   for(const c of EXPENSE_CATEGORIES){ catOptions += '<option value="'+c.key+'" '+(c.key===e.category?'selected':'')+'>'+c.icon+' '+c.label+'</option>'; }
   openModal(isEdit?'ویرایش هزینه':'ثبت هزینه',
     '<div class="form-row">'+
-      '<div class="form-group"><label class="form-label">تاریخ</label><input class="form-control" id="expDate" value="'+e.date+'" dir="ltr"></div>'+
+      '<div class="form-group"><label class="form-label">تاریخ</label><input class="form-control" id="expDate" value="'+e.date+'" data-datepicker></div>'+
       '<div class="form-group"><label class="form-label">دسته *</label><select class="form-control" id="expCategory">'+catOptions+'</select></div>'+
     '</div>'+
     '<div class="form-group"><label class="form-label">عنوان *</label><input class="form-control" id="expTitle" value="'+e.title+'" placeholder="مثلاً: هزینه منزل فروردین"></div>'+
@@ -1651,11 +1551,11 @@ function renderCapital(){
       '<div class="card-header"><div class="card-title">تنظیم سرمایه اولیه</div></div>'+
       '<div class="form-row">'+
         '<div class="form-group"><label class="form-label">سرمایه اولیه</label><input class="form-control" data-thousands id="capVal" value="'+formatNum(initial)+'"></div>'+
-        '<div class="form-group"><label class="form-label">تاریخ شروع</label><input class="form-control" id="capDate" value="'+(DB.data.settings.initialCapitalDate||todayJalali())+'" dir="ltr"></div>'+
+        '<div class="form-group"><label class="form-label">تاریخ شروع</label><input class="form-control" id="capDate" value="'+(DB.data.settings.initialCapitalDate||todayJalali())+'" data-datepicker></div>'+
       '</div>'+
       '<button class="btn btn-primary" onclick="saveCapital()">💾 ذخیره</button>'+
     '</div>';
-  setTimeout(function(){attachAllThousandsIn($('#content'));},10);
+  setTimeout(function(){attachAllThousandsIn($('#content')); initDatepickers();},10);
 }
 function saveCapital(){
   DB.data.settings.initialCapital = parseNum($('#capVal').value);
@@ -1765,8 +1665,8 @@ function renderReports(){
         '<button class="filter-tab '+(reportPeriod==='custom'?'active':'')+'" onclick="setReportPeriod(\'custom\')">سفارشی</button>'+
       '</div>'+
       '<div class="form-row '+(reportPeriod==='custom'?'':'hidden')+'" id="customRange" style="margin-top:10px">'+
-        '<div class="form-group" style="margin-bottom:0"><input type="text" class="form-control" id="rangeFrom" value="'+(reportCustomFrom||'')+'" placeholder="از: 1403/01/01" dir="ltr"></div>'+
-        '<div class="form-group" style="margin-bottom:0"><input type="text" class="form-control" id="rangeTo" value="'+(reportCustomTo||'')+'" placeholder="تا: 1403/12/29" dir="ltr"></div>'+
+        '<div class="form-group" style="margin-bottom:0"><input type="text" class="form-control" id="rangeFrom" value="'+(reportCustomFrom||'')+'" placeholder="از تاریخ" data-datepicker></div>'+
+        '<div class="form-group" style="margin-bottom:0"><input type="text" class="form-control" id="rangeTo" value="'+(reportCustomTo||'')+'" placeholder="تا تاریخ" data-datepicker></div>'+
       '</div>'+
       (reportPeriod==='custom'?'<button class="btn btn-sm btn-primary mt-3" onclick="applyCustomRange()">اعمال</button>':'')+
     '</div>'+
@@ -1792,7 +1692,7 @@ function renderReports(){
       '<div class="card"><div class="card-header"><div class="card-title">سود و زیان بازه</div></div>'+
         '<table style="font-size:13px;min-width:100%">'+
           '<tr><td>فروش</td><td class="num" style="color:var(--success)">'+formatMoney(fSales)+'</td></tr>'+
-          '<tr><td>بهای تمام‌شده</td><td class="num" style="‌ها و هزینهcolor:var(--danger)">−'+formatMoney(fCogs)+'</td></tr>'+
+          '<tr><td>بهای تمام‌شده</td><td class="num" style="color:var(--danger)">−'+formatMoney(fCogs)+'</td></tr>'+
           '<tr style="border-top:1px solid var(--border-soft)"><td><b>سود ناخالص</b></td><td class="num"><b>'+formatMoney(fSales-fCogs)+'</b></td></tr>'+
           '<tr><td>هزینه‌ها</td><td class="num" style="color:var(--warning)">−'+formatMoney(fExpenses)+'</td></tr>'+
           '<tr style="border-top:2px solid var(--gold);font-weight:800;font-size:14px"><td><b style="color:var(--gold-light)">سود خالص</b></td><td class="num" style="color:'+(fProfit>=0?'var(--success)':'var(--danger)')+'"><b>'+formatMoney(fProfit)+'</b></td></tr>'+
@@ -1805,6 +1705,7 @@ function renderReports(){
     '</div>';
   
   setTimeout(function(){
+    initDatepickers();
     if(reportChart) reportChart.destroy();
     reportChart = new Chart($('#rChart1'),{
       type:'line',
@@ -1825,7 +1726,7 @@ function renderReports(){
         }
       }
     });
-  },10);
+  },50);
 }
 
 function setReportPeriod(p){
@@ -1876,7 +1777,7 @@ function renderSettings(){
           '<button class="btn btn-warning" onclick="resetAccountingData()">🧹 حذف حسابداری</button>'+
           '<button class="btn btn-danger" onclick="resetAllData()">🗑 حذف کل</button>'+
         '</div>'+
-        '<p class="text-muted mt-3" style="font-size:11px">- «حذف حسابداری» فاکتورها، تراکنش‌ها و هزینه‌ها را پاک می‌کند.<br>- «حذف کل» همه چیز را پاک می‌کند.</p>'+
+        '<p class="text-muted mt-3" style="font-size:11px">- «حذف حسابداری» فاکتورها، تراکنش‌ها، هزینه‌ها و <b>سرمایه اولیه</b> را پاک می‌کند.<br>- «حذف کل» همه چیز را پاک می‌کند.</p>'+
       '</div>'+
     '</div>'+
     '<div class="card mt-4">'+
@@ -1926,9 +1827,9 @@ function importData(e){
   e.target.value='';
 }
 function resetAccountingData(){
-  confirmAction('همه فاکتورها، تراکنش‌ها پاک شوند؟',function(){
+  confirmAction('همه فاکتورها، تراکنش‌ها، هزینه‌ها و سرمایه اولیه پاک شوند؟ (اشخاص، کالاها و انبارها حفظ می‌شوند)',function(){
     DB.resetAccounting();
-    toast('پاک شد','success');
+    toast('اطلاعات حسابداری و سرمایه اولیه پاک شد','success');
     navigate('dashboard');
   });
 }
@@ -1960,6 +1861,7 @@ function installApp() {
 }
 
 /* ============ شروع ============ */
+initDatepickers(); // بارگذاری اولیه
 navigate('dashboard');
 </script>
 </body>
