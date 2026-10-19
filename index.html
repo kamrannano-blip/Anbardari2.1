@@ -11,10 +11,6 @@
 <title>سیستم حسابداری DAVIN NOVA</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="DAVIN.PNG">
-<link rel="apple-touch-icon" sizes="180x180" href="DAVIN.PNG">
-<link rel="apple-touch-icon" sizes="152x152" href="DAVIN.PNG">
-<link rel="apple-touch-icon" sizes="167x167" href="DAVIN.PNG">
-<link rel="apple-touch-icon" sizes="120x120" href="DAVIN.PNG">
 <link rel="icon" type="image/png" href="DAVIN.PNG">
 <link href="https://cdn.jsdelivr.net/gh/font-store/font-IRANSharp/IRANSharp.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -30,19 +26,18 @@
   --info:#3b82f6; --gold:#d4af37; --gold-light:#f4e5a1;
   --radius:14px; --radius-sm:10px; --radius-lg:18px;
   --shadow-card:0 4px 20px rgba(0,0,0,.25),0 1px 0 rgba(255,255,255,.03) inset;
-  --shadow-card-hover:0 8px 30px rgba(0,0,0,.35),0 1px 0 rgba(255,255,255,.05) inset;
   --safe-top: env(safe-area-inset-top, 0px); --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{background:var(--bg-main);-webkit-text-size-adjust:100%}
-body{font-family:'IRANSharp', 'IRANSans', Tahoma, sans-serif;font-weight:500;background:var(--bg-main);color:var(--text-main);font-size:14px;line-height:1.7;min-height:100vh;min-height:100dvh;-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-top: var(--safe-top);padding-bottom: var(--safe-bottom)}
+body{font-family:'IRANSharp','IRANSans',Tahoma,sans-serif;font-weight:500;background:var(--bg-main);color:var(--text-main);font-size:14px;line-height:1.7;min-height:100vh;min-height:100dvh;-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-top:var(--safe-top);padding-bottom:var(--safe-bottom)}
 .app{display:flex;min-height:100vh;min-height:100dvh;width:100%}
-.sidebar{width:260px;background:#0f1419;border-left:1px solid var(--border-soft);padding:0 0 20px;position:fixed;top:0;right:0;bottom:0;overflow-y:auto;z-index:60;transition:transform .3s cubic-bezier(.4,0,.2,1);box-shadow:-4px 0 20px rgba(0,0,0,.4);padding-top: calc(var(--safe-top) + 12px);padding-bottom: calc(var(--safe-bottom) + 20px)}
+.sidebar{width:260px;background:#0f1419;border-left:1px solid var(--border-soft);padding:0 0 20px;position:fixed;top:0;right:0;bottom:0;overflow-y:auto;z-index:60;transition:transform .3s cubic-bezier(.4,0,.2,1);box-shadow:-4px 0 20px rgba(0,0,0,.4);padding-top:calc(var(--safe-top) + 12px);padding-bottom:calc(var(--safe-bottom) + 20px)}
 .sidebar .brand{display:flex;align-items:center;gap:12px;padding:0 18px 18px;border-bottom:1px solid var(--border-soft);margin-bottom:14px}
 .sidebar .brand-icon{width:48px;height:48px;background:linear-gradient(135deg,#f4e5a1 0%,#d4af37 50%,#b8860b 100%);border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--border-medium);flex-shrink:0;position:relative;box-shadow:0 2px 8px rgba(212,175,55,.3);}
 .sidebar .brand-icon .brand-fallback{color:#0f1419;font-weight:900;font-size:22px;display:flex;align-items:center;justify-content:center;width:100%;height:100%;position:relative;z-index:1}
 .sidebar .brand-icon img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;z-index:2}
-.sidebar .brand-text{font-weight:800;font-size:15px;color:#ffffff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px}
+.sidebar .brand-text{font-weight:800;font-size:15px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px}
 .sidebar .brand-sub{font-size:11px;color:var(--text-sub);margin-top:2px}
 .nav-item{display:flex;align-items:center;gap:12px;padding:12px 18px;margin:2px 10px;color:var(--text-sub);cursor:pointer;font-weight:600;font-size:13.5px;border-radius:10px;transition:all .2s;user-select:none}
 .nav-item:hover{background:var(--bg-hover);color:var(--text-main)}
@@ -50,12 +45,12 @@ body{font-family:'IRANSharp', 'IRANSans', Tahoma, sans-serif;font-weight:500;bac
 .nav-item .icon{font-size:18px;width:22px;text-align:center;display:inline-block}
 .main{margin-right:260px;flex:1;padding:14px 20px 130px;min-height:100vh;min-height:100dvh;position:relative;overflow-x:hidden;width:calc(100% - 260px)}
 .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px;background:var(--bg-card);padding:12px 16px;border-radius:var(--radius);border:1px solid var(--border-soft);box-shadow:var(--shadow-card);width:100%;position:relative;z-index:1}
-.page-title{font-size:18px;font-weight:800;color:#ffffff}
+.page-title{font-size:18px;font-weight:800;color:#fff}
 #todayDate{font-size:12px;color:var(--text-sub);font-weight:600}
-.menu-toggle{display:none;background:var(--bg-card-2);border:1px solid var(--border-medium);border-radius:10px;padding:8px 12px;cursor:pointer;color:#ffffff;font-size:18px;line-height:1;min-width:42px;min-height:42px;align-items:center;justify-content:center}
+.menu-toggle{display:none;background:var(--bg-card-2);border:1px solid var(--border-medium);border-radius:10px;padding:8px 12px;cursor:pointer;color:#fff;font-size:18px;line-height:1;min-width:42px;min-height:42px;align-items:center;justify-content:center}
 .card{background:var(--bg-card);border-radius:var(--radius);padding:16px;border:1px solid var(--border-soft);box-shadow:var(--shadow-card);transition:all .3s;width:100%;max-width:100%;overflow:hidden}
 .card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;padding-bottom:10px;border-bottom:1px solid var(--border-soft)}
-.card-title{font-size:13.5px;font-weight:800;color:#ffffff}
+.card-title{font-size:13.5px;font-weight:800;color:#fff}
 .grid{display:grid;gap:12px;width:100%}
 .grid-2{grid-template-columns:repeat(2,1fr)}
 .grid-3{grid-template-columns:repeat(3,1fr)}
@@ -70,7 +65,7 @@ body{font-family:'IRANSharp', 'IRANSans', Tahoma, sans-serif;font-weight:500;bac
 .stat.s-info::before{background:var(--info)}
 .stat.s-gold::before{background:var(--gold)}
 .stat-label{font-size:11.5px;color:var(--text-sub);margin-bottom:6px;font-weight:600;position:relative;z-index:1}
-.stat-value{font-size:17px;font-weight:800;color:#ffffff;letter-spacing:-.5px;position:relative;z-index:1;font-variant-numeric:tabular-nums;word-break:break-word}
+.stat-value{font-size:17px;font-weight:800;color:#fff;letter-spacing:-.5px;position:relative;z-index:1;font-variant-numeric:tabular-nums;word-break:break-word}
 .stat-value.positive{color:var(--success)}
 .stat-value.negative{color:var(--danger)}
 .stat-value.gold{color:var(--gold-light)}
@@ -89,7 +84,7 @@ body{font-family:'IRANSharp', 'IRANSans', Tahoma, sans-serif;font-weight:500;bac
 .quick-tx svg{width:16px;height:16px;stroke-width:3}
 .form-group{margin-bottom:14px}
 .form-label{display:block;font-size:12px;font-weight:700;color:var(--text-sub);margin-bottom:6px}
-.form-control{width:100%;padding:11px 12px;border:1px solid var(--border-medium);border-radius:var(--radius-sm);font-family:inherit;font-size:16px;background:var(--bg-input);color:#ffffff;transition:all .2s}
+.form-control{width:100%;padding:11px 12px;border:1px solid var(--border-medium);border-radius:var(--radius-sm);font-family:inherit;font-size:16px;background:var(--bg-input);color:#fff;transition:all .2s}
 .form-control:focus{outline:none;border-color:var(--accent);background:#0c1118}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:640px){.form-row{grid-template-columns:1fr}}
@@ -98,51 +93,17 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
 
 .date3-wrap{display:flex;flex-direction:column;gap:6px;margin-top:2px;}
 .date3-row{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:6px;direction:rtl;}
-.date3-select{
-  width:100%;padding:8px 6px;border:1px solid var(--border-medium);border-radius:8px;
-  font-family:inherit;font-size:13px;font-weight:700;background:var(--bg-input);color:#ffffff;
-  cursor:pointer;transition:all .2s;text-align:center;height:36px;
-  appearance:none;-webkit-appearance:none;
-  background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-  background-repeat:no-repeat;background-position:left 6px center;background-size:10px;padding-left:20px;
-}
+.date3-select{width:100%;padding:8px 6px;border:1px solid var(--border-medium);border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;background:var(--bg-input);color:#fff;cursor:pointer;transition:all .2s;text-align:center;height:36px;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");background-repeat:no-repeat;background-position:left 6px center;background-size:10px;padding-left:20px;}
 .date3-select:hover{border-color:var(--border-strong);}
 .date3-select:focus{outline:none;border-color:var(--accent);background-color:#0c1118;}
 .date3-select option{background:var(--bg-card);color:#fff;padding:8px;}
-.date3-display{
-  padding:4px 10px;background:linear-gradient(135deg,rgba(212,175,55,.12) 0%,rgba(212,175,55,.2) 100%);
-  border:1px solid rgba(212,175,55,.3);border-radius:6px;font-size:11px;font-weight:700;
-  color:var(--gold-light);text-align:center;font-variant-numeric:tabular-nums;letter-spacing:.5px;
-}
+.date3-display{padding:4px 10px;background:linear-gradient(135deg,rgba(212,175,55,.12) 0%,rgba(212,175,55,.2) 100%);border:1px solid rgba(212,175,55,.3);border-radius:6px;font-size:11px;font-weight:700;color:var(--gold-light);text-align:center;font-variant-numeric:tabular-nums;letter-spacing:.5px;}
 .hidden-date-input{display:none!important;}
 
-/* ============ جدول اقلام فاکتور ============ */
-.items-wrap{
-  min-height: 180px !important;
-  max-height: 360px !important;
-  overflow-y: auto !important;
-  overflow-x: auto !important;
-  -webkit-overflow-scrolling: touch;
-  position: relative;
-}
-.items-table{
-  min-width: 900px !important;
-  width: 900px !important;
-  table-layout: fixed;
-  border-collapse: separate;
-  border-spacing: 0;
-}
-.items-table thead th{
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: var(--bg-card-2);
-}
-.items-table th,.items-table td{
-  padding: 6px 4px !important;
-  vertical-align: middle;
-  overflow: visible;
-}
+.items-wrap{min-height:180px !important;max-height:360px !important;overflow-y:auto !important;overflow-x:auto !important;-webkit-overflow-scrolling:touch;position:relative;}
+.items-table{min-width:900px !important;width:900px !important;table-layout:fixed;border-collapse:separate;border-spacing:0;}
+.items-table thead th{position:sticky;top:0;z-index:20;background:var(--bg-card-2);}
+.items-table th,.items-table td{padding:6px 4px !important;vertical-align:middle;overflow:visible;}
 .items-table .col-product{width:33%;}
 .items-table .col-stock{width:10%;}
 .items-table .col-qty{width:10%;}
@@ -150,129 +111,32 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
 .items-table .col-total{width:15.6%;}
 .items-table .col-act{width:13%;}
 
-.items-table .col-product input{
-  font-size:13px !important;
-  padding:8px 10px !important;
-  height:36px !important;
-  min-height:36px !important;
-  border-radius:8px !important;
-  width:100% !important;
-}
-.items-table .col-qty input{
-  font-size:13px !important;
-  padding:8px 4px !important;
-  height:36px !important;
-  min-height:36px !important;
-  border-radius:8px !important;
-  width:100% !important;
-  font-weight:700 !important;
-  text-align:center;
-}
-.items-table .col-price input{
-  font-size:12px !important;
-  padding:8px 8px !important;
-  height:36px !important;
-  min-height:36px !important;
-  border-radius:8px !important;
-  width:100% !important;
-  font-weight:700 !important;
-}
-.items-table .col-total .num{
-  font-size:13px !important;
-  font-weight:700;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  height:36px;
-  direction:ltr;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  padding:0 4px;
-}
-.items-table .col-stock .stock-badge{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:12px;
-  font-weight:800;
-  height:36px;
-  min-height:36px;
-  border-radius:8px;
-  background:rgba(59,130,246,.12);
-  color:#60a5fa;
-  border:1px solid rgba(59,130,246,.3);
-  font-variant-numeric:tabular-nums;
-  direction:ltr;
-  width:100%;
-}
+.items-table .col-product input{font-size:13px !important;padding:8px 10px !important;height:36px !important;min-height:36px !important;border-radius:8px !important;width:100% !important;}
+.items-table .col-qty input{font-size:13px !important;padding:8px 4px !important;height:36px !important;min-height:36px !important;border-radius:8px !important;width:100% !important;font-weight:700 !important;text-align:center;}
+.items-table .col-price input{font-size:12px !important;padding:8px 8px !important;height:36px !important;min-height:36px !important;border-radius:8px !important;width:100% !important;font-weight:700 !important;}
+.items-table .col-total .num{font-size:13px !important;font-weight:700;display:flex;align-items:center;justify-content:center;height:36px;direction:ltr;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 4px;}
+.items-table .col-stock .stock-badge{display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;height:36px;min-height:36px;border-radius:8px;background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.3);font-variant-numeric:tabular-nums;direction:ltr;width:100%;}
 .items-table .col-stock .stock-badge.stock-out{background:rgba(239,68,68,.12);color:#f87171;border-color:rgba(239,68,68,.3);}
 .items-table .col-stock .stock-badge.stock-low{background:rgba(245,158,11,.12);color:#fbbf24;border-color:rgba(245,158,11,.3);}
 .items-table .col-stock .stock-badge.stock-empty{background:transparent;border:1px dashed var(--border-medium);color:var(--text-muted);}
-.items-table .col-act button{
-  padding:6px 8px !important;
-  font-size:11px !important;
-  height:36px !important;
-  min-height:36px !important;
-  width:100%;
-}
+.items-table .col-act button{padding:6px 8px !important;font-size:11px !important;height:36px !important;min-height:36px !important;width:100%;}
 
-/* ============ Dropdown کالا — سراسری (خارج از جدول) ============ */
 .prod-dd-wrap{position:relative;width:100%}
-.prod-dd-input{
-  width:100%;
-  font-size:13px !important;
-  padding:8px 10px !important;
-  height:36px !important;
-  min-height:36px !important;
-  border:1px solid var(--border-medium);
-  border-radius:8px;
-  background:var(--bg-input);
-  color:#fff;
-  font-family:inherit;
-  cursor:pointer;
-  transition:border-color .2s;
-}
+.prod-dd-input{width:100%;font-size:13px !important;padding:8px 10px !important;height:36px !important;min-height:36px !important;border:1px solid var(--border-medium);border-radius:8px;background:var(--bg-input);color:#fff;font-family:inherit;cursor:pointer;transition:border-color .2s;}
 .prod-dd-input:focus{outline:none;border-color:var(--accent);}
 
-#globalProdDropdown{
-  position:fixed;
-  background:var(--bg-card-2);
-  border:1px solid var(--border-strong);
-  border-radius:8px;
-  box-shadow:0 15px 40px rgba(0,0,0,.7);
-  z-index:99999;
-  display:none;
-  overflow:hidden;
-}
+#globalProdDropdown{position:fixed;background:var(--bg-card-2);border:1px solid var(--border-strong);border-radius:8px;box-shadow:0 15px 40px rgba(0,0,0,.7);z-index:99999;display:none;overflow:hidden;}
 #globalProdDropdown.open{display:block;}
 #globalProdDropdown .pdd-search{padding:8px;border-bottom:1px solid var(--border-soft);}
-#globalProdDropdown .pdd-search input{
-  width:100%;
-  padding:8px 10px;
-  border:1px solid var(--border-medium);
-  border-radius:6px;
-  background:var(--bg-input);
-  color:#fff;
-  font-family:inherit;
-  font-size:13px;
-}
+#globalProdDropdown .pdd-search input{width:100%;padding:8px 10px;border:1px solid var(--border-medium);border-radius:6px;background:var(--bg-input);color:#fff;font-family:inherit;font-size:13px;}
 #globalProdDropdown .pdd-list{max-height:180px;overflow-y:auto;}
-#globalProdDropdown .pdd-item{
-  padding:10px 14px;
-  cursor:pointer;
-  border-bottom:1px solid var(--border-soft);
-  font-size:13px;
-  color:var(--text-main);
-  transition:background .15s;
-}
+#globalProdDropdown .pdd-item{padding:10px 14px;cursor:pointer;border-bottom:1px solid var(--border-soft);font-size:13px;color:var(--text-main);transition:background .15s;}
 #globalProdDropdown .pdd-item:last-child{border-bottom:none;}
 #globalProdDropdown .pdd-item:hover{background:var(--bg-hover);color:var(--accent);}
 #globalProdDropdown .pdd-empty{padding:14px;text-align:center;color:var(--text-muted);font-size:13px;}
 
-/* ============ Smart Select (مشتری) ============ */
 .smart-select-wrap{position:relative;width:100%}
-.smart-select-display{width:100%;padding:11px 36px 11px 12px;border:1px solid var(--border-medium);border-radius:var(--radius-sm);font-family:inherit;font-size:15px;background:var(--bg-input);color:#ffffff;cursor:pointer;display:flex;align-items:center;justify-content:space-between;min-height:44px;transition:all .2s;}
+.smart-select-display{width:100%;padding:11px 36px 11px 12px;border:1px solid var(--border-medium);border-radius:var(--radius-sm);font-family:inherit;font-size:15px;background:var(--bg-input);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:space-between;min-height:44px;transition:all .2s;}
 .smart-select-display:hover{border-color:var(--border-strong);}
 .smart-select-display.active{border-color:var(--accent);}
 .smart-select-display .ph{color:var(--text-muted);}
@@ -290,7 +154,7 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
 .table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border-soft);background:var(--bg-input);width:100%;max-width:100%;-webkit-overflow-scrolling:touch}
 table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:100%}
 th{background:var(--bg-card-2);padding:11px 12px;text-align:right;font-weight:700;color:var(--text-sub);font-size:11.5px;border-bottom:1px solid var(--border-medium);white-space:nowrap}
-td{padding:11px 12px;border-bottom:1px solid var(--border-soft);color:#ffffff}
+td{padding:11px 12px;border-bottom:1px solid var(--border-soft);color:#fff}
 tbody tr:hover{background:var(--bg-hover)}
 .num{direction:ltr;text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
 .badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:10.5px;font-weight:700;border:1px solid transparent}
@@ -300,13 +164,13 @@ tbody tr:hover{background:var(--bg-hover)}
 .badge-info{background:rgba(59,130,246,.15);color:#60a5fa;border-color:rgba(59,130,246,.3)}
 .badge-gray{background:rgba(139,149,165,.15);color:var(--text-sub);border-color:rgba(139,149,165,.25)}
 .badge-gold{background:rgba(212,175,55,.15);color:var(--gold-light);border-color:rgba(212,175,55,.35)}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;display:none;align-items:center;justify-content:center;padding:16px;padding-top: calc(var(--safe-top) + 16px);padding-bottom: calc(var(--safe-bottom) + 16px);}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;display:none;align-items:center;justify-content:center;padding:16px;padding-top:calc(var(--safe-top) + 16px);padding-bottom:calc(var(--safe-bottom) + 16px);}
 .modal-overlay.show{display:flex}
 .modal{background:var(--bg-card);border-radius:var(--radius-lg);width:100%;max-width:600px;max-height:90vh;overflow-y:auto;border:1px solid var(--border-medium);box-shadow:0 25px 60px rgba(0,0,0,.6);animation:slideUp .3s;}
 .modal.modal-lg{max-width:900px}
 @keyframes slideUp{from{opacity:0;transform:translateY(30px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
 .modal-header{padding:16px 18px;border-bottom:1px solid var(--border-soft);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--bg-card);z-index:1}
-.modal-title{font-size:15px;font-weight:800;color:#ffffff}
+.modal-title{font-size:15px;font-weight:800;color:#fff}
 .modal-close{background:var(--bg-card-2);border:1px solid var(--border-medium);font-size:18px;cursor:pointer;color:var(--text-sub);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center}
 .modal-body{padding:18px}
 .modal-footer{padding:14px 18px;border-top:1px solid var(--border-soft);display:flex;gap:8px;justify-content:flex-end;position:sticky;bottom:0;background:var(--bg-card);flex-wrap:wrap}
@@ -314,7 +178,7 @@ tbody tr:hover{background:var(--bg-hover)}
 .empty{text-align:center;padding:36px 16px;color:var(--text-muted)}
 .empty .icon{font-size:36px;margin-bottom:10px;opacity:.4}
 .empty .title{font-weight:700;color:var(--text-sub);margin-bottom:4px;font-size:13.5px}
-.toast{position:fixed;bottom: calc(80px + var(--safe-bottom));left:16px;right:16px;max-width:400px;margin:0 auto;background:var(--bg-card-2);color:#ffffff;padding:12px 16px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.5);z-index:200;font-size:13px;font-weight:700;opacity:0;transform:translateY(20px);transition:.3s;pointer-events:none;border:1px solid var(--border-medium);text-align:center;}
+.toast{position:fixed;bottom:calc(80px + var(--safe-bottom));left:16px;right:16px;max-width:400px;margin:0 auto;background:var(--bg-card-2);color:#fff;padding:12px 16px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.5);z-index:200;font-size:13px;font-weight:700;opacity:0;transform:translateY(20px);transition:.3s;pointer-events:none;border:1px solid var(--border-medium);text-align:center;}
 .toast.show{opacity:1;transform:translateY(0)}
 .toast.success{background:rgba(16,185,129,.2);color:#34d399;border-color:rgba(16,185,129,.5)}
 .toast.error{background:rgba(239,68,68,.2);color:#f87171;border-color:rgba(239,68,68,.5)}
@@ -335,15 +199,15 @@ tbody tr:hover{background:var(--bg-hover)}
 .search-box::before{content:'🔍';position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.5;pointer-events:none}
 .chart-container{position:relative;width:100%;height:220px;max-height:220px;overflow:hidden}
 @media(max-width:640px){.chart-container{height:180px;max-height:180px}}
-.footer-signature{position:fixed;bottom:0;left:0;right:260px;background:linear-gradient(180deg,rgba(15,20,25,.98) 0%,rgba(10,14,20,1) 100%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(212,175,55,.25);padding:8px 16px;padding-bottom: calc(8px + var(--safe-bottom));text-align:center;z-index:45;}
+.footer-signature{position:fixed;bottom:0;left:0;right:260px;background:linear-gradient(180deg,rgba(15,20,25,.98) 0%,rgba(10,14,20,1) 100%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(212,175,55,.25);padding:8px 16px;padding-bottom:calc(8px + var(--safe-bottom));text-align:center;z-index:45;}
 .footer-signature .sig-line{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;line-height:1.4}
 .footer-signature .sig-brand{font-weight:900;font-size:12.5px;letter-spacing:2px;background:linear-gradient(135deg,#f4e5a1 0%,#d4af37 40%,#b8860b 70%,#f4e5a1 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .footer-signature .sig-design{font-weight:700;font-size:9.5px;color:#8b95a5;letter-spacing:1.5px;text-transform:uppercase}
 .footer-signature .sig-tel{font-weight:800;font-size:11px;color:#d4af37;direction:ltr;letter-spacing:1px}
 
 @media(max-width:900px){
-  .sidebar{transform: translateX(100%);transition: transform 0.3s ease-in-out;}
-  .sidebar.open{transform: translateX(0);}
+  .sidebar{transform:translateX(100%);transition:transform 0.3s ease-in-out;}
+  .sidebar.open{transform:translateX(0);}
   .main{margin-right:0;padding:12px 12px 170px;width:100%;}
   .menu-toggle{display:inline-flex;}
   .footer-signature{right:0;}
@@ -361,7 +225,7 @@ tbody tr:hover{background:var(--bg-hover)}
   .items-wrap{min-height:160px !important;max-height:300px !important;}
   .items-table{min-width:820px !important;width:820px !important;}
 }
-@media(min-width:901px){.sidebar{transform: translateX(0) !important;}}
+@media(min-width:901px){.sidebar{transform:translateX(0) !important;}}
 ::-webkit-scrollbar{width:6px;height:6px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--bg-card-2);border-radius:3px}
@@ -435,7 +299,7 @@ tbody tr:hover{background:var(--bg-hover)}
 </div>
 
 <script>
-  /* ============ ابزارهای عمومی ============ */
+/* ============ ابزارهای عمومی ============ */
 const $ = (s,el)=> (el||document).querySelector(s);
 const $$ = (s,el)=> Array.prototype.slice.call((el||document).querySelectorAll(s));
 
@@ -591,7 +455,6 @@ function updateDate3(inputId){
   if(disp) disp.textContent = '📅 '+dateStr;
 }
 
-/* ============ Smart Select (مشتری) ============ */
 function buildSmartSelect(options){
   var selItem = null;
   for(var i=0; i<options.items.length; i++){
@@ -671,7 +534,6 @@ document.addEventListener('click', function(e){
   }
 });
 
-/* ============ دیتابیس ============ */
 const DB_KEY = 'hesabdar_v5';
 const DB = {
   data: {
@@ -719,7 +581,6 @@ const DB = {
 };
 DB.load();
 
-/* ============ محاسبات ============ */
 function stockOf(productId,warehouseId,excludeInvoiceId){
   let total = 0;
   for(const m of DB.data.stockMoves){
@@ -830,7 +691,6 @@ function currentCapital(){
   return t.cash + stockVal + t.receivable - t.payable;
 }
 
-/* ============ فیلتر بازه زمانی ============ */
 function getDateRange(period){
   const g = new Date();
   const j = jalaali.toJalaali(g.getFullYear(),g.getMonth()+1,g.getDate());
@@ -850,7 +710,6 @@ function inRange(dateStr, from, to){
   return dateStr >= from && dateStr <= to;
 }
 
-/* ============ ناوبری ============ */
 const pages = {
   dashboard: renderDashboard, invoices: renderInvoices, products: renderProducts,
   warehouses: renderWarehouses, persons: renderPersons, transactions: renderTransactions,
@@ -1375,7 +1234,7 @@ function buildProductSearch(idx, currentProductId){
   var p = currentProductId ? DB.data.products.find(function(x){return x.id===currentProductId;}) : null;
   var displayValue = p ? p.name : '';
   var html = '<div class="prod-dd-wrap">' +
-    '<input type="text" class="prod-dd-input" id="invProdSearch_' + idx + '" placeholder="جستجوی کالا..." value="' + displayValue + '" onclick="openGlobalProdDD(' + idx + ', this)">' +
+    '<input type="text" class="prod-dd-input" id="invProdSearch_' + idx + '" placeholder="جستجوی کالا..." value="' + displayValue + '" onclick="event.stopPropagation(); openGlobalProdDD(' + idx + ', this)">' +
   '</div>';
   return html;
 }
@@ -1465,7 +1324,6 @@ function selectGlobalPddItem(id){
   recalcInvoice();
 }
 
-/* بستن با کلیک بیرون */
 document.addEventListener('click', function(e){
   var dd = document.getElementById('globalProdDropdown');
   if(!dd || !dd.classList.contains('open')) return;
@@ -1474,12 +1332,6 @@ document.addEventListener('click', function(e){
   if(!isInsideDD && !isOnInput){ closeGlobalProdDD(); }
 });
 
-/* بستن با اسکرول (گزینه A) */
-window.addEventListener('scroll', function(){
-  closeGlobalProdDD();
-}, true);
-
-/* بستن با تغییر اندازه */
 window.addEventListener('resize', function(){
   closeGlobalProdDD();
 });
@@ -2137,21 +1989,12 @@ function renderReports(){
   },50);
 }
 
-function setReportPeriod(p){
-  reportPeriod = p;
-  renderReports();
-}
+function setReportPeriod(p){ reportPeriod = p; renderReports(); }
 function applyCustomRange(){
   const from = $('#rangeFrom').value.trim();
   const to = $('#rangeTo').value.trim();
-  if(!validJalali(from) || !validJalali(to)){
-    toast('تاریخ‌ها معتبر نیستند', 'error');
-    return;
-  }
-  if(from > to){
-    toast('تاریخ شروع باید قبل از پایان باشد', 'error');
-    return;
-  }
+  if(!validJalali(from) || !validJalali(to)){ toast('تاریخ‌ها معتبر نیستند', 'error'); return; }
+  if(from > to){ toast('تاریخ شروع باید قبل از پایان باشد', 'error'); return; }
   reportCustomFrom = from;
   reportCustomTo = to;
   reportPeriod = 'custom';
@@ -2185,15 +2028,15 @@ function renderSettings(){
           '<button class="btn btn-warning" onclick="resetAccountingData()">🧹 حذف حسابداری</button>'+
           '<button class="btn btn-danger" onclick="resetAllData()">🗑 حذف کل</button>'+
         '</div>'+
-        '<p class="text-muted mt-3" style="font-size:11px">- «حذف حسابداری» فاکتورها، تراکنش‌ها، هزینه‌ها و <b>سرمایه اولیه</b> را پاک می‌کند+
-.<br>- «حذف کل» همه چیز را پاک می‌ک       ند.</p>'+
-      '< '</div>'+
+        '<p class="text-muted mt-3" style="font-size:11px">- «حذف حسابداری» فاکتورها، تراکنش‌ها، هزینه‌ها و <b>سرمایه اولیه</b> را پاک می‌کند.<br>- «حذف کل» همه چیز را پاک می‌کند.</p>'+
+      '</div>'+
     '</div>'+
-div    '<div class="card mt- class4">'+
-      '<div=" class="card-header"><div class="card-title">اطلاعات سیستم</div></div>'+
+    '<div class="card mt-4">'+
+      '<div class="card-header"><div class="card-title">اطلاعات سیستم</div></div>'+
       '<div class="grid grid-4">'+
         '<div class="stat"><div class="stat-label">اشخاص</div><div class="stat-value">'+formatNum(DB.data.persons.length)+'</div></div>'+
-        '<div class="stat"><div class="stat-label">کالاها</div><div class="stat-value">'+formatNum(DB.data.products.length)+'</div></div>'stat"><div class="stat-label">انبارها</div><div class="stat-value">'+formatNum(DB.data.warehouses.length)+'</div></div>'+
+        '<div class="stat"><div class="stat-label">کالاها</div><div class="stat-value">'+formatNum(DB.data.products.length)+'</div></div>'+
+        '<div class="stat"><div class="stat-label">انبارها</div><div class="stat-value">'+formatNum(DB.data.warehouses.length)+'</div></div>'+
         '<div class="stat s-gold"><div class="stat-label">هزینه‌ها</div><div class="stat-value gold">'+formatNum((DB.data.expenses||[]).length)+'</div></div>'+
       '</div>'+
     '</div>';
@@ -2249,24 +2092,16 @@ function resetAllData(){
   });
 }
 
-/* ============ Service Worker & Install ============ */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('service-worker.js')
-      .then(function(reg) { console.log('Service Worker ثبت شد'); })
-      .catch(function(err) { console.log('خطا در ثبت SW:', err); });
+      .then(function(reg) { console.log('SW ثبت شد'); })
+      .catch(function(err) { console.log('خطا SW:', err); });
   });
 }
 let deferredPrompt;
-window.addEventListener('beforeinstallprompt', function(e) {
-  e.preventDefault();
-  deferredPrompt = e;
-});
-function installApp() {
-  if (!deferredPrompt) return;
-  deferredPrompt.prompt();
-  deferredPrompt.userChoice.then(function(choiceResult) { deferredPrompt = null; });
-}
+window.addEventListener('beforeinstallprompt', function(e) { e.preventDefault(); deferredPrompt = e; });
+function installApp() { if (!deferredPrompt) return; deferredPrompt.prompt(); deferredPrompt.userChoice.then(function(){ deferredPrompt = null; }); }
 
 /* ============ شروع ============ */
 setTimeout(function(){ initDatepickers(); }, 100);
