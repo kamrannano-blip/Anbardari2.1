@@ -116,9 +116,8 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
 }
 .hidden-date-input{display:none!important;}
 
-/* ============ جدول اقلام فاکتور — اسکرول‌پذیر ============ */
+/* ============ جدول اقلام فاکتور ============ */
 .items-wrap{
-  min-height: 240px !important;
   max-height: 320px !important;
   overflow-y: auto !important;
   overflow-x: auto !important;
@@ -126,8 +125,8 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
   position: relative;
 }
 .items-table{
-  min-width: 1100px !important;
-  width: 1100px !important;
+  min-width: 900px !important;
+  width: 900px !important;
   table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
@@ -138,70 +137,67 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
   z-index: 20;
   background: var(--bg-card-2);
 }
-.items-table th,.items-table td{padding:4px 3px !important;vertical-align: middle;overflow:hidden;}
-.items-table .col-product{width:50%;}
+.items-table th,.items-table td{
+  padding: 6px 4px !important;
+  vertical-align: middle;
+  overflow: visible;
+}
+.items-table .col-product{width:40%;}
 .items-table .col-stock{width:10%;}
 .items-table .col-qty{width:10%;}
 .items-table .col-price{width:20%;}
-.items-table .col-total{width:7%;}
-.items-table .col-act{width:3%;}
+.items-table .col-total{width:12%;}
+.items-table .col-act{width:8%;}
 
-/* کادر کالا — ۱/۳ اندازه قبلی */
 .items-table .col-product input{
-  font-size:10px !important;
-  padding:3px 6px !important;
-  height:24px !important;
-  min-height:24px !important;
-  border-radius:5px !important;
+  font-size:13px !important;
+  padding:8px 10px !important;
+  height:36px !important;
+  min-height:36px !important;
+  border-radius:8px !important;
   width:100% !important;
-  line-height:1.2 !important;
 }
-
-/* کادر تعداد */
 .items-table .col-qty input{
-  font-size:11px !important;
-  padding:3px 4px !important;
-  height:24px !important;
-  min-height:24px !important;
-  border-radius:5px !important;
+  font-size:13px !important;
+  padding:8px 4px !important;
+  height:36px !important;
+  min-height:36px !important;
+  border-radius:8px !important;
   width:100% !important;
   font-weight:700 !important;
   text-align:center;
 }
-
-/* کادر قیمت — ۱/۲ اندازه قبلی */
 .items-table .col-price input{
-  font-size:10px !important;
-  padding:3px 6px !important;
-  height:24px !important;
-  min-height:24px !important;
-  border-radius:5px !important;
+  font-size:12px !important;
+  padding:8px 8px !important;
+  height:36px !important;
+  min-height:36px !important;
+  border-radius:8px !important;
   width:100% !important;
   font-weight:700 !important;
 }
-
-/* کادر جمع — ۱۰٪ بزرگ‌تر */
 .items-table .col-total .num{
   font-size:12px !important;
   font-weight:700;
-  display:block;
-  text-align:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:36px;
   direction:ltr;
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;
+  padding:0 4px;
 }
-
-/* کادر موجودی — هم‌اندازه تعداد */
 .items-table .col-stock .stock-badge{
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:11px;
+  font-size:12px;
   font-weight:800;
-  height:24px;
-  min-height:24px;
-  border-radius:5px;
+  height:36px;
+  min-height:36px;
+  border-radius:8px;
   background:rgba(59,130,246,.12);
   color:#60a5fa;
   border:1px solid rgba(59,130,246,.3);
@@ -212,39 +208,74 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
 .items-table .col-stock .stock-badge.stock-out{background:rgba(239,68,68,.12);color:#f87171;border-color:rgba(239,68,68,.3);}
 .items-table .col-stock .stock-badge.stock-low{background:rgba(245,158,11,.12);color:#fbbf24;border-color:rgba(245,158,11,.3);}
 .items-table .col-stock .stock-badge.stock-empty{background:transparent;border:1px dashed var(--border-medium);color:var(--text-muted);}
-
-/* دکمه حذف کوچیک */
 .items-table .col-act button{
-  padding:2px 5px !important;
-  font-size:10px !important;
-  height:24px !important;
-  min-height:24px !important;
+  padding:6px 8px !important;
+  font-size:11px !important;
+  height:36px !important;
+  min-height:36px !important;
+  width:100%;
 }
 
-/* ============ لیست کالا — dropdown شناور ============ */
-.smart-select-list{
-  position: fixed;
-  max-height: 180px;   /* حدود ۴ ردیف ۴۴px */
-  overflow-y: auto;
-  background: var(--bg-card-2);
-  border: 1px solid var(--border-strong);
-  border-radius: 8px;
-  z-index: 99999;
-  box-shadow: 0 12px 35px rgba(0,0,0,.85);
+/* ============ Dropdown کالا — دقیقاً مثل smart select مشتری ============ */
+.prod-dd-wrap{position:relative;width:100%}
+.prod-dd-input{
+  width:100%;
+  font-size:13px !important;
+  padding:8px 10px !important;
+  height:36px !important;
+  min-height:36px !important;
+  border:1px solid var(--border-medium);
+  border-radius:8px;
+  background:var(--bg-input);
+  color:#fff;
+  font-family:inherit;
+  cursor:pointer;
+  transition:border-color .2s;
 }
-.smart-select-list.hidden{display:none;}
-.ss-product-item{
-  padding: 10px 12px;cursor: pointer;border-bottom: 1px solid var(--border-soft);
-  display: flex;justify-content: space-between;align-items: center;gap: 8px;
-  height: 44px;box-sizing: border-box;transition: background .15s;
+.prod-dd-input:focus{outline:none;border-color:var(--accent);}
+.prod-dd-panel{
+  position:absolute;
+  top:100%;
+  right:0;
+  left:0;
+  margin-top:4px;
+  background:var(--bg-card-2);
+  border:1px solid var(--border-strong);
+  border-radius:8px;
+  box-shadow:0 15px 40px rgba(0,0,0,.6);
+  z-index:10000;
+  display:none;
+  overflow:hidden;
 }
-.ss-product-item:last-child{border-bottom: none;}
-.ss-product-item:hover{background: var(--bg-hover);}
-.ss-product-item.selected{background: rgba(230,57,70,.12);border-right: 3px solid var(--accent);}
-.ss-product-name{flex: 1;font-size: 13px;color: var(--text-main);font-weight: 600;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-
-.smart-select-list:not(.hidden){animation: slideDown .18s ease;}
-@keyframes slideDown{from{opacity: 0;transform: translateY(-6px);}to{opacity: 1;transform: translateY(0);}}
+.prod-dd-panel.open{display:block;}
+.prod-dd-search{padding:8px;border-bottom:1px solid var(--border-soft);}
+.prod-dd-search input{
+  width:100%;
+  padding:8px 10px;
+  border:1px solid var(--border-medium);
+  border-radius:6px;
+  background:var(--bg-input);
+  color:#fff;
+  font-family:inherit;
+  font-size:13px;
+}
+.prod-dd-list{max-height:180px;overflow-y:auto;}
+.prod-dd-item{
+  padding:10px 14px;
+  cursor:pointer;
+  border-bottom:1px solid var(--border-soft);
+  font-size:13px;
+  color:var(--text-main);
+  transition:background .15s;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
+.prod-dd-item:last-child{border-bottom:none;}
+.prod-dd-item:hover{background:var(--bg-hover);color:var(--accent);}
+.prod-dd-item.selected{background:rgba(230,57,70,.15);color:var(--accent);font-weight:700;}
+.prod-dd-empty{padding:14px;text-align:center;color:var(--text-muted);font-size:13px;}
 
 /* ============ Smart Select (مشتری) ============ */
 .smart-select-wrap{position:relative;width:100%}
@@ -334,9 +365,8 @@ tbody tr:hover{background:var(--bg-hover)}
   .date3-select{font-size:12px;padding:7px 4px;padding-left:16px;height:34px;}
   .date3-display{font-size:10px;padding:3px 8px;}
   .date3-row{grid-template-columns:1fr 1.2fr 1fr;gap:4px;}
-  .items-wrap{max-height:280px !important;min-height:200px !important;}
-  .items-table{min-width:1000px !important;width:1000px !important;}
-  .ss-product-name{font-size:12px;}
+  .items-wrap{max-height:280px !important;}
+  .items-table{min-width:820px !important;width:820px !important;}
 }
 @media(min-width:901px){.sidebar{transform: translateX(0) !important;}}
 ::-webkit-scrollbar{width:6px;height:6px}
@@ -636,22 +666,11 @@ function selectSmartItem(id, value, callbackName){
   if(callbackName && typeof window[callbackName] === 'function'){ window[callbackName](value); }
 }
 
-/* 🆕 بستن dropdown با کلیک بیرون — فقط وقتی کلیک روی input یا خود dropdown نبود */
 document.addEventListener('click', function(e){
   if(!e.target.closest('.smart-select-wrap')){
     document.querySelectorAll('.smart-select-panel.open').forEach(function(p){ p.classList.remove('open'); });
     document.querySelectorAll('.smart-select-display.active').forEach(function(d){ d.classList.remove('active'); });
   }
-  var isInsideDropdown = e.target.closest('.smart-select-list');
-  var isInsideInput = e.target.closest('input[id^="invProdSearch_"]');
-  if(!isInsideDropdown && !isInsideInput){
-    document.querySelectorAll('.smart-select-list').forEach(function(el){ el.classList.add('hidden'); });
-  }
-});
-
-/* فقط resize بستن dropdown (بدون scroll که پرش میده) */
-window.addEventListener('resize', function(){
-  document.querySelectorAll('.smart-select-list').forEach(function(el){ el.classList.add('hidden'); });
 });
 
 /* ============ دیتابیس ============ */
@@ -1351,75 +1370,90 @@ function nextInvoiceNumber(type){
   return prefix + '-' + String(Math.max.apply(null,[0].concat(nums))+1).padStart(4,'0');
 }
 
-/* جستجوی کالا — فقط نام */
+/* ============ جستجوی کالا — مثل smart select مشتری ============ */
 function buildProductSearch(idx, currentProductId){
   var p = currentProductId ? DB.data.products.find(function(x){return x.id===currentProductId;}) : null;
-  var html = '<div style="position:relative">' +
-    '<input class="form-control" id="invProdSearch_' + idx + '" placeholder="جستجوی کالا..." value="' + (p ? p.name : '') + '" onclick="showProductList(' + idx + ')">' +
-    '<div class="smart-select-list hidden" id="invProdList_' + idx + '">';
+  var displayValue = p ? p.name : '';
+  
+  var html = '<div class="prod-dd-wrap" id="prodDdWrap_' + idx + '">' +
+    '<input type="text" class="prod-dd-input" id="invProdSearch_' + idx + '" placeholder="جستجوی کالا..." value="' + displayValue + '" onclick="toggleProdDD(' + idx + ')">' +
+    '<div class="prod-dd-panel" id="prodDdPanel_' + idx + '">' +
+      '<div class="prod-dd-search"><input type="text" id="prodDdSearch_' + idx + '" placeholder="جستجو..." oninput="filterProdDD(' + idx + ', this.value)" onclick="event.stopPropagation()"></div>' +
+      '<div class="prod-dd-list" id="prodDdList_' + idx + '">';
+  
   for(var i=0; i<DB.data.products.length; i++){
     var x = DB.data.products[i];
     var isSel = (x.id === currentProductId) ? ' selected' : '';
-    html += '<div class="ss-product-item' + isSel + '" data-id="' + x.id + '" data-name="' + x.name + '" onclick="selectProductForInvoice(' + idx + ', \'' + x.id + '\')">' +
-      '<div class="ss-product-name">' + x.name + '</div>' +
-    '</div>';
+    html += '<div class="prod-dd-item' + isSel + '" data-id="' + x.id + '" data-name="' + x.name + '" onclick="selectProdDD(' + idx + ', \'' + x.id + '\')">' + x.name + '</div>';
   }
-  html += '</div></div>';
+  
+  html += '</div></div></div>';
   return html;
 }
 
-/* نمایش dropdown — همیشه از پایین + بدون پرش */
-function showProductList(idx){
-  var list = document.getElementById('invProdList_' + idx);
-  if(!list) return;
+function toggleProdDD(idx){
+  var panel = document.getElementById('prodDdPanel_' + idx);
+  if(!panel) return;
+  var isOpen = panel.classList.contains('open');
   
-  // اگه همین الان بازه، دست نزن (جلوگیری از پرش)
-  if(!list.classList.contains('hidden')) return;
+  document.querySelectorAll('.prod-dd-panel.open').forEach(function(p){ p.classList.remove('open'); });
   
-  document.querySelectorAll('.smart-select-list').forEach(function(el){
-    if(el !== list) el.classList.add('hidden');
-  });
-  
-  var input = document.getElementById('invProdSearch_' + idx);
-  if(input){
-    var rect = input.getBoundingClientRect();
-    list.style.left = rect.left + 'px';
-    list.style.width = rect.width + 'px';
-    list.style.right = 'auto';
-    list.style.top = (rect.bottom + 4) + 'px';
-    list.style.bottom = 'auto';
+  if(!isOpen){
+    panel.classList.add('open');
+    var search = document.getElementById('prodDdSearch_' + idx);
+    if(search){ setTimeout(function(){ search.focus(); }, 50); }
   }
-  
-  list.classList.remove('hidden');
 }
 
-function selectProductForInvoice(idx, id){
+function filterProdDD(idx, q){
+  var list = document.getElementById('prodDdList_' + idx);
+  if(!list) return;
+  q = (q||'').toLowerCase().trim();
+  var items = list.querySelectorAll('.prod-dd-item');
+  items.forEach(function(it){
+    var name = (it.getAttribute('data-name')||'').toLowerCase();
+    if(!q || name.indexOf(q) !== -1){ it.style.display = 'flex'; }
+    else { it.style.display = 'none'; }
+  });
+}
+
+function selectProdDD(idx, id){
   var p = DB.data.products.find(function(x){return x.id===id;});
   if(!p) return;
+  
   invoiceItems[idx].productId = id;
-  document.getElementById('invProdSearch_' + idx).value = p.name;
-  var listEl = document.getElementById('invProdList_' + idx);
-  if(listEl){
-    listEl.classList.add('hidden');
-    listEl.style.top=''; listEl.style.left=''; listEl.style.right=''; listEl.style.bottom=''; listEl.style.width='';
-  }
+  
+  var inp = document.getElementById('invProdSearch_' + idx);
+  if(inp) inp.value = p.name;
+  
+  var panel = document.getElementById('prodDdPanel_' + idx);
+  if(panel) panel.classList.remove('open');
   
   var stockCell = document.getElementById('invStock_' + idx);
   if(stockCell){
     var qty = stockOf(id);
-    var stockCls = qty > 10 ? '' : (qty > 0 ? ' stock-low' : ' stock-out');
-    stockCell.innerHTML = '<span class="stock-badge' + stockCls + '">' + (qty > 0 ? formatNum(qty) : '0') + '</span>';
+    var cls = qty > 10 ? '' : (qty > 0 ? ' stock-low' : ' stock-out');
+    stockCell.innerHTML = '<span class="stock-badge' + cls + '">' + formatNum(qty) + '</span>';
   }
   
   if(!invoiceItems[idx].price){
     var type = document.getElementById('invNumber').value.startsWith('F') ? 'sale' : 'purchase';
     invoiceItems[idx].price = type==='purchase' ? (p.purchasePrice||0) : (p.salePrice||0);
     var row = document.querySelector('#invItemsBody tr[data-row="' + idx + '"]');
-    if(row){ var pi = row.querySelectorAll('input')[2]; if(pi) pi.value = formatNum(invoiceItems[idx].price); }
+    if(row){
+      var pi = row.querySelector('.col-price input');
+      if(pi) pi.value = formatNum(invoiceItems[idx].price);
+    }
   }
   updateRowTotal(idx);
   recalcInvoice();
 }
+
+document.addEventListener('click', function(e){
+  if(!e.target.closest('.prod-dd-wrap')){
+    document.querySelectorAll('.prod-dd-panel.open').forEach(function(p){ p.classList.remove('open'); });
+  }
+});
 
 let invoiceItems = [];
 
@@ -1507,6 +1541,7 @@ function invoiceForm(type, editId){
     recalcInvoice();
   },10);
 }
+
 function renderInvoiceItems(){
   const body = $('#invItemsBody');
   if(!body)return;
@@ -1518,36 +1553,15 @@ function renderInvoiceItems(){
   for(let idx=0; idx<invoiceItems.length; idx++){ html += invoiceItemsRowHTML(invoiceItems[idx], idx); }
   body.innerHTML = html;
   attachAllThousandsIn(body);
-  
-  for(let idx=0; idx<invoiceItems.length; idx++){
-    const inp = $('#invProdSearch_'+idx);
-    if(inp){
-      // فقط با کلیک باز بشه (نه focus که پرش میکنه)
-      inp.addEventListener('click', function(e){
-        e.stopPropagation();
-        showProductList(idx);
-      });
-      inp.addEventListener('input', function(e){
-        const q = e.target.value.toLowerCase();
-        const list = $('#invProdList_'+idx);
-        if(!list) return;
-        if(list.classList.contains('hidden')) showProductList(idx);
-        const items = list.querySelectorAll('.ss-product-item');
-        items.forEach(function(it){
-          const name = (it.getAttribute('data-name')||'').toLowerCase();
-          it.style.display = name.includes(q) ? 'flex' : 'none';
-        });
-      });
-    }
-  }
   recalcInvoice();
 }
+
 function invoiceItemsRowHTML(it,idx){
   const qty = it.productId ? stockOf(it.productId) : null;
   let stockBadge = '<span class="stock-badge stock-empty">—</span>';
   if(qty !== null){
-    const stockCls = qty > 10 ? '' : (qty > 0 ? ' stock-low' : ' stock-out');
-    stockBadge = '<span class="stock-badge' + stockCls + '">' + (qty > 0 ? formatNum(qty) : '0') + '</span>';
+    const cls = qty > 10 ? '' : (qty > 0 ? ' stock-low' : ' stock-out');
+    stockBadge = '<span class="stock-badge' + cls + '">' + formatNum(qty) + '</span>';
   }
   return '<tr data-row="'+idx+'">'+
     '<td class="col-product">'+buildProductSearch(idx, it.productId)+'</td>'+
