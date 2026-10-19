@@ -16,17 +16,10 @@
 <link rel="apple-touch-icon" sizes="167x167" href="DAVIN.PNG">
 <link rel="apple-touch-icon" sizes="120x120" href="DAVIN.PNG">
 <link rel="icon" type="image/png" href="DAVIN.PNG">
-
-<!-- فونت ایران شارپ -->
 <link href="https://cdn.jsdelivr.net/gh/font-store/font-IRANSharp/IRANSharp.css" rel="stylesheet">
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jalaali-js@1.2.6/dist/jalaali.min.js"></script>
-
 <style>
-/* =====================================================
-   🎨 تم دارک - اصلاح شده برای iOS Safe Area
-   ===================================================== */
 :root{
   --bg-main:#0f1419;
   --bg-card:#1a2332;
@@ -57,11 +50,8 @@
   --radius-lg:18px;
   --shadow-card:0 4px 20px rgba(0,0,0,.25),0 1px 0 rgba(255,255,255,.03) inset;
   --shadow-card-hover:0 8px 30px rgba(0,0,0,.35),0 1px 0 rgba(255,255,255,.05) inset;
-  /* Safe Area */
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
-  --safe-left: env(safe-area-inset-left, 0px);
-  --safe-right: env(safe-area-inset-right, 0px);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{background:var(--bg-main);-webkit-text-size-adjust:100%}
@@ -80,8 +70,6 @@ body{
   padding-bottom: var(--safe-bottom);
 }
 .app{display:flex;min-height:100vh;min-height:100dvh;width:100%}
-
-/* ============ سایدبار ============ */
 .sidebar{
   width:260px;
   background:#0f1419;
@@ -124,8 +112,6 @@ body{
 .nav-item:hover{background:var(--bg-hover);color:var(--text-main)}
 .nav-item.active{background:var(--accent);color:#fff;box-shadow:0 4px 15px var(--accent-glow)}
 .nav-item .icon{font-size:18px;width:22px;text-align:center;display:inline-block}
-
-/* ============ محتوا اصلی ============ */
 .main{
   margin-right:260px;
   flex:1;
@@ -135,8 +121,6 @@ body{
   overflow-x:hidden;
   width:calc(100% - 260px);
 }
-
-/* ============ نوار بالا (Topbar) ============ */
 .topbar{
   display:flex;justify-content:space-between;align-items:center;
   margin-bottom:16px;flex-wrap:wrap;gap:10px;
@@ -146,7 +130,6 @@ body{
   border:1px solid var(--border-soft);
   box-shadow:var(--shadow-card);
   width:100%;
-  /* اطمینان از نمایش صحیح روی آیفون */
   position:relative;
   z-index:1;
 }
@@ -164,9 +147,6 @@ body{
   min-height:42px;
   align-items:center;justify-content:center;
 }
-.menu-toggle:active{transform:scale(.95)}
-
-/* ============ کارت‌ها ============ */
 .card{
   background:var(--bg-card);
   border-radius:var(--radius);
@@ -177,7 +157,6 @@ body{
   width:100%;max-width:100%;
   overflow:hidden;
 }
-.card:hover{border-color:var(--border-medium)}
 .card-header{
   display:flex;justify-content:space-between;align-items:center;
   margin-bottom:12px;flex-wrap:wrap;gap:8px;
@@ -185,16 +164,12 @@ body{
   border-bottom:1px solid var(--border-soft);
 }
 .card-title{font-size:13.5px;font-weight:800;color:#ffffff}
-
-/* ============ گریدها ============ */
 .grid{display:grid;gap:12px;width:100%}
 .grid-2{grid-template-columns:repeat(2,1fr)}
 .grid-3{grid-template-columns:repeat(3,1fr)}
 .grid-4{grid-template-columns:repeat(4,1fr)}
 @media(max-width:1024px){.grid-4{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
-
-/* ============ کارت آماری ============ */
 .stat{
   padding:14px;
   border-radius:var(--radius);
@@ -216,8 +191,6 @@ body{
 .stat-value.negative{color:var(--danger)}
 .stat-value.gold{color:var(--gold-light)}
 .stat-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:28px;opacity:.08;pointer-events:none}
-
-/* ============ دکمه‌ها ============ */
 .btn{
   display:inline-flex;align-items:center;gap:6px;
   padding:9px 14px;border-radius:var(--radius-sm);
@@ -226,28 +199,15 @@ body{
 }
 .btn:active{transform:scale(.97)}
 .btn-primary{background:var(--accent);color:#fff;box-shadow:0 2px 8px var(--accent-glow)}
-.btn-primary:hover{background:var(--accent-hover)}
 .btn-success{background:var(--success);color:#fff;box-shadow:0 2px 8px var(--success-glow)}
-.btn-success:hover{background:var(--success-hover)}
 .btn-danger{background:var(--danger);color:#fff}
-.btn-danger:hover{background:var(--danger-hover)}
 .btn-warning{background:var(--warning);color:#fff}
-.btn-warning:hover{background:var(--warning-hover)}
 .btn-ghost{background:var(--bg-card-2);color:var(--text-main);border:1px solid var(--border-medium)}
-.btn-ghost:hover{background:var(--bg-hover)}
 .btn-sm{padding:6px 10px;font-size:11.5px}
-
-/* ============ دکمه‌های سریع دریافت/پرداخت ============ */
-.quick-tx{
-  width:32px;height:32px;padding:0;border-radius:8px;
-  display:inline-flex;align-items:center;justify-content:center;
-  border:none;cursor:pointer;
-}
+.quick-tx{width:32px;height:32px;padding:0;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;border:none;cursor:pointer}
 .quick-tx-in{background:var(--success);color:#fff}
 .quick-tx-out{background:var(--danger);color:#fff}
 .quick-tx svg{width:16px;height:16px;stroke-width:3}
-
-/* ============ فرم‌ها ============ */
 .form-group{margin-bottom:14px}
 .form-label{display:block;font-size:12px;font-weight:700;color:var(--text-sub);margin-bottom:6px}
 .form-control{
@@ -268,8 +228,6 @@ select.form-control{
   background-repeat:no-repeat;background-position:left 12px center;background-size:16px;
   padding-left:36px;appearance:none;
 }
-
-/* ============ جداول ============ */
 .table-wrap{
   overflow-x:auto;
   border-radius:var(--radius);
@@ -283,8 +241,6 @@ th{background:var(--bg-card-2);padding:11px 12px;text-align:right;font-weight:70
 td{padding:11px 12px;border-bottom:1px solid var(--border-soft);color:#ffffff}
 tbody tr:hover{background:var(--bg-hover)}
 .num{direction:ltr;text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
-
-/* ============ بج‌ها ============ */
 .badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:10.5px;font-weight:700;border:1px solid transparent}
 .badge-success{background:rgba(16,185,129,.15);color:#34d399;border-color:rgba(16,185,129,.3)}
 .badge-danger{background:rgba(239,68,68,.15);color:#f87171;border-color:rgba(239,68,68,.3)}
@@ -292,8 +248,6 @@ tbody tr:hover{background:var(--bg-hover)}
 .badge-info{background:rgba(59,130,246,.15);color:#60a5fa;border-color:rgba(59,130,246,.3)}
 .badge-gray{background:rgba(139,149,165,.15);color:var(--text-sub);border-color:rgba(139,149,165,.25)}
 .badge-gold{background:rgba(212,175,55,.15);color:var(--gold-light);border-color:rgba(212,175,55,.35)}
-
-/* ============ مودال ============ */
 .modal-overlay{
   position:fixed;inset:0;
   background:rgba(0,0,0,.75);
@@ -320,12 +274,9 @@ tbody tr:hover{background:var(--bg-hover)}
 .modal-close{background:var(--bg-card-2);border:1px solid var(--border-medium);font-size:18px;cursor:pointer;color:var(--text-sub);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center}
 .modal-body{padding:18px}
 .modal-footer{padding:14px 18px;border-top:1px solid var(--border-soft);display:flex;gap:8px;justify-content:flex-end;position:sticky;bottom:0;background:var(--bg-card);flex-wrap:wrap}
-
-/* ============ سایر ============ */
 .empty{text-align:center;padding:36px 16px;color:var(--text-muted)}
 .empty .icon{font-size:36px;margin-bottom:10px;opacity:.4}
 .empty .title{font-weight:700;color:var(--text-sub);margin-bottom:4px;font-size:13.5px}
-.empty .sub{font-size:11.5px}
 .toast{
   position:fixed;
   bottom: calc(80px + var(--safe-bottom));
@@ -359,12 +310,8 @@ tbody tr:hover{background:var(--bg-hover)}
 .search-box{position:relative;flex:1;max-width:280px;width:100%}
 .search-box input{padding-right:36px}
 .search-box::before{content:'🔍';position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.5;pointer-events:none}
-
-/* ============ نمودارها ============ */
 .chart-container{position:relative;width:100%;height:220px;max-height:220px;overflow:hidden}
 @media(max-width:640px){.chart-container{height:180px;max-height:180px}}
-
-/* ============ فوتر ============ */
 .footer-signature{
   position:fixed;
   bottom:0;left:0;right:260px;
@@ -381,8 +328,6 @@ tbody tr:hover{background:var(--bg-hover)}
 .footer-signature .sig-brand{font-weight:900;font-size:12.5px;letter-spacing:2px;background:linear-gradient(135deg,#f4e5a1 0%,#d4af37 40%,#b8860b 70%,#f4e5a1 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .footer-signature .sig-design{font-weight:700;font-size:9.5px;color:#8b95a5;letter-spacing:1.5px;text-transform:uppercase}
 .footer-signature .sig-tel{font-weight:800;font-size:11px;color:#d4af37;direction:ltr;letter-spacing:1px}
-
-/* ============ ریسپانسیو ============ */
 @media(max-width:900px){
   .sidebar{transform:translateX(100%)}
   .sidebar.open{transform:translateX(0)}
@@ -398,13 +343,9 @@ tbody tr:hover{background:var(--bg-hover)}
   table{font-size:11.5px}
   th,td{padding:8px 8px}
 }
-
-/* ============ اسکرول‌بار ============ */
 ::-webkit-scrollbar{width:6px;height:6px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--bg-card-2);border-radius:3px}
-
-/* ============ چاپ ============ */
 @media print{
   body *{visibility:hidden}
   #print-area,#print-area *{visibility:visible}
@@ -475,7 +416,7 @@ tbody tr:hover{background:var(--bg-hover)}
 <div class="toast" id="toast"></div>
 
 <script>
-  /* ============ ابزارهای عمومی ============ */
+   /* ============ ابزارهای عمومی ============ */
 const $ = (s,el)=> (el||document).querySelector(s);
 const $$ = (s,el)=> Array.prototype.slice.call((el||document).querySelectorAll(s));
 
@@ -995,51 +936,84 @@ function deleteWarehouse(id){
     DB.save(); renderWarehouses(); toast('انبار حذف شد','success');
   });
 }
-  /* ============ اشخاص ============ */
+   /* ============ اشخاص ============ */
 let personFilter = 'all';
+let personSearch = ''; // 🆕 متغیر جستجو
+
 function renderPersons(){
   const list = DB.data.persons.map(function(p){return Object.assign({},p,{bal:personBalance(p.id)});});
-  let filtered = list;
-  if(personFilter==='debtor') filtered = list.filter(function(p){return p.bal<-0.5;});
-  if(personFilter==='creditor') filtered = list.filter(function(p){return p.bal>0.5;});
-  if(personFilter==='settled') filtered = list.filter(function(p){return Math.abs(p.bal)<=0.5;});
-  let rowsHtml = '';
-  if(!filtered.length){
-    rowsHtml = '<tr><td colspan="6"><div class="empty"><div class="icon">👥</div><div class="title">شخصی ثبت نشده</div></div></td></tr>';
-  } else {
-    for(const p of filtered){
+  
+  function applyFilters(arr) {
+    let f = arr;
+    if(personFilter==='debtor') f = f.filter(function(p){return p.bal<-0.5;});
+    if(personFilter==='creditor') f = f.filter(function(p){return p.bal>0.5;});
+    if(personFilter==='settled') f = f.filter(function(p){return Math.abs(p.bal)<=0.5;});
+    if(personSearch.trim()){
+      const q = personSearch.trim().toLowerCase();
+      f = f.filter(function(p){return (p.name||'').toLowerCase().includes(q);});
+    }
+    return f;
+  }
+  
+  function buildRows(arr) {
+    if(!arr.length){
+      return '<tr><td colspan="6"><div class="empty"><div class="icon">👥</div><div class="title">'+(personSearch?'نتیجه‌ای یافت نشد':'شخصی ثبت نشده')+'</div></div></td></tr>';
+    }
+    let html = '';
+    for(const p of arr){
       const l = personBalanceLabel(p.bal);
       const typeLabel = p.type==='customer'?'مشتری':p.type==='supplier'?'تأمین‌کننده':'هردو';
-      rowsHtml += '<tr>'+
+      html += '<tr>'+
         '<td>'+p.name+'</td>'+
         '<td>'+(p.phone||'-')+'</td>'+
         '<td><span class="badge badge-info">'+typeLabel+'</span></td>'+
         '<td class="num">'+formatNum(Math.abs(p.bal))+'</td>'+
         '<td><span class="badge '+l.cls+'">'+l.text+'</span></td>'+
         '<td style="white-space:nowrap">'+
-          '<button class="quick-tx quick-tx-in" onclick="quickTx(\''+p.id+'\',\'receive\')" title="دریافت از '+p.name+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></button> '+
-          '<button class="quick-tx quick-tx-out" onclick="quickTx(\''+p.id+'\',\'pay\')" title="پرداخت به '+p.name+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button> '+
+          '<button class="quick-tx quick-tx-in" onclick="quickTx(\''+p.id+'\',\'receive\')" title="دریافت"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></button> '+
+          '<button class="quick-tx quick-tx-out" onclick="quickTx(\''+p.id+'\',\'pay\')" title="پرداخت"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button> '+
           '<button class="btn btn-sm btn-ghost" onclick="personLedger(\''+p.id+'\')" title="گردش حساب">📋</button> '+
           '<button class="btn btn-sm btn-ghost" onclick="personForm(\''+p.id+'\')" title="ویرایش">✏️</button> '+
           '<button class="btn btn-sm btn-danger" onclick="deletePerson(\''+p.id+'\')" title="حذف">🗑</button>'+
         '</td></tr>';
     }
+    return html;
   }
+
+  const filtered = applyFilters(list);
+
   $('#content').innerHTML =
-    '<div class="flex justify-between items-center mb-4 gap-3" style="flex-wrap:wrap">'+
-      '<div class="filter-tabs">'+
-        '<button class="filter-tab '+(personFilter==='all'?'active':'')+'" onclick="setPersonFilter(\'all\')">همه</button>'+
-        '<button class="filter-tab '+(personFilter==='debtor'?'active':'')+'" onclick="setPersonFilter(\'debtor\')">بدهکار</button>'+
-        '<button class="filter-tab '+(personFilter==='creditor'?'active':'')+'" onclick="setPersonFilter(\'creditor\')">بستانکار</button>'+
-        '<button class="filter-tab '+(personFilter==='settled'?'active':'')+'" onclick="setPersonFilter(\'settled\')">تسویه</button>'+
+    '<div class="card mb-3" style="padding:10px 12px">'+
+      '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">'+
+        '<div class="search-box" style="flex:1;max-width:none"><input class="form-control" id="personSearchInput" placeholder="جستجوی نام شخص..." value="'+personSearch.replace(/"/g,'&quot;')+'"></div>'+
+        '<button class="btn btn-primary" onclick="personForm()">➕ شخص جدید</button>'+
       '</div>'+
-      '<button class="btn btn-primary" onclick="personForm()">➕ شخص جدید</button>'+
+    '</div>'+
+    '<div class="filter-tabs">'+
+      '<button class="filter-tab '+(personFilter==='all'?'active':'')+'" onclick="setPersonFilter(\'all\')">همه</button>'+
+      '<button class="filter-tab '+(personFilter==='debtor'?'active':'')+'" onclick="setPersonFilter(\'debtor\')">بدهکار</button>'+
+      '<button class="filter-tab '+(personFilter==='creditor'?'active':'')+'" onclick="setPersonFilter(\'creditor\')">بستانکار</button>'+
+      '<button class="filter-tab '+(personFilter==='settled'?'active':'')+'" onclick="setPersonFilter(\'settled\')">تسویه</button>'+
     '</div>'+
     '<div class="card"><div class="table-wrap"><table><thead><tr>'+
       '<th>نام</th><th>تلفن</th><th>نوع</th><th>مانده</th><th>وضعیت</th><th>عملیات</th>'+
-    '</tr></thead><tbody>'+rowsHtml+'</tbody></table></div></div>';
+    '</tr></thead><tbody id="personBody">'+buildRows(filtered)+'</tbody></table></div></div>';
+
+  const searchInput = $('#personSearchInput');
+  if(searchInput){
+    searchInput.addEventListener('input', function(e){
+      personSearch = e.target.value;
+      const tbody = $('#personBody');
+      if(tbody) tbody.innerHTML = buildRows(applyFilters(list));
+    });
+  }
 }
-function setPersonFilter(f){personFilter=f;renderPersons();}
+function setPersonFilter(f){
+  personFilter = f;
+  renderPersons();
+  // حفظ فوکوس در فیلد جستجو بعد از رندر مجدد
+  setTimeout(function(){ if($('#personSearchInput')) $('#personSearchInput').focus(); }, 10);
+}
 function quickTx(personId, type){
   const p = DB.data.persons.find(function(x){return x.id===personId;});
   if(!p){toast('شخص یافت نشد','error');return;}
@@ -1424,22 +1398,51 @@ function deleteInvoice(id){
 }
 
 /* ============ تراکنش‌ها ============ */
+let txSearch = ''; // 🆕 متغیر جستجو
+
 function renderTransactions(){
   const list = [].concat(DB.data.transactions).sort(function(a,b){return b.date.localeCompare(a.date);});
-  let rowsHtml = '';
-  if(!list.length){
-    rowsHtml = '<tr><td colspan="6"><div class="empty"><div class="icon">💸</div><div class="title">تراکنشی ثبت نشده</div></div></td></tr>';
-  } else {
-    for(const t of list){
+  
+  function getTxPersonNames(t){
+    if(t.type==='receive'||t.type==='pay'){
+      const p = DB.data.persons.find(function(x){return x.id===t.personId;});
+      return p ? p.name : '?';
+    } else if(t.type==='transfer'){
+      const from = DB.data.persons.find(function(x){return x.id===t.personId;});
+      const to = DB.data.persons.find(function(x){return x.id===t.toPersonId;});
+      return (from?from.name:'?')+' '+(to?to.name:'?');
+    }
+    return '?';
+  }
+  
+  function filterTx(arr, q){
+    if(!q) return arr;
+    q = q.toLowerCase();
+    return arr.filter(function(t){ return getTxPersonNames(t).toLowerCase().includes(q); });
+  }
+  
+  function buildRows(arr){
+    if(!arr.length){
+      return '<tr><td colspan="6"><div class="empty"><div class="icon">💸</div><div class="title">'+(txSearch?'نتیجه‌ای یافت نشد':'تراکنشی ثبت نشده')+'</div></div></td></tr>';
+    }
+    let html = '';
+    for(const t of arr){
       let who = '-';
       if(t.type==='receive'||t.type==='pay'){ const p = DB.data.persons.find(function(x){return x.id===t.personId;}); who = p?p.name:'?'; }
       else if(t.type==='transfer'){ const from = DB.data.persons.find(function(x){return x.id===t.personId;}); const to = DB.data.persons.find(function(x){return x.id===t.toPersonId;}); who = (from?from.name:'?')+' → '+(to?to.name:'?'); }
       const badge = t.type==='receive'?'badge-success':t.type==='pay'?'badge-danger':'badge-warning';
       const label = t.type==='receive'?'دریافت':t.type==='pay'?'پرداخت':'انتقال';
-      rowsHtml += '<tr><td class="num">'+t.date+'</td><td><span class="badge '+badge+'">'+label+'</span></td><td>'+who+'</td><td class="num">'+formatNum(t.amount)+'</td><td>'+(t.note||'-')+'</td><td><button class="btn btn-sm btn-warning" onclick="txForm(\''+t.type+'\',\''+t.id+'\')">✏️</button> <button class="btn btn-sm btn-danger" onclick="deleteTx(\''+t.id+'\')">🗑</button></td></tr>';
+      html += '<tr><td class="num">'+t.date+'</td><td><span class="badge '+badge+'">'+label+'</span></td><td>'+who+'</td><td class="num">'+formatNum(t.amount)+'</td><td>'+(t.note||'-')+'</td><td><button class="btn btn-sm btn-warning" onclick="txForm(\''+t.type+'\',\''+t.id+'\')">✏️</button> <button class="btn btn-sm btn-danger" onclick="deleteTx(\''+t.id+'\')">🗑</button></td></tr>';
     }
+    return html;
   }
+  
+  const filtered = filterTx(list, txSearch);
+  
   $('#content').innerHTML =
+    '<div class="card mb-3" style="padding:10px 12px">'+
+      '<div class="search-box" style="max-width:none"><input class="form-control" id="txSearchInput" placeholder="جستجوی نام شخص..." value="'+txSearch.replace(/"/g,'&quot;')+'"></div>'+
+    '</div>'+
     '<div class="flex justify-between items-center mb-4" style="flex-wrap:wrap;gap:8px">'+
       '<div class="text-muted">دریافت، پرداخت و انتقال</div>'+
       '<div class="flex gap-2">'+
@@ -1448,7 +1451,16 @@ function renderTransactions(){
         '<button class="btn btn-warning" onclick="txForm(\'transfer\')">🔁 انتقال</button>'+
       '</div>'+
     '</div>'+
-    '<div class="card"><div class="table-wrap"><table><thead><tr><th>تاریخ</th><th>نوع</th><th>از / به</th><th>مبلغ</th><th>توضیح</th><th>عملیات</th></tr></thead><tbody>'+rowsHtml+'</tbody></table></div></div>';
+    '<div class="card"><div class="table-wrap"><table><thead><tr><th>تاریخ</th><th>نوع</th><th>از / به</th><th>مبلغ</th><th>توضیح</th><th>عملیات</th></tr></thead><tbody id="txBody">'+buildRows(filtered)+'</tbody></table></div></div>';
+  
+  const searchInput = $('#txSearchInput');
+  if(searchInput){
+    searchInput.addEventListener('input', function(e){
+      txSearch = e.target.value;
+      const tbody = $('#txBody');
+      if(tbody) tbody.innerHTML = buildRows(filterTx(list, txSearch));
+    });
+  }
 }
 function txForm(type, editId){
   editId = editId || null;
@@ -1456,9 +1468,9 @@ function txForm(type, editId){
   const existing = editId? DB.data.transactions.find(function(t){return t.id===editId;}) : null;
   if(existing) type = existing.type;
   const isTransfer = type==='transfer';
-  let fromOptions = '<option value="">انتخاب</option>'; let toOptions = '<option value="">انتخاب</option>'; let personOptions2 = '<option value="">انتخاب</option>';
-  for(const p of DB.data.persons){
-    fromOptions += '<option value="'+p.id+'" '+(existing&&existing.personId===p.id?'selected':'')+'>'+p.name+'</option>';
+  let fromOptions = '<option value="">انتخاب</option>'; let toOptions = '<option value="">انتخاب</option>'; letث personOptions2 = '<option value="">بتانتخاب</option>';
+ دریافت  for(const p of DB':.data.persons){
+    fromtypeOptions += '<option value==="'+p.id+'" '+(existing&&existing.personId===p.id?'selected':'')+'>'+p.name+'</option>';
     toOptions += '<option value="'+p.id+'" '+(existing&&existing.toPersonId===p.id?'selected':'')+'>'+p.name+'</option>';
     personOptions2 += '<option value="'+p.id+'" '+(existing&&existing.personId===p.id?'selected':'')+'>'+p.name+'</option>';
   }
@@ -1471,7 +1483,7 @@ function txForm(type, editId){
   }
   body += '<div class="form-group"><label class="form-label">مبلغ *</label><input class="form-control" data-thousands id="txAmount" value="'+(existing?formatNum(existing.amount):'0')+'"></div>';
   body += '<div class="form-group"><label class="form-label">توضیحات</label><input class="form-control" id="txNote" value="'+(existing?(existing.note||''):'')+'"></div>';
-  openModal((type==='receive'?'ثبت دریافت':type==='pay'?'ثبت پرداخت':'انتقال')+(editId?' (ویرایش)':''), body,
+  openModal((type==='receive'?'='pay'?'ثبت پرداخت':'انتقال')+(editId?' (ویرایش)':''), body,
     '<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>'+
     '<button class="btn btn-primary" onclick="saveTx(\''+type+'\',\''+(editId||'')+'\')">ذخیره</button>'
   );
@@ -1543,7 +1555,6 @@ function renderExpenses(){
     for(const k of catKeys){ const c = getCategoryInfo(k); catCardsHtml += '<div style="display:flex;justify-content:space-between;padding:10px 12px;background:var(--bg-card-2);border-radius:8px;margin-bottom:8px;border:1px solid var(--border-soft)"><span>'+c.icon+' '+c.label+'</span><b style="color:var(--danger)">'+formatMoney(byCategory[k])+'</b></div>'; }
   } else { catCardsHtml = '<div class="text-muted text-center" style="padding:20px">خالی</div>'; }
   
-  /* 🆕 اصلاح چیدمان صفحه هزینه‌ها برای موبایل (استفاده از کلاس‌های ریسپانسیو) */
   $('#content').innerHTML =
     '<div class="grid grid-3 mb-4">'+
       '<div class="stat s-danger"><div class="stat-label">کل هزینه</div><div class="stat-value negative">'+formatMoney(total)+'</div><div class="stat-icon">💸</div></div>'+
@@ -1566,7 +1577,7 @@ function expenseForm(id){
       '<div class="form-group"><label class="form-label">دسته *</label><select class="form-control" id="expCategory">'+catOptions+'</select></div>'+
     '</div>'+
     '<div class="form-group"><label class="form-label">عنوان *</label><input class="form-control" id="expTitle" value="'+e.title+'" placeholder="مثلاً: هزینه منزل فروردین"></div>'+
-    '<div class=":form-group"><label class="formcategory-label">مبلغ, *</label>< noteinput class="form-control:" data-thousands idnote="expAmount" value="'+formatNum(e.amount)+'"></div>'+
+    '<div class="form-group"><label class="form-label">مبلغ *</label><input class="form-control" data-thousands id="expAmount" value="'+formatNum(e.amount)+'"></div>'+
     '<div class="form-group"><label class="form-label">توضیحات</label><input class="form-control" id="expNote" value="'+(e.note||'')+'"></div>'+
     '<div class="text-muted" style="font-size:11px;margin-top:8px;padding:10px;background:var(--bg-card-2);border-radius:8px;border-right:3px solid var(--warning)">💡 این مبلغ از موجودی نقد و سود کم می‌شود، ولی روی مطالبات اثری ندارد.</div>',
     '<button class="btn btn-ghost" onclick="closeModal()">انصراف</button>'+
@@ -1586,7 +1597,7 @@ function saveExpense(id){
   if(!DB.data.expenses) DB.data.expenses = [];
   if(id){
     const ex = DB.data.expenses.find(function(x){return x.id===id;});
-    Object.assign(ex, {date:date, title:title, amount:amount, category});
+    Object.assign(ex, {date:date, title:title, amount:amount, category:category, note:note});
   } else {
     DB.data.expenses.push({id: uid(), date: date, title: title, amount: amount, category: category, note: note, createdAt: nowJalaliFull()});
   }
@@ -1598,7 +1609,7 @@ function deleteExpense(id){
     DB.save(); renderExpenses(); toast('حذف شد','success');
   });
 }
-  /* ============ سرمایه ============ */
+   /* ============ سرمایه ============ */
 function renderCapital(){
   const t = totals();
   const initial = DB.data.settings.initialCapital||0;
@@ -1769,7 +1780,6 @@ function renderReports(){
       '<div class="stat s-gold"><div class="stat-label">سود ناخالص</div><div class="stat-value gold">'+formatMoney(fSales-fCogs)+'</div></div>'+
       '<div class="stat s-warning"><div class="stat-label">سود خالص</div><div class="stat-value" style="color:'+(fProfit>=0?'var(--success)':'var(--danger)')+'">'+formatMoney(fProfit)+'</div></div>'+
     '</div>'+
-    /* 🆕 اصلاح نمودار: استفاده از کانتینر با ارتفاع ثابت */
     '<div class="grid grid-2 mb-4">'+
       '<div class="card"><div class="card-header"><div class="card-title">نمودار (۶ ماه)</div></div><div class="chart-container"><canvas id="rChart1"></canvas></div></div>'+
       '<div class="card"><div class="card-header"><div class="card-title">هزینه بر اساس دسته</div></div>'+
