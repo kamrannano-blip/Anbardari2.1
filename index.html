@@ -96,7 +96,6 @@ body{font-family:'IRANSharp', 'IRANSans', Tahoma, sans-serif;font-weight:500;bac
 input[type=number]{direction:ltr;text-align:right}
 select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");background-repeat:no-repeat;background-position:left 12px center;background-size:16px;padding-left:36px;appearance:none;}
 
-/* ============ کادر تاریخ ۳ Select ============ */
 .date3-wrap{display:flex;flex-direction:column;gap:6px;margin-top:2px;}
 .date3-row{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:6px;direction:rtl;}
 .date3-select{
@@ -139,36 +138,93 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
   z-index: 20;
   background: var(--bg-card-2);
 }
-.items-table th,.items-table td{padding:6px 4px !important;vertical-align: middle;overflow:hidden;}
+.items-table th,.items-table td{padding:4px 3px !important;vertical-align: middle;overflow:hidden;}
 .items-table .col-product{width:50%;}
 .items-table .col-stock{width:10%;}
 .items-table .col-qty{width:10%;}
 .items-table .col-price{width:20%;}
 .items-table .col-total{width:7%;}
 .items-table .col-act{width:3%;}
-.items-table input,.items-table select{
-  font-size:12px !important;padding:6px 4px !important;height:34px !important;
-  min-height:34px !important;border-radius:6px !important;width:100% !important;
+
+/* کادر کالا — ۱/۳ اندازه قبلی */
+.items-table .col-product input{
+  font-size:10px !important;
+  padding:3px 6px !important;
+  height:24px !important;
+  min-height:24px !important;
+  border-radius:5px !important;
+  width:100% !important;
+  line-height:1.2 !important;
 }
-.items-table .col-qty input{font-size:13px !important;font-weight:700 !important;text-align:center;}
-.items-table .col-price input{font-size:12px !important;font-weight:700 !important;}
+
+/* کادر تعداد */
+.items-table .col-qty input{
+  font-size:11px !important;
+  padding:3px 4px !important;
+  height:24px !important;
+  min-height:24px !important;
+  border-radius:5px !important;
+  width:100% !important;
+  font-weight:700 !important;
+  text-align:center;
+}
+
+/* کادر قیمت — ۱/۲ اندازه قبلی */
+.items-table .col-price input{
+  font-size:10px !important;
+  padding:3px 6px !important;
+  height:24px !important;
+  min-height:24px !important;
+  border-radius:5px !important;
+  width:100% !important;
+  font-weight:700 !important;
+}
+
+/* کادر جمع — ۱۰٪ بزرگ‌تر */
 .items-table .col-total .num{
-  font-size:11px !important;font-weight:700;display:block;text-align:center;
-  direction:ltr;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  font-size:12px !important;
+  font-weight:700;
+  display:block;
+  text-align:center;
+  direction:ltr;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
+
+/* کادر موجودی — هم‌اندازه تعداد */
 .items-table .col-stock .stock-badge{
-  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;
-  height:34px;min-height:34px;border-radius:6px;background:rgba(59,130,246,.12);
-  color:#60a5fa;border:1px solid rgba(59,130,246,.3);font-variant-numeric:tabular-nums;direction:ltr;width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  font-weight:800;
+  height:24px;
+  min-height:24px;
+  border-radius:5px;
+  background:rgba(59,130,246,.12);
+  color:#60a5fa;
+  border:1px solid rgba(59,130,246,.3);
+  font-variant-numeric:tabular-nums;
+  direction:ltr;
+  width:100%;
 }
 .items-table .col-stock .stock-badge.stock-out{background:rgba(239,68,68,.12);color:#f87171;border-color:rgba(239,68,68,.3);}
 .items-table .col-stock .stock-badge.stock-low{background:rgba(245,158,11,.12);color:#fbbf24;border-color:rgba(245,158,11,.3);}
 .items-table .col-stock .stock-badge.stock-empty{background:transparent;border:1px dashed var(--border-medium);color:var(--text-muted);}
 
-/* ============ لیست کالا — dropdown شناور با موقعیت fixed ============ */
+/* دکمه حذف کوچیک */
+.items-table .col-act button{
+  padding:2px 5px !important;
+  font-size:10px !important;
+  height:24px !important;
+  min-height:24px !important;
+}
+
+/* ============ لیست کالا — dropdown شناور ============ */
 .smart-select-list{
   position: fixed;
-  max-height: 180px;
+  max-height: 180px;   /* حدود ۴ ردیف ۴۴px */
   overflow-y: auto;
   background: var(--bg-card-2);
   border: 1px solid var(--border-strong);
@@ -280,7 +336,6 @@ tbody tr:hover{background:var(--bg-hover)}
   .date3-row{grid-template-columns:1fr 1.2fr 1fr;gap:4px;}
   .items-wrap{max-height:280px !important;min-height:200px !important;}
   .items-table{min-width:1000px !important;width:1000px !important;}
-  .items-table input,.items-table select{font-size:11px !important;padding:5px 3px !important;}
   .ss-product-name{font-size:12px;}
 }
 @media(min-width:901px){.sidebar{transform: translateX(0) !important;}}
@@ -581,21 +636,20 @@ function selectSmartItem(id, value, callbackName){
   if(callbackName && typeof window[callbackName] === 'function'){ window[callbackName](value); }
 }
 
+/* 🆕 بستن dropdown با کلیک بیرون — فقط وقتی کلیک روی input یا خود dropdown نبود */
 document.addEventListener('click', function(e){
   if(!e.target.closest('.smart-select-wrap')){
     document.querySelectorAll('.smart-select-panel.open').forEach(function(p){ p.classList.remove('open'); });
     document.querySelectorAll('.smart-select-display.active').forEach(function(d){ d.classList.remove('active'); });
   }
-  // 🆕 بستن dropdown کالا اگه کلیک بیرون بود
-  if(!e.target.closest('.ss-product-item') && !e.target.closest('input[id^="invProdSearch_"]')){
+  var isInsideDropdown = e.target.closest('.smart-select-list');
+  var isInsideInput = e.target.closest('input[id^="invProdSearch_"]');
+  if(!isInsideDropdown && !isInsideInput){
     document.querySelectorAll('.smart-select-list').forEach(function(el){ el.classList.add('hidden'); });
   }
 });
 
-// 🆕 بستن dropdown کالا هنگام اسکرول یا تغییر اندازه
-window.addEventListener('scroll', function(){
-  document.querySelectorAll('.smart-select-list').forEach(function(el){ el.classList.add('hidden'); });
-}, true);
+/* فقط resize بستن dropdown (بدون scroll که پرش میده) */
 window.addEventListener('resize', function(){
   document.querySelectorAll('.smart-select-list').forEach(function(el){ el.classList.add('hidden'); });
 });
@@ -1297,7 +1351,7 @@ function nextInvoiceNumber(type){
   return prefix + '-' + String(Math.max.apply(null,[0].concat(nums))+1).padStart(4,'0');
 }
 
-/* 🆕 جستجوی کالا — فقط نام (بدون کد و موجودی) */
+/* جستجوی کالا — فقط نام */
 function buildProductSearch(idx, currentProductId){
   var p = currentProductId ? DB.data.products.find(function(x){return x.id===currentProductId;}) : null;
   var html = '<div style="position:relative">' +
@@ -1314,35 +1368,26 @@ function buildProductSearch(idx, currentProductId){
   return html;
 }
 
-/* 🆕 نمایش dropdown با موقعیت fixed — مشکل زیر کادر رفتن حل شد */
+/* نمایش dropdown — همیشه از پایین + بدون پرش */
 function showProductList(idx){
   var list = document.getElementById('invProdList_' + idx);
   if(!list) return;
   
-  // بستن بقیه dropdownها
+  // اگه همین الان بازه، دست نزن (جلوگیری از پرش)
+  if(!list.classList.contains('hidden')) return;
+  
   document.querySelectorAll('.smart-select-list').forEach(function(el){
     if(el !== list) el.classList.add('hidden');
   });
   
-  // محاسبه موقعیت input نسبت به صفحه
   var input = document.getElementById('invProdSearch_' + idx);
   if(input){
     var rect = input.getBoundingClientRect();
-    var spaceBelow = window.innerHeight - rect.bottom;
-    var dropdownHeight = 180;
-    
     list.style.left = rect.left + 'px';
     list.style.width = rect.width + 'px';
     list.style.right = 'auto';
-    
-    // اگه فضای کافی پایین نبود، بالای input باز کن
-    if(spaceBelow < dropdownHeight && rect.top > dropdownHeight){
-      list.style.top = 'auto';
-      list.style.bottom = (window.innerHeight - rect.top + 4) + 'px';
-    } else {
-      list.style.top = (rect.bottom + 4) + 'px';
-      list.style.bottom = 'auto';
-    }
+    list.style.top = (rect.bottom + 4) + 'px';
+    list.style.bottom = 'auto';
   }
   
   list.classList.remove('hidden');
@@ -1359,7 +1404,6 @@ function selectProductForInvoice(idx, id){
     listEl.style.top=''; listEl.style.left=''; listEl.style.right=''; listEl.style.bottom=''; listEl.style.width='';
   }
   
-  // نمایش موجودی در ستون جدید
   var stockCell = document.getElementById('invStock_' + idx);
   if(stockCell){
     var qty = stockOf(id);
@@ -1478,15 +1522,16 @@ function renderInvoiceItems(){
   for(let idx=0; idx<invoiceItems.length; idx++){
     const inp = $('#invProdSearch_'+idx);
     if(inp){
-      inp.addEventListener('focus', function(){
+      // فقط با کلیک باز بشه (نه focus که پرش میکنه)
+      inp.addEventListener('click', function(e){
+        e.stopPropagation();
         showProductList(idx);
       });
       inp.addEventListener('input', function(e){
         const q = e.target.value.toLowerCase();
         const list = $('#invProdList_'+idx);
         if(!list) return;
-        // قبل از فیلتر، موقعیت رو ست کن
-        showProductList(idx);
+        if(list.classList.contains('hidden')) showProductList(idx);
         const items = list.querySelectorAll('.ss-product-item');
         items.forEach(function(it){
           const name = (it.getAttribute('data-name')||'').toLowerCase();
