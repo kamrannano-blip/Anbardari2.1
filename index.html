@@ -96,51 +96,30 @@ body{font-family:'IRANSharp', 'IRANSans', Tahoma, sans-serif;font-weight:500;bac
 input[type=number]{direction:ltr;text-align:right}
 select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");background-repeat:no-repeat;background-position:left 12px center;background-size:16px;padding-left:36px;appearance:none;}
 
-/* ============ 🆕 کادر تاریخ ۳ Select در یک خط ============ */
+/* ============ کادر تاریخ ۳ Select ============ */
 .date3-wrap{display:flex;flex-direction:column;gap:6px;margin-top:2px;}
 .date3-row{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:6px;direction:rtl;}
 .date3-select{
-  width:100%;
-  padding:8px 6px;
-  border:1px solid var(--border-medium);
-  border-radius:8px;
-  font-family:inherit;
-  font-size:13px;
-  font-weight:700;
-  background:var(--bg-input);
-  color:#ffffff;
-  cursor:pointer;
-  transition:all .2s;
-  text-align:center;
-  height:36px;
-  appearance:none;
-  -webkit-appearance:none;
+  width:100%;padding:8px 6px;border:1px solid var(--border-medium);border-radius:8px;
+  font-family:inherit;font-size:13px;font-weight:700;background:var(--bg-input);color:#ffffff;
+  cursor:pointer;transition:all .2s;text-align:center;height:36px;
+  appearance:none;-webkit-appearance:none;
   background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-  background-repeat:no-repeat;
-  background-position:left 6px center;
-  background-size:10px;
-  padding-left:20px;
+  background-repeat:no-repeat;background-position:left 6px center;background-size:10px;padding-left:20px;
 }
 .date3-select:hover{border-color:var(--border-strong);}
 .date3-select:focus{outline:none;border-color:var(--accent);background-color:#0c1118;}
 .date3-select option{background:var(--bg-card);color:#fff;padding:8px;}
 .date3-display{
-  padding:4px 10px;
-  background:linear-gradient(135deg,rgba(212,175,55,.12) 0%,rgba(212,175,55,.2) 100%);
-  border:1px solid rgba(212,175,55,.3);
-  border-radius:6px;
-  font-size:11px;
-  font-weight:700;
-  color:var(--gold-light);
-  text-align:center;
-  font-variant-numeric:tabular-nums;
-  letter-spacing:.5px;
+  padding:4px 10px;background:linear-gradient(135deg,rgba(212,175,55,.12) 0%,rgba(212,175,55,.2) 100%);
+  border:1px solid rgba(212,175,55,.3);border-radius:6px;font-size:11px;font-weight:700;
+  color:var(--gold-light);text-align:center;font-variant-numeric:tabular-nums;letter-spacing:.5px;
 }
 .hidden-date-input{display:none!important;}
 
-/* ============ 🆕 جدول اقلام فاکتور — اسکرول‌پذیر ============ */
-/* کادر بیرونی جدول اقلام: ارتفاع ثابت + اسکرول عمودی + افقی */
+/* ============ جدول اقلام فاکتور — اسکرول‌پذیر ============ */
 .items-wrap{
+  min-height: 240px !important;
   max-height: 320px !important;
   overflow-y: auto !important;
   overflow-x: auto !important;
@@ -148,8 +127,8 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
   position: relative;
 }
 .items-table{
-  min-width: 900px !important;
-  width: 100%;
+  min-width: 1100px !important;
+  width: 1100px !important;
   table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
@@ -160,7 +139,7 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
   z-index: 20;
   background: var(--bg-card-2);
 }
-.items-table th,.items-table td{padding:6px 4px !important;vertical-align: middle;}
+.items-table th,.items-table td{padding:6px 4px !important;vertical-align: middle;overflow:hidden;}
 .items-table .col-product{width:50%;}
 .items-table .col-stock{width:10%;}
 .items-table .col-qty{width:10%;}
@@ -168,72 +147,48 @@ select.form-control{background-image:url("data:image/svg+xml;charset=UTF-8,%3csv
 .items-table .col-total{width:7%;}
 .items-table .col-act{width:3%;}
 .items-table input,.items-table select{
-  font-size:12px !important;
-  padding:6px 4px !important;
-  height:34px !important;
-  min-height:34px !important;
-  border-radius:6px !important;
-  width:100% !important;
+  font-size:12px !important;padding:6px 4px !important;height:34px !important;
+  min-height:34px !important;border-radius:6px !important;width:100% !important;
 }
 .items-table .col-qty input{font-size:13px !important;font-weight:700 !important;text-align:center;}
 .items-table .col-price input{font-size:12px !important;font-weight:700 !important;}
-.items-table .col-total .num{font-size:12px !important;font-weight:700;display:block;text-align:center;direction:ltr;}
+.items-table .col-total .num{
+  font-size:11px !important;font-weight:700;display:block;text-align:center;
+  direction:ltr;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
 .items-table .col-stock .stock-badge{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:12px;
-  font-weight:800;
-  height:34px;
-  min-height:34px;
-  border-radius:6px;
-  background:rgba(59,130,246,.12);
-  color:#60a5fa;
-  border:1px solid rgba(59,130,246,.3);
-  font-variant-numeric:tabular-nums;
-  direction:ltr;
-  width:100%;
+  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;
+  height:34px;min-height:34px;border-radius:6px;background:rgba(59,130,246,.12);
+  color:#60a5fa;border:1px solid rgba(59,130,246,.3);font-variant-numeric:tabular-nums;direction:ltr;width:100%;
 }
 .items-table .col-stock .stock-badge.stock-out{background:rgba(239,68,68,.12);color:#f87171;border-color:rgba(239,68,68,.3);}
 .items-table .col-stock .stock-badge.stock-low{background:rgba(245,158,11,.12);color:#fbbf24;border-color:rgba(245,158,11,.3);}
 .items-table .col-stock .stock-badge.stock-empty{background:transparent;border:1px dashed var(--border-medium);color:var(--text-muted);}
 
-/* ============ 🆕 لیست کالا — dropdown شناور با اسکرول ============ */
+/* ============ لیست کالا — dropdown شناور با موقعیت fixed ============ */
 .smart-select-list{
-  position:absolute;
-  top:100%;
-  right:0;
-  left:0;
-  margin-top:4px;
-  max-height:88px;
-  overflow-y:auto;
-  background:var(--bg-card-2);
-  border:1px solid var(--border-strong);
-  border-radius:8px;
-  z-index:5000;
-  box-shadow:0 12px 35px rgba(0,0,0,.7);
+  position: fixed;
+  max-height: 180px;
+  overflow-y: auto;
+  background: var(--bg-card-2);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  z-index: 99999;
+  box-shadow: 0 12px 35px rgba(0,0,0,.85);
 }
 .smart-select-list.hidden{display:none;}
 .ss-product-item{
-  padding:10px 12px;
-  cursor:pointer;
-  border-bottom:1px solid var(--border-soft);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:8px;
-  height:44px;
-  box-sizing:border-box;
-  transition:background .15s;
+  padding: 10px 12px;cursor: pointer;border-bottom: 1px solid var(--border-soft);
+  display: flex;justify-content: space-between;align-items: center;gap: 8px;
+  height: 44px;box-sizing: border-box;transition: background .15s;
 }
-.ss-product-item:last-child{border-bottom:none;}
-.ss-product-item:hover{background:var(--bg-hover);}
-.ss-product-item.selected{background:rgba(230,57,70,.12);border-right:3px solid var(--accent);}
-.ss-product-name{flex:1;font-size:13px;color:var(--text-main);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ss-product-item:last-child{border-bottom: none;}
+.ss-product-item:hover{background: var(--bg-hover);}
+.ss-product-item.selected{background: rgba(230,57,70,.12);border-right: 3px solid var(--accent);}
+.ss-product-name{flex: 1;font-size: 13px;color: var(--text-main);font-weight: 600;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 
-/* 🆕 انیمیشن Dropdown */
-.smart-select-list:not(.hidden){animation:slideDown .18s ease;}
-@keyframes slideDown{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+.smart-select-list:not(.hidden){animation: slideDown .18s ease;}
+@keyframes slideDown{from{opacity: 0;transform: translateY(-6px);}to{opacity: 1;transform: translateY(0);}}
 
 /* ============ Smart Select (مشتری) ============ */
 .smart-select-wrap{position:relative;width:100%}
@@ -323,8 +278,8 @@ tbody tr:hover{background:var(--bg-hover)}
   .date3-select{font-size:12px;padding:7px 4px;padding-left:16px;height:34px;}
   .date3-display{font-size:10px;padding:3px 8px;}
   .date3-row{grid-template-columns:1fr 1.2fr 1fr;gap:4px;}
-  .items-wrap{max-height:280px !important;}
-  .items-table{min-width:820px !important;}
+  .items-wrap{max-height:280px !important;min-height:200px !important;}
+  .items-table{min-width:1000px !important;width:1000px !important;}
   .items-table input,.items-table select{font-size:11px !important;padding:5px 3px !important;}
   .ss-product-name{font-size:12px;}
 }
@@ -463,12 +418,12 @@ function openModal(title,body,footer,size){
   $('#modalBox').className = 'modal '+(size==='lg'?'modal-lg':'');
   $('#modalOverlay').classList.add('show');
   attachAllThousandsIn($('#modalBody'));
-  attachAllThousandsIn;($('#modalFooter'));
- j  setTimeout(function(){ initDatepmickers(); }, 100);
+  attachAllThousandsIn($('#modalFooter'));
+  setTimeout(function(){ initDatepickers(); }, 100);
 }
-function closeModal =(){
-  $('#modalOverlay'). jclassList.remove('show');
- .j $('#modalBody').innerHTML='';
+function closeModal(){
+  $('#modalOverlay').classList.remove('show');
+  $('#modalBody').innerHTML='';
   $('#modalFooter').innerHTML='';
 }
 function attachAllThousandsIn(container){
@@ -483,21 +438,15 @@ function confirmAction(msg,onYes){
   $('#confirmYes').onclick = function(){closeModal();onYes();};
 }
 
-/* =====================================================
-   🆕 انتخاب تاریخ — ۳ Select در یک خط
-   ===================================================== */
 var JALALI_MONTH_NAMES = ['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
 
 function initDatepickers(){
   document.querySelectorAll('input[data-datepicker]').forEach(function(inp){
     if(inp._d3Attached) return;
     inp._d3Attached = true;
-    
     if(!inp.id) inp.id = 'dateInput_' + Math.random().toString(36).slice(2,8);
-    
     inp.style.display = 'none';
     inp.classList.add('hidden-date-input');
-    
     var val = (inp.value||'').trim();
     var jy, jm, jd;
     if(validJalali(val)){
@@ -506,29 +455,19 @@ function initDatepickers(){
     } else {
       var g = new Date();
       var j = jalaali.toJalaali(g.getFullYear(), g.getMonth()+1, g.getDate());
-      jy = j.jym; jd = j.jd;
+      jy = j.jy; jm = j.jm; jd = j.jd;
     }
-    
     var wrap = document.createElement('div');
     wrap.className = 'date3-wrap';
     wrap.id = 'dateWrap_' + inp.id;
-    
     var dayOpts = '';
-    for(var d=1; d<=31; d++){
-      dayOpts += '<option value="'+d+'" '+(d===jd?'selected':'')+'>'+String(d).padStart(2,'0')+'</option>';
-    }
+    for(var d=1; d<=31; d++){ dayOpts += '<option value="'+d+'" '+(d===jd?'selected':'')+'>'+String(d).padStart(2,'0')+'</option>'; }
     var monthOpts = '';
-    for(var m=1; m<=12; m++){
-      monthOpts += '<option value="'+m+'" '+(m===jm?'selected':'')+'>'+String(m).padStart(2,'0')+' — '+JALALI_MONTH_NAMES[m-1]+'</option>';
-    }
+    for(var m=1; m<=12; m++){ monthOpts += '<option value="'+m+'" '+(m===jm?'selected':'')+'>'+String(m).padStart(2,'0')+' — '+JALALI_MONTH_NAMES[m-1]+'</option>'; }
     var yearOpts = '';
-    for(var y=1400; y<=1500; y++){
-      yearOpts += '<option value="'+y+'" '+(y===jy?'selected':'')+'>'+y+'</option>';
-    }
-    
+    for(var y=1400; y<=1500; y++){ yearOpts += '<option value="'+y+'" '+(y===jy?'selected':'')+'>'+y+'</option>'; }
     var initialStr = jy+'/'+String(jm).padStart(2,'0')+'/'+String(jd).padStart(2,'0');
     inp.value = initialStr;
-    
     wrap.innerHTML = 
       '<div class="date3-row">' +
         '<select class="date3-select" data-day="'+inp.id+'" title="روز">'+dayOpts+'</select>' +
@@ -536,9 +475,7 @@ function initDatepickers(){
         '<select class="date3-select" data-year="'+inp.id+'" title="سال">'+yearOpts+'</select>' +
       '</div>' +
       '<div class="date3-display" id="dateDisplay_'+inp.id+'">📅 '+initialStr+'</div>';
-    
     inp.parentNode.insertBefore(wrap, inp.nextSibling);
-    
     wrap.querySelector('[data-day]').addEventListener('change', function(){ updateDate3(inp.id); });
     wrap.querySelector('[data-month]').addEventListener('change', function(){ updateDate3(inp.id); });
     wrap.querySelector('[data-year]').addEventListener('change', function(){ updateDate3(inp.id); });
@@ -552,10 +489,8 @@ function updateDate3(inputId){
   var d = parseInt(wrap.querySelector('[data-day]').value) || 1;
   var m = parseInt(wrap.querySelector('[data-month]').value) || 1;
   var y = parseInt(wrap.querySelector('[data-year]').value) || 1404;
-  
   var maxDay = (m<=6) ? 31 : (m<=11 ? 30 : (jalaali.isLeapJalaaliYear(y) ? 30 : 29));
   if(d > maxDay) d = maxDay;
-  
   var daySel = wrap.querySelector('[data-day]');
   if(daySel.options.length !== maxDay){
     daySel.innerHTML = '';
@@ -566,17 +501,14 @@ function updateDate3(inputId){
       if(i === d) opt.selected = true;
       daySel.appendChild(opt);
     }
-  } else {
-    daySel.value = d;
-  }
-  
+  } else { daySel.value = d; }
   var dateStr = y+'/'+String(m).padStart(2,'0')+'/'+String(d).padStart(2,'0');
   inp.value = dateStr;
   var disp = document.getElementById('dateDisplay_' + inputId);
   if(disp) disp.textContent = '📅 '+dateStr;
 }
 
-/* ============ Smart Select (انتخاب شخص) ============ */
+/* ============ Smart Select (مشتری) ============ */
 function buildSmartSelect(options){
   var selItem = null;
   for(var i=0; i<options.items.length; i++){
@@ -584,7 +516,6 @@ function buildSmartSelect(options){
   }
   var displayText = selItem ? selItem.label : (options.placeholder || 'انتخاب کنید');
   var isPlaceholder = !selItem;
-
   var html = '<div class="smart-select-wrap" id="ssWrap_' + options.id + '">' +
     '<div class="smart-select-display ' + (isPlaceholder?'':'has-value') + '" id="ssDisplay_' + options.id + '" onclick="toggleSmartSelect(&quot;' + options.id + '&quot;)">' +
       '<span class="' + (isPlaceholder?'ph':'') + '">' + displayText + '</span>' +
@@ -592,7 +523,6 @@ function buildSmartSelect(options){
     '<div class="smart-select-panel" id="ssPanel_' + options.id + '">' +
       '<div class="ss-search"><input type="text" placeholder="جستجو..." oninput="filterSmartSelect(&quot;' + options.id + '&quot;, this.value)"></div>' +
       '<div class="ss-list" id="ssList_' + options.id + '">';
-
   for(var j=0; j<options.items.length; j++){
     var it = options.items[j];
     var isSel = (it.value === options.selected) ? ' selected' : '';
@@ -601,7 +531,6 @@ function buildSmartSelect(options){
   html += '</div>' +
     '<div class="ss-empty hidden" id="ssEmpty_' + options.id + '">نتیجه‌ای یافت نشد</div>' +
   '</div></div>';
-
   return html;
 }
 
@@ -629,12 +558,8 @@ function filterSmartSelect(id, q){
   var visibleCount = 0;
   items.forEach(function(it){
     var label = (it.getAttribute('data-label')||'').toLowerCase();
-    if(!q || label.indexOf(q) !== -1){
-      it.style.display = 'block';
-      visibleCount++;
-    } else {
-      it.style.display = 'none';
-    }
+    if(!q || label.indexOf(q) !== -1){ it.style.display = 'block'; visibleCount++; }
+    else { it.style.display = 'none'; }
   });
   if(empty) empty.classList.toggle('hidden', visibleCount > 0);
 }
@@ -645,25 +570,15 @@ function selectSmartItem(id, value, callbackName){
   var items = list.querySelectorAll('.ss-item');
   var selectedLabel = '';
   items.forEach(function(it){
-    if(it.getAttribute('data-value') === value){
-      it.classList.add('selected');
-      selectedLabel = it.getAttribute('data-label');
-    } else {
-      it.classList.remove('selected');
-    }
+    if(it.getAttribute('data-value') === value){ it.classList.add('selected'); selectedLabel = it.getAttribute('data-label'); }
+    else { it.classList.remove('selected'); }
   });
   var display = document.getElementById('ssDisplay_' + id);
-  if(display){
-    display.innerHTML = '<span>' + selectedLabel + '</span>';
-    display.classList.add('has-value');
-  }
+  if(display){ display.innerHTML = '<span>' + selectedLabel + '</span>'; display.classList.add('has-value'); }
   var panel = document.getElementById('ssPanel_' + id);
   if(panel) panel.classList.remove('open');
   if(display) display.classList.remove('active');
-
-  if(callbackName && typeof window[callbackName] === 'function'){
-    window[callbackName](value);
-  }
+  if(callbackName && typeof window[callbackName] === 'function'){ window[callbackName](value); }
 }
 
 document.addEventListener('click', function(e){
@@ -671,6 +586,18 @@ document.addEventListener('click', function(e){
     document.querySelectorAll('.smart-select-panel.open').forEach(function(p){ p.classList.remove('open'); });
     document.querySelectorAll('.smart-select-display.active').forEach(function(d){ d.classList.remove('active'); });
   }
+  // 🆕 بستن dropdown کالا اگه کلیک بیرون بود
+  if(!e.target.closest('.ss-product-item') && !e.target.closest('input[id^="invProdSearch_"]')){
+    document.querySelectorAll('.smart-select-list').forEach(function(el){ el.classList.add('hidden'); });
+  }
+});
+
+// 🆕 بستن dropdown کالا هنگام اسکرول یا تغییر اندازه
+window.addEventListener('scroll', function(){
+  document.querySelectorAll('.smart-select-list').forEach(function(el){ el.classList.add('hidden'); });
+}, true);
+window.addEventListener('resize', function(){
+  document.querySelectorAll('.smart-select-list').forEach(function(el){ el.classList.add('hidden'); });
 });
 
 /* ============ دیتابیس ============ */
@@ -806,9 +733,7 @@ function totals(){
     for(const it of inv.items){ cogs += avgCostOf(it.productId) * it.qty; }
   }
   let totalExpenses = 0;
-  if(DB.data.expenses){
-    for(const e of DB.data.expenses){ totalExpenses += e.amount; }
-  }
+  if(DB.data.expenses){ for(const e of DB.data.expenses){ totalExpenses += e.amount; } }
   const profit = sales - cogs - totalExpenses;
   let receivable=0,payable=0;
   for(const p of DB.data.persons){
@@ -1372,13 +1297,12 @@ function nextInvoiceNumber(type){
   return prefix + '-' + String(Math.max.apply(null,[0].concat(nums))+1).padStart(4,'0');
 }
 
-/* 🆕 ساخت جستجوی کالا — فقط نام کالا (بدون کد و موجودی) */
+/* 🆕 جستجوی کالا — فقط نام (بدون کد و موجودی) */
 function buildProductSearch(idx, currentProductId){
   var p = currentProductId ? DB.data.products.find(function(x){return x.id===currentProductId;}) : null;
   var html = '<div style="position:relative">' +
     '<input class="form-control" id="invProdSearch_' + idx + '" placeholder="جستجوی کالا..." value="' + (p ? p.name : '') + '" onclick="showProductList(' + idx + ')">' +
     '<div class="smart-select-list hidden" id="invProdList_' + idx + '">';
-  
   for(var i=0; i<DB.data.products.length; i++){
     var x = DB.data.products[i];
     var isSel = (x.id === currentProductId) ? ' selected' : '';
@@ -1390,9 +1314,38 @@ function buildProductSearch(idx, currentProductId){
   return html;
 }
 
+/* 🆕 نمایش dropdown با موقعیت fixed — مشکل زیر کادر رفتن حل شد */
 function showProductList(idx){
   var list = document.getElementById('invProdList_' + idx);
-  if(list) list.classList.remove('hidden');
+  if(!list) return;
+  
+  // بستن بقیه dropdownها
+  document.querySelectorAll('.smart-select-list').forEach(function(el){
+    if(el !== list) el.classList.add('hidden');
+  });
+  
+  // محاسبه موقعیت input نسبت به صفحه
+  var input = document.getElementById('invProdSearch_' + idx);
+  if(input){
+    var rect = input.getBoundingClientRect();
+    var spaceBelow = window.innerHeight - rect.bottom;
+    var dropdownHeight = 180;
+    
+    list.style.left = rect.left + 'px';
+    list.style.width = rect.width + 'px';
+    list.style.right = 'auto';
+    
+    // اگه فضای کافی پایین نبود، بالای input باز کن
+    if(spaceBelow < dropdownHeight && rect.top > dropdownHeight){
+      list.style.top = 'auto';
+      list.style.bottom = (window.innerHeight - rect.top + 4) + 'px';
+    } else {
+      list.style.top = (rect.bottom + 4) + 'px';
+      list.style.bottom = 'auto';
+    }
+  }
+  
+  list.classList.remove('hidden');
 }
 
 function selectProductForInvoice(idx, id){
@@ -1400,9 +1353,13 @@ function selectProductForInvoice(idx, id){
   if(!p) return;
   invoiceItems[idx].productId = id;
   document.getElementById('invProdSearch_' + idx).value = p.name;
-  document.getElementById('invProdList_' + idx).classList.add('hidden');
+  var listEl = document.getElementById('invProdList_' + idx);
+  if(listEl){
+    listEl.classList.add('hidden');
+    listEl.style.top=''; listEl.style.left=''; listEl.style.right=''; listEl.style.bottom=''; listEl.style.width='';
+  }
   
-  // 🆕 نمایش موجودی در ستون جدید
+  // نمایش موجودی در ستون جدید
   var stockCell = document.getElementById('invStock_' + idx);
   if(stockCell){
     var qty = stockOf(id);
@@ -1453,11 +1410,8 @@ function invoiceForm(type, editId){
     personItems.push({value: DB.data.persons[pi].id, label: DB.data.persons[pi].name});
   }
   var personSelectHTML = buildSmartSelect({
-    id: 'invPerson',
-    placeholder: 'انتخاب شخص...',
-    items: personItems,
-    selected: personId,
-    onSelect: 'onInvoicePersonSelected'
+    id: 'invPerson', placeholder: 'انتخاب شخص...', items: personItems,
+    selected: personId, onSelect: 'onInvoicePersonSelected'
   });
 
   let whOptions = '';
@@ -1525,14 +1479,14 @@ function renderInvoiceItems(){
     const inp = $('#invProdSearch_'+idx);
     if(inp){
       inp.addEventListener('focus', function(){
-        const list = $('#invProdList_'+idx);
-        if(list) list.classList.remove('hidden');
+        showProductList(idx);
       });
       inp.addEventListener('input', function(e){
         const q = e.target.value.toLowerCase();
         const list = $('#invProdList_'+idx);
         if(!list) return;
-        list.classList.remove('hidden');
+        // قبل از فیلتر، موقعیت رو ست کن
+        showProductList(idx);
         const items = list.querySelectorAll('.ss-product-item');
         items.forEach(function(it){
           const name = (it.getAttribute('data-name')||'').toLowerCase();
@@ -1734,27 +1688,9 @@ function txForm(type, editId){
     personItems.push({value: DB.data.persons[pi].id, label: DB.data.persons[pi].name});
   }
   
-  var fromSelectHTML = buildSmartSelect({
-    id: 'txFrom',
-    placeholder: 'انتخاب شخص...',
-    items: personItems,
-    selected: existing ? existing.personId : '',
-    onSelect: 'onTxFromSelected'
-  });
-  var toSelectHTML = buildSmartSelect({
-    id: 'txTo',
-    placeholder: 'انتخاب شخص...',
-    items: personItems,
-    selected: existing ? existing.toPersonId : '',
-    onSelect: 'onTxToSelected'
-  });
-  var personSelectHTML = buildSmartSelect({
-    id: 'txPerson',
-    placeholder: 'انتخاب شخص...',
-    items: personItems,
-    selected: existing ? existing.personId : '',
-    onSelect: 'onTxPersonSelected'
-  });
+  var fromSelectHTML = buildSmartSelect({id:'txFrom',placeholder:'انتخاب شخص...',items:personItems,selected:existing?existing.personId:'',onSelect:'onTxFromSelected'});
+  var toSelectHTML = buildSmartSelect({id:'txTo',placeholder:'انتخاب شخص...',items:personItems,selected:existing?existing.toPersonId:'',onSelect:'onTxToSelected'});
+  var personSelectHTML = buildSmartSelect({id:'txPerson',placeholder:'انتخاب شخص...',items:personItems,selected:existing?existing.personId:'',onSelect:'onTxPersonSelected'});
 
   let body = '<div class="form-group"><label class="form-label">تاریخ</label><input class="form-control" id="txDate" value="'+(existing?existing.date:todayJalali())+'" data-datepicker></div>';
   if(isTransfer){
